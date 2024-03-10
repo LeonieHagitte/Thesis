@@ -1,0 +1,37 @@
+---
+title: "Development of a German Instrument for Self-Perceived Data Literacy"
+subtitle: "An Algorithm-based Approach to Scale Development"
+author: "Leonie Hagitte"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: article
+bibliography: [packages.bib, literature.bib]
+csl: apa7.csl
+link-citations: yes
+description: ""
+fontsize: 12pt
+linestretch: 1.2
+geometry: "left=3.9cm, right=3.3cm, top=2.5cm, bottom=3cm"
+papersize: a4
+classoption: twoside
+repro:
+  packages:
+    - devtools
+    - here
+    - aaronpeikert/repro@adb5fa56
+    - bookdown
+    - usethis
+    - gert
+---
+\newpage\null\thispagestyle{empty}\newpage
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = ">"
+)
+```
+
+# Abstract {-}
+
+```{r child='abstract.Rmd'}
+```
