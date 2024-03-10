@@ -1,1 +1,7 @@
 # Analysis
+
+We employed an automated item selection algorithm to craft the [insert name] scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
+
+Contemporary approaches to address these combinatorial problems leverage automatic optimization algorithms, such as Genetic Algorithms (GA; Holland, 1975), Ant Colonization Algorithms (ACO; XXX), brute force (XXX), or random sampling(XXX). (Schultze, 2022). 
+Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017). 
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003). Wich makes brute force approaches the preferred choice, if applicable (Schultze & Lorenz ,2023). Nevertheless, as brute force often isnt fesable because of timely and computational costs, approximate algorithms are indispensable for obtaining near-optimal solutions to complex combinatorial problems in a timely or computationally efficient manner (Schultze & Lorenz ,2023; Dorigo and Stützle, 2010).
