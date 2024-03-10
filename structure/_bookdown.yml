@@ -1,0 +1,6 @@
+book_filename: "ma"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files: ["index.Rmd", "acknowledgements.Rmd","01-intro.Rmd", "02-background.Rmd", "03-methods.Rmd", "04-analysis.Rmd","05-results.Rmd","06-discussion.Rmd","references.Rmd"]
