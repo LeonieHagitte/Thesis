@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Master Thesis | Leonie Hagitte</a></li>
+        <li><a href="./">Thesis | Leonie Hagitte</a></li>
     download: ["pdf", "epub"]
     github-repo: "LeonieHagitte/MastersThesis"
     view: https://github.com/LeonieHagitte/Thesis/blob/main/%s
