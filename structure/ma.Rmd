@@ -1,0 +1,154 @@
+---
+title: "Development of a German Instrument for Self-Perceived Data Literacy"
+author: "Leonie Hagitte"
+date: "`r Sys.Date()`"
+output: pdf_document
+site: bookdown::bookdown_site
+documentclass: article
+bibliography:
+- packages.bib
+- literature.bib
+csl: apa7.csl
+link-citations: true
+description: ''
+fontsize: 12pt
+linestretch: 1.2
+geometry: left=3.9cm, right=3.3cm, top=2.5cm, bottom=3cm
+papersize: a4
+classoption: twoside
+repro:
+  packages:
+  - devtools
+  - here
+  - aaronpeikert/repro@adb5fa56
+  - bookdown
+  - usethis
+  - gert
+subtitle: "An Algorithm-based Approach to Scale Development"
+---
+\newpage\null\thispagestyle{empty}\newpage
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = ">"
+)
+```
+
+# Abstract {-}
+
+```{r child='abstract.Rmd'}
+```
+
+# Acknowledgements {-}
+
+```{r child='acknowledgements.Rmd'}
+```
+
+# Introduction {-}
+
+```{r child='01-intro.Rmd'}
+```
+
+# Background {-}
+
+```{r child='02-background.Rmd'}
+```
+
+# Methods {-}
+
+```{r child='03-methods.Rmd'}
+```
+
+# Analysis {-}
+
+```{r child='04-analysis.Rmd'}
+```
+
+# Results {-}
+
+```{r child='05-results.Rmd'}
+```
+
+# Discussion {-}
+
+```{r child='06-discussion.Rmd'}
+```
+
+# References {-}
+
+```{r child='references.Rmd'}
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Acknowledgements {-}
+
+I dedicate this thesis to 
+
+I want to thank my advisers, Prof. Martin Schultze, Prof. Timo Lorenz, and Prof. Manuel Völkle for their time and patience, and my friends for their resourceful advice:
+
+\newpage\null\thispagestyle{empty}\newpage
+
+<!--chapter:end:acknowledgements.Rmd-->
+
+# Intro
+
+<!--chapter:end:01-intro.Rmd-->
+
+# Background
+The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
+
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society \parencite{carmi2020}. Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society \parencite{carmi2020}. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction \parencite{Cui2023}; And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE). 
+
+In "Thinking, Fast and Slow," \cite{kahneman2011} introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment \parencite{kahneman2011}.
+Applying Kahneman's insights to the realm of data literacy and research questions sheds light on a critical aspect. It underscores the notion that individuals, irrespective of their statistical expertise, remain vulnerable to cognitive biases when interpreting and analyzing data. In the current societal landscape, where data plays an increasingly pivotal role in shaping decisions and policies, acknowledging and addressing these cognitive biases becomes paramount.
+
+We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems \parencite{Cui2023}. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. 
+
+data vs. information 
+<!-- What is data and what is information? Is data entropy and information is not? -->
+
+<!--chapter:end:02-background.Rmd-->
+
+# Methods
+## Sample
+
+The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX% identified as female, XXX% as male, and xxx% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
+The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
+
+Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html#651186).
+
+Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
+
+
+<!--chapter:end:03-methods.Rmd-->
+
+# Analysis
+
+We employed an automated item selection algorithm to craft the [insert name] scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
+
+Contemporary approaches to address these combinatorial problems leverage automatic optimization algorithms, such as Genetic Algorithms (GA; Holland, 1975), Ant Colonization Algorithms (ACO; XXX), brute force (XXX), or random sampling(XXX). (Schultze, 2022). 
+Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017). 
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003). Wich makes brute force approaches the preferred choice, if applicable (Schultze & Lorenz ,2023). Nevertheless, as brute force often isnt fesable because of timely and computational costs, approximate algorithms are indispensable for obtaining near-optimal solutions to complex combinatorial problems in a timely or computationally efficient manner (Schultze & Lorenz ,2023; Dorigo and Stützle, 2010).
+
+<!--chapter:end:04-analysis.Rmd-->
+
+# Results
+
+<!--chapter:end:05-results.Rmd-->
+
+# Discussion
+
+<!--chapter:end:06-discussion.Rmd-->
+
+# References {-}
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'repro', 'here', 'usethis', 'gert', 'credentials'
+), 'packages.bib')
+```
+
+<!--chapter:end:references.Rmd-->
+

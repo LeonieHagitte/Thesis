@@ -1,7 +1,0 @@
-intro
-background
-methods
-analysis
-results
-discussion
-sample

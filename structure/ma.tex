@@ -1,0 +1,276 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  12pt,
+  a4paper,
+  twoside]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=3.9cm, right=3.3cm, top=2.5cm, bottom=3cm]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage{sourcecodepro}
+\usepackage{emptypage}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+%% change fontsize of output
+\let\oldverbatim\verbatim
+\let\endoldverbatim\endverbatim
+\renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Development of a German Instrument for Self-Perceived Data Literacy},
+  pdfauthor={Leonie Hagitte},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Development of a German Instrument for Self-Perceived Data Literacy}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{An Algorithm-based Approach to Scale Development}
+\author{Leonie Hagitte}
+\date{2024-03-11}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\setstretch{1.2}
+\newpage\null\thispagestyle{empty}\newpage
+
+\hypertarget{abstract}{%
+\section*{Abstract}\label{abstract}}
+\addcontentsline{toc}{section}{Abstract}
+
+The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (Cui et al., 2023). In addition, only a few explicitly refer to the general population (Cui et al., 2023; Carmi et al., 2020). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
+Our aim is therefore to derive a holistic definition based on these approaches and to develop a questionnaire for self-perception of one's own data literacy. To this end, the decisive factors for the construct from previous definitions and operationalizations in various disciplines are brought together. Cognitive interviews are conducted iteratively to create and refine the items. The items are then selected using algorithm-based item selection. The facets of data literacy are comprehensively tested for factorial, discriminant, convergent and congruent incremental validity in order to promote a differentiated understanding of the construct. Construct and criterion validity are tested using correlations and hierarchical regression analyses, while cross-validation checks the robustness of the instrument.
+Based on a cross-sectional online questionnaire study, we first examine a representative sample of people from the general population. Limitations arise from the cross-sectional design and the heuristic item reduction, which limit predictions of predictive validity. The heterogeneous nature of the construct makes global instrument development and understanding of all participants difficult.
+The self-assessment questionnaire promotes a holistic assessment of competence and its perception for further research, for example by comparing self-assessment and actual performance.
+
+\hypertarget{acknowledgements}{%
+\section*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+\hypertarget{acknowledgements-1}{%
+\section*{Acknowledgements}\label{acknowledgements-1}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+I dedicate this thesis to
+
+I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.~Manuel Völkle for their time and patience, and my friends for their resourceful advice:
+
+\newpage\null\thispagestyle{empty}\newpage
+
+\hypertarget{introduction}{%
+\section*{Introduction}\label{introduction}}
+\addcontentsline{toc}{section}{Introduction}
+
+\hypertarget{intro}{%
+\section{Intro}\label{intro}}
+
+\hypertarget{background}{%
+\section*{Background}\label{background}}
+\addcontentsline{toc}{section}{Background}
+
+\hypertarget{background-1}{%
+\section{Background}\label{background-1}}
+
+The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
+
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society \parencite{carmi2020}. Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society \parencite{carmi2020}. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction \parencite{Cui2023}; And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
+
+In ``Thinking, Fast and Slow,'' \cite{kahneman2011} introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment \parencite{kahneman2011}.
+Applying Kahneman's insights to the realm of data literacy and research questions sheds light on a critical aspect. It underscores the notion that individuals, irrespective of their statistical expertise, remain vulnerable to cognitive biases when interpreting and analyzing data. In the current societal landscape, where data plays an increasingly pivotal role in shaping decisions and policies, acknowledging and addressing these cognitive biases becomes paramount.
+
+We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems \parencite{Cui2023}. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder.
+
+data vs.~information
+
+\hypertarget{methods}{%
+\section*{Methods}\label{methods}}
+\addcontentsline{toc}{section}{Methods}
+
+\hypertarget{methods-1}{%
+\section{Methods}\label{methods-1}}
+
+\hypertarget{sample}{%
+\subsection{Sample}\label{sample}}
+
+The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX\% identified as female, XXX\% as male, and xxx\% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a {[}insert educational level- specifying the range or types of educational levels observed in the sample{]}. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
+The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
+
+Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: \url{https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html\#651186}).
+
+Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
+
+\hypertarget{analysis}{%
+\section*{Analysis}\label{analysis}}
+\addcontentsline{toc}{section}{Analysis}
+
+\hypertarget{analysis-1}{%
+\section{Analysis}\label{analysis-1}}
+
+We employed an automated item selection algorithm to craft the {[}insert name{]} scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
+
+Contemporary approaches to address these combinatorial problems leverage automatic optimization algorithms, such as Genetic Algorithms (GA; Holland, 1975), Ant Colonization Algorithms (ACO; XXX), brute force (XXX), or random sampling(XXX). (Schultze, 2022).
+Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017).
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze \& Lorenz ,2023; Blum and Roli, 2003). Wich makes brute force approaches the preferred choice, if applicable (Schultze \& Lorenz ,2023). Nevertheless, as brute force often isnt fesable because of timely and computational costs, approximate algorithms are indispensable for obtaining near-optimal solutions to complex combinatorial problems in a timely or computationally efficient manner (Schultze \& Lorenz ,2023; Dorigo and Stützle, 2010).
+
+\hypertarget{results}{%
+\section*{Results}\label{results}}
+\addcontentsline{toc}{section}{Results}
+
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
+
+\hypertarget{discussion}{%
+\section*{Discussion}\label{discussion}}
+\addcontentsline{toc}{section}{Discussion}
+
+\hypertarget{discussion-1}{%
+\section{Discussion}\label{discussion-1}}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{references-1}{%
+\section*{References}\label{references-1}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{acknowledgements-2}{%
+\section*{Acknowledgements}\label{acknowledgements-2}}
+\addcontentsline{toc}{section}{Acknowledgements}
+
+I dedicate this thesis to
+
+I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.~Manuel Völkle for their time and patience, and my friends for their resourceful advice:
+
+\newpage\null\thispagestyle{empty}\newpage
+
+\hypertarget{intro-1}{%
+\section{Intro}\label{intro-1}}
+
+\hypertarget{background-2}{%
+\section{Background}\label{background-2}}
+
+The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
+
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society \parencite{carmi2020}. Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society \parencite{carmi2020}. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction \parencite{Cui2023}; And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
+
+In ``Thinking, Fast and Slow,'' \cite{kahneman2011} introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment \parencite{kahneman2011}.
+Applying Kahneman's insights to the realm of data literacy and research questions sheds light on a critical aspect. It underscores the notion that individuals, irrespective of their statistical expertise, remain vulnerable to cognitive biases when interpreting and analyzing data. In the current societal landscape, where data plays an increasingly pivotal role in shaping decisions and policies, acknowledging and addressing these cognitive biases becomes paramount.
+
+We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems \parencite{Cui2023}. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder.
+
+data vs.~information
+
+\hypertarget{methods-2}{%
+\section{Methods}\label{methods-2}}
+
+\hypertarget{sample-1}{%
+\subsection{Sample}\label{sample-1}}
+
+The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX\% identified as female, XXX\% as male, and xxx\% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a {[}insert educational level- specifying the range or types of educational levels observed in the sample{]}. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
+The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
+
+Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: \url{https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html\#651186}).
+
+Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
+
+\hypertarget{analysis-2}{%
+\section{Analysis}\label{analysis-2}}
+
+We employed an automated item selection algorithm to craft the {[}insert name{]} scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
+
+Contemporary approaches to address these combinatorial problems leverage automatic optimization algorithms, such as Genetic Algorithms (GA; Holland, 1975), Ant Colonization Algorithms (ACO; XXX), brute force (XXX), or random sampling(XXX). (Schultze, 2022).
+Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017).
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze \& Lorenz ,2023; Blum and Roli, 2003). Wich makes brute force approaches the preferred choice, if applicable (Schultze \& Lorenz ,2023). Nevertheless, as brute force often isnt fesable because of timely and computational costs, approximate algorithms are indispensable for obtaining near-optimal solutions to complex combinatorial problems in a timely or computationally efficient manner (Schultze \& Lorenz ,2023; Dorigo and Stützle, 2010).
+
+\hypertarget{results-2}{%
+\section{Results}\label{results-2}}
+
+\hypertarget{discussion-2}{%
+\section{Discussion}\label{discussion-2}}
+
+\hypertarget{references-2}{%
+\section*{References}\label{references-2}}
+\addcontentsline{toc}{section}{References}
+
+\end{document}
