@@ -36,3 +36,12 @@ apa7.csl:
 	# $(RUN1) inkscape --export-plain-svg=$@ $< $(RUN2)
 # images/idealized-workflow.pdf: images/idealized-workflow.svg
 	# $(RUN1) inkscape --export-area-drawing --export-pdf=$@ $< $(RUN2)
+	
+copy-html-to-gh-pages:
+	mkdir -p book-output
+	git clone -b gh-pages https://github.com/LeonieHagitte/Thesis.git book-output
+	rm -rf book-output/*
+	cp -r _book/* book-output/
+	cd book-output && git add --all && git commit -m "Update HTML files" && git push -q origin gh-pages
+
+
