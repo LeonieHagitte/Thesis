@@ -67,6 +67,29 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \usepackage{booktabs}
 \usepackage{libertine}
 \usepackage{libertinust1math}
@@ -76,7 +99,7 @@
 \renewcommand{\topfraction}{0.8}
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\floatpagefraction}{0.75}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
+%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
 %% change fontsize of output
 \let\oldverbatim\verbatim
 \let\endoldverbatim\endverbatim
@@ -102,7 +125,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2024-03-11}
+\date{2024-03-14}
 
 \begin{document}
 \maketitle
@@ -118,7 +141,7 @@
 \section*{Abstract}\label{abstract}}
 \addcontentsline{toc}{section}{Abstract}
 
-The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (Cui et al., 2023). In addition, only a few explicitly refer to the general population (Cui et al., 2023; Carmi et al., 2020). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
+The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). In addition, only a few explicitly refer to the general population (\protect\hyperlink{ref-Carmi2020}{Carmi et al., 2020}; \protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
 Our aim is therefore to derive a holistic definition based on these approaches and to develop a questionnaire for self-perception of one's own data literacy. To this end, the decisive factors for the construct from previous definitions and operationalizations in various disciplines are brought together. Cognitive interviews are conducted iteratively to create and refine the items. The items are then selected using algorithm-based item selection. The facets of data literacy are comprehensively tested for factorial, discriminant, convergent and congruent incremental validity in order to promote a differentiated understanding of the construct. Construct and criterion validity are tested using correlations and hierarchical regression analyses, while cross-validation checks the robustness of the instrument.
 Based on a cross-sectional online questionnaire study, we first examine a representative sample of people from the general population. Limitations arise from the cross-sectional design and the heuristic item reduction, which limit predictions of predictive validity. The heterogeneous nature of the construct makes global instrument development and understanding of all participants difficult.
 The self-assessment questionnaire promotes a holistic assessment of competence and its perception for further research, for example by comparing self-assessment and actual performance.
@@ -141,12 +164,12 @@ I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.
 
 The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
 
-The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society \parencite{carmi2020}. Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society \parencite{carmi2020}. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction \parencite{Cui2023}; And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\protect\hyperlink{ref-carmi2020}{\textbf{carmi2020?}}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society \{(\protect\hyperlink{ref-carmi2020}{\textbf{carmi2020?}})\}. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}); And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
 
-In ``Thinking, Fast and Slow,'' \cite{kahneman2011} introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment \parencite{kahneman2011}.
+In ``Thinking, Fast and Slow,'' Kahneman (\protect\hyperlink{ref-kahneman2011}{2011}) introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment (\protect\hyperlink{ref-kahneman2011}{Kahneman, 2011}).
 Applying Kahneman's insights to the realm of data literacy and research questions sheds light on a critical aspect. It underscores the notion that individuals, irrespective of their statistical expertise, remain vulnerable to cognitive biases when interpreting and analyzing data. In the current societal landscape, where data plays an increasingly pivotal role in shaping decisions and policies, acknowledging and addressing these cognitive biases becomes paramount.
 
-We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems \parencite{Cui2023}. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder.
+We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder.
 
 data vs.~information
 
@@ -181,5 +204,18 @@ Noteworthy is the inherent approximate, rather than deterministic, nature of met
 \hypertarget{references}{%
 \section*{References}\label{references}}
 \addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Carmi2020}{}}%
+Carmi, E., Yates, S. J., Lockley, E., \& Pawluczuk, A. (2020). Data citizenship: Rethinking data literacy in the age of disinformation, misinformation, and malinformation. \emph{Internet Policy Review}, \emph{9}(2). \url{https://doi.org/10.14763/2020.2.1481}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Cui2023}{}}%
+Cui, Y., Chen, F., Lutsyk, A., Leighton, J., \& Cutumisu, M. (2023). Data literacy assessments: A systematic literature review. \emph{Assessment in Education: Principles, Policy \& Practice}, \emph{30}, 1--21. \url{https://doi.org/10.1080/0969594X.2023.2182737}
+
+\leavevmode\vadjust pre{\hypertarget{ref-kahneman2011}{}}%
+Kahneman, D. (2011). \emph{Thinking, fast and slow}. Farrar, Straus; Giroux.
+
+\end{CSLReferences}
 
 \end{document}
