@@ -1,1 +1,11 @@
 # Discussion
+- what to optimize the scale for?
+- dynamic fit indices
+- factors 4 and 5
+    - adaptive testing/ IRT
+        - dimensionality assumption and computationally intense
+    - CART - tree based adaptive testing (classification trees) always binary split
+        - gini index to identify the cut off 
+        - POMP method - for differing number of answer formats
+- residuals correlates 
+- heterogeneity of construct 
