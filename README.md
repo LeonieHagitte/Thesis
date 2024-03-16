@@ -24,13 +24,4 @@ of a global instrument and understanding of all participants difficult.
 The self-assessment questionnaire shall enable a holistic assessment of perceived competence for further studies, 
 for example by comparing self-assessment and actual performance.
 
-## Where am I - and what is missing:
-
-I am currently conducting cognitive interviews on the items in order to adjust and better assess 
-their selectivity and difficulty. I have also decided to include additional circular items for each 
-factor in the item pool in order to reduce any self-rating biases. I would also like to pre-register 
-my work soon before I start collecting data. The aim is not to have the entire instrument ready at the end, 
-but the three core factors. I deliberately leave out two factors that are more difficult and where I think 
-CAT is a good way to work on them afterwards. Therefore, I am designing a small set of items for these two factors, 
-just to see how a homogeneous part of the sample performs on these factors, and perhaps to use this data as 
-preliminary results to work on further after this study.
+You can take a look here: https://leoniehagitte.github.io/Thesis/
