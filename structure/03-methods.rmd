@@ -21,6 +21,8 @@ To assess moral attentiveness, we employed the perceptual moral attentiveness sc
 
 ## Measuring Self-Efficacy
 
+
+
 ## Measuring Openness towards technology
 
 ICT-SC was measured, using the ICT-SC25g. The ICT-SC25 is a self-administered questionnaire designed to assess ICT self-concept (ICT-SC) on both a general scale (items 1-5) and a domain-specific scale (items 6-25). Responses to items are provided on a six-point Likert-type scale with fully labeled options, ranging from strongly disagree (1) to strongly agree (6). The questionnaire has undergone validation in German (ICT-SC25g). Its applicability extends across the adult population, spanning ages 18 to 69, and diverse contexts including work, private life, and education. 
