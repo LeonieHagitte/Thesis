@@ -19,11 +19,6 @@ Entropy, a concept borrowed from thermodynamics and applied in information theor
 However, it's essential to note that entropy can also be viewed as a measure of information content within a system. This perspective is articulated by Brillouin (1953), who suggests that low entropy corresponds to a high concentration of meaningful information. Similarly, the work of Jaynes (1957) highlights the connection between entropy and information, proposing that information can be quantified in terms of the reduction of uncertainty or entropy in a system.
 Thus, we can refine our understanding of the relationship between data, entropy, and information. While data serves as the raw material from which information is derived, it's the reduction of entropy through organization and interpretation that gives rise to meaningful information. Thus, rather than viewing data as synonymous with entropy, it's more accurate to consider information as emerging from the structured representation of data, leading to a deeper understanding of the underlying phenomena.
 
-Shannon, C. E. (1948). A mathematical theory of communication. Bell System Technical Journal, 27(3), 379-423.
-Bates, M. J. (2005). An introduction to metatheories, theories, and models. In M. J. Bates & M. N. Maack (Eds.), Encyclopedia of library and information sciences (2nd ed., pp. 109-121). Taylor & Francis.
-Brillouin, L. (1953). Negentropy principle of information. Journal of Applied Physics, 24(9), 1152-1163.
-Jaynes, E. T. (1957). Information theory and statistical mechanics. Physical Review, 106(4), 620-630.
-
 ## Measuring Self-Perceived Data Literacy 
 
 instances have underscored the extent to which citizens may lack awareness regarding the potential uses and misuses of their data. [argumentation for selfrating measure!]
