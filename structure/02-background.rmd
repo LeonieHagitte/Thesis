@@ -3,6 +3,7 @@
 In "Thinking, Fast and Slow," @kahneman2011 introduces the two systems of thinking: System 1 and System 2. System 1 operates swiftly, relying on intuition and often succumbing to biases, while System 2 operates more deliberately, engaging in analytical thinking. Kahneman's exploration extends to the realization that even experts across diverse domains can fall prey to cognitive biases, leading to errors in judgment [@kahneman2011].
 Applying Kahneman's insights to the realm of data literacy and research questions sheds light on a critical aspect. It underscores the notion that individuals, irrespective of their statistical expertise, remain vulnerable to cognitive biases when interpreting and analyzing data. In the current societal landscape, where data plays an increasingly pivotal role in shaping decisions and policies, acknowledging and addressing these cognitive biases becomes paramount.
 
+## Aim of the Study
 We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems [@Cui2023]. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. 
 
 ## Data and Information
