@@ -30,7 +30,7 @@ The general procedure outlined in the text can be extracted as follows:
 5. Validate findings using k-fold cross-validation with the test dataset.
 
 ## Evaluation of Model Fit, Measurement Invariance, and External Validity: 
-1. Evaluate model fit using standard recommendations proposed by Hu and Bentler (1999), including χ2 significance testing and fit indices.
+1. Evaluate model fit using standard recommendations proposed by Hu and Bentler (1999), including $\chi^2$ significance testing and fit indices.
 2. Conduct confirmatory factor analysis (CFA) with the R package "lavaan."
 3. ggf. Account for non-normal distribution using a robust maximum likelihood estimator (MLR).
 4. Validate the selected scale using k-fold cross-validation to examine measurement invariance assumptions.
