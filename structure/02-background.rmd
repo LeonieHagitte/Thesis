@@ -26,15 +26,25 @@ instances have underscored the extent to which citizens may lack awareness regar
 Conceptual integration was employed to find common grounds of the existing theories and studies. 
 By synthesizing heterogeneous definitions and perspectives into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections, conceptual integration enables researchers to create comprehensive latent factors that capture the complexity of the construct.
 
-## Understand and Interpret Data 
+## Information Comprehension and Interpretation
+
+This latent factor represents individuals' ability to comprehend and interpret various forms of information effectively. It encompasses skills such as understanding dense textual information, extracting key points from written materials, detecting inconsistencies or logical flaws in arguments, and contextualizing information within practical scenarios. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
 
 ## Contextualize, Evaluate and Critique Data
 
-## Integrate Data in One's View of the World 
+This latent factor emphasizes individuals' ability to discern biases or subjectivity in information sources and evaluate the credibility and reliability of data within relevant contexts. It involves considering various factors such as the reputation of the source, sample size, and external influences like cultural, economic, or political factors that may impact data interpretation. Individuals scoring high on this factor demonstrate a keen awareness of potential biases or vested interests in information sources and exercise caution in relying on them for decision-making. They exhibit a discerning approach to assessing the reliability and transparency of sources, including online platforms, and prioritize information verified by diverse and reputable sources. Moreover, they possess the skill to differentiate between facts and opinions across different types of media and critically evaluate the qualifications and expertise of authors before relying on their information. This factor underscores the importance of utilizing credible and expert-reviewed sources for informed decision-making and problem-solving.
 
-## Present/Visualize Data/Information
+## Data-Informed Worldview
 
-## Manage/Collect/Analyze Data 
+This factor assesses individuals' ability to integrate data and information into decision-making, problem-solving, and personal or professional perspectives. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data, while recognizing instances of data manipulation in graphical representations.
+
+## Data Communication Proficiency
+
+This factor pertains to the skill of effectively conveying data insights through diverse mediums like visualization, presentations, and reports. It requires translating complex data into clear and impactful formats, ensuring comprehension by varied audiences. Proficiency in data communication is essential for facilitating understanding, aiding informed decision-making, and prompting action based on data-driven insights. This proficiency includes the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in both written and visual formats. It involves adeptly summarizing extensive datasets, engaging in professional discussions, and using advanced visual elements to convey specialized results to target audiences.
+
+## Data Handling and Statistical Literacy
+
+This latent factor reflects individuals' proficiency in handling data and their familiarity with statistical concepts and techniques. It includes skills such as organizing and managing data using software tools, conducting interviews or surveys for data collection, performing basic statistical analysis, recognizing trends in graphical representations, and accessing information from various sources. Individuals scoring high on this factor exhibit competence in both basic and advanced statistical methods, enabling them to effectively analyze data, interpret findings, and make informed decisions. Additionally, they demonstrate proficiency in managing complex datasets and possess a deep understanding of statistical principles essential for rigorous data analysis.
 
 ## Moral Attentiveness
 
