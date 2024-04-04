@@ -56,20 +56,13 @@ Within the field, an implicit assumption is that the variance in individual mora
 
 ## Critical Thinking
 
-The conceptualization of Critical Thinking (CrT) has evolved along three main branches: philosophical, psychological, and educational (Rear, 2019). In the philosophical view, which centers on the mental process of thought, a critical thinker is someone adept at logically evaluating and questioning both the assumptions of others and their own. On the psychological front, which delves into the processes driving action, a critical thinker possesses a combination of skills enabling them to assess a situation and determine the most appropriate course of action. The educational approach aligns more closely with the psychological perspective, relying on frameworks and learning activities tailored to enhance students' CrT skills and subsequently assess their proficiency in these skills [@payan2022].
-
-- Rear, D. One size fits all? The limitations of standardised assessment in critical thinking. Assess. Eval. High. Educ. 2019, 44, 664–675.
-
-- Thaiposri, P.; Wannapiroon, P. Enhancing Students’ Critical Thinking Skills through Teaching and Learning by Inquiry-basedLearning Activities Using Social Network and Cloud Computing. Procedia-Soc. Behav. Sci. 2015, 174, 2137–2144 
+The conceptualization of Critical Thinking (CrT) has evolved along three main branches: philosophical, psychological, and educational [@rear2019]. In the philosophical view, which centers on the mental process of thought, a critical thinker is someone adept at logically evaluating and questioning both the assumptions of others and their own. On the psychological front, which delves into the processes driving action, a critical thinker possesses a combination of skills enabling them to assess a situation and determine the most appropriate course of action. The educational approach aligns more closely with the psychological perspective, relying on frameworks and learning activities tailored to enhance students' CrT skills and subsequently assess their proficiency in these skills [@payan2022].
 
 ## Need for Cognition 
 
-The personality trait known as Need for Cognition (NFC) originated in social psychology during the 1940s and 1950s, the concept of NFC, representing an inclination for joyful thinking, is evident in the works of Maslow (1943), Murphy (1947), Asch (1952), and Sarnoff and Katz (1954). The conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations by Cohen and colleagues (e.g., Cohen, Stotland and Wolfe, 1955). They defined NFC as "a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world" (Cohen et al., 1955, p. 291). The concept captures individual variations in the engagement and enjoyment of thinking tasks (Bless, Wänke, Bohner, Fellhauer and Schwarz, 1994). 
+The personality trait known as Need for Cognition (NFC) originated in social psychology during the 1940s and 1950s, the concept of NFC, representing an inclination for joyful thinking, is evident in the works of @maslow1943, @murphy1947, @asch1952, and @sarnoff1954. The conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations by Cohen and colleagues [@cohen1955]. They defined NFC as "a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world" [@cohen1955, p. 291]. The concept captures individual variations in the engagement and enjoyment of thinking tasks [@bless1994]. 
 
 ## Core self evaluation
-
-->  core self evaluation judge, lock and durham 97
--> heilman und jonas 2010 validation german
 
 Core Self-Evaluations (CSE) is a comprehensive personality trait that encompasses fundamental appraisals of one's worthiness, effectiveness, and capability as a person (Judge, Erez, Bono, & Thoresen, 2003). This construct, initially introduced by Judge, Locke, and Durham (1997), integrates four traits: self-esteem, emotional stability, generalized self-efficacy, and locus of control, all of which contribute to individuals' perceptions of themselves and their agency (Judge & Bono, 2001).
 
