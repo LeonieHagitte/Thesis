@@ -26,9 +26,9 @@ instances have underscored the extent to which citizens may lack awareness regar
 Conceptual integration was employed to find common grounds of the existing theories and studies. 
 By synthesizing heterogeneous definitions and perspectives into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections, conceptual integration enables researchers to create comprehensive latent factors that capture the complexity of the construct.
 
-## Information Comprehension and Interpretation
+## Data Comprehension and Interpretation
 
-This latent factor represents individuals' ability to comprehend and interpret various forms of information effectively. It encompasses skills such as understanding dense textual information, extracting key points from written materials, detecting inconsistencies or logical flaws in arguments, and contextualizing information within practical scenarios. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
+This factor encompasses skills related to understanding and critically evaluating data and information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
 
 ## Contextualize, Evaluate and Critique Data
 
