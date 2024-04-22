@@ -35,7 +35,7 @@ This factor involves skills related to critically evaluating information sources
 
 ## Data-Informed Worldview
 
-This factor assesses individuals' ability to integrate data and information into decision-making, problem-solving, and personal or professional perspectives. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data, while recognizing instances of data manipulation in graphical representations.
+This factor relates to the ability to integrate data-driven insights into one's worldview and values. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data, while recognizing instances of data manipulation in graphical representations.
 
 ## Data Communication Proficiency
 
