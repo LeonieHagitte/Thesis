@@ -1,4 +1,4 @@
-# Intro
+# Introduction
 
 The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
 
