@@ -2,40 +2,32 @@
 
 ## 1. Stage One: Conceptualization and Item Pool Generation 
    - Review relevant literature to develop a theory-driven conceptualization of constructs.
-   - Ensure diversity in the sample regarding age and occupation.
+   - Ensure diversity in the interviews regarding age and occupation.
+   - Include as many members of target group in the item creation process as possible.
    - Integrate theory and interview results to generate an initial item pool.
-   - Include a member of the majority group in the item creation process.
-   - Present original items to a diverse group for comprehensibility and content validity assessment.
+   - Present original items to a small group for piloting - item difficulty/ fairness etc.
    - Exclude items as necessary, resulting in a refined item pool.
 
 ## 2. Stage Two: Item Selection and Construct Validity
    - Conduct a quantitative survey including the original item pool, demographics, and validation measures.
    - Utilize automated item selection procedures to reduce the item pool.
-   - Cross-validate findings using a split-sample approach.
+   - Utilize an algorithm to select items from the original item pool and develop the final version of the scale.
+   - Use an algorithm implemented in the R package "stuart" with predefined datasets split into training and test datasets.
+   - Evaluate solutions against an objective function consisting of model fit criteria and composite reliability.
+   - Evaluate model fit using standard recommendations proposed by Hu and Bentler (1999), including $\chi^2$ significance testing   and fit indices.
+   - ez cutoffs. ; discussing dynamic fit indices
    - Hypothesize relationships between the newly created measure and related constructs.
    - Use distinct but conceptually similar instruments for validation purposes.
+   - Cross-validate findings using a split-sample approach?
+   - Evaluate solutions against an objective function consisting of model fit criteria and composite reliability.
+   - Validate findings using k-fold cross-validation with the dataset?
+   - Conduct confirmatory factor analysis (CFA) with the R package "lavaan."
 
 ## 3. Stage Three: External and Construct Validity Testing 
-   - Perform bivariate correlational analyses with relevant work-related constructs to establish external validity.
+   - Perform bivariate correlational analyses with relevant related constructs to establish external validity.
    - Investigate construct validity through multiple regression analysis, controlling for other variables.
    - Discuss specific hypotheses regarding associations between the measure and related constructs.
 
-The general procedure outlined in the text can be extracted as follows:
-
-## Item Selection Procedure: 
-1. Utilize an algorithm to select items from the original item pool and develop the final version of the scale.
-2. Create an initial population by randomly generating a predefined number of chromosomes from the original item pool.
-3. Use an algorithm implemented in the R package "stuart" with predefined datasets split into training and test datasets.
-4. Evaluate solutions against an objective function consisting of model fit criteria and composite reliability.
-5. Validate findings using k-fold cross-validation with the test dataset.
-
-## Evaluation of Model Fit, Measurement Invariance, and External Validity: 
-1. Evaluate model fit using standard recommendations proposed by Hu and Bentler (1999), including $\chi^2$ significance testing and fit indices.
-2. Conduct confirmatory factor analysis (CFA) with the R package "lavaan."
-3. ggf. Account for non-normal distribution using a robust maximum likelihood estimator (MLR).
-4. Validate the selected scale using k-fold cross-validation to examine measurement invariance assumptions.
-5. Evaluate divergent and convergent validity of the scale using Pearson's correlation coefficients with other relevant measures.
-6. Assess correlations to determine the strength of associations.
 
 ## Sample
 

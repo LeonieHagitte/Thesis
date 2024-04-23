@@ -7,16 +7,11 @@ Although there seem to be several definitions of Data literacy for citizens [@wo
 This is also reflected when taking a look into related concepts.
 The definition proposed by @wolff2016 suggests that data literacy shares some common competencies with statistical and information literacies. Information literacy, often studied in library sciences, overlaps with data literacy in terms of accessing, critically evaluating, and using data sources [@prado2013;@shields2005], @wolff2016 also emphasize the importance of the data inquiry process, starting from identifying problems, designing studies, acquiring data, conducting analysis, to drawing data-based conclusions.
 In comparison, @gould2017 argued that data literacy is essentially the same as statistical literacy but with additional competencies needed due to the increasing importance of data. These added competencies include understanding who collects the data, how and why data is collected, and understanding data privacy and ownership. However, while statistical literacy focuses on quantitative data and basic statistics, data literacy extends to the ability to understand, access, evaluate, and use arguments and decision-making based on both quantitative and qualitative data [@Cui2023].
-The framework of [@schüller2020] shows that citizens are mainly covering roles where they consume data/ data products or informations.
-Thus, they are most likely to find tasks or items regarding the producing facets like providing or exploiting data more difficult to answer. This would systematically impair the fairness of tests and questionnaires regarding Data Literacy. @kubinger2005 define fairness as the condition where test measurements or values do not discriminate against specific groups of people who are relevant to the test. In the case of Data Literacy it is to be expected, that the item-difficulties in the producing factors would not be evenly distributed. 
-
-
-## Aim of the Study
-We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems [@Cui2023]. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. 
 
 ## Data and Information
 
-When speaking of Data Literacy, the respective self-perception and how to define and measure both constructs, one naturally has to think about what data is. What is information, how are they different to each other and what extents do they share? And what role does the process of interpretation play? Does one interpret data to make sense of it? And if so, does that mean that data is entropy while information stands in opposition to it?
+With the closeness of those topics, it is worth while to take a look into the terminology, before delving deeper into the topic.
+When speaking of Data Literacy, one naturally has to think about what data is. What is information, how are they different to each other and what extents do they share? And what role does the process of interpretation play? Does one interpret data to make sense of it? And if so, does that mean that data is entropy while information stands in opposition to it?
 
 The concepts of data and information are foundational in various fields, yet their precise definitions and relationships are often subject to interpretation.
 According to Shannon's seminal work on information theory [@shannon1948], data can be understood as raw, unprocessed symbols or observations, devoid of inherent meaning. It is through a process of interpretation and organization that data transforms into information, as elucidated by @bates2005. Bates emphasizes that information emerges when data is structured and presented in a way that is comprehensible and relevant to a particular context or purpose.
@@ -25,44 +20,14 @@ Entropy, a concept borrowed from thermodynamics and applied in information theor
 However, it's essential to note that entropy can also be viewed as a measure of information content within a system. This perspective is articulated by @brillouin1953, who suggests that low entropy corresponds to a high concentration of meaningful information. Similarly, the work of @jaynes1957 highlights the connection between entropy and information, proposing that information can be quantified in terms of the reduction of uncertainty or entropy in a system.
 Thus, we can refine our understanding of the relationship between data, entropy, and information. While data serves as the raw material from which information is derived, it's the reduction of entropy through organization and interpretation that gives rise to meaningful information. Thus, rather than viewing data as synonymous with entropy, it's more accurate to consider information as emerging from the structured representation of data, leading to a deeper understanding of the underlying phenomena.
 
-## Self-Perceived Data Literacy 
-
-instances have underscored the extent to which citizens may lack awareness regarding the potential uses and misuses of their data. [argumentation for self-rating measure!]
-
-## Conceptual Integration 
-
-Conceptual integration was employed to find common grounds of the existing theories and studies. 
-By synthesizing heterogeneous definitions and perspectives into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections, conceptual integration enables researchers to create comprehensive latent factors that capture the complexity of the construct.
-
-## Data Comprehension and Interpretation
-
-This factor encompasses skills related to understanding and critically evaluating data and information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
-
-## Contextualize, Evaluate and Critique Data
-
-This factor involves skills related to critically evaluating information sources and discerning between facts and opinions. It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate a keen awareness of potential biases or vested interests in information sources.
-
-## Data-Informed Worldview
-
-This factor relates to the ability to integrate data-driven insights into one's worldview and values. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data.
-
-## Data Communication Proficiency
-
-This factor revolves around the skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions.
-It requires translating complex data into clear and impactful formats, ensuring comprehension by varied audiences. Proficiency in data communication is essential for facilitating understanding, aiding informed decision-making, and prompting action based on data-driven insights. This proficiency includes the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats. It involves adeptly summarizing extensive datasets, engaging in professional discussions, and using advanced visual elements to convey specialized results to target audiences.
-
-## Data Management and Analysis
-This factor covers skills related to managing and analyzing data effectively. It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies.
-It includes skills such as organizing and managing data using software tools, conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations. Individuals scoring high on this factor exhibit competence in statistical methods, enabling them to effectively analyze data and interpret findings.
-
-## Statistical Literacy
+### Statistical Literacy
 
 Statistical literacy, as defined by Gal (2002), encompasses five knowledge dimensions: literacy skills, statistical knowledge, mathematical knowledge, contextual knowledge, and critical reflection skills, along with two dispositional dimensions: beliefs and attitudes, and a critical mindset. It involves understanding written, spoken, or graphical information, knowing why data are needed, grasping basic statistical concepts, understanding probability, and drawing statistical inferences. It also includes basic mathematical operations, interpreting information within a context, and critically questioning the validity of information, particularly in media. Statistical literacy requires a critical attitude and the perception of oneself as competent in statistical reasoning.
 
 Reference:
 Gal, I. (2002). Adult numeracy and statistical literacy: Concepts, research, and a challenge. Journal of Statistics Education, 10(3). Retrieved from https://www.tandfonline.com/doi/abs/10.1080/10691898.2002.11910562
 
-## Information Literacy
+### Information Literacy
 
 Information literacy is the ability to recognize when information is needed and to effectively locate, evaluate, and use that information (American Library Association (2000). Information Literacy Competency Standards for Higher Education. http://www.ala.org/acrl/standards/informationliteracycompetency ). It empowers individuals to determine the extent of information needed, access it efficiently, critically evaluate information and their sources, incorporate information into their knowledge base, and use it effectively for specific purposes. Additionally, information literacy involves understanding the legal, economic, and social aspects of information use and ensuring ethical and legal access and use of information.
 Furthermore, Information literacy is not static; it involves a commitment to lifelong learning and adaptation to evolving information technologies and practices.
@@ -71,6 +36,58 @@ Another possible way to describe it is suggested by Johnson and Webber (2003):
 “Information literacy is the adoption of appropriate information behaviour to obtain,through whatever channel or medium, information well fitted to information needs,together with critical awareness of the importance of wise and ethical use of information in society.” (Johnston & Webber, 2003, p.336)
 
 Also similar to Data Literacy, is its heterogeneous nature. This already becomes apparent when looking at the different frameworks for Information literacy. In the UK, the seven Pillars of IL model was published in 1999 by the SCONUL Advisory Committee on Information Literacy. In 2001, the Australian and New Zealand Institute for Information Literacy developed its IL framework, which was revised in 2004 by Bundy. A year later, Mexican standards for IL in higher education were established, influenced significantly by the Association of College and Research Libraries (ACRL) Standards published in 2000. Work on the Scottish IL framework began in 2004, as documented by Irving in 2011. IL was also a focal point in a European project aimed at revitalizing the European library and information science curriculum, identifying essential topics and teaching methods (Virkus, S., Boekhorst, A.K., Gomez-Hernandez, J.A., Skov, C., & Webber, S. (2005). Information literacy: Conceptions, context and the formation of a discipline.).
+
+The framework of [@schüller2020] shows that citizens are mainly covering roles where they consume data/ data products or informations.
+Thus, they are most likely to find tasks or items regarding the producing facets like providing or exploiting data more difficult to answer. This would systematically impair the fairness of tests and questionnaires regarding Data Literacy. @kubinger2005 define fairness as the condition where test measurements or values do not discriminate against specific groups of people who are relevant to the test. In the case of Data Literacy it is to be expected, that the item-difficulties in the producing factors would not be evenly distributed. As you cant just leave any factors out of the construct, in order to create a concept that is fair, it would be neccessary to find a way to have the same factors in the concept with the same distribution of difficulty for all groups of participants. 
+
+## Conceptual Integration 
+
+Thus, conceptual integration was employed to find common grounds of the existing theories and studies. 
+By synthesizing heterogeneous definitions and perspectives into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections, conceptual integration enables researchers to create comprehensive latent factors that capture the complexity of the construct.
+Therefore we arrived at the following structure of the concept.
+
+Data literacy is the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data and their sources.
+The concept comprises Data Comprehension and Interpretation, Contextualize and Evaluate Data, Data-Informed Worldview, Data Communication Proficiency and Data Management and Analysis. On those Factors people can exhibit different levels of literacy, expanding the definition above the static nature into a more dynamic one.
+
+### Data Comprehension and Interpretation  
+This factor encompasses skills related to understanding and critically evaluating data and information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
+
+### Contextualize and Evaluate Data  
+This factor involves skills related to critically evaluating information sources and discerning between facts and opinions. It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate a keen awareness of potential biases or vested interests in information sources.
+
+### Data-Informed Worldview  
+This factor relates to the ability to integrate data-driven insights into one's worldview and values. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data.
+
+### Data Communication Proficiency  
+This factor revolves around the skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions.
+It requires translating complex data into clear and impactful formats, ensuring comprehension by varied audiences. Proficiency in data communication is essential for facilitating understanding, aiding informed decision-making, and prompting action based on data-driven insights. This proficiency includes the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats. It involves adeptly summarizing extensive datasets, engaging in professional discussions, and using advanced visual elements to convey specialized results to target audiences.
+
+### Data Management and Analysis  
+This factor covers skills related to managing and analyzing data effectively. It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies.
+It includes skills such as organizing and managing data using software tools, conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations. Individuals scoring high on this factor exhibit competence in statistical methods, enabling them to effectively analyze data and interpret findings.
+
+## Delineation from other concepts  
+In line with the framework of @schüller2020 the concept entails ethical data-use, but only at the hightest difficulty of data management. And the factors Data Comprehension and Interpretation, Contextualize and Evaluate Data and Data-Informed Worldview are representing the application areas for consumers. So they are relevant for all people in scociety, whereas the other factors, those speaking to people who are considered "producers", are only common for smaller groups of people or certain professions.  
+This structure encompasses certain characteristics from Statistical Literacy as well as from Information Literacy.
+The integration of statistical literacy and information literacy within the framework of data literacy is an essential aspect to consider as those concepts are so closely related. 
+
+### What it takes  
+This definition incorporates statistical literacy by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Data Handling and Analysis). It includes elements of information literacy by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, which are similar to assessing the quality of information sources (Contextualize and Evaluate Data).
+Both statistical and information literacy involve using data and information to make informed decisions. Your framework emphasizes integrating data-driven insights into ones opinions and values, that then later on influence decision-making processes, aligning with the goals of statistical and information literacy.
+
+### What it leaves  
+Statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing. This definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While statistical literacy often involve analyzing existing data, this definition also includes skills related to producing and manipulating data, such as creating visualizations and using software tools. This aspect goes beyond traditional statistical literacy and aligns more closely with data literacy.  
+While information literacy involves assessing the quality of information sources, this definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy and is more specific to data literacy.
+
+--> Part on delineation from media and digital competency!
+
+## Aim of the Study  
+We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems [@Cui2023]. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. But there are several tests already being used or currently under construction (QOELLE). What we thought was lacking, was a valid measure of self-perceived Data Literacy. One that should be fitting for the general public.
+
+## Self-Perceived Data Literacy 
+
+instances have underscored the extent to which citizens may lack awareness regarding the potential uses and misuses of their data. [argumentation for self-rating measure!]
+
 
 ## Moral Attentiveness
 
