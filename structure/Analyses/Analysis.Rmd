@@ -1,0 +1,114 @@
+---
+title: "Analysis"
+author: "Leonie"
+date: "2024-04-23"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages('semPower')
+library(semPower)
+```
+
+# Poweranalyse mit SemPower ohne Model
+```{r}
+ap <- semPower.aPriori(effect = .05, effect.measure = 'RMSEA', 
+                       alpha = .05, power = .80, df = 150)
+summary(ap)
+```
+
+# Poweranalyse mit SemPower mit Model
+```{r}
+powerLI <- semPower.powerLI(
+  type = 'a-priori', alpha = .05, power = .80,
+  comparison = 'configural',
+  nullEffect = 'metric',
+  nIndicator = c(4, 4, 4, 4, 4),
+  loadM = c(.6, .7, .6, .7, .7),
+  autocorResiduals = TRUE
+)
+# show summary
+summary(powerLI)
+
+```
+## Results Printed
+semPower: A priori power analysis
+
+ Simulated power based on 500 successful replications.
+ Note that simulated a-priori power analyses are only approximate,
+ unless the number of replications is large.
+                                               
+                           Analytical Simulated
+                                               
+ F0                        0.029922   0.030359 
+ RMSEA                     0.043245   0.043560 
+ Mc                        0.985150   0.984935 
+                                               
+ df                        16         16       
+ Required Num Observations 645        613      
+                                               
+ Critical Chi-Square       26.29622   26.29622 
+ NCP                       19.26999   18.57971 
+ Alpha                     0.050000   0.050000 
+ Beta                      0.199943   0.212000 
+ Power (1 - Beta)          0.800057   0.788000 
+ Implied Alpha/Beta Ratio  0.250072   0.235849 
+
+
+ Simulation Results:
+                                                     
+ Convergence Rate (%) of the H0 model        100.00  
+                                                     
+ Chi-Square Bias (%)                                 
+ H0 Model                                    0.68    
+ H1 Model                                    1.48    
+ H0-H1 Difference                            -2.03   
+                                                     
+ Chi-Square KS-Distance                              
+ H0 Model                                    0.017362
+ H1 Model                                    0.027111
+ H0-H1 Difference                            0.014788
+                                                     
+ Rejection Rate (%)                                  
+ H0 Model                                    32.80   
+ H1 Model                                    8.60    
+                                                     
+ Average Parameter Bias (%) in the H1 Model:         
+ Loadings                                    0.06    
+ Variances/Covariances                       0.00    
+
+```{r}
+model <- "
+# Measurement model
+y1 =~ x1 + x2 + x3 + x4
+y2 =~ x5 + x6 + x7 + x8
+y3 =~ x9 + x10 + x11 + x12
+y4 =~ x13 + x14 + x15 + x16
+y5 =~ x17 + x18 + x19 + x20
+
+# Factor variances
+y1 ~~ y1
+y2 ~~ y2
+y3 ~~ y3
+y4 ~~ y4
+y5 ~~ y5
+
+# Factor correlations
+y1 ~~ y2
+y1 ~~ y3
+y1 ~~ y4
+y1 ~~ y5
+y2 ~~ y3
+y2 ~~ y4
+y2 ~~ y5
+y3 ~~ y4
+y3 ~~ y5
+y4 ~~ y5
+"
+
+```
