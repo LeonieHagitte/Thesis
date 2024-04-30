@@ -82,7 +82,7 @@ While information literacy involves assessing the quality of information sources
 --> Part on delineation from media and digital competency!
 
 ## Aim of the Study  
-We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems [@Cui2023]. This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. But there are several tests already being used or currently under construction (QOELLE). What we thought was lacking, was a valid measure of self-perceived Data Literacy. One that should be fitting for the general public.
+Our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study). To achieve this, essential factors from various disciplines were integrated via the review of relevant literature to develop a theory- driven conceptualization of the construct - Data Literacy. We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that via the nomological network form Data Literacy. Furthermore, an iterative process for item creation and refinement was applied. Afterwards, all Items left were assessed and then the best items were chosen for a final selection.
 
 ## Self-Perceived Data Literacy 
 
