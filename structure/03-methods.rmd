@@ -42,9 +42,6 @@ Analyzing our sample against these benchmarks provides a comprehensive understan
 
 ## Instruments
 
-## Measuring Moral Attentiveness
-To assess moral attentiveness, we employed the perceptual moral attentiveness scale derived from the German Moral Attentiveness Scale by Pohling et al.(2014); adapted from Reynolds, 2008). This subscale comprises four items, including statements such as "I am regularly confronted with decisions that have significant ethical consequences." The scale comprises a seven-point Likert-type scale with fully labeled options, ranging from strongly disagree (1) to strongly agree (7).
-
 ## Measuring Critical Thinking
 
 ## Measuring Need for Cognition
@@ -57,7 +54,12 @@ To assess moral attentiveness, we employed the perceptual moral attentiveness sc
 
 ICT-SC was measured, using the ICT-SC25g. The ICT-SC25 is a self-administered questionnaire designed to assess ICT self-concept (ICT-SC) on both a general scale (items 1-5) and a domain-specific scale (items 6-25). Responses to items are provided on a six-point Likert-type scale with fully labeled options, ranging from strongly disagree (1) to strongly agree (6). The questionnaire has undergone validation in German (ICT-SC25g). Its applicability extends across the adult population, spanning ages 18 to 69, and diverse contexts including work, private life, and education. 
 
+## Measuring Opennes to new experiences (B5)
+
 ## Item Creation
+
+We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that lie in the nomological network of Data Literacy. Furthermore, an iterative process for item creation and refinement was applied. Afterwards, all Items left were assessed and then the best items were chosen for a final selection.
+
 
 After drafting a set of items, those items were being reviewed in cognitive interviews in an iterative manner. The idea was to go through the items with different people and ask them if the items are comprehensive, whether it is clear to them what is being asked with the items and what everyone associates with the item and so on. After every interview, the remarks made by the Person interviewed get worked into the items and then the reworked item set is presented in the next interview and so on.
 

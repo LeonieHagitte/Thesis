@@ -82,39 +82,28 @@ While information literacy involves assessing the quality of information sources
 --> Part on delineation from media and digital competency!
 
 ## Aim of the Study  
-Our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study). To achieve this, essential factors from various disciplines were integrated via the review of relevant literature to develop a theory- driven conceptualization of the construct - Data Literacy. We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that via the nomological network form Data Literacy. Furthermore, an iterative process for item creation and refinement was applied. Afterwards, all Items left were assessed and then the best items were chosen for a final selection.
 
-## Self-Perceived Data Literacy 
+Data Literacy is currently often times measured with tests, to really reflect the practical abilities and the knowledge a person holds. But sometimes it also is measured by questionnaires. For a holistic view on the construct it would be nice to have measures of both types to go along. To then be able to compare ones self-rating on Data literacy to ones actual performance. 
 
-instances have underscored the extent to which citizens may lack awareness regarding the potential uses and misuses of their data. [argumentation for self-rating measure!]
+Thus, our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study). 
 
+## Adjacent Constructs
 
-## Moral Attentiveness
-
-- moral disengagement scale
-
-Moral Attentiveness [@reynolds2008] is a concept that delves into the inherent differences individuals display when it comes to engaging with ethical considerations. Some individuals naturally exhibit a genuine interest and attentiveness to ethical matters, while others may find the subject mundane or remain indifferent, and in extreme cases, appear unresponsive. This inclination toward or against ethics appears to be deeply ingrained, persisting across diverse contexts and proving resistant to various ethics interventions, whether constructive or detrimental.
-Importantly, acknowledging one's interest in ethics does not imply inherent moral virtue or vice, nor does it suggest that behavior is rigid and unchangeable. Rather, it highlights an observation familiar to many practitioners — that certain individuals inherently pay more attention to moral matters. These individuals contribute to making organizational interventions more interactive, enjoyable, and presumably more beneficial compared to those less attuned to such ethical considerations.
-Within the field, an implicit assumption is that the variance in individual moral attentiveness can be explained by two existing constructs: moral awareness and moral sensitivity. Moral awareness involves an individual's recognition that a situation possesses moral implications, while moral sensitivity refers to their capacity to achieve such moral awareness. In essence, the unspoken argument is that an individual's level of attention to moral matters can be attributed to their moral awareness, moral sensitivity, or a combination of both.
-
-## Critical Thinking
+### Critical Thinking
 
 The conceptualization of Critical Thinking (CrT) has evolved along three main branches: philosophical, psychological, and educational [@rear2019]. In the philosophical view, which centers on the mental process of thought, a critical thinker is someone adept at logically evaluating and questioning both the assumptions of others and their own. On the psychological front, which delves into the processes driving action, a critical thinker possesses a combination of skills enabling them to assess a situation and determine the most appropriate course of action. The educational approach aligns more closely with the psychological perspective, relying on frameworks and learning activities tailored to enhance students' CrT skills and subsequently assess their proficiency in these skills [@payan2022].
 
-## Need for Cognition 
+### Need for Cognition 
 
 The personality trait known as Need for Cognition (NFC) originated in social psychology during the 1940s and 1950s, the concept of NFC, representing an inclination for joyful thinking, is evident in the works of @maslow1943, @murphy1947, @asch1952, and @sarnoff1954. The conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations by Cohen and colleagues [@cohen1955]. They defined NFC as "a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world" [@cohen1955, p. 291]. The concept captures individual variations in the engagement and enjoyment of thinking tasks [@bless1994]. 
 
-## Core self evaluation
+### Core self evaluation
 
 Core Self-Evaluations (CSE) is a comprehensive personality trait that encompasses fundamental appraisals of one's worthiness, effectiveness, and capability as a person [@judge2003]. This construct, initially introduced by @judge1997, integrates four traits: self-esteem, emotional stability, generalized self-efficacy, and locus of control, all of which contribute to individuals' perceptions of themselves and their agency [@judge2001].
 
 The study by @chang2012 further emphasizes the role of CSE in individuals' assessments of their own worthiness and capabilities. These assessments, rooted in self-esteem, emotional stability, generalized self-efficacy, and locus of control, form the core components of CSE [@judge2003]. Self-esteem, as established by @rosenberg1965, provides a foundation for positive self-perceptions, while emotional stability (low neuroticism) characterized by confidence and steadiness [@goldberg1990] enhances individuals' resilience. Generalized self-efficacy, reflecting beliefs about one's ability to perform across diverse situations [@locke1996], and locus of control, which pertains to individuals' beliefs about the causes of events in their lives [@rotter1966], further shape individuals' perceptions of their capabilities and control over their environment.
 
-## Openness towards technology
+###  Digital Competence Framework for Citizens (DigComp) 
+and its updated versions, DigComp 2.0/2.1 (Carretero et al., 2017; Vuorikari et al., 2016),
 
-The widespread integration of information and communication technology (ICT) in various aspects of daily life, notably accelerated by the COVID-19 pandemic lockdown (Richter and Mohr, 2020; Rizun and Strzelecki, 2020), has underscored the significance of individuals' self-perceived ICT competence. This self-perception extends beyond a general assessment to encompass specific competence domains, referred to as ICT self-concept (ICT-SC). ICT-SC reflects individuals' mental representations and evaluations of their ICT competences shaped by experiences, feedback, and interactions with the environment.
-
-Research findings indicate that when the objective demands of competence encompass multiple dimensions, the corresponding self-concepts are likewise structured in a multidimensional fashion (Brunner et al., 2010). Examining the European Digital Competence Framework for Citizens (DigComp) and its updated versions, DigComp 2.0/2.1 (Carretero et al., 2017; Vuorikari et al., 2016), reveals a comprehensive structure. This framework not only integrates previous models of ICT competence but also extends its scope, incorporating models such as the Canadian Digital Skill Framework (Chinien and Boutin, 2011) and components of ICT literacy by Katz (2007), among others (e.g., Eshet-Alkalai, 2004; Ferrari, 2012; Martin and Grudziecki, 2006).
-Within DigComp and its subsequent versions, ICT competence is systematically organized across five competence domains: information and data literacy, communication and collaboration, digital content creation, safety, and problem-solving. These domains encompass a total of 21 competences, providing a comprehensive and nuanced perspective on the multifaceted nature of ICT competence.
-
+### Opennes to new experiences (B5)
