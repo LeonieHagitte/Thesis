@@ -1,3 +1,64 @@
+---
+title: "Development of a German Instrument for Self-Perceived Data Literacy"
+author: "Leonie Hagitte"
+date: "`r Sys.Date()`"
+output: pdf_document
+site: bookdown::bookdown_site
+documentclass: article
+bibliography:
+- packages.bib
+- literature.bib
+csl: apa7.csl
+link-citations: true
+description: ''
+fontsize: 12pt
+linestretch: 1.2
+geometry: left=3.9cm, right=3.3cm, top=2.5cm, bottom=3cm
+papersize: a4
+classoption: twoside
+repro:
+  packages:
+  - devtools
+  - here
+  - aaronpeikert/repro@adb5fa56
+  - bookdown
+  - usethis
+  - gert
+subtitle: "An Algorithm-based Approach to Scale Development"
+---
+\newpage\null\thispagestyle{empty}\newpage
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = ">"
+)
+```
+
+# Abstract {-}
+
+```{r child='abstract.Rmd'}
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Acknowledgements {-}
+
+I dedicate this thesis to 
+
+I want to thank my advisers, Prof. Martin Schultze, Prof. Timo Lorenz, and Prof. Manuel Völkle for their time and patience, and my friends for their resourceful advice:
+
+\newpage\null\thispagestyle{empty}\newpage
+
+<!--chapter:end:acknowledgements.Rmd-->
+
+# Introduction
+
+The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
+
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society [@Carmi2020]. Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society [@Carmi2020]. Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction [@Cui2023]; And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE). 
+
+<!--chapter:end:01-intro.Rmd-->
+
 # Background
 
 Data Literacy involves the ability to effectively collect, manage, evaluate, and apply data in a critical manner. According to @wolff2016, it means being able to ask and answer everyday questions using both small and large datasets while considering ethical aspects. This includes skills such as selecting, cleaning, analyzing, visualizing, criticizing, and interpreting data, as well as communicating insights from data and using data for various purposes. [@frank2016] distinguish between cognitive skills, like data collection and analysis, and social skills, which involve trusting data while maintaining skepticism. [@prado2013] outline five dimensions of Data Literacy: understanding data, acquiring data, interpreting and evaluating data, managing data, and using data. Understanding data includes knowing their types, roles, and significance, while acquiring data involves evaluating and selecting sources. Interpreting and evaluating data encompass understanding different presentation methods and data interpretation. Using data involves preparation, analysis, communication, and ethical considerations. Managing data includes storage, management, and reuse. 
@@ -85,4 +146,114 @@ The personality trait known as Need for Cognition (NFC) originated in social psy
 Data Literacy is currently often times measured with tests, to really reflect the practical abilities and the knowledge a person holds. But sometimes it also is measured by questionnaires. For a holistic view on the construct it would be nice to have measures of both types to go along. To then be able to compare ones self-rating on Data literacy to ones actual performance. 
 
 Thus, our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study). 
+
+
+<!--chapter:end:02-background.Rmd-->
+
+# Methods
+
+## 1. Stage One: Conceptualization and Item Pool Generation 
+   - Review relevant literature to develop a theory-driven conceptualization of constructs.
+   - Ensure diversity in the interviews regarding age and occupation.
+   - Include as many members of target group in the item creation process as possible.
+   - Integrate theory and interview results to generate an initial item pool.
+   - Present original items to a small group for piloting - item difficulty/ fairness etc.
+   - Exclude items as necessary, resulting in a refined item pool.
+
+## 2. Stage Two: Item Selection and Construct Validity
+   - Conduct a quantitative survey including the original item pool, demographics, and validation measures.
+   - Utilize automated item selection procedures to reduce the item pool.
+   - Utilize an algorithm to select items from the original item pool and develop the final version of the scale.
+   - Use an algorithm implemented in the R package "stuart" with predefined datasets split into training and test datasets.
+   - Evaluate solutions against an objective function consisting of model fit criteria and composite reliability.
+   - Evaluate model fit using standard recommendations proposed by Hu and Bentler (1999), including $\chi^2$ significance testing   and fit indices.
+   - ez cutoffs. ; discussing dynamic fit indices
+   - Hypothesize relationships between the newly created measure and related constructs.
+   - Use distinct but conceptually similar instruments for validation purposes.
+   - Cross-validate findings using a split-sample approach?
+   - Evaluate solutions against an objective function consisting of model fit criteria and composite reliability.
+   - Validate findings using k-fold cross-validation with the dataset?
+   - Conduct confirmatory factor analysis (CFA) with the R package "lavaan."
+
+## 3. Stage Three: External and Construct Validity Testing 
+   - Perform bivariate correlational analyses with relevant related constructs to establish external validity.
+   - Investigate construct validity through multiple regression analysis, controlling for other variables.
+   - Discuss specific hypotheses regarding associations between the measure and related constructs.
+
+
+## Sample
+
+The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX% identified as female, XXX% as male, and xxx% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
+The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
+
+Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html#651186).
+
+Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
+
+## Preregistration
+
+## Instruments  
+### Measuring Self-efficacy beliefs regarding information behaviour
+As a self-rating measrue for information literacy we decided to assess the SWE-IV-16 (Behm, 2018).
+The SWE-IV-16 (Behm, 2018) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This questionnaire measures the process model of information-related problem-solving (Brand-Gruwel et al., 2009). It consists of 16 statements addressing self-assessed abilities in searching for and evaluating information, as well as managing information searches effectively. Each statement begins with "When I search for information on a topic or a specific question..." and respondents indicate their agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly agree”). The total scale value is computed as the arithmetic mean of the items, which may be inverted if necessary. Calculation of the total value requires valid responses to at least 12 of the 16 items.
+
+### Measuring Need for Cognition 
+The NFC-K (Beißert et al., 2015) is a tool used to assess the Need for Cognition (NFC) through four items, which represent two facets: "engagement" and “joy". The NFC-K is measured with a seven-point response scale, ranging from "strongly disagree" (1) to "strongly agree" (7), with a "neither" option in the middle. The German version of the scale is adapted from the original English scale by Cacioppo and Petty (1982) and translated by Bless et al. (1994). To determine an individual's NFC score, a mean value (scale value) is computed from the four raw score points of the responses. The resulting mean values range between 1 and 7.
+
+### Measuring Information and Communication Technology Competency 
+To assess self-perceived competence in using information and communication technology (ICT), the five general items of the ICT-SC25 (Schauffel et al., 2021) were used. The ICT-SC25 is a scale consisting of 25 items designed to assess self-perceived competence in using information and communication technology. It is available in both German (ICT-SC25g) and English (ICT-SC25e). The scale measures general and domain-specific ICT competence, including communication, processing and storing, content generation, safe application, and problem-solving skills. Items are measured using a six-point fully-labeled Likert-type rating scale ranging from strongly disagree (1) to strongly agree (6). Researchers can choose to utilise either the entire scale or individual subscales based on their specific research objectives. The ICT-SC25g/e is applicable for both manifest and latent analysis. Manifest scale scores for the ICT-SC25g/e are calculated separately for each subscale by computing the unweighted mean score of the items within each subscale (Schauffel et al., 2021).
+
+### Measuring Openness and Conscientiousness 
+The BFI-10 (Rammstedt et al., 2014) was used to assess personality based on the five-factor model. Only the items on openness and conscientiousness were assessed. 
+The items were answered on a five-point rating scale from "strongly disagree" (1) to "strongly agree" (5). 
+To measure the respondent's individual traits on the five personality dimensions, the responses to the two items for each dimension are averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then the mean value is calculated for each dimension from both the recoded and non-recoded items. The values for the five dimensions range from 1 to 5 (see Rammstedt, 2007 for reference values). 
+
+
+## Item Creation  
+We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that lie in the nomological network of Data Literacy. After drafting a set of items, those items were being reviewed in cognitive interviews in an iterative manner, for item creation and refinement. The cognitive interviews were done with people of the general public, thus participants of the target group of this questionnaire, treating lay-people as experts. Item difficulty and discriminatory power are assessed in a pilot study with 25 participants, also from the general public/ citizens. Afterwards, all Items left were assessed and then the best items were chosen via a final selection.
+
+
+<!--chapter:end:03-methods.Rmd-->
+
+# Analysis
+
+We employed an automated item selection algorithm to craft the [insert name] scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
+
+Contemporary approaches to address these combinatorial problems leverage automatic optimization algorithms, such as Genetic Algorithms (GA; Holland, 1975), Ant Colonization Algorithms (ACO; XXX), brute force (XXX), or random sampling(XXX). (Schultze, 2022). 
+Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017). 
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003). Wich makes brute force approaches the preferred choice, if applicable (Schultze & Lorenz ,2023). Nevertheless, as brute force often isnt fesable because of timely and computational costs, approximate algorithms are indispensable for obtaining near-optimal solutions to complex combinatorial problems in a timely or computationally efficient manner (Schultze & Lorenz ,2023; Dorigo and Stützle, 2010).
+
+residuals
+correlates or the residuals for the adjacent constructs
+
+<!--chapter:end:04-analysis.Rmd-->
+
+# Results
+
+<!--chapter:end:05-results.Rmd-->
+
+# Discussion
+- what to optimize the scale for?
+- dynamic fit indices
+- factors 4 and 5
+    - adaptive testing/ IRT
+        - dimensionality assumption and computationally intense
+    - CART - tree based adaptive testing (classification trees) always binary split
+        - gini index to identify the cut off 
+        - POMP method - for differing number of answer formats
+- residuals correlates 
+- heterogeneity of construct 
+
+<!--chapter:end:06-discussion.Rmd-->
+
+# References {-}
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'repro', 'here', 'usethis', 'gert', 'credentials'
+), 'packages.bib')
+```
+
+<!--chapter:end:references.Rmd-->
 
