@@ -67,28 +67,38 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
   \fi
   % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \usepackage{booktabs}
 \usepackage{libertine}
@@ -107,7 +117,7 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -125,7 +135,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2024-04-23}
+\date{2024-05-08}
 
 \begin{document}
 \maketitle
@@ -137,17 +147,15 @@
 \setstretch{1.2}
 \newpage\null\thispagestyle{empty}\newpage
 
-\hypertarget{abstract}{%
-\section*{Abstract}\label{abstract}}
+\section*{Abstract}\label{abstract}
 \addcontentsline{toc}{section}{Abstract}
 
-The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). In addition, only a few explicitly refer to the general population (\protect\hyperlink{ref-Carmi2020}{Carmi et al., 2020}; \protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
+The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (\citeproc{ref-Cui2023}{Cui et al., 2023}). In addition, only a few explicitly refer to the general population (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Cui2023}{Cui et al., 2023}). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
 Our aim is therefore to derive a holistic definition based on these approaches and to develop a questionnaire for self-perception of one's own data literacy. To this end, the decisive factors for the construct from previous definitions and operationalizations in various disciplines are brought together. Cognitive interviews are conducted iteratively to create and refine the items. The items are then selected using algorithm-based item selection. The facets of data literacy are comprehensively tested for factorial, discriminant, convergent and congruent incremental validity in order to promote a differentiated understanding of the construct. Construct and criterion validity are tested using correlations and hierarchical regression analyses, while cross-validation checks the robustness of the instrument.
 Based on a cross-sectional online questionnaire study, we first examine a representative sample of people from the general population. Limitations arise from the cross-sectional design and the heuristic item reduction, which limit predictions of predictive validity. The heterogeneous nature of the construct makes global instrument development and understanding of all participants difficult.
 The self-assessment questionnaire promotes a holistic assessment of competence and its perception for further research, for example by comparing self-assessment and actual performance.
 
-\hypertarget{acknowledgements}{%
-\section*{Acknowledgements}\label{acknowledgements}}
+\section*{Acknowledgements}\label{acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 
 I dedicate this thesis to
@@ -156,47 +164,76 @@ I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.
 
 \newpage\null\thispagestyle{empty}\newpage
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}
 
 The relevance of data literacy in today's society becomes evident as it serves as a potent tool in navigating the complex data-driven environment. In a world characterized by information overload and rapid technological advancements, individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions
 
-The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\protect\hyperlink{ref-Carmi2020}{Carmi et al., 2020}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\protect\hyperlink{ref-Carmi2020}{Carmi et al., 2020}). Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}); And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally centered around concepts such as written literacy, media literacy, information literacy, and digital literacy. In more recent discussions, Data Literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}). Thus, Data Literacy is a competency that is becoming increasingly important to everyone. And research has acknowledged this in recent years, as more and more research is being done in that direction (\citeproc{ref-Cui2023}{Cui et al., 2023}); And in praxis there are Training programmes and Workshops sprouting to enhance ones Data Literacy as well (QUELLE).
 
-\hypertarget{background}{%
-\section{Background}\label{background}}
+\section{Background}\label{background}
 
-Data Literacy involves the ability to effectively collect, manage, evaluate, and apply data in a critical manner. According to Wolff et al. (\protect\hyperlink{ref-wolff2016}{2016}), it means being able to ask and answer everyday questions using both small and large datasets while considering ethical aspects. This includes skills such as selecting, cleaning, analyzing, visualizing, criticizing, and interpreting data, as well as communicating insights from data and using data for various purposes. (\protect\hyperlink{ref-frank2016}{Frank, 2016}) distinguish between cognitive skills, like data collection and analysis, and social skills, which involve trusting data while maintaining skepticism. (\protect\hyperlink{ref-prado2013}{Calzada Prado \& Marzal, 2013}) outline five dimensions of Data Literacy: understanding data, acquiring data, interpreting and evaluating data, managing data, and using data. Understanding data includes knowing their types, roles, and significance, while acquiring data involves evaluating and selecting sources. Interpreting and evaluating data encompass understanding different presentation methods and data interpretation. Using data involves preparation, analysis, communication, and ethical considerations. Managing data includes storage, management, and reuse.
-This highlights one prominent feature of Data Literacy - It is a heterogeneous concept. Every subject or profession seems to hold their own definition or framework of Data Literacy (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). While that most certainly is good for assessing specific skills (e.g.~in an Recruitment test), it limits the generalizability and comparability of Data Literacy across individuals with different background. It furthermore limits the accuracy of communication about the topic as two people with different background might hold different definitions on Data Literacy.
-In the study from (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}) it also becomes apparent, that one group seems to be underrepresented in the research on Data Literacy: citizens or the general public.
-Although there seem to be several definitions of Data literacy for citizens (\protect\hyperlink{ref-wolff2016}{Wolff et al., 2016}), most studies focus on other groups of people. On the first look this appears as a massive oversight, as citizens or the general public is forming the largest group by far, compared to professions like researchers, librarians, students or education provider (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). But when taking a closer look into the concept and its comprising factors,it becomes clear that many of those tend to speak to professionals rather than laypeople. In their Framework (\protect\hyperlink{ref-schuxfcller2020}{schüller, 2020}) highlight the different roles in Data Literacy: Some of the facets or skills regard data-consumption, whereas the most are skills that data-producers would have.
-This is also reflected when taking a look into related concepts.
-The definition proposed by Wolff et al. (\protect\hyperlink{ref-wolff2016}{2016}) suggests that data literacy shares some common competencies with statistical and information literacies. Information literacy, often studied in library sciences, overlaps with data literacy in terms of accessing, critically evaluating, and using data sources (\protect\hyperlink{ref-prado2013}{Calzada Prado \& Marzal, 2013}; \protect\hyperlink{ref-shields2005}{Shields, 2005}), Wolff et al. (\protect\hyperlink{ref-wolff2016}{2016}) also emphasize the importance of the data inquiry process, starting from identifying problems, designing studies, acquiring data, conducting analysis, to drawing data-based conclusions.
-In comparison, Gould (\protect\hyperlink{ref-gould2017}{2017}) argued that data literacy is essentially the same as statistical literacy but with additional competencies needed due to the increasing importance of data. These added competencies include understanding who collects the data, how and why data is collected, and understanding data privacy and ownership. However, while statistical literacy focuses on quantitative data and basic statistics, data literacy extends to the ability to understand, access, evaluate, and use arguments and decision-making based on both quantitative and qualitative data (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}).
+Data Literacy involves the ability to effectively collect, manage, evaluate, and apply data in a critical manner. According to Wolff et al. (\citeproc{ref-wolff2016}{2016}), it means being able to ask and answer everyday questions using both small and large datasets while considering ethical aspects. This includes skills such as selecting, cleaning, analyzing, visualizing, criticizing, and interpreting data, as well as communicating insights from data and using data for various purposes. (\citeproc{ref-frank2016}{Frank, 2016}) distinguish between cognitive skills, like data collection and analysis, and social skills, which involve trusting data while maintaining skepticism. (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}) outline five dimensions of Data Literacy: understanding data, acquiring data, interpreting and evaluating data, managing data, and using data. Understanding data includes knowing their types, roles, and significance, while acquiring data involves evaluating and selecting sources. Interpreting and evaluating data encompass understanding different presentation methods and data interpretation. Using data involves preparation, analysis, communication, and ethical considerations. Managing data includes storage, management, and reuse.
+This highlights one prominent feature of Data Literacy - It is a heterogeneous concept. Every subject or profession seems to hold their own definition or framework of Data Literacy (\citeproc{ref-Cui2023}{Cui et al., 2023}). While that most certainly is good for assessing specific skills (e.g.~in an Recruitment test), it limits the generalisability and comparability of Data Literacy across individuals with different background. It furthermore limits the accuracy of communication about the topic as two people with different background might hold different definitions on Data Literacy. In the study from (\citeproc{ref-Cui2023}{Cui et al., 2023}) it also becomes apparent, that one group seems to be underrepresented in the research on Data Literacy: citizens or the general public.
+While there seem to be several definitions of Data literacy for citizens (\citeproc{ref-wolff2016}{Wolff et al., 2016}), most studies focus on other groups of people. This is the case although, the general public is forming the largest group by far, compared to professions like researchers, librarians, students or education provider (\citeproc{ref-Cui2023}{Cui et al., 2023}). Thus, one might arrive at the question, why that ist? When taking a closer look into the concept and its comprising factors,it becomes clear that many of those factors tend to speak to professionals rather than laypeople. In their Framework (\citeproc{ref-schuxfcller2020}{schüller, 2020}) highlight the different roles in Data Literacy: Some of the facets or skills regard ``data-consumption'', whereas the most are skills ``data-producers'' would have.
+This is also reflected when taking a look into related concepts. The definition proposed by Wolff et al. (\citeproc{ref-wolff2016}{2016}) suggests that data literacy shares some common competencies with statistical and information literacies.\\
+Information literacy, often studied in library sciences, overlaps with data literacy in terms of accessing, critically evaluating, and using data sources (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; \citeproc{ref-shields2005}{Shields, 2005}), Wolff et al. (\citeproc{ref-wolff2016}{2016}) also emphasize the importance of the data inquiry process, starting from identifying problems, designing studies, acquiring data, conducting analysis, to drawing data-based conclusions.
+In comparison, Gould (\citeproc{ref-gould2017}{2017}) argued that data literacy is essentially the same as statistical literacy but with additional competencies needed due to the increasing importance of data. These added competencies include understanding who collects the data, how and why data is collected, and understanding data privacy and ownership (\citeproc{ref-gould2017}{Gould, 2017}).
+However, while statistical literacy focuses on quantitative data and basic statistics, data literacy extends to the ability to understand, access, evaluate, and use arguments and decision-making based on both quantitative and qualitative data (\citeproc{ref-Cui2023}{Cui et al., 2023}).
 
-\hypertarget{data-and-information}{%
-\subsection{Data and Information}\label{data-and-information}}
+\subsection{Data and Information}\label{data-and-information}
 
 With the closeness of those topics, it is worth while to take a look into the terminology, before delving deeper into the topic.
 When speaking of Data Literacy, one naturally has to think about what data is. What is information, how are they different to each other and what extents do they share? And what role does the process of interpretation play? Does one interpret data to make sense of it? And if so, does that mean that data is entropy while information stands in opposition to it?
+The concepts of data and information are foundational in various fields, yet their precise definitions and relationships are often subject to interpretation. According to Shannon's seminal work on information theory (\citeproc{ref-shannon1948}{Shannon, 1948}), data can be understood as raw, unprocessed symbols or observations, devoid of inherent meaning. It is through a process of interpretation and organization that data transforms into information, as elucidated by Bates (\citeproc{ref-bates2005}{2005}). Bates emphasizes that information emerges when data is structured and presented in a way that is comprehensible and relevant to a particular context or purpose.
 
-The concepts of data and information are foundational in various fields, yet their precise definitions and relationships are often subject to interpretation.
-According to Shannon's seminal work on information theory (\protect\hyperlink{ref-shannon1948}{Shannon, 1948}), data can be understood as raw, unprocessed symbols or observations, devoid of inherent meaning. It is through a process of interpretation and organization that data transforms into information, as elucidated by Bates (\protect\hyperlink{ref-bates2005}{2005}). Bates emphasizes that information emerges when data is structured and presented in a way that is comprehensible and relevant to a particular context or purpose.
+Entropy, a concept borrowed from thermodynamics and applied in information theory, plays a crucial role in understanding the relationship between data and information. In his landmark paper, Shannon (\citeproc{ref-shannon1948}{1948}) defines entropy as a measure of uncertainty or disorder in a system. In the realm of information theory, entropy is often associated with the amount of unpredictability or randomness in a set of data. However, it's essential to note that entropy can also be viewed as a measure of information content within a system. This perspective is articulated by Brillouin (\citeproc{ref-brillouin1953}{1953}), who suggests that low entropy corresponds to a high concentration of meaningful information. Similarly, the work of Jaynes (\citeproc{ref-jaynes1957}{1957}) highlights the connection between entropy and information, proposing that information can be quantified in terms of the reduction of uncertainty or entropy in a system.
+Thus, we can refine our understanding of the relationship between data, entropy, and information. While data serves as the raw material from which information is derived, it's the reduction of entropy through organization and interpretation that gives rise to meaningful information. Thus, rather than viewing data as synonymous with entropy or information, it's more accurate to consider information as emerging from the structured representation of data, leading to a deeper understanding of the underlying phenomena.
 
-Entropy, a concept borrowed from thermodynamics and applied in information theory, plays a crucial role in understanding the relationship between data and information. In his landmark paper, Shannon (\protect\hyperlink{ref-shannon1948}{1948}) defines entropy as a measure of uncertainty or disorder in a system. In the realm of information theory, entropy is often associated with the amount of unpredictability or randomness in a set of data.
-However, it's essential to note that entropy can also be viewed as a measure of information content within a system. This perspective is articulated by Brillouin (\protect\hyperlink{ref-brillouin1953}{1953}), who suggests that low entropy corresponds to a high concentration of meaningful information. Similarly, the work of Jaynes (\protect\hyperlink{ref-jaynes1957}{1957}) highlights the connection between entropy and information, proposing that information can be quantified in terms of the reduction of uncertainty or entropy in a system.
-Thus, we can refine our understanding of the relationship between data, entropy, and information. While data serves as the raw material from which information is derived, it's the reduction of entropy through organization and interpretation that gives rise to meaningful information. Thus, rather than viewing data as synonymous with entropy, it's more accurate to consider information as emerging from the structured representation of data, leading to a deeper understanding of the underlying phenomena.
+The framework of (\citeproc{ref-schuxfcller2020}{schüller, 2020}) shows that citizens are mainly covering roles where they consume data/ data products or informations.
+Thus, they are most likely to find tasks or items regarding the producing facets like providing or exploiting data more difficult to answer. This would systematically impair the fairness of tests and questionnaires regarding Data Literacy. Kubinger \& Proyer (\citeproc{ref-kubinger2005}{2005}) define fairness as the condition where test measurements or values do not discriminate against specific groups of people who are relevant to the test. In the case of Data Literacy it is to be expected, that the item-difficulties in the producing factors would not be evenly distributed. As you cant just leave any factors out of the construct, in order to create a concept that is fair, it would be neccessary to find a way to have the same factors in the concept with the same distribution of difficulty for all groups of participants.
 
-\hypertarget{statistical-literacy}{%
-\subsubsection{Statistical Literacy}\label{statistical-literacy}}
+\subsection{Conceptual Integration}\label{conceptual-integration}
+
+Thus, via conceptual integration we tried to find common grounds of the existing theories and studies.
+By synthesizing heterogeneous definitions and perspectives (as e.g.~highlighted in the literature review from Cui et al. (\citeproc{ref-Cui2023}{2023})) into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections. With questions in mind like ``What factors and facets do most definitions share?'', ``What are specifics to certain definitions, addressed to special professions?'', we arrived at the following structure of the concept:\\
+Data literacy is the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data, information and their sources.
+We arrived at five core facets that are also very prominent in the most definitions in the literature (Cui et al., 2023). We further divided them into ``consumer'' facets (Comprehension,Evaluation \& Integration), that are relevant for nearly every person in society, from citizens up. And ``producer'' facets (Communication \& Statistics), that are mainly relevant for people, actively working with data.
+
+\subsubsection{Comprehension}\label{comprehension}
+
+This factor encompasses skills related to understanding and critically evaluating data and information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
+
+\subsubsection{Evaluation}\label{evaluation}
+
+This factor involves skills related to critically evaluating information sources and discerning between facts and opinions. It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate a keen awareness of potential biases or vested interests in information sources.
+
+\subsubsection{Integration}\label{integration}
+
+This factor relates to the ability to integrate data-driven insights into one's worldview and values. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data.
+
+\subsubsection{Communication}\label{communication}
+
+This factor revolves around the skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions.
+It requires translating complex data into clear and impactful formats, ensuring comprehension by varied audiences. Proficiency in data communication is essential for facilitating understanding, aiding informed decision-making, and prompting action based on data-driven insights. This proficiency includes the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats. It involves adeptly summarizing extensive datasets, engaging in professional discussions, and using advanced visual elements to convey specialized results to target audiences.
+
+\subsubsection{Statistics}\label{statistics}
+
+This factor covers skills related to managing and analyzing data effectively. It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies.
+It includes skills such as organizing and managing data using software tools, conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations. Individuals scoring high on this factor exhibit competence in statistical methods, enabling them to effectively analyze data and interpret findings.
+
+\subsection{Delineation from other concepts - The nomological net}\label{delineation-from-other-concepts---the-nomological-net}
+
+In line with the framework of schüller (\citeproc{ref-schuxfcller2020}{2020}) the factors Data Comprehension and Interpretation, Contextualize and Evaluate Data and Data-Informed Worldview are representing the application areas for ``consumers''. So they are relevant for all people in scociety, whereas the other factors, those speaking to people who are considered ``producers'', are only common for smaller groups of people or certain professions.\\
+This structure encompasses certain characteristics and behaviors from critical thinking, media competency, technology competency, statistical Literacy as well as from information literacy.
+
+\subsubsection{Statistical Literacy}\label{statistical-literacy}
 
 Statistical literacy, as defined by Gal (2002), encompasses five knowledge dimensions: literacy skills, statistical knowledge, mathematical knowledge, contextual knowledge, and critical reflection skills, along with two dispositional dimensions: beliefs and attitudes, and a critical mindset. It involves understanding written, spoken, or graphical information, knowing why data are needed, grasping basic statistical concepts, understanding probability, and drawing statistical inferences. It also includes basic mathematical operations, interpreting information within a context, and critically questioning the validity of information, particularly in media. Statistical literacy requires a critical attitude and the perception of oneself as competent in statistical reasoning.
 
 Reference:
 Gal, I. (2002). Adult numeracy and statistical literacy: Concepts, research, and a challenge. Journal of Statistics Education, 10(3). Retrieved from \url{https://www.tandfonline.com/doi/abs/10.1080/10691898.2002.11910562}
 
-\hypertarget{information-literacy}{%
-\subsubsection{Information Literacy}\label{information-literacy}}
+\subsubsection{Information Literacy}\label{information-literacy}
 
 Information literacy is the ability to recognize when information is needed and to effectively locate, evaluate, and use that information (American Library Association (2000). Information Literacy Competency Standards for Higher Education. \url{http://www.ala.org/acrl/standards/informationliteracycompetency} ). It empowers individuals to determine the extent of information needed, access it efficiently, critically evaluate information and their sources, incorporate information into their knowledge base, and use it effectively for specific purposes. Additionally, information literacy involves understanding the legal, economic, and social aspects of information use and ensuring ethical and legal access and use of information.
 Furthermore, Information literacy is not static; it involves a commitment to lifelong learning and adaptation to evolving information technologies and practices.
@@ -206,120 +243,36 @@ Another possible way to describe it is suggested by Johnson and Webber (2003):
 
 Also similar to Data Literacy, is its heterogeneous nature. This already becomes apparent when looking at the different frameworks for Information literacy. In the UK, the seven Pillars of IL model was published in 1999 by the SCONUL Advisory Committee on Information Literacy. In 2001, the Australian and New Zealand Institute for Information Literacy developed its IL framework, which was revised in 2004 by Bundy. A year later, Mexican standards for IL in higher education were established, influenced significantly by the Association of College and Research Libraries (ACRL) Standards published in 2000. Work on the Scottish IL framework began in 2004, as documented by Irving in 2011. IL was also a focal point in a European project aimed at revitalizing the European library and information science curriculum, identifying essential topics and teaching methods (Virkus, S., Boekhorst, A.K., Gomez-Hernandez, J.A., Skov, C., \& Webber, S. (2005). Information literacy: Conceptions, context and the formation of a discipline.).
 
-The framework of (\protect\hyperlink{ref-schuxfcller2020}{schüller, 2020}) shows that citizens are mainly covering roles where they consume data/ data products or informations.
-Thus, they are most likely to find tasks or items regarding the producing facets like providing or exploiting data more difficult to answer. This would systematically impair the fairness of tests and questionnaires regarding Data Literacy. Kubinger \& Proyer (\protect\hyperlink{ref-kubinger2005}{2005}) define fairness as the condition where test measurements or values do not discriminate against specific groups of people who are relevant to the test. In the case of Data Literacy it is to be expected, that the item-difficulties in the producing factors would not be evenly distributed. As you cant just leave any factors out of the construct, in order to create a concept that is fair, it would be neccessary to find a way to have the same factors in the concept with the same distribution of difficulty for all groups of participants.
+\subsubsection{Critical Thinking}\label{critical-thinking}
 
-\hypertarget{conceptual-integration}{%
-\subsection{Conceptual Integration}\label{conceptual-integration}}
+The conceptualization of Critical Thinking (CrT) has evolved along three main branches: philosophical, psychological, and educational (\citeproc{ref-rear2019}{Rear, 2019}). In the philosophical view, which centers on the mental process of thought, a critical thinker is someone adept at logically evaluating and questioning both the assumptions of others and their own. On the psychological front, which delves into the processes driving action, a critical thinker possesses a combination of skills enabling them to assess a situation and determine the most appropriate course of action. The educational approach aligns more closely with the psychological perspective, relying on frameworks and learning activities tailored to enhance students' CrT skills and subsequently assess their proficiency in these skills (\citeproc{ref-payan2022}{Payan Carreira et al., 2022}).
 
-Thus, conceptual integration was employed to find common grounds of the existing theories and studies.
-By synthesizing heterogeneous definitions and perspectives into cohesive, unified representations and selectively incorporating relevant features while establishing cross-disciplinary connections, conceptual integration enables researchers to create comprehensive latent factors that capture the complexity of the construct.
-Therefore we arrived at the following structure of the concept.
+\subsubsection{Information and Communication Technology Competency}\label{information-and-communication-technology-competency}
 
-Data literacy is the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data and their sources.
-The concept comprises Data Comprehension and Interpretation, Contextualize and Evaluate Data, Data-Informed Worldview, Data Communication Proficiency and Data Management and Analysis. On those Factors people can exhibit different levels of literacy, expanding the definition above the static nature into a more dynamic one.
+Information and Communication Technology Competency includes general and domain-specific ICT competencies, including communication, processing and storing, content generation, safe application, and problem-solving skills.
 
-\hypertarget{data-comprehension-and-interpretation}{%
-\subsubsection{Data Comprehension and Interpretation}\label{data-comprehension-and-interpretation}}
+Our definition incorporates statistical literacy by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Data Handling and Analysis). It includes elements of information literacy by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, which are similar to assessing the quality of information sources (Contextualize and Evaluate Data).
+Both statistical and information literacy involve using data and information to make informed decisions. Data literacy emphasizes integrating data-driven insights into ones opinions and values, that then later on influence decision-making processes, aligning with the goals of statistical and information literacy. The factor ``Data Comprehension and Interpretation'' encompasses behaviors and skills associated with critical thinking, such as the capacity to identify weaknesses in one's reasoning or to actively shape discourse and, consequently, the public dissemination of information. The factor ``Contextualize and Evaluate Data'', as well as the ``Statistics'' factor, encompass behaviors and skills related to technology competency. This includes abilities such as navigating and critically evaluating online sources and platforms, using information and communication technology, as well as utilizing statistical software, among others. The ``consumer'' factors are also closely related to media literacy, which focuses on skills related to critically analyzing and interpreting various media formats, including text, images, and videos, for understanding and engaging with media content.
 
-This factor encompasses skills related to understanding and critically evaluating data and information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of complex information across different formats, enabling them to draw accurate conclusions and insights.
+In contrast, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing. This definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While statistical literacy often involves analyzing existing data, this definition also encompasses skills related to producing and manipulating data. This includes tasks such as creating visualizations and using software tools. This aspect goes beyond traditional statistical literacy and aligns more closely with data literacy. While information literacy involves assessing the quality of information sources, this definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy and is more specific to data literacy. To contrast data literacy from technology competency, it is to be highlighted, that data literacy involves proficiency in using technology, but thereby focuses specifically on understanding and working with data. Technology competency encompasses a broader set of digital skills that extend beyond those relevant for data literacy.
 
-\hypertarget{contextualize-and-evaluate-data}{%
-\subsubsection{Contextualize and Evaluate Data}\label{contextualize-and-evaluate-data}}
+\subsection{Discrimminant Constructs}\label{discrimminant-constructs}
 
-This factor involves skills related to critically evaluating information sources and discerning between facts and opinions. It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate a keen awareness of potential biases or vested interests in information sources.
+\subsubsection{Need for Cognition}\label{need-for-cognition}
 
-\hypertarget{data-informed-worldview}{%
-\subsubsection{Data-Informed Worldview}\label{data-informed-worldview}}
+The personality trait known as Need for Cognition (NFC) originated in social psychology during the 1940s and 1950s, the concept of NFC, representing an inclination for joyful thinking, is evident in the works of Maslow (\citeproc{ref-maslow1943}{1943}), Murphy (\citeproc{ref-murphy1947}{1947}), Asch (\citeproc{ref-asch1952}{1952}), and Sarnoff \& Katz (\citeproc{ref-sarnoff1954}{1954}). The conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations by Cohen and colleagues (\citeproc{ref-cohen1955}{Cohen et al., 1955}). They defined NFC as ``a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world'' (\citeproc{ref-cohen1955}{Cohen et al., 1955, p. 291}). The concept captures individual variations in the engagement and enjoyment of thinking tasks (\citeproc{ref-bless1994}{Bless et al., 1994}).
 
-This factor relates to the ability to integrate data-driven insights into one's worldview and values. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data.
+\subsubsection{Opennes to new experiences (B5)}\label{opennes-to-new-experiences-b5}
 
-\hypertarget{data-communication-proficiency}{%
-\subsubsection{Data Communication Proficiency}\label{data-communication-proficiency}}
+\subsection{Aim of the Study}\label{aim-of-the-study}
 
-This factor revolves around the skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions.
-It requires translating complex data into clear and impactful formats, ensuring comprehension by varied audiences. Proficiency in data communication is essential for facilitating understanding, aiding informed decision-making, and prompting action based on data-driven insights. This proficiency includes the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats. It involves adeptly summarizing extensive datasets, engaging in professional discussions, and using advanced visual elements to convey specialized results to target audiences.
+Data Literacy is currently often times measured with tests, to really reflect the practical abilities and the knowledge a person holds. But sometimes it also is measured by questionnaires. For a holistic view on the construct it would be nice to have measures of both types to go along. To then be able to compare ones self-rating on Data literacy to ones actual performance.
 
-\hypertarget{data-management-and-analysis}{%
-\subsubsection{Data Management and Analysis}\label{data-management-and-analysis}}
+Thus, our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study).
 
-This factor covers skills related to managing and analyzing data effectively. It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies.
-It includes skills such as organizing and managing data using software tools, conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations. Individuals scoring high on this factor exhibit competence in statistical methods, enabling them to effectively analyze data and interpret findings.
+\section{Methods}\label{methods}
 
-\hypertarget{delineation-from-other-concepts}{%
-\subsection{Delineation from other concepts}\label{delineation-from-other-concepts}}
-
-In line with the framework of schüller (\protect\hyperlink{ref-schuxfcller2020}{2020}) the concept entails ethical data-use, but only at the hightest difficulty of data management. And the factors Data Comprehension and Interpretation, Contextualize and Evaluate Data and Data-Informed Worldview are representing the application areas for consumers. So they are relevant for all people in scociety, whereas the other factors, those speaking to people who are considered ``producers'', are only common for smaller groups of people or certain professions.\\
-This structure encompasses certain characteristics from Statistical Literacy as well as from Information Literacy.
-The integration of statistical literacy and information literacy within the framework of data literacy is an essential aspect to consider as those concepts are so closely related.
-
-\hypertarget{what-it-takes}{%
-\subsubsection{What it takes}\label{what-it-takes}}
-
-This definition incorporates statistical literacy by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Data Handling and Analysis). It includes elements of information literacy by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, which are similar to assessing the quality of information sources (Contextualize and Evaluate Data).
-Both statistical and information literacy involve using data and information to make informed decisions. Your framework emphasizes integrating data-driven insights into ones opinions and values, that then later on influence decision-making processes, aligning with the goals of statistical and information literacy.
-
-\hypertarget{what-it-leaves}{%
-\subsubsection{What it leaves}\label{what-it-leaves}}
-
-Statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing. This definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While statistical literacy often involve analyzing existing data, this definition also includes skills related to producing and manipulating data, such as creating visualizations and using software tools. This aspect goes beyond traditional statistical literacy and aligns more closely with data literacy.\\
-While information literacy involves assessing the quality of information sources, this definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy and is more specific to data literacy.
-
---\textgreater{} Part on delineation from media and digital competency!
-
-\hypertarget{aim-of-the-study}{%
-\subsection{Aim of the Study}\label{aim-of-the-study}}
-
-We noticed several gaps in the current research that we want to try addressing with this study. For once the target groups for Data Literacy are currently each having their own definition of the construct it seems (\protect\hyperlink{ref-Cui2023}{Cui et al., 2023}). This not only makes comparisons impossible but also makes a general understanding of the topic as well as communication in the community and science communication to the public harder. But there are several tests already being used or currently under construction (QOELLE). What we thought was lacking, was a valid measure of self-perceived Data Literacy. One that should be fitting for the general public.
-
-\hypertarget{self-perceived-data-literacy}{%
-\subsection{Self-Perceived Data Literacy}\label{self-perceived-data-literacy}}
-
-instances have underscored the extent to which citizens may lack awareness regarding the potential uses and misuses of their data. {[}argumentation for self-rating measure!{]}
-
-\hypertarget{moral-attentiveness}{%
-\subsection{Moral Attentiveness}\label{moral-attentiveness}}
-
-\begin{itemize}
-\tightlist
-\item
-  moral disengagement scale
-\end{itemize}
-
-Moral Attentiveness (\protect\hyperlink{ref-reynolds2008}{Reynolds, 2008}) is a concept that delves into the inherent differences individuals display when it comes to engaging with ethical considerations. Some individuals naturally exhibit a genuine interest and attentiveness to ethical matters, while others may find the subject mundane or remain indifferent, and in extreme cases, appear unresponsive. This inclination toward or against ethics appears to be deeply ingrained, persisting across diverse contexts and proving resistant to various ethics interventions, whether constructive or detrimental.
-Importantly, acknowledging one's interest in ethics does not imply inherent moral virtue or vice, nor does it suggest that behavior is rigid and unchangeable. Rather, it highlights an observation familiar to many practitioners --- that certain individuals inherently pay more attention to moral matters. These individuals contribute to making organizational interventions more interactive, enjoyable, and presumably more beneficial compared to those less attuned to such ethical considerations.
-Within the field, an implicit assumption is that the variance in individual moral attentiveness can be explained by two existing constructs: moral awareness and moral sensitivity. Moral awareness involves an individual's recognition that a situation possesses moral implications, while moral sensitivity refers to their capacity to achieve such moral awareness. In essence, the unspoken argument is that an individual's level of attention to moral matters can be attributed to their moral awareness, moral sensitivity, or a combination of both.
-
-\hypertarget{critical-thinking}{%
-\subsection{Critical Thinking}\label{critical-thinking}}
-
-The conceptualization of Critical Thinking (CrT) has evolved along three main branches: philosophical, psychological, and educational (\protect\hyperlink{ref-rear2019}{Rear, 2019}). In the philosophical view, which centers on the mental process of thought, a critical thinker is someone adept at logically evaluating and questioning both the assumptions of others and their own. On the psychological front, which delves into the processes driving action, a critical thinker possesses a combination of skills enabling them to assess a situation and determine the most appropriate course of action. The educational approach aligns more closely with the psychological perspective, relying on frameworks and learning activities tailored to enhance students' CrT skills and subsequently assess their proficiency in these skills (\protect\hyperlink{ref-payan2022}{Payan Carreira et al., 2022}).
-
-\hypertarget{need-for-cognition}{%
-\subsection{Need for Cognition}\label{need-for-cognition}}
-
-The personality trait known as Need for Cognition (NFC) originated in social psychology during the 1940s and 1950s, the concept of NFC, representing an inclination for joyful thinking, is evident in the works of Maslow (\protect\hyperlink{ref-maslow1943}{1943}), Murphy (\protect\hyperlink{ref-murphy1947}{1947}), Asch (\protect\hyperlink{ref-asch1952}{1952}), and Sarnoff \& Katz (\protect\hyperlink{ref-sarnoff1954}{1954}). The conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations by Cohen and colleagues (\protect\hyperlink{ref-cohen1955}{Cohen et al., 1955}). They defined NFC as ``a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world'' (\protect\hyperlink{ref-cohen1955}{Cohen et al., 1955, p. 291}). The concept captures individual variations in the engagement and enjoyment of thinking tasks (\protect\hyperlink{ref-bless1994}{Bless et al., 1994}).
-
-\hypertarget{core-self-evaluation}{%
-\subsection{Core self evaluation}\label{core-self-evaluation}}
-
-Core Self-Evaluations (CSE) is a comprehensive personality trait that encompasses fundamental appraisals of one's worthiness, effectiveness, and capability as a person (\protect\hyperlink{ref-judge2003}{Judge et al., 2003}). This construct, initially introduced by Judge et al. (\protect\hyperlink{ref-judge1997}{1997}), integrates four traits: self-esteem, emotional stability, generalized self-efficacy, and locus of control, all of which contribute to individuals' perceptions of themselves and their agency (\protect\hyperlink{ref-judge2001}{Judge \& Bono, 2001}).
-
-The study by Chang et al. (\protect\hyperlink{ref-chang2012}{2012}) further emphasizes the role of CSE in individuals' assessments of their own worthiness and capabilities. These assessments, rooted in self-esteem, emotional stability, generalized self-efficacy, and locus of control, form the core components of CSE (\protect\hyperlink{ref-judge2003}{Judge et al., 2003}). Self-esteem, as established by Rosenberg (\protect\hyperlink{ref-rosenberg1965}{1965}), provides a foundation for positive self-perceptions, while emotional stability (low neuroticism) characterized by confidence and steadiness (\protect\hyperlink{ref-goldberg1990}{Goldberg, 1990}) enhances individuals' resilience. Generalized self-efficacy, reflecting beliefs about one's ability to perform across diverse situations (\protect\hyperlink{ref-locke1996}{Locke et al., 1996}), and locus of control, which pertains to individuals' beliefs about the causes of events in their lives (\protect\hyperlink{ref-rotter1966}{Rotter, 1966}), further shape individuals' perceptions of their capabilities and control over their environment.
-
-\hypertarget{openness-towards-technology}{%
-\subsection{Openness towards technology}\label{openness-towards-technology}}
-
-The widespread integration of information and communication technology (ICT) in various aspects of daily life, notably accelerated by the COVID-19 pandemic lockdown (Richter and Mohr, 2020; Rizun and Strzelecki, 2020), has underscored the significance of individuals' self-perceived ICT competence. This self-perception extends beyond a general assessment to encompass specific competence domains, referred to as ICT self-concept (ICT-SC). ICT-SC reflects individuals' mental representations and evaluations of their ICT competences shaped by experiences, feedback, and interactions with the environment.
-
-Research findings indicate that when the objective demands of competence encompass multiple dimensions, the corresponding self-concepts are likewise structured in a multidimensional fashion (Brunner et al., 2010). Examining the European Digital Competence Framework for Citizens (DigComp) and its updated versions, DigComp 2.0/2.1 (Carretero et al., 2017; Vuorikari et al., 2016), reveals a comprehensive structure. This framework not only integrates previous models of ICT competence but also extends its scope, incorporating models such as the Canadian Digital Skill Framework (Chinien and Boutin, 2011) and components of ICT literacy by Katz (2007), among others (e.g., Eshet-Alkalai, 2004; Ferrari, 2012; Martin and Grudziecki, 2006).
-Within DigComp and its subsequent versions, ICT competence is systematically organized across five competence domains: information and data literacy, communication and collaboration, digital content creation, safety, and problem-solving. These domains encompass a total of 21 competences, providing a comprehensive and nuanced perspective on the multifaceted nature of ICT competence.
-
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
-
-\hypertarget{stage-one-conceptualization-and-item-pool-generation}{%
-\subsection{1. Stage One: Conceptualization and Item Pool Generation}\label{stage-one-conceptualization-and-item-pool-generation}}
+\subsection{1. Stage One: Conceptualization and Item Pool Generation}\label{stage-one-conceptualization-and-item-pool-generation}
 
 \begin{itemize}
 \tightlist
@@ -337,8 +290,7 @@ Within DigComp and its subsequent versions, ICT competence is systematically org
   Exclude items as necessary, resulting in a refined item pool.
 \end{itemize}
 
-\hypertarget{stage-two-item-selection-and-construct-validity}{%
-\subsection{2. Stage Two: Item Selection and Construct Validity}\label{stage-two-item-selection-and-construct-validity}}
+\subsection{2. Stage Two: Item Selection and Construct Validity}\label{stage-two-item-selection-and-construct-validity}
 
 \begin{itemize}
 \tightlist
@@ -370,8 +322,7 @@ Within DigComp and its subsequent versions, ICT competence is systematically org
   Conduct confirmatory factor analysis (CFA) with the R package ``lavaan.''
 \end{itemize}
 
-\hypertarget{stage-three-external-and-construct-validity-testing}{%
-\subsection{3. Stage Three: External and Construct Validity Testing}\label{stage-three-external-and-construct-validity-testing}}
+\subsection{3. Stage Three: External and Construct Validity Testing}\label{stage-three-external-and-construct-validity-testing}
 
 \begin{itemize}
 \tightlist
@@ -383,8 +334,7 @@ Within DigComp and its subsequent versions, ICT competence is systematically org
   Discuss specific hypotheses regarding associations between the measure and related constructs.
 \end{itemize}
 
-\hypertarget{sample}{%
-\subsection{Sample}\label{sample}}
+\subsection{Sample}\label{sample}
 
 The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX\% identified as female, XXX\% as male, and xxx\% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a {[}insert educational level- specifying the range or types of educational levels observed in the sample{]}. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
 The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
@@ -393,42 +343,35 @@ Our study sample serves as a focal point for comparison against the demographic 
 
 Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
 
-\hypertarget{preregistration}{%
-\subsection{Preregistration}\label{preregistration}}
+\subsection{Preregistration}\label{preregistration}
 
-\hypertarget{instruments}{%
-\subsection{Instruments}\label{instruments}}
+\subsection{Instruments}\label{instruments}
 
-\hypertarget{measuring-moral-attentiveness}{%
-\subsection{Measuring Moral Attentiveness}\label{measuring-moral-attentiveness}}
+\subsubsection{Measuring Self-efficacy beliefs regarding information behaviour}\label{measuring-self-efficacy-beliefs-regarding-information-behaviour}
 
-To assess moral attentiveness, we employed the perceptual moral attentiveness scale derived from the German Moral Attentiveness Scale by Pohling et al.(2014); adapted from Reynolds, 2008). This subscale comprises four items, including statements such as ``I am regularly confronted with decisions that have significant ethical consequences.'' The scale comprises a seven-point Likert-type scale with fully labeled options, ranging from strongly disagree (1) to strongly agree (7).
+As a self-rating measrue for information literacy we decided to assess the SWE-IV-16 (Behm, 2018).
+The SWE-IV-16 (Behm, 2018) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This questionnaire measures the process model of information-related problem-solving (Brand-Gruwel et al., 2009). It consists of 16 statements addressing self-assessed abilities in searching for and evaluating information, as well as managing information searches effectively. Each statement begins with ``When I search for information on a topic or a specific question\ldots{}'' and respondents indicate their agreement on a five-point Likert scale (1 = ``strongly disagree'', 2 = ``somewhat disagree'', 3 = ``neither agree nor disagree'', 4 = ``somewhat agree'', 5 = ``strongly agree''). The total scale value is computed as the arithmetic mean of the items, which may be inverted if necessary. Calculation of the total value requires valid responses to at least 12 of the 16 items.
 
-\hypertarget{measuring-critical-thinking}{%
-\subsection{Measuring Critical Thinking}\label{measuring-critical-thinking}}
+\subsubsection{Measuring Need for Cognition}\label{measuring-need-for-cognition}
 
-\hypertarget{measuring-need-for-cognition}{%
-\subsection{Measuring Need for Cognition}\label{measuring-need-for-cognition}}
+The NFC-K (Beißert et al., 2015) is a tool used to assess the Need for Cognition (NFC) through four items, which represent two facets: ``engagement'' and ``joy''. The NFC-K is measured with a seven-point response scale, ranging from ``strongly disagree'' (1) to ``strongly agree'' (7), with a ``neither'' option in the middle. The German version of the scale is adapted from the original English scale by Cacioppo and Petty (1982) and translated by Bless et al.~(1994). To determine an individual's NFC score, a mean value (scale value) is computed from the four raw score points of the responses. The resulting mean values range between 1 and 7.
 
-\hypertarget{measuring-core-self-evaluation}{%
-\subsection{Measuring Core self evaluation}\label{measuring-core-self-evaluation}}
+\subsubsection{Measuring Information and Communication Technology Competency}\label{measuring-information-and-communication-technology-competency}
 
--\textgreater{} heilman und jonas 2010 validation german
+As a self-rating measure for
+To assess self-perceived competence in using information and communication technology (ICT), the five general items of the ICT-SC25 (Schauffel et al., 2021) were used. The ICT-SC25 is a scale consisting of 25 items designed to assess self-perceived competence in using information and communication technology. It is available in both German (ICT-SC25g) and English (ICT-SC25e). Items are measured using a six-point fully-labeled Likert-type rating scale ranging from strongly disagree (1) to strongly agree (6). Researchers can choose to utilise either the entire scale or individual subscales based on their specific research objectives. The ICT-SC25g/e is applicable for both manifest and latent analysis. Manifest scale scores for the ICT-SC25g/e are calculated separately for each subscale by computing the unweighted mean score of the items within each subscale (Schauffel et al., 2021).
 
-\hypertarget{measuring-openness-towards-technology}{%
-\subsection{Measuring Openness towards technology}\label{measuring-openness-towards-technology}}
+\subsubsection{Measuring Openness and Conscientiousness}\label{measuring-openness-and-conscientiousness}
 
-ICT-SC was measured, using the ICT-SC25g. The ICT-SC25 is a self-administered questionnaire designed to assess ICT self-concept (ICT-SC) on both a general scale (items 1-5) and a domain-specific scale (items 6-25). Responses to items are provided on a six-point Likert-type scale with fully labeled options, ranging from strongly disagree (1) to strongly agree (6). The questionnaire has undergone validation in German (ICT-SC25g). Its applicability extends across the adult population, spanning ages 18 to 69, and diverse contexts including work, private life, and education.
+The BFI-10 (Rammstedt et al., 2014) was used to assess personality based on the five-factor model. Only the items on openness and conscientiousness were assessed.
+The items were answered on a five-point rating scale from ``strongly disagree'' (1) to ``strongly agree'' (5).
+To measure the respondent's individual traits on the five personality dimensions, the responses to the two items for each dimension are averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then the mean value is calculated for each dimension from both the recoded and non-recoded items. The values for the five dimensions range from 1 to 5 (see Rammstedt, 2007 for reference values).
 
-\hypertarget{item-creation}{%
-\subsection{Item Creation}\label{item-creation}}
+\subsection{Item Creation}\label{item-creation}
 
-After drafting a set of items, those items were being reviewed in cognitive interviews in an iterative manner. The idea was to go through the items with different people and ask them if the items are comprehensive, whether it is clear to them what is being asked with the items and what everyone associates with the item and so on. After every interview, the remarks made by the Person interviewed get worked into the items and then the reworked item set is presented in the next interview and so on.
+We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that lie in the nomological network of Data Literacy. After drafting a set of items, those items were being reviewed in cognitive interviews in an iterative manner, for item creation and refinement. The cognitive interviews were done with people of the general public, thus participants of the target group of this questionnaire, treating lay-people as experts. Item difficulty and discriminatory power are assessed in a pilot study with 25 participants, also from the general public/ citizens. Afterwards, all Items left were assessed and then the best items were chosen via a final selection.
 
-Berücksichtigung von z.b. Trennschärfe etc. item schwierigkeit
-
-\hypertarget{analysis}{%
-\section{Analysis}\label{analysis}}
+\section{Analysis}\label{analysis}
 
 We employed an automated item selection algorithm to craft the {[}insert name{]} scale. The process of scale development, involving the strategic selection of items to ensure psychometric soundness, is conceptualized as a combinatorial problem (Kerber et al., 2022). Combinatorial problems, exemplified by the knapsack problem (Schroeders et al., 2016), entail identifying a discrete and finite solution within predefined constraints (Hoos and Stützle, 2005).
 
@@ -439,11 +382,9 @@ Noteworthy is the inherent approximate, rather than deterministic, nature of met
 residuals
 correlates or the residuals for the adjacent constructs
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\section{Results}\label{results}
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\section{Discussion}\label{discussion}
 
 \begin{itemize}
 \tightlist
@@ -481,100 +422,72 @@ correlates or the residuals for the adjacent constructs
   heterogeneity of construct
 \end{itemize}
 
-\hypertarget{references}{%
-\section*{References}\label{references}}
+\section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-asch1952}{}}%
+\bibitem[\citeproctext]{ref-asch1952}
 Asch, S. (1952). \emph{Social psychology}. Prentice Hall.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bates2005}{}}%
+\bibitem[\citeproctext]{ref-bates2005}
 Bates, M. J. (2005). An introduction to metatheories, theories, and models. In M. J. Bates \& M. N. Maack (Eds.), \emph{Encyclopedia of library and information sciences} (2nd ed., pp. 109--121). Taylor \& Francis.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bless1994}{}}%
+\bibitem[\citeproctext]{ref-bless1994}
 Bless, H., Wänke, M., Bohner, G., Fellhauer, R., \& Schwarz, N. (1994). Need for cognition: Eine skala zur erfassung von engagement und freude bei denkaufgaben {[}presentation and validation of a german version of the need for cognition scale{]}. \emph{Zeitschrift Für Sozialpsychologie}, \emph{25}, 147--154.
 
-\leavevmode\vadjust pre{\hypertarget{ref-brillouin1953}{}}%
+\bibitem[\citeproctext]{ref-brillouin1953}
 Brillouin, L. (1953). Negentropy principle of information. \emph{Journal of Applied Physics}, \emph{24}(9), 1152--1163.
 
-\leavevmode\vadjust pre{\hypertarget{ref-prado2013}{}}%
+\bibitem[\citeproctext]{ref-prado2013}
 Calzada Prado, J., \& Marzal, M. Á. (2013). Incorporating data literacy into information literacy programs: Core competencies and contents. \emph{Libri}, \emph{63}(2), 123--134. \url{https://doi.org/10.1515/libri-2013-0010}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Carmi2020}{}}%
+\bibitem[\citeproctext]{ref-Carmi2020}
 Carmi, E., Yates, S. J., Lockley, E., \& Pawluczuk, A. (2020). Data citizenship: Rethinking data literacy in the age of disinformation, misinformation, and malinformation. \emph{Internet Policy Review}, \emph{9}(2). \url{https://doi.org/10.14763/2020.2.1481}
 
-\leavevmode\vadjust pre{\hypertarget{ref-chang2012}{}}%
-Chang, C.-H., Ferris, D. L., Johnson, R. E., Rosen, C. C., \& Tan, J. A. (2012). Core self-evaluations: A review and evaluation of the literature. \emph{Journal of Management}, \emph{38}(1), 81--128. \url{https://doi.org/10.1177/0149206311419661}
-
-\leavevmode\vadjust pre{\hypertarget{ref-cohen1955}{}}%
+\bibitem[\citeproctext]{ref-cohen1955}
 Cohen, A. R., Stotland, E., \& Wolfe, D. M. (1955). An experimental investigation of need for cognition. \emph{The Journal of Abnormal and Social Psychology}, \emph{51}(2), 291--294. \url{https://doi.org/10.1037/h0042761}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Cui2023}{}}%
+\bibitem[\citeproctext]{ref-Cui2023}
 Cui, Y., Chen, F., Lutsyk, A., Leighton, J., \& Cutumisu, M. (2023). Data literacy assessments: A systematic literature review. \emph{Assessment in Education: Principles, Policy \& Practice}, \emph{30}, 1--21. \url{https://doi.org/10.1080/0969594X.2023.2182737}
 
-\leavevmode\vadjust pre{\hypertarget{ref-frank2016}{}}%
+\bibitem[\citeproctext]{ref-frank2016}
 Frank, M. (2016). Data literacy - what is it and how can we make it happen? \emph{Journal of Community Informatics}, \emph{12}, 4--8.
 
-\leavevmode\vadjust pre{\hypertarget{ref-goldberg1990}{}}%
-Goldberg, L. R. (1990). An alternative "description of personality": The big-five factor structure. \emph{Journal of Personality and Social Psychology}, \emph{59}(6), 1216--1229. \url{https://doi.org/10.1037/0022-3514.59.6.1216}
-
-\leavevmode\vadjust pre{\hypertarget{ref-gould2017}{}}%
+\bibitem[\citeproctext]{ref-gould2017}
 Gould, R. (2017). Data literacy is statistical literacy. \emph{Statistics Education Research Journal}, \emph{16}(1), 22--25. \url{https://doi.org/10.52041/serj.v16i1.209}
 
-\leavevmode\vadjust pre{\hypertarget{ref-jaynes1957}{}}%
+\bibitem[\citeproctext]{ref-jaynes1957}
 Jaynes, E. T. (1957). Information theory and statistical mechanics. \emph{Physical Review}, \emph{106}(4), 620--630.
 
-\leavevmode\vadjust pre{\hypertarget{ref-judge2001}{}}%
-Judge, T. A., \& Bono, J. E. (2001). Relationship of core self-evaluations traits---self-esteem, generalized self-efficacy, locus of control, and emotional stability---with job satisfaction and job performance: A meta-analysis. \emph{Journal of Applied Psychology}, \emph{86}(1), 80--92. \url{https://doi.org/10.1037/0021-9010.86.1.80}
-
-\leavevmode\vadjust pre{\hypertarget{ref-judge2003}{}}%
-Judge, T. A., Erez, A., Bono, J. E., \& Thoresen, C. J. (2003). The core self-evaluations scale: Development of a measure. \emph{Personnel Psychology}, \emph{56}(2), 303--331. \url{https://doi.org/10.1111/j.1744-6570.2003.tb00152.x}
-
-\leavevmode\vadjust pre{\hypertarget{ref-judge1997}{}}%
-Judge, T. A., Locke, E. A., \& Durham, C. C. (1997). The dispositional causes of job satisfaction: A core evaluations approach. \emph{Research in Organizational Behavior}, \emph{19}, 151--188.
-
-\leavevmode\vadjust pre{\hypertarget{ref-kubinger2005}{}}%
+\bibitem[\citeproctext]{ref-kubinger2005}
 Kubinger, K. D., \& Proyer, R. (2005). Gütekriterien. In K. Westhoff, L. J. Helfritsch, L. F. Hornke, K. D. Kubinger, F. Lang, H. Moosbrugger, A. Puschel, \& G. (Testkuratorium). Reimann (Eds.), \emph{Grundwissen für die berufsbezogene eignungsdiagnostik nach DIN 33430} (2nd ed., pp. 191--199). Pabst.
 
-\leavevmode\vadjust pre{\hypertarget{ref-locke1996}{}}%
-Locke, E. A., McClear, K., \& Knight, D. (1996). Self-efficacy, values, and complementarity in multiple goal relationships. \emph{Journal of Applied Social Psychology}, \emph{26}(15), 1335--1354. \url{https://doi.org/10.1111/j.1559-1816.1996.tb01100.x}
-
-\leavevmode\vadjust pre{\hypertarget{ref-maslow1943}{}}%
+\bibitem[\citeproctext]{ref-maslow1943}
 Maslow, A. H. (1943). A theory of human motivation. \emph{Psychological Review}, \emph{50}(4), 370--396. \url{https://doi.org/10.1037/h0054346}
 
-\leavevmode\vadjust pre{\hypertarget{ref-murphy1947}{}}%
+\bibitem[\citeproctext]{ref-murphy1947}
 Murphy, G. (1947). \emph{Personality: A biosocial approach to origins and structure}. Harper.
 
-\leavevmode\vadjust pre{\hypertarget{ref-payan2022}{}}%
+\bibitem[\citeproctext]{ref-payan2022}
 Payan Carreira, R., Sacau-Fontenla, A., Rebelo, H., Sebastião, L., \& Pnevmatikos, D. (2022). Development and validation of a critical thinking assessment-scale short form. \emph{Education Sciences}, \emph{12}, 938. \url{https://doi.org/10.3390/educsci12120938}
 
-\leavevmode\vadjust pre{\hypertarget{ref-rear2019}{}}%
+\bibitem[\citeproctext]{ref-rear2019}
 Rear, D. (2019). One size fits all? The limitations of standardised assessment in critical thinking. \emph{Assessment \& Evaluation in Higher Education}, \emph{44}, 664--675.
 
-\leavevmode\vadjust pre{\hypertarget{ref-reynolds2008}{}}%
-Reynolds, S. J. (2008). Moral attentiveness: Who pays attention to the moral aspects of life? \emph{Journal of Applied Psychology}, \emph{93}(5), 1027--1041. \url{https://doi.org/10.1037/0021-9010.93.5.1027}
-
-\leavevmode\vadjust pre{\hypertarget{ref-rosenberg1965}{}}%
-Rosenberg, M. (1965). \emph{Society and the adolescent self-image}. Princeton University Press.
-
-\leavevmode\vadjust pre{\hypertarget{ref-rotter1966}{}}%
-Rotter, J. B. (1966). Generalized expectancies for internal versus external control of reinforcement. \emph{Psychological Monographs: General and Applied}, \emph{80}(1), 1--28. \url{https://doi.org/10.1037/h0092976}
-
-\leavevmode\vadjust pre{\hypertarget{ref-sarnoff1954}{}}%
+\bibitem[\citeproctext]{ref-sarnoff1954}
 Sarnoff, I., \& Katz, D. (1954). The motivational bases of attitude change. \emph{The Journal of Abnormal and Social Psychology}, \emph{49}(1), 115--124. \url{https://doi.org/10.1037/h0057453}
 
-\leavevmode\vadjust pre{\hypertarget{ref-schuxfcller2020}{}}%
+\bibitem[\citeproctext]{ref-schuxfcller2020}
 schüller, K. (2020). \emph{Future skills: A framework for data literacy} (Working Paper No. 53). Hochschulforum Digitalisierung. \url{https://doi.org/10.5281/zenodo.3946067}
 
-\leavevmode\vadjust pre{\hypertarget{ref-shannon1948}{}}%
+\bibitem[\citeproctext]{ref-shannon1948}
 Shannon, C. E. (1948). A mathematical theory of communication. \emph{Bell System Technical Journal}, \emph{27}(3), 379--423.
 
-\leavevmode\vadjust pre{\hypertarget{ref-shields2005}{}}%
+\bibitem[\citeproctext]{ref-shields2005}
 Shields, M. (2005). Information literacy, statistical literacy, data literacy. \emph{IASSIST Quarterly}, \emph{28}(2--3), 6. \url{https://doi.org/10.29173/iq790}
 
-\leavevmode\vadjust pre{\hypertarget{ref-wolff2016}{}}%
+\bibitem[\citeproctext]{ref-wolff2016}
 Wolff, A., Gooch, D., Montaner, J. J. C., Rashid, U., \& Kortuem, G. (2016). Creating an understanding of data literacy for a data-driven society. \emph{The Journal of Community Informatics}, \emph{12}(3), 9--26. \url{https://doi.org/10.15353/joci.v12i3.3275}
 
 \end{CSLReferences}
