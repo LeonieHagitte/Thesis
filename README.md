@@ -1,27 +1,11 @@
 # Thesis
-## Algorithm-based development of an instrument to measure self-perceived data literacy
+## Algorithm-based development of an instrument to measure self-rated data literacy
 
-The increasing relevance of competent and critical handling of data in society not only makes it 
-possible to record this competence, but also makes the self-perception of this competence increasingly important.
-Previous approaches considered this competence primarily against the specific background of individual target
-groups, jobs or roles (Cui et al., 2023). In addition, only a few explicitly refer to the general 
-population (Cui et al., 2023; Carmi et al., 2020). In view of the various theoretical approaches, 
-there is a need for a uniform definition of data literacy in order to create comparability.
+The increasing importance of competent and critical data handling in society (Carmi et al., 2020) emphasises the necessity to assess and understand one's own data literacy. Previous approaches to data literacy primarily target specific groups and professions, with few including the general population (Cui et al., 2023). Given the diversity of theoretical approaches (Cui et al., 2023), we feel there is an urgent need for a unified definition of data literacy to ensure comparability and holistic assessment.
 
-Our aim is therefore to derive a holistic definition based on these approaches and to develop a 
-questionnaire for self-perception of one's own data literacy. To this end, the decisive factors from previous 
-definitions and operationalizations in various disciplines are brought together. Cognitive interviews are 
-conducted iteratively to create and refine the items. The items are then selected using algorithm-based
-item selection. The facets of data literacy are tested for factorial, discriminant, convergent and congruent
-incremental validity in order to promote a differentiated understanding of the construct. 
-Construct and criterion validity are tested using correlations and hierarchical regression analyses,
-while cross-validation checks the robustness of the instrument.
-Based on a cross-sectional online survey, we will examine a representative sample from the general population. 
+Objective
+Our aim is to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct. While drafts for two additional factors are included as preliminary assessments for future studies, they are not the focus of this study. To achieve this, we integrate essential factors from various disciplines via a literature review to develop a theory-driven conceptualisation of constructs. Furthermore, we apply an iterative process for item creation and refinement, followed by the selection of the best items for a final scale.
+We arrived at five core facets that are also very prominent in the most definitions in the literature (Cui et al., 2023). We further divided them into “consumer” facets (Comprehension,Evaluation & Integration), that are relevant for nearly every person in society and “producer” facets (Communication & Statistics), that are mainly relevant for people, actively working with data. 
 
-Limitations result from the cross-sectional design and the heuristic item reduction, which prevent causal 
-conclusions and limit predictive validity. The heterogeneous nature of the construct makes the development
-of a global instrument and understanding of all participants difficult.
-The self-assessment questionnaire shall enable a holistic assessment of perceived competence for further studies, 
-for example by comparing self-assessment and actual performance.
-
-You can take a look here: https://leoniehagitte.github.io/Thesis/
+You find the preregistration here: https://zenodo.org/records/11196495
+You can take a look into the progress here: https://leoniehagitte.github.io/Thesis/
