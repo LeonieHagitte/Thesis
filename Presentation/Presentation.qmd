@@ -4,35 +4,256 @@ subtitle: "An Algorithm-based Approach to Scale Development"
 author: "Leonie Hagitte"
 format:
   revealjs: 
-    slide-number: true
+    theme: [default, custom.scss]
+    slide-number: c/t
     chalkboard: 
       buttons: false
     preview-links: auto
-    css: styles.css
     footer: "Colloquium presentation by Leonie Hagitte"
-    theme: [moon, custom.scss]
     title-slide-attributes:
       data-background-image: cover.png
-      data-background-size: cover
-      data-background-opacity: ".1"
-    echo: true
+      data-background-size:  contain 
+      data-background-opacity: ".2"
 ---
 
-## Quarto
+## Outline
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+\
 
-## Bullets
+-   Abstract
+-   Background
+-   Method & Planned Analysis
+-   Open Questions
+-   References
 
-When you click the **Render** button a document will be generated that includes:
+## Abstract
 
--   Content authored with markdown
--   Output from executable code
+## What is Data Literacy?
 
-## Code
+\
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+::: scriptsize
+::: columns
+::: {.column width="60%"}
+**Risdale et al. 2015:**\
+Data literacy is the ability to collect, manage, evaluate, and apply data, in a critical manner.\
+\
+**Carmi et al. 2020:**\
+Data citizenship that includes data thinking, data doing, and data participation. This framework highlights the importance of citizens' critical understanding and proactive daily engagement with data.
+:::
 
-```{r}
-1 + 1
+::: {.column width="40%"}
+![](DataLiteracySchüller.png){.lightbox}
+:::
+:::
+
+**Wolff et al. 2016:**\
+Data literacy is the ability to ask and answer real-world questions using large and small datasets through an inquiry process, while considering the ethical use of data. It involves core practical and creative skills, and the capacity to expand knowledge of specialized data handling techniques based on objectives. These skills include selecting, cleaning, analyzing, visualizing, critiquing, and interpreting data, as well as communicating insights and using data in design processes.
+:::
+
+## Conceptual Integration
+\
+
+::: scriptsize
+[*Conceptual integration, is a methodological approach used to consolidate diverse perspectives and create a unified understanding of a concept that lacks a universally agreed-upon definition. This process involves examining various definitions of the concept from existing literature and extracting shared elements to formulate a comprehensive and inclusive definition.*]{.highlight}
+:::
+\
+
+::: small
+- Cui et al. 2023 summarized  good number of literature on the topic - Reporting what facets are incorporated in the several data literacy definitions used.
+
+- I started creating a frequency table to get at the shared factors with the idea of finding a universal definition via conceptual integration
+:::
+
+## Nomological Net
+
+\
+![](DL_Nomological_Net.png){.lightbox}
+
+## Research Question
+
+\
+*Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?*\
+\
+
+::: small
+-   *Hypothesis 1: The proposed set of items will demonstrate a good model fit.*
+-   *Hypothesis 2: The structure of the initial analysis will also be found in a different sample.*
+-   *Hypothesis 3: The final questionnaire will show good discriminant validity.*
+:::
+
+## Methods & Planned Analysis
+
+\
+
+::: normalsize
+::: columns
+::: {.column width="50%"}
+[Study Design]{.highlight}\
+Item Creation\
+Item Selection\
+Validation
+:::
+
+::: {.column .scriptsize width="50%"}
+-   Cross-sectional online survey
+-   Sample from the general population
+    -   Ca. 700 participants
+-   Self-rated data literacy scale
+-   Demographic questions
+-   Additional validation measures
+:::
+:::
+:::
+
+## Methods & Planned Analysis
+
+\
+
+::: normalsize
+::: columns
+::: {.column width="50%"}
+Study Design\
+[Item Creation]{.highlight}\
+Item Selection\
+Validation
+:::
+
+::: {.column .scriptsize width="50%"}
+-   Literature review to create items
+-   Cognitive interviews to refine potential items
+    -   71 items total
+:::
+:::
+:::
+
+## Methods & Planned Analysis
+
+\
+
+::: normalsize
+::: columns
+::: {.column width="50%"}
+Study Design\
+Item Creation\
+[Item Selection]{.highlight}\
+Validation
+:::
+
+::: {.column .scriptsize width="50%"}
+-   Quantitative survey
+    -   Data Literacy items
+    -   SWE-IV-16 (Behm, 2018)
+    -   NFC-K (Beißert et al., 2015)
+    -   ICT-SC25, general domain (Schauffel et al., 2021)
+    -   BFI-10, openness & conscientiousness (Rammstedt et al., 2014)
+-   Algorithm-based item selection
+:::
+:::
+:::
+
+## Methods & Planned Analysis
+
+\
+
+::: normalsize
+::: columns
+::: {.column width="50%"}
+Study Design\
+Item Creation</span>\
+Item Selection\
+[Validation]{.highlight}
+:::
+
+::: {.column .scriptsize width="50%"}
+-   Construct validity
+    -   Confirmatory factor analysis (CFA)
+    -   Correlation analyses with related constructs
+-   Crossvalidation
+:::
+:::
+:::
+
+## Study Design 
+::: normalsize
+Poweranalyse 
+:::
+
+- Similar literature had sample sizes of N=500 up to N=1000 could be found (Algner & Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024).
+- But highly dependent on the factor structure!
+
+## Study Design
+
+::: normalsize
+Poweranalyse with ‘semPower’(Moshagen & Bader, 2023)
+:::
+
+```{r, echo=TRUE}
+library(semPower)
+powerLI <- semPower.powerLI(
+  type = 'a-priori', alpha = .05, power = .80,
+  comparison = 'configural',
+  nullEffect = 'metric',
+  nIndicator = c(4, 4, 4, 4, 4),
+  loadM = c(.6, .7, .6, .7, .7),
+  autocorResiduals = TRUE
+)
 ```
+::: scriptsize
+- This has also been done with simulation of several model estimations, via the argument 'simulatedPower = TRUE'
+:::
+
+## Study Design
+
+::: normalsize
+Poweranalyse 
+:::
+```{r}
+#| label: Summary Power Analysis
+#| tbl-cap: "Example"
+#| tbl-subcap: 
+#|   - "table"
+#|   - "figure" 
+#| layout-ncol: 2
+summary(powerLI)
+```
+
+## Survey
+\
+
+::: small
+Each participant will answer 38 items of the 71, that are randomly selected. To answer the items, respondents indicate their agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know” option. 
+\
+
+- 16 items of the SWE-IV-16 scale  
+- 4 items of the NFC-K scale  
+- 5 items general items of the ICT Self-Concept Scale (ICT-SC25)  
+- 2 openness items & 2 conscientiousness items from the BFI-10 scale  
+- 3 instructed response items and 1 seriousness check item  
+- demographic questions (Age, gender, education, occupation...)  
+:::
+
+## References {.scrollable}
+
+::: tiny
+-   Algner, M., & Lorenz, T. (2022). You’re Prettier When You Smile: Construction and Validation of a Questionnaire to Assess Microaggressions Against Women in the Workplace. Frontiers in Psychology, 13. https://doi.org/10.3389/fpsyg.2022.809862\
+-   Behm, T. (2018). SWE-IV-16. Skala zur Erfassung der Informationsverhaltensbezogenen Selbstwirksamkeitserwartung \[Verfahrensdokumentation, Fragebogen deutsche und englische Version (SES-IB-16)\]. In Leibniz-Institut für Psychologie (ZPID) (Hrsg.), Open Test Archive. Trier: ZPID. 
+https://doi.org/10.23668/psycharchives.4598\
+-   Beißert, H., Köhler, M., Rempel, M., & Beierlein, C. (2015). Deutschsprachige Kurzskala zur Messung des Konstrukts Need for Cognition NFC-K. Zusammenstellung sozialwissenschaftlicher Items und Skalen (ZIS). https://doi.org/10.6102/zis230
+-   Bless, H., Wänke, M., Bohner, G., Fellhauer, R. F., et al. (1994). Need for Cognition: Eine Skala zur Erfassung von Engagement und Freude bei Denkaufgaben \[Need for cognition: A scale measuring engagement and happiness in cognitive tasks\]. Zeitschrift für Sozialpsychologie, 25(2), 147–154.\
+-   Brand-Gruwel, S., Wopereis, I., & Walraven, A. (2009). A descriptive model of information problem solving while using internet. Computers & Education, 53(4), 1207–1217. https://doi.org/10.1016/j.compedu.2009.06.004\
+-   Cacioppo, J. T., & Petty, R. E. (1982). The need for cognition. Journal of Personality and Social Psychology, 42(1), 116–131. https://doi.org/10.1037/0022-3514.42.1.116\
+-   Carmi, E., Yates, S. J., Lockley, E., & Pawluczuk, A. (2020). Data citizenship: Re- thinking data literacy in the age of disinformation, misinformation, and mal- information. Internet Policy Review, 9(2). https://doi.org/10.14763/2020.2.1481\
+-   Cui, Y., Chen, F., Lutsyk, A., Leighton, J., & Cutumisu, M. (2023). Data liter- acy assessments: A systematic literature review. Assessment in Education: Principles, Policy & Practice, 30, 1–21. https://doi.org/10.1080/0969594X.2023\
+-   Hu, L., & Bentler, P. (1999). Cutoff criteria for fit indexes in covariance structure analysis: conventional criteria versus new alternatives. Structural Equation Modeling, 6(1), 1–55. https://doi.org/10.1080/10705519909540118\
+-   Meredith, W. (1993). Measurement invariance, factor analysis and factorial invariance. Psychometrika, 58(4), 525–543. https://doi.org/10.1007/BF02294825\
+-   Moshagen, M., & Bader, M. (2023). Package ‘semPower’ (Version 1.0.0) \[Manual\]. CRAN. https://github.com/moshagen/semPower\
+-   Rammstedt, B., & John, O. P. (2007). Measuring personality in one minute or less: A 10-item short version of the Big Five Inventory in English and German. Journal of Research in Personality, 41(1), 203–212. https://doi.org/10.1016/j.jrp.2006.02.001\
+-   Rammstedt, B., Kemper, C. J., Klein, M. C., Beierlein, C., & Kovaleva, A. (2014). Big Five Inventory (BFI-10). Zusammenstellung sozialwissenschaftlicher Items und Skalen (ZIS). https://doi.org/10.6102/zis76\
+-   Remmert, N., Schmidt, K. M. B., Mussel, P., Hagel, M. L., & Eid, M. (2022). The Berlin Misophonia Questionnaire Revised (BMQ-R): Development and validation of a symptom-oriented diagnostical instrument for the measurement of misophonia. PLoS ONE, 17(6), e0269428. https://doi.org/10.1371/journal.pone.0269428\
+-   Rosseel, Y. (2012). lavaan: an R package for structural equation modeling. Journal of Statistical Software, 48(2), 1–36. https://doi.org/10.18637/jss.v048.i02\
+-   Schauffel, N., Schmidt, I., Peiffer, H., & Ellwart, T. (2021). ICT Self-Concept Scale (ICT-SC25). Zusammenstellung sozialwissenschaftlicher Items und Skalen (ZIS). https://doi.org/10.6102/zis308_exz\
+-   Schmalbach B, Irmer J, Schultze M (2019). *ezCutoffs: Fit Measure Cutoffs in SEM*. R package version 1.0.1, https://CRAN.R-project.org/package=ezCutoffs\
+-   Schneider, J., Striebing, C., Hochfeld, K., & Lorenz, T. (2024). Establishing Circularity: Development and Validation of the Circular Work Value Scale (CWVS). Frontiers in Psychology, 15. https://doi.org/10.3389/fpsyg.2024.1296282\
+-   Schultze, M. (2020). stuart: Subtests Using Algorithmic Rummaging Techniques. R-Package. Available online at: https://cran.r-project.org/web/packages/stuart/index.html
+:::

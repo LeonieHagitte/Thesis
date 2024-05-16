@@ -17,22 +17,22 @@ body {
 }
 
 // colors for dark theme
-$body-bg: #005555  !default; // Dark Green for background
+$body-bg: #1A1D3C !default; // Dark Blue for background
 $body-color: #eeeeee !default; // Very Light Gray for body text
-$link-color: #edf8b1 !default; // light green for links
-$selection-bg: #7fcdbb !default; // Lime Green/ yellow for selections
+$link-color: #3EEAD8 !default; // light green for links
+$selection-bg: #5F7DE3 !default; // Lime Green/ yellow for selections
 
 // headings
 $presentation-heading-font: $font-family-sans-serif!default;
-$presentation-heading-color: #edf8b1 !default; // White for headings
+$presentation-heading-color: #eeeeee  !default; // White for headings
 
 /* Additional Colors */
 $text-muted: lighten(#eeeeee, 50%) !default; // Lighter shade of body text color
-$link-color-hover: lighten(#7fcdbb, 15%) !default; // Lighter shade of green color for hover effect
-$selection-color: #005555 !default; // Dark Green, same as the background
+$link-color-hover: lighten(#5F7DE3 , 15%) !default; // Lighter shade of green color for hover effect
+$selection-color: #21265F  !default; // Dark Green, same as the background
 $dark-bg-text-color: #eeeeee !default; // White for text on dark background
-$dark-bg-link-color: #72E1FA !default; // A variation of bright blue for links on dark background
-$dark-bg-code-color: #72E1FA  !default; // Bright Cyan for code on dark background
+$dark-bg-link-color: #3EEAD8  !default; // A variation of bright blue for links on dark background
+$dark-bg-code-color: #3EEAD8   !default; // Bright Cyan for code on dark background
 
 $mermaid-bg-color: $body-bg;
 $mermaid-edge-color: $text-muted;
@@ -62,7 +62,7 @@ $mermaid-label-fg-color: $text-muted;
 }
 
 .highlight {
-  color: #6DFFD1 !important;
+  color: #3EEAD8 !important;
 }
 
 .tinitiny {
