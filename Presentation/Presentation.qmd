@@ -65,6 +65,8 @@ Data literacy is the ability to ask and answer real-world questions using large 
 - I started creating a frequency table to get at the shared factors with the idea of finding a universal definition via conceptual integration
 :::
 
+## Data Literacy
+
 ## Nomological Net
 
 \
@@ -203,11 +205,8 @@ powerLI <- semPower.powerLI(
 - This has also been done with simulation of several model estimations, via the argument 'simulatedPower = TRUE'
 :::
 
-## Study Design
+## Poweranalyse 
 
-::: normalsize
-Poweranalyse 
-:::
 ```{r}
 #| label: Summary Power Analysis
 #| tbl-cap: "Example"
@@ -217,6 +216,19 @@ Poweranalyse
 #| layout-ncol: 2
 summary(powerLI)
 ```
+
+## Item Creation 
+\
+
+::: normalsize
+Iterative Cognitive Interviews
+:::
+::: small
+- I conducted 10 Interviews mainly with people from the general public  
+- To examine whether participants can easily understand and interpret items the way they were intended—which aids in identifying concrete suggestions for improving items and response options (Hughes, 2004).  
+- helpful to identify issues with items and test revised versions until a good match between each item’s intent and participants’ interpretations is achieved(Scott et al., 2021).  
+- helped also to refine items that ask for "critical incidents"
+:::
 
 ## Survey
 \
@@ -232,6 +244,12 @@ Each participant will answer 38 items of the 71, that are randomly selected. To 
 - 3 instructed response items and 1 seriousness check item  
 - demographic questions (Age, gender, education, occupation...)  
 :::
+
+## Algorithm based Item selection
+
+## Validation Analyses
+
+## Questions
 
 ## References {.scrollable}
 
