@@ -1,13 +1,5 @@
 # Methods
 
-## 1. Stage One: Conceptualization and Item Pool Generation 
-   - Review relevant literature to develop a theory-driven conceptualization of constructs.
-   - Ensure diversity in the interviews regarding age and occupation.
-   - Include as many members of target group in the item creation process as possible.
-   - Integrate theory and interview results to generate an initial item pool.
-   - Present original items to a small group for piloting - item difficulty/ fairness etc.
-   - Exclude items as necessary, resulting in a refined item pool.
-
 ## 2. Stage Two: Item Selection and Construct Validity
    - Conduct a quantitative survey including the original item pool, demographics, and validation measures.
    - Utilize automated item selection procedures to reduce the item pool.
@@ -24,13 +16,17 @@
    - Conduct confirmatory factor analysis (CFA) with the R package "lavaan."
 
 ## 3. Stage Three: External and Construct Validity Testing 
-   - Perform bivariate correlational analyses with relevant related constructs to establish external validity.
+   - Perform bivariate correlation analyses with relevant related constructs to establish external validity.
    - Investigate construct validity through multiple regression analysis, controlling for other variables.
    - Discuss specific hypotheses regarding associations between the measure and related constructs.
 
+## Item Creation  
+We employed a combination of literature review and the "person-related empirical method" to derive items as indicators for the latent factors of data literacy. The process involved drafting a set of items, which were then reviewed through cognitive interviews in an iterative manner for refinement. These cognitive interviews were conducted with members of the general public, treating laypeople as experts. Subsequently, item difficulty and discriminatory power were assessed in a pilot study involving 25 participants from the general public.
 
-## Sample
+## Construct Validity
+The questionnaire will be created as parsimonious as possible, while still ensuring substantive representation.
 
+## Sample  
 The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX% identified as female, XXX% as male, and xxx% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
 The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
 
@@ -57,7 +53,4 @@ The BFI-10 (Rammstedt et al., 2014) was used to assess personality based on the 
 The items were answered on a five-point rating scale from "strongly disagree" (1) to "strongly agree" (5). 
 To measure the respondent's individual traits on the five personality dimensions, the responses to the two items for each dimension are averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then the mean value is calculated for each dimension from both the recoded and non-recoded items. The values for the five dimensions range from 1 to 5 (see Rammstedt, 2007 for reference values). 
 
-
-## Item Creation  
-We used this, combined with the person-related empirical method to derive items as indicators for different constructs, that lie in the nomological network of Data Literacy. After drafting a set of items, those items were being reviewed in cognitive interviews in an iterative manner, for item creation and refinement. The cognitive interviews were done with people of the general public, thus participants of the target group of this questionnaire, treating lay-people as experts. Item difficulty and discriminatory power are assessed in a pilot study with 25 participants, also from the general public/ citizens. Afterwards, all Items left were assessed and then the best items were chosen via a final selection.
 
