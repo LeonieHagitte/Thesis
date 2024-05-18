@@ -32,6 +32,5 @@ cor.test(TAP$item1, item1mw)
 # Datendatei = TAP
 # regressionslinie reg.line=lm
 
-car::scatterplot(item1 ~ item1mw, data= TAP, smooth = FALSE, regLine =list()
 
 

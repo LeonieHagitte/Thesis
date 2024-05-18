@@ -5,9 +5,43 @@ date: "2024-04-23"
 output: html_document
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# to clear environment while working
+rm(list=ls()) 
+
+usethis::use_git_config(
+  user.name = "LeonieHagitte",
+  user.email = "leonie.hagitte@student.hu-berlin.de",
+  init.defaultBranch = "devl")
+
+```
+
+```{r}
+if(!requireNamespace("remotes"))
+install.packages("remotes")
+remotes::install_github("aaronpeikert/repro")
+repro::automate() #creating a Dockerfile.    ####################### BUG ######
+repro::use_docker()
+repro::use_gha_docker() #GitHub action (GHA) is a cloud service that runs software when certain events trigger it.Add a GitHub Action to build the required Docker image with
+
+# Install or update 'renv' package from CRAN if needed
+# Load 'renv' package
+library(renv)
+
+# Initialize 'renv' in your project
+renv::init()
+
+# Activate the project-specific 'renv' environment
+renv::activate()
+
+# Install required packages for your project
+#renv::install()
+
+# Update renv.lock file
+renv::snapshot()
+
 ```
 
 ```{r}

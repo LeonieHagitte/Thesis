@@ -34,7 +34,8 @@ Our study sample serves as a focal point for comparison against the demographic 
 
 Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
 
-## Preregistration  
+## Open Science Standards 
+### Preregistration  
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 
 ## Instruments  
