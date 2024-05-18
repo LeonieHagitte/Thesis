@@ -436,7 +436,7 @@ Data literacy is the ability to collect, manage, evaluate, and apply data, in a 
 <strong>Carmi et al.&nbsp;2020:</strong><br>
 Data citizenship that includes data thinking, data doing, and data participation. This framework highlights the importance of citizens’ critical understanding and proactive daily engagement with data.</p>
 </div><div class="column" style="width:40%;">
-<p><a href="DataLiteracySchüller.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="DataLiteracySchüller.png"></a></p>
+<p><a href="DataLiteracySchüller.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="DataLiteracySchüller.png"></a></p>
 </div>
 </div>
 <p><strong>Wolff et al.&nbsp;2016:</strong><br>
@@ -650,12 +650,13 @@ Item Selection<br>
 </div>
 <div class="small">
 <ul>
-<li>I conducted 10 Interviews with mainly people from the general public<br>
+<li>I conducted 10 Interviews mainly with people from the general public<br>
 </li>
 <li>To examine whether participants can easily understand and interpret items the way they were intended—which aids in identifying concrete suggestions for improving items and response options (Hughes, 2004).<br>
 </li>
 <li>helpful to identify issues with items and test revised versions until a good match between each item’s intent and participants’ interpretations is achieved(Scott et al., 2021).<br>
 </li>
+<li>helped also to refine items that ask for “critical incidents”</li>
 </ul>
 </div>
 </section>
@@ -684,6 +685,12 @@ Item Selection<br>
 </section>
 <section id="algorithm-based-item-selection" class="slide level2">
 <h2>Algorithm based Item selection</h2>
+</section>
+<section id="validation-analyses" class="slide level2">
+<h2>Validation Analyses</h2>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
 </section>
 <section id="references" class="slide level2 scrollable">
 <h2>References</h2>
@@ -946,42 +953,80 @@ Item Selection<br>
       });
     </script>
     
+
     <script>
+
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
       // slide changes (different for each slide format).
+
       (function () {
+
         // dispatch for htmlwidgets
+
         function fireSlideEnter() {
+
           const event = window.document.createEvent("Event");
+
           event.initEvent("slideenter", true, true);
+
           window.document.dispatchEvent(event);
+
         }
+
+    
 
         function fireSlideChanged(previousSlide, currentSlide) {
+
           fireSlideEnter();
 
+    
+
           // dispatch for shiny
+
           if (window.jQuery) {
+
             if (previousSlide) {
+
               window.jQuery(previousSlide).trigger("hidden");
+
             }
+
             if (currentSlide) {
+
               window.jQuery(currentSlide).trigger("shown");
+
             }
+
           }
+
         }
+
+    
 
         // hookup for slidy
+
         if (window.w3c_slidy) {
+
           window.w3c_slidy.add_observer(function (slide_num) {
+
             // slide_num starts at position 1
+
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
           });
+
         }
 
+    
+
       })();
+
     </script>
+
+    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1159,7 +1204,7 @@ Item Selection<br>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"zoom"});
+    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;

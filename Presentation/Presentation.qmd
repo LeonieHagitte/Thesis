@@ -43,7 +43,7 @@ Data citizenship that includes data thinking, data doing, and data participation
 :::
 
 ::: {.column width="40%"}
-![](DataLiteracySchüller.png){.lightbox}
+![](DataLiteracySchüller.png){.lightbox}
 :::
 :::
 
