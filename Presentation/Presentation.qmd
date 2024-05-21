@@ -60,6 +60,7 @@ Data literacy is the ability to ask and answer real-world questions using large 
 \
 
 ::: small
+
 - Cui et al. 2023 summarized  good number of literature on the topic - Reporting what facets are incorporated in the several data literacy definitions used.
 
 - I started creating a frequency table to get at the shared factors with the idea of finding a universal definition via conceptual integration
@@ -67,6 +68,23 @@ Data literacy is the ability to ask and answer real-world questions using large 
 
 ## Data Literacy
 
+::::{.columns}
+
+:::{.column}
+::: normalsize
+I arrived at five core facets that are also very prominent in the most definitions in the literature (Cui et al., 2023).\
+\
+:::
+:::
+
+:::{.column}
+![](DL Measurement Model.png){.lightbox}
+:::
+::::
+::: small
+I further divided them into [“consumer”]{.highlight} facets ([Comprehension,Evaluation & Integration]{.highlight}), that are relevant for nearly every person in society, from citizens up.\
+And [“producer”]{.highlight} facets ([Communication & Statistics]{.highlight}), that are mainly relevant for people, actively working with data. 
+:::
 ## Nomological Net
 
 \
@@ -176,15 +194,16 @@ Item Selection\
 :::
 :::
 
-## Study Design 
-::: normalsize
-Poweranalyse 
-:::
+## Poweranalyse 
+\
+
+::: small
 
 - Similar literature had sample sizes of N=500 up to N=1000 could be found (Algner & Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024).
 - But highly dependent on the factor structure!
+:::
 
-## Study Design
+## Poweranalyse 
 
 ::: normalsize
 Poweranalyse with ‘semPower’(Moshagen & Bader, 2023)
@@ -246,10 +265,228 @@ Each participant will answer 38 items of the 71, that are randomly selected. To 
 :::
 
 ## Algorithm based Item selection
+::: small
+\
+'Stuart' can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling. (Schultze, 2022) 
 
+- Classical approaches: items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g. difficulty, discrimination, item-scale-correlations).
+- Automatic approach: opposite perspective- repeatedly estimating CFAs for a multitude of possible item-combinations.
+  - A pool of items with some constraints and the goal to find the one combination that best fits the suggested         purpose of the final scale, not based on individual properties
+- I want to optimise for model fit and reliability (RMSEA, SRMR, CFI & McDonalds ω) as well as variability in the difficulty of items.
+
+:::
+
+## Ant Colonization Algorithm
+\
+
+::: small
+- Most commonly used meta-heuristic used in automated item-selection
+- ACOs are based on observations of foraging ants connecting the food source with the nest (e.g.: Deneubourg et al., 1983).
+- Find the most effective path between the two by leaving pheromones, making it more attractive to following ants
+- Applied to item selection - an ant chooses the “path” between different items, leaving a trail of "pheromones".
+- The probabilistic decision running from one item to the next, makes it unlikely that same solutions come up twice
+- often chosen items will become more likely with every turn, because they are part of good solutions (Schultze, 2017)
+
+:::
+
+## Genetic Algorithms
+\
+
+::: small
+- GAs are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest.
+- The algorithm selects random subsamples of items as an individual solution. Good Solutions survive and procreate.
+- For the next generation, two item sets are combined to produce a "child"
+- "Mutation" adds a degree of randomness to this process.
+- repeated until the algorithm converges into a solution that is dominant
+:::
+
+## How to Inform the Algorithm?
+
+[Some questions need to be answered by the researchers!]{.highlight}
+
+::: small 
+- Which item belongs where?
+  - deriving a structure of factors from the item pool from theory. 
+- What should my scale look like?
+  - how many items is the scale supposed to have? 
+- What is a “good” scale?
+  - What are important content properties of the scale? 
+:::
+
+## Analysis under Construction
+
+```{r, eval=FALSE, echo=TRUE}
+library(lavaan)
+library(stuart)
+split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
+lapply(split, nrow) #check size of sample
+
+gene(
+  data,                 # Your data frame containing the observed variables
+  factor.structure,     # A list defining the factor structure of your model
+  capacity = NULL,      # Optional, capacity constraint for factors
+  item.weights = NULL,  # Optional, initial weights for each indicator
+  item.invariance = "congeneric",  # Specify the type of invariance assumption for items
+  repeated.measures = NULL,        # Optional, specify repeated measures design
+  grouping = NULL,                 # Optional, specify grouping variable for multigroup analysis
+  group.invariance = "strict",     # Specify the type of invariance assumption for multigroup analysis
+  comparisons = NULL,              # Optional, specify comparisons for multigroup analysis
+  auxiliary = NULL,                # Optional, specify auxiliary variables
+  use.order = FALSE,               # Whether to use order constraints
+  software = "lavaan",             # Specify the SEM software to be used
+  cores = NULL,                    # Number of CPU cores to be used for parallel processing
+  objective = NULL,                # Optional, specify a custom objective function
+  ignore.errors = FALSE,           # Whether to ignore errors during fitness evaluation
+  burnin = 5,                      # Number of generations for burn-in phase
+  generations = 256,               # Total number of generations
+  individuals = 64,                # Number of individuals in each generation
+  selection = "tournament",        # Selection method for genetic algorithm
+  selection.pressure = NULL,       # Pressure for tournament selection
+  elitism = NULL,                  # Rate of elitism
+  reproduction = 0.5,               # Proportion of individuals reproduced in each generation
+  mutation = 0.05,                  # Mutation rate
+  mating.index = 0,                 # Index of mating type
+  mating.size = 0.25,               # Proportion of mating pool size
+  mating.criterion = "similarity",  # Criterion for selecting mates
+  immigration = 0,                  # Proportion of immigrants in each generation
+  convergence.criterion = "geno.between",  # Convergence criterion
+  tolerance = NULL,                 # Tolerance for convergence
+  reinit.n = 1,                     # Number of reinitializations
+  reinit.criterion = convergence.criterion,  # Criterion for reinitialization
+  reinit.tolerance = NULL,          # Tolerance for reinitialization
+  reinit.prop = 0.75,               # Proportion of population reinitialized
+  schedule = "run",                 # Schedule for genetic algorithm
+  analysis.options = NULL,          # Additional options for analysis
+  suppress.model = FALSE,           # Whether to suppress model output
+  seed = NULL,                      # Seed for random number generation
+  filename = NULL                   # Optional, filename for saving results
+)
+
+kfold(
+  type,
+  k = 5,
+  max.invariance = "strict",
+  seed = NULL,
+  seeded.search = TRUE,
+  ...,
+  remove.details = TRUE
+)
+
+```
+
+## Data Collection Factor 1{.scrollable}
+
+::::{.columns}
+:::{.column}
+![](F1_1.png){width=425}
+![](F1_3.png){width=400}
+:::
+:::{.column}
+![](F1_2.png){width=410}
+
+![](F1_4.png){width=400}
+:::
+
+::::
+## Data Collection Factor 2{.scrollable}
+
+::::{.columns}
+
+:::{.column}
+![](F2_1.png)
+
+![](F2_2.png)
+![](F2_5.png)
+
+:::
+
+:::{.column}
+![](F2_3.png)
+![](F2_4.png)
+![](F2_6.png)
+:::
+
+::::
+
+## Data Collection Factor 3{.scrollable}
+::::{.columns}
+
+:::{.column}
+![](F3_1.png)
+![](F3_2.png)
+:::
+:::{.column}
+![](F3_3.png)
+:::
+
+::::
+## Data Collection Factor 4{.scrollable}
+::::{.columns}
+
+:::{.column}
+![](F4_1.png)
+![](F4_2.png)
+:::
+:::{.column}
+![](F4_3.png)
+:::
+
+::::
+## Data Collection Factor 5{.scrollable}
+::::{.columns}
+
+:::{.column}
+
+![](F5_1.png)
+![](F5_2.png)
+![](F5_3.png)
+![](52_4.png)
+![](F5_5.png)
+![](F5_7.png)
+:::
+:::{.column}
+![](F5_8.png)
+![](F5_9.png)
+![](F5_10.png)
+![](F5_11.png)
+:::
+
+::::
 ## Validation Analyses
+::: small
+- Construct validity is evaluated via CFA and correlation analyses with related constructs
+- I expect a moderate to high positive correlation with the SWE-IV-16 (Behm, 2018)
+- I expect a moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021)
+- I expect a small to moderate positive correlation with the NFC-K (Beißert et al., 2015)
+- I expect a small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014)
+- sample will be divided into k subsets using the ‘holdout' function in ‘stuart’
+- For crossvalidation the ‘kfold’ function in ‘stuart’, assesses also the invariance
+:::
+
+## Technical Stuff just for Reference
+\
+
+::: small
+- I want to make this as adherent to Open Science practices as possible (and practice them more).
+  - Thus, i preregistered at Zenodo: https://doi.org/10.5281/zenodo.11196495
+  - I use the reproducibility workflow (Peikert et al.,2021)/ the "repro" package of Aaron Peikert
+  - I write the Thesis in a GitHub repository, it is created as pdf file, as well as a gh-webpage
+
+:::
 
 ## Questions
+\
+
+::: small
+- How would you approach the data collection - balancing the sample - target group?
+- ACO or GA ?
+- How to rate "don't know" option - especially difficult?
+- Are four items per factor to few?
+- What is a good model?
+  - For what would you optimise or look for? 
+- What data pre-processing would you consider?
+- "normal" crossvalidation or kfold crossvalidation?
+:::
 
 ## References {.scrollable}
 

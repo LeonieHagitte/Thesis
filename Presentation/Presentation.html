@@ -461,11 +461,26 @@ Data literacy is the ability to ask and answer real-world questions using large 
 </section>
 <section id="data-literacy" class="slide level2">
 <h2>Data Literacy</h2>
+<div class="columns">
+<div class="column">
+<div class="normalsize">
+<p>I arrived at five core facets that are also very prominent in the most definitions in the literature (Cui et al., 2023).<br>
+<br>
+</p>
+</div>
+</div><div class="column">
+<p><a href="DL%20Measurement%20Model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="DL%20Measurement%20Model.png"></a></p>
+</div>
+</div>
+<div class="small">
+<p>I further divided them into <span class="highlight">“consumer”</span> facets (<span class="highlight">Comprehension,Evaluation &amp; Integration</span>), that are relevant for nearly every person in society, from citizens up.<br>
+And <span class="highlight">“producer”</span> facets (<span class="highlight">Communication &amp; Statistics</span>), that are mainly relevant for people, actively working with data.</p>
+</div>
 </section>
 <section id="nomological-net" class="slide level2">
 <h2>Nomological Net</h2>
 <p><br>
-<a href="DL_Nomological_Net.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="DL_Nomological_Net.png"></a></p>
+<a href="DL_Nomological_Net.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="DL_Nomological_Net.png"></a></p>
 </section>
 <section id="research-question" class="slide level2">
 <h2>Research Question</h2>
@@ -581,18 +596,19 @@ Item Selection<br>
 </div>
 </div>
 </section>
-<section id="study-design" class="slide level2">
-<h2>Study Design</h2>
-<div class="normalsize">
-<p>Poweranalyse</p>
-</div>
+<section id="poweranalyse" class="slide level2">
+<h2>Poweranalyse</h2>
+<p><br>
+</p>
+<div class="small">
 <ul>
 <li>Similar literature had sample sizes of N=500 up to N=1000 could be found (Algner &amp; Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024).</li>
 <li>But highly dependent on the factor structure!</li>
 </ul>
+</div>
 </section>
-<section id="study-design-1" class="slide level2">
-<h2>Study Design</h2>
+<section id="poweranalyse-1" class="slide level2">
+<h2>Poweranalyse</h2>
 <div class="normalsize">
 <p>Poweranalyse with ‘semPower’(Moshagen &amp; Bader, 2023)</p>
 </div>
@@ -613,9 +629,9 @@ Item Selection<br>
 </ul>
 </div>
 </section>
-<section id="poweranalyse" class="slide level2">
+<section id="poweranalyse-2" class="slide level2">
 <h2>Poweranalyse</h2>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-tbl-cap="Example" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]">
+<div class="cell quarto-layout-panel" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]" data-tbl-cap="Example" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <pre><code>
@@ -685,12 +701,227 @@ Item Selection<br>
 </section>
 <section id="algorithm-based-item-selection" class="slide level2">
 <h2>Algorithm based Item selection</h2>
+<div class="small">
+<p><br>
+‘Stuart’ can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling. (Schultze, 2022)</p>
+<ul>
+<li>Classical approaches: items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g.&nbsp;difficulty, discrimination, item-scale-correlations).</li>
+<li>Automatic approach: opposite perspective- repeatedly estimating CFAs for a multitude of possible item-combinations.
+<ul>
+<li>A pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose of the final scale, not based on individual properties</li>
+</ul></li>
+<li>I want to optimise for model fit and reliability (RMSEA, SRMR, CFI &amp; McDonalds ω) as well as variability in the difficulty of items.</li>
+</ul>
+</div>
+</section>
+<section id="ant-colonization-algorithm" class="slide level2">
+<h2>Ant Colonization Algorithm</h2>
+<p><br>
+</p>
+<div class="small">
+<ul>
+<li>Most commonly used meta-heuristic used in automated item-selection</li>
+<li>ACOs are based on observations of foraging ants connecting the food source with the nest (e.g.: Deneubourg et al., 1983).</li>
+<li>Find the most effective path between the two by leaving pheromones, making it more attractive to following ants</li>
+<li>Applied to item selection - an ant chooses the “path” between different items, leaving a trail of “pheromones”.</li>
+<li>The probabilistic decision running from one item to the next, makes it unlikely that same solutions come up twice</li>
+<li>often chosen items will become more likely with every turn, because they are part of good solutions (Schultze, 2017)</li>
+</ul>
+</div>
+</section>
+<section id="genetic-algorithms" class="slide level2">
+<h2>Genetic Algorithms</h2>
+<p><br>
+</p>
+<div class="small">
+<ul>
+<li>GAs are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest.</li>
+<li>The algorithm selects random subsamples of items as an individual solution. Good Solutions survive and procreate.</li>
+<li>For the next generation, two item sets are combined to produce a “child”</li>
+<li>“Mutation” adds a degree of randomness to this process.</li>
+<li>repeated until the algorithm converges into a solution that is dominant</li>
+</ul>
+</div>
+</section>
+<section id="how-to-inform-the-algorithm" class="slide level2">
+<h2>How to Inform the Algorithm?</h2>
+<p><span class="highlight">Some questions need to be answered by the researchers!</span></p>
+<div class="small">
+<ul>
+<li>Which item belongs where?
+<ul>
+<li>deriving a structure of factors from the item pool from theory.</li>
+</ul></li>
+<li>What should my scale look like?
+<ul>
+<li>how many items is the scale supposed to have?</li>
+</ul></li>
+<li>What is a “good” scale?
+<ul>
+<li>What are important content properties of the scale?</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="analysis-under-construction" class="slide level2">
+<h2>Analysis under Construction</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb3-2"><a href=""></a><span class="fu">library</span>(stuart)</span>
+<span id="cb3-3"><a href=""></a>split <span class="ot">&lt;-</span> <span class="fu">holdout</span>(data, <span class="at">prop =</span> <span class="fl">0.5</span>, <span class="at">grouping =</span> <span class="cn">NULL</span>, <span class="at">seed =</span> <span class="dv">2024</span>, <span class="at">determined =</span> <span class="cn">NULL</span>)</span>
+<span id="cb3-4"><a href=""></a><span class="fu">lapply</span>(split, nrow) <span class="co">#check size of sample</span></span>
+<span id="cb3-5"><a href=""></a></span>
+<span id="cb3-6"><a href=""></a><span class="fu">gene</span>(</span>
+<span id="cb3-7"><a href=""></a>  data,                 <span class="co"># Your data frame containing the observed variables</span></span>
+<span id="cb3-8"><a href=""></a>  factor.structure,     <span class="co"># A list defining the factor structure of your model</span></span>
+<span id="cb3-9"><a href=""></a>  <span class="at">capacity =</span> <span class="cn">NULL</span>,      <span class="co"># Optional, capacity constraint for factors</span></span>
+<span id="cb3-10"><a href=""></a>  <span class="at">item.weights =</span> <span class="cn">NULL</span>,  <span class="co"># Optional, initial weights for each indicator</span></span>
+<span id="cb3-11"><a href=""></a>  <span class="at">item.invariance =</span> <span class="st">"congeneric"</span>,  <span class="co"># Specify the type of invariance assumption for items</span></span>
+<span id="cb3-12"><a href=""></a>  <span class="at">repeated.measures =</span> <span class="cn">NULL</span>,        <span class="co"># Optional, specify repeated measures design</span></span>
+<span id="cb3-13"><a href=""></a>  <span class="at">grouping =</span> <span class="cn">NULL</span>,                 <span class="co"># Optional, specify grouping variable for multigroup analysis</span></span>
+<span id="cb3-14"><a href=""></a>  <span class="at">group.invariance =</span> <span class="st">"strict"</span>,     <span class="co"># Specify the type of invariance assumption for multigroup analysis</span></span>
+<span id="cb3-15"><a href=""></a>  <span class="at">comparisons =</span> <span class="cn">NULL</span>,              <span class="co"># Optional, specify comparisons for multigroup analysis</span></span>
+<span id="cb3-16"><a href=""></a>  <span class="at">auxiliary =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify auxiliary variables</span></span>
+<span id="cb3-17"><a href=""></a>  <span class="at">use.order =</span> <span class="cn">FALSE</span>,               <span class="co"># Whether to use order constraints</span></span>
+<span id="cb3-18"><a href=""></a>  <span class="at">software =</span> <span class="st">"lavaan"</span>,             <span class="co"># Specify the SEM software to be used</span></span>
+<span id="cb3-19"><a href=""></a>  <span class="at">cores =</span> <span class="cn">NULL</span>,                    <span class="co"># Number of CPU cores to be used for parallel processing</span></span>
+<span id="cb3-20"><a href=""></a>  <span class="at">objective =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify a custom objective function</span></span>
+<span id="cb3-21"><a href=""></a>  <span class="at">ignore.errors =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to ignore errors during fitness evaluation</span></span>
+<span id="cb3-22"><a href=""></a>  <span class="at">burnin =</span> <span class="dv">5</span>,                      <span class="co"># Number of generations for burn-in phase</span></span>
+<span id="cb3-23"><a href=""></a>  <span class="at">generations =</span> <span class="dv">256</span>,               <span class="co"># Total number of generations</span></span>
+<span id="cb3-24"><a href=""></a>  <span class="at">individuals =</span> <span class="dv">64</span>,                <span class="co"># Number of individuals in each generation</span></span>
+<span id="cb3-25"><a href=""></a>  <span class="at">selection =</span> <span class="st">"tournament"</span>,        <span class="co"># Selection method for genetic algorithm</span></span>
+<span id="cb3-26"><a href=""></a>  <span class="at">selection.pressure =</span> <span class="cn">NULL</span>,       <span class="co"># Pressure for tournament selection</span></span>
+<span id="cb3-27"><a href=""></a>  <span class="at">elitism =</span> <span class="cn">NULL</span>,                  <span class="co"># Rate of elitism</span></span>
+<span id="cb3-28"><a href=""></a>  <span class="at">reproduction =</span> <span class="fl">0.5</span>,               <span class="co"># Proportion of individuals reproduced in each generation</span></span>
+<span id="cb3-29"><a href=""></a>  <span class="at">mutation =</span> <span class="fl">0.05</span>,                  <span class="co"># Mutation rate</span></span>
+<span id="cb3-30"><a href=""></a>  <span class="at">mating.index =</span> <span class="dv">0</span>,                 <span class="co"># Index of mating type</span></span>
+<span id="cb3-31"><a href=""></a>  <span class="at">mating.size =</span> <span class="fl">0.25</span>,               <span class="co"># Proportion of mating pool size</span></span>
+<span id="cb3-32"><a href=""></a>  <span class="at">mating.criterion =</span> <span class="st">"similarity"</span>,  <span class="co"># Criterion for selecting mates</span></span>
+<span id="cb3-33"><a href=""></a>  <span class="at">immigration =</span> <span class="dv">0</span>,                  <span class="co"># Proportion of immigrants in each generation</span></span>
+<span id="cb3-34"><a href=""></a>  <span class="at">convergence.criterion =</span> <span class="st">"geno.between"</span>,  <span class="co"># Convergence criterion</span></span>
+<span id="cb3-35"><a href=""></a>  <span class="at">tolerance =</span> <span class="cn">NULL</span>,                 <span class="co"># Tolerance for convergence</span></span>
+<span id="cb3-36"><a href=""></a>  <span class="at">reinit.n =</span> <span class="dv">1</span>,                     <span class="co"># Number of reinitializations</span></span>
+<span id="cb3-37"><a href=""></a>  <span class="at">reinit.criterion =</span> convergence.criterion,  <span class="co"># Criterion for reinitialization</span></span>
+<span id="cb3-38"><a href=""></a>  <span class="at">reinit.tolerance =</span> <span class="cn">NULL</span>,          <span class="co"># Tolerance for reinitialization</span></span>
+<span id="cb3-39"><a href=""></a>  <span class="at">reinit.prop =</span> <span class="fl">0.75</span>,               <span class="co"># Proportion of population reinitialized</span></span>
+<span id="cb3-40"><a href=""></a>  <span class="at">schedule =</span> <span class="st">"run"</span>,                 <span class="co"># Schedule for genetic algorithm</span></span>
+<span id="cb3-41"><a href=""></a>  <span class="at">analysis.options =</span> <span class="cn">NULL</span>,          <span class="co"># Additional options for analysis</span></span>
+<span id="cb3-42"><a href=""></a>  <span class="at">suppress.model =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to suppress model output</span></span>
+<span id="cb3-43"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,                      <span class="co"># Seed for random number generation</span></span>
+<span id="cb3-44"><a href=""></a>  <span class="at">filename =</span> <span class="cn">NULL</span>                   <span class="co"># Optional, filename for saving results</span></span>
+<span id="cb3-45"><a href=""></a>)</span>
+<span id="cb3-46"><a href=""></a></span>
+<span id="cb3-47"><a href=""></a><span class="fu">kfold</span>(</span>
+<span id="cb3-48"><a href=""></a>  type,</span>
+<span id="cb3-49"><a href=""></a>  <span class="at">k =</span> <span class="dv">5</span>,</span>
+<span id="cb3-50"><a href=""></a>  <span class="at">max.invariance =</span> <span class="st">"strict"</span>,</span>
+<span id="cb3-51"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,</span>
+<span id="cb3-52"><a href=""></a>  <span class="at">seeded.search =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-53"><a href=""></a>  ...,</span>
+<span id="cb3-54"><a href=""></a>  <span class="at">remove.details =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-55"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-collection-factor-1" class="slide level2 scrollable">
+<h2>Data Collection Factor 1</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="F1_1.png" width="425"> <img data-src="F1_3.png" width="400"></p>
+</div><div class="column">
+<p><img data-src="F1_2.png" width="410"></p>
+<p><img data-src="F1_4.png" width="400"></p>
+</div>
+</div>
+</section>
+<section id="data-collection-factor-2" class="slide level2 scrollable">
+<h2>Data Collection Factor 2</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="F2_1.png"></p>
+<p><img data-src="F2_2.png"> <img data-src="F2_5.png"></p>
+</div><div class="column">
+<p><img data-src="F2_3.png"> <img data-src="F2_4.png"> <img data-src="F2_6.png"></p>
+</div>
+</div>
+</section>
+<section id="data-collection-factor-3" class="slide level2 scrollable">
+<h2>Data Collection Factor 3</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="F3_1.png"> <img data-src="F3_2.png"></p>
+</div><div class="column">
+<p><img data-src="F3_3.png"></p>
+</div>
+</div>
+</section>
+<section id="data-collection-factor-4" class="slide level2 scrollable">
+<h2>Data Collection Factor 4</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="F4_1.png"> <img data-src="F4_2.png"></p>
+</div><div class="column">
+<p><img data-src="F4_3.png"></p>
+</div>
+</div>
+</section>
+<section id="data-collection-factor-5" class="slide level2 scrollable">
+<h2>Data Collection Factor 5</h2>
+<div class="columns">
+<div class="column">
+<p><img data-src="F5_1.png"> <img data-src="F5_2.png"> <img data-src="F5_3.png"> <img data-src="52_4.png"> <img data-src="F5_5.png"> <img data-src="F5_7.png"></p>
+</div><div class="column">
+<p><img data-src="F5_8.png"> <img data-src="F5_9.png"> <img data-src="F5_10.png"> <img data-src="F5_11.png"></p>
+</div>
+</div>
 </section>
 <section id="validation-analyses" class="slide level2">
 <h2>Validation Analyses</h2>
+<div class="small">
+<ul>
+<li>Construct validity is evaluated via CFA and correlation analyses with related constructs</li>
+<li>I expect a moderate to high positive correlation with the SWE-IV-16 (Behm, 2018)</li>
+<li>I expect a moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021)</li>
+<li>I expect a small to moderate positive correlation with the NFC-K (Beißert et al., 2015)</li>
+<li>I expect a small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014)</li>
+<li>sample will be divided into k subsets using the ‘holdout’ function in ‘stuart’</li>
+<li>For crossvalidation the ‘kfold’ function in ‘stuart’, assesses also the invariance</li>
+</ul>
+</div>
+</section>
+<section id="technical-stuff-just-for-reference" class="slide level2">
+<h2>Technical Stuff just for Reference</h2>
+<p><br>
+</p>
+<div class="small">
+<ul>
+<li>I want to make this as adherent to Open Science practices as possible (and practice them more).
+<ul>
+<li>Thus, i preregistered at Zenodo: https://doi.org/10.5281/zenodo.11196495</li>
+<li>I use the reproducibility workflow (Peikert et al.,2021)/ the “repro” package of Aaron Peikert</li>
+<li>I write the Thesis in a GitHub repository, it is created as pdf file, as well as a gh-webpage</li>
+</ul></li>
+</ul>
+</div>
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions</h2>
+<p><br>
+</p>
+<div class="small">
+<ul>
+<li>How would you approach the data collection - balancing the sample - target group?</li>
+<li>ACO or GA ?</li>
+<li>How to rate “don’t know” option - especially difficult?</li>
+<li>Are four items per factor to few?</li>
+<li>What is a good model?
+<ul>
+<li>For what would you optimise or look for?</li>
+</ul></li>
+<li>What data pre-processing would you consider?</li>
+<li>“normal” crossvalidation or kfold crossvalidation?</li>
+</ul>
+</div>
 </section>
 <section id="references" class="slide level2 scrollable">
 <h2>References</h2>
@@ -953,80 +1184,42 @@ Item Selection<br>
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1204,7 +1397,7 @@ Item Selection<br>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+    <script>var lightboxQuarto = GLightbox({"loop":false,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;

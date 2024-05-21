@@ -46,7 +46,10 @@ renv::snapshot()
 
 ```{r}
 install.packages('semPower')
+devtools::install_github('martscht/stuart/stuart', ref = 'develop')
 library(semPower)
+library(stuart)
+library(lavaan)
 ```
 
 # Poweranalyse mit SemPower ohne Model
@@ -115,6 +118,78 @@ semPower: A priori power analysis
  Average Parameter Bias (%) in the H1 Model:         
  Loadings                                    0.06    
  Variances/Covariances                       0.00    
+
+```{r}
+library(lavaan)
+library(stuart)
+split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
+lapply(split, nrow) #check size of sample
+kfold(
+  type,
+  k = 5,
+  max.invariance = "strict",
+  seed = NULL,
+  seeded.search = TRUE,
+  ...,
+  remove.details = TRUE
+)
+
+```
+
+```{r}
+library(stuart)
+gene(
+  data,                 # Your data frame containing the observed variables
+  factor.structure,     # A list defining the factor structure of your model
+  capacity = NULL,      # Optional, capacity constraint for factors
+  item.weights = NULL,  # Optional, initial weights for each indicator
+  item.invariance = "congeneric",  # Specify the type of invariance assumption for items
+  repeated.measures = NULL,        # Optional, specify repeated measures design
+  grouping = NULL,                 # Optional, specify grouping variable for multigroup analysis
+  group.invariance = "strict",     # Specify the type of invariance assumption for multigroup analysis
+  comparisons = NULL,              # Optional, specify comparisons for multigroup analysis
+  auxiliary = NULL,                # Optional, specify auxiliary variables
+  use.order = FALSE,               # Whether to use order constraints
+  software = "lavaan",             # Specify the SEM software to be used
+  cores = NULL,                    # Number of CPU cores to be used for parallel processing
+  objective = NULL,                # Optional, specify a custom objective function
+  ignore.errors = FALSE,           # Whether to ignore errors during fitness evaluation
+  burnin = 5,                      # Number of generations for burn-in phase
+  generations = 256,               # Total number of generations
+  individuals = 64,                # Number of individuals in each generation
+  selection = "tournament",        # Selection method for genetic algorithm
+  selection.pressure = NULL,       # Pressure for tournament selection
+  elitism = NULL,                  # Rate of elitism
+  reproduction = 0.5,               # Proportion of individuals reproduced in each generation
+  mutation = 0.05,                  # Mutation rate
+  mating.index = 0,                 # Index of mating type
+  mating.size = 0.25,               # Proportion of mating pool size
+  mating.criterion = "similarity",  # Criterion for selecting mates
+  immigration = 0,                  # Proportion of immigrants in each generation
+  convergence.criterion = "geno.between",  # Convergence criterion
+  tolerance = NULL,                 # Tolerance for convergence
+  reinit.n = 1,                     # Number of reinitializations
+  reinit.criterion = convergence.criterion,  # Criterion for reinitialization
+  reinit.tolerance = NULL,          # Tolerance for reinitialization
+  reinit.prop = 0.75,               # Proportion of population reinitialized
+  schedule = "run",                 # Schedule for genetic algorithm
+  analysis.options = NULL,          # Additional options for analysis
+  suppress.model = FALSE,           # Whether to suppress model output
+  seed = NULL,                      # Seed for random number generation
+  filename = NULL                   # Optional, filename for saving results
+)
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
 
 ```{r}
 model <- "
