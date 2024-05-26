@@ -1,1 +1,20 @@
 # Results
+
+## Demographic Results  
+
+On average, participants were working (M/SD). On average, participants were studying (M/SD). Descriptives and Correlations 
+Table XX 
+presents descriptive statistics, McDonald’s ω, Cronbach’sα and the correlation matrix for the respective variables.  
+The data literacy scale correlated XXX with the SWE-IV-16(r = , p ). The data literacy scale correlated XXX with the NFC-K(r = , p ). The data literacy scale correlated XXX with the the general items of the ICT-SC25(r = , p ). The data literacy scale correlated XXX with the openness of the BFI-10(r = , p ). The data literacy scale correlated XXX with conscientiousness of the BFI-10(r = , p ). The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures #a similar, yet distinct concept#.
+
+## Model Fit and Latent Structure in the Construction Sample  
+
+The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits good model fit with Satorra-Bentler-χ2(XXX, N = XXX) = XXX, p = XXX,CFI = XXX, TLI = XXX, SRMR = XXX, RMSEA = XXX, 90%-CIRMSEA [XXX; XXX]. 
+Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
+All factor loadings including standard errors can be found in the Supplementary Material. 
+
+## Model Fit and Latent Structure in the Validation Sample
+Cross-validation with the second half of the data indicated that the assumption of XXXX measurement invariance holds across the two subsamples: χ2(XXX) = XXX, p < XXX, CFI = 0.XXX, SRMR = 0.XXX,RMSEA = 0.XXX, χ2 = XXX, df = XX, p = 0.XXXX. 
+
+
+
