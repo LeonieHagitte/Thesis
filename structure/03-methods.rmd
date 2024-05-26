@@ -24,8 +24,8 @@
 A literature review was done to create items and then ten cognitive interviews were held to refine those potential items. The interviews were administered iteratively to refine the items every time a bit more. We will treat the first 25 participants like a pilot, to check for potential problems in the survey.
 
 ## Rationale for Measurement Model
-One decision that needs to be done by the researcher before the item selection with 'stuart', is the design of the measurement model, or how many items per factor the final scal should have.
-This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the dicision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimoneous choice, where there is already a real model fit, that can be assessed in the end.
+One decision that needs to be done by the researcher before the item selection with 'stuart', is the design of the measurement model, or how many items per factor the final scale should have.
+This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.
 
 ## Sample 
 
@@ -39,11 +39,15 @@ The study encompassed every sector within the occupational classification (Bunde
 Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html#651186).
 
 ## Open Science Standards 
-### Preregistration  
+This project uses the reproducibility workflow proposed by @Peikert2021. Docker and renv work together to create a reproducible and portable
+environment. Docker captures the complete software stack, while renv focuses on
+managing R package dependencies and providing a clear documentation of the R
+package environment. This combination ensures that your analysis can be easily
+reproduced and shared with others in a reliable and transparent manner.
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 
 ## Procedure
-A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomised for each participant to minimise order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings. 
+A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomized for each participant to minimize order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings. 
 
 ## Instruments  
 ### Measuring Data Literacy

@@ -323,8 +323,8 @@ A literature review was done to create items and then ten cognitive interviews w
 
 \subsection{Rationale for Measurement Model}\label{rationale-for-measurement-model}
 
-One decision that needs to be done by the researcher before the item selection with `stuart', is the design of the measurement model, or how many items per factor the final scal should have.
-This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the dicision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimoneous choice, where there is already a real model fit, that can be assessed in the end.
+One decision that needs to be done by the researcher before the item selection with `stuart', is the design of the measurement model, or how many items per factor the final scale should have.
+This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.
 
 \subsection{Sample}\label{sample}
 
@@ -339,13 +339,16 @@ Our study sample serves as a focal point for comparison against the demographic 
 
 \subsection{Open Science Standards}\label{open-science-standards}
 
-\subsubsection{Preregistration}\label{preregistration}
-
+This project uses the reproducibility workflow proposed by Peikert et al. (\citeproc{ref-Peikert2021}{2021}). Docker and renv work together to create a reproducible and portable
+environment. Docker captures the complete software stack, while renv focuses on
+managing R package dependencies and providing a clear documentation of the R
+package environment. This combination ensures that your analysis can be easily
+reproduced and shared with others in a reliable and transparent manner.
 The study was preregistered at Zenodo (\url{DOI:10.5281/zenodo.11196495}).
 
 \subsection{Procedure}\label{procedure}
 
-A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomised for each participant to minimise order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings.
+A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomized for each participant to minimize order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings.
 
 \subsection{Instruments}\label{instruments}
 
@@ -419,9 +422,9 @@ Rammstedt, 2007 for reference values)
 
 \section{Analysis}\label{analysis}
 
-Algorithm-based item selection is used to choose the most relevant items, reducing the item pool. Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017). The sample is split into training and test datasets to evaluate solutions against an objective function consisting of model fit criteria and composite reliability. In automated item selection, items can be chosen as sets that meet specific criteria. Those criteria will be defined in the objective function in `stuart' (Schultze, 2020). I want to optimize the final model for model-fit and reliability (RMSEA, SRMR, CFI \& McDonalds ω) as well as variability in the difficulty of items.
+Algorithm-based item selection is used to choose the most relevant items, reducing the item pool. Unlike classical approaches that consider items based on their individual merits, heuristic item selection algorithms aim to enhance the psychometric properties of a set of items within predetermined constraints (Schultze, 2017). The sample is split into training and test datasets to evaluate solutions against an objective function consisting of model fit criteria and composite reliability. In automated item selection, items can be chosen as sets that meet specific criteria. Those criteria will be defined in the objective function in `stuart' (Schultze, 2020). I want to optimize the final model for model-fit and reliability (RMSEA, SRMR, CFI \& McDonald's \(\omega\) ) as well as variability in the difficulty of items.
 
-Relationships between the newly created measure and related constructs are hypothesised. Construct validity is evaluated through confirmatory factor analysis (CFA) and correlation analyses with related constructs. Crossvalidation and measurement invariance tests are also conducted.
+Relationships between the newly created measure and related constructs are hypothesised. Construct validity is evaluated through confirmatory factor analysis (CFA), using MLR as estimator. and correlation analyses with related constructs. Crossvalidation and measurement invariance tests are also conducted.
 I expect the final questionnaire to correlate moderately up to highly positive with the SWE-IV-16 (Behm, 2018), measuring peoples ability to engage in information behaviour. I expect a moderate, positive correlation of the final scale with the five general items of the ICT-SC25 (Schauffel et al., 2021). I expect a small positive correlation with the NFC-K (Beißert et al., 2015), assessing the Need for Cognition (NFC). I also expect small positive correlations with openness and conscientiousness of the BFI-10 (Rammstedt et al., 2014).
 The provided sample will be divided into subsets using the `holdout' function in `stuart'. The specified item-selection procedure will be then applied to the training dataset first. It will then be tested on the testing dataset.
 Validation will be conducted using the `crossvalidate' and/or the `kfold' function in `stuart' to assess the invariance of the measurement models between the training and validation datasets. Invariance levels will be measured with the `max.invariance' function. Invariance will be necessary to claim that the scale validation has worked.\\
@@ -431,6 +434,24 @@ residuals
 correlates or the residuals for the adjacent constructs
 
 \section{Results}\label{results}
+
+\subsection{Demographic Results}\label{demographic-results}
+
+On average, participants were working (M/SD). On average, participants were studying (M/SD). Descriptives and Correlations
+Table XX
+presents descriptive statistics, McDonald's \(\omega\) ,
+Cronbach's \(\alpha\) and the correlation matrix for the respective variables.\\
+The data literacy scale correlated XXX with the SWE-IV-16(r = , p ). The data literacy scale correlated XXX with the NFC-K(r = , p ). The data literacy scale correlated XXX with the the general items of the ICT-SC25(r = , p ). The data literacy scale correlated XXX with the openness of the BFI-10(r = , p ). The data literacy scale correlated XXX with conscientiousness of the BFI-10(r = , p ). The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures \#a similar, yet distinct concept\#.
+
+\subsection{Model Fit and Latent Structure in the Construction Sample}\label{model-fit-and-latent-structure-in-the-construction-sample}
+
+The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits good model fit with Satorra-Bentler-\(X^{2}\) (XXX, N = XXX) = XXX, p = XXX,CFI = XXX, TLI = XXX, SRMR = XXX, RMSEA = XXX, 90\%-CIRMSEA {[}XXX; XXX{]}.
+Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
+All factor loadings including standard errors can be found in the Supplementary Material.
+
+\subsection{Model Fit and Latent Structure in the Validation Sample}\label{model-fit-and-latent-structure-in-the-validation-sample}
+
+Cross-validation with the second half of the data indicated that the assumption of XXXX measurement invariance holds across the XXX subsamples: \(X^{2}\)(XXX) = XXX, p \textless{} XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; \(X^{2}\) = XXX, df = XX, p = 0.XXXX.
 
 \section{Discussion}\label{discussion}
 
@@ -526,6 +547,9 @@ Murphy, G. (1947). \emph{Personality: A biosocial approach to origins and struct
 
 \bibitem[\citeproctext]{ref-payan2022}
 Payan Carreira, R., Sacau-Fontenla, A., Rebelo, H., Sebastião, L., \& Pnevmatikos, D. (2022). Development and validation of a critical thinking assessment-scale short form. \emph{Education Sciences}, \emph{12}, 938. \url{https://doi.org/10.3390/educsci12120938}
+
+\bibitem[\citeproctext]{ref-Peikert2021}
+Peikert, A., Van Lissa, C. J., \& Brandmaier, A. M. (2021). \emph{Reproducible research in r: A tutorial on how to do the same thing more than once}. \url{https://doi.org/10.31234/osf.io/fwxs4}
 
 \bibitem[\citeproctext]{ref-rear2019}
 Rear, D. (2019). One size fits all? The limitations of standardised assessment in critical thinking. \emph{Assessment \& Evaluation in Higher Education}, \emph{44}, 664--675.

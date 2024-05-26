@@ -134,10 +134,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.3" data-path="methods.html"><a href="methods.html#item-creation"><i class="fa fa-check"></i><b>3.3</b> Item Creation</a></li>
 <li class="chapter" data-level="3.4" data-path="methods.html"><a href="methods.html#rationale-for-measurement-model"><i class="fa fa-check"></i><b>3.4</b> Rationale for Measurement Model</a></li>
 <li class="chapter" data-level="3.5" data-path="methods.html"><a href="methods.html#sample"><i class="fa fa-check"></i><b>3.5</b> Sample</a></li>
-<li class="chapter" data-level="3.6" data-path="methods.html"><a href="methods.html#open-science-standards"><i class="fa fa-check"></i><b>3.6</b> Open Science Standards</a>
-<ul>
-<li class="chapter" data-level="3.6.1" data-path="methods.html"><a href="methods.html#preregistration"><i class="fa fa-check"></i><b>3.6.1</b> Preregistration</a></li>
-</ul></li>
+<li class="chapter" data-level="3.6" data-path="methods.html"><a href="methods.html#open-science-standards"><i class="fa fa-check"></i><b>3.6</b> Open Science Standards</a></li>
 <li class="chapter" data-level="3.7" data-path="methods.html"><a href="methods.html#procedure"><i class="fa fa-check"></i><b>3.7</b> Procedure</a></li>
 <li class="chapter" data-level="3.8" data-path="methods.html"><a href="methods.html#instruments"><i class="fa fa-check"></i><b>3.8</b> Instruments</a>
 <ul>
@@ -149,7 +146,12 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>4</b> Analysis</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#demographic-results"><i class="fa fa-check"></i><b>5.1</b> Demographic Results</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-construction-sample"><i class="fa fa-check"></i><b>5.2</b> Model Fit and Latent Structure in the Construction Sample</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-validation-sample"><i class="fa fa-check"></i><b>5.3</b> Model Fit and Latent Structure in the Validation Sample</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6</b> Discussion</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -203,8 +205,8 @@ div.csl-indent {
 </div>
 <div id="rationale-for-measurement-model" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Rationale for Measurement Model<a href="methods.html#rationale-for-measurement-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>One decision that needs to be done by the researcher before the item selection with ‘stuart’, is the design of the measurement model, or how many items per factor the final scal should have.
-This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the dicision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimoneous choice, where there is already a real model fit, that can be assessed in the end.</p>
+<p>One decision that needs to be done by the researcher before the item selection with ‘stuart’, is the design of the measurement model, or how many items per factor the final scale should have.
+This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.</p>
 </div>
 <div id="sample" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Sample<a href="methods.html#sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -216,14 +218,16 @@ The study encompassed every sector within the occupational classification (Bunde
 </div>
 <div id="open-science-standards" class="section level2 hasAnchor" number="3.6">
 <h2><span class="header-section-number">3.6</span> Open Science Standards<a href="methods.html#open-science-standards" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="preregistration" class="section level3 hasAnchor" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Preregistration<a href="methods.html#preregistration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The study was preregistered at Zenodo (<a href="DOI:10.5281/zenodo.11196495" class="uri">DOI:10.5281/zenodo.11196495</a>).</p>
-</div>
+<p>This project uses the reproducibility workflow proposed by <span class="citation">Peikert et al. (<a href="#ref-Peikert2021">2021</a>)</span>. Docker and renv work together to create a reproducible and portable
+environment. Docker captures the complete software stack, while renv focuses on
+managing R package dependencies and providing a clear documentation of the R
+package environment. This combination ensures that your analysis can be easily
+reproduced and shared with others in a reliable and transparent manner.
+The study was preregistered at Zenodo (<a href="DOI:10.5281/zenodo.11196495" class="uri">DOI:10.5281/zenodo.11196495</a>).</p>
 </div>
 <div id="procedure" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Procedure<a href="methods.html#procedure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomised for each participant to minimise order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings.</p>
+<p>A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomized for each participant to minimize order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings.</p>
 </div>
 <div id="instruments" class="section level2 hasAnchor" number="3.8">
 <h2><span class="header-section-number">3.8</span> Instruments<a href="methods.html#instruments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -296,6 +300,12 @@ recoded items. The values for the five dimensions range from 1 to 5 (see
 Rammstedt, 2007 for reference values)</p>
 
 </div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
+<div id="ref-Peikert2021" class="csl-entry">
+Peikert, A., Van Lissa, C. J., &amp; Brandmaier, A. M. (2021). <em>Reproducible research in r: A tutorial on how to do the same thing more than once</em>. <a href="https://doi.org/10.31234/osf.io/fwxs4">https://doi.org/10.31234/osf.io/fwxs4</a>
 </div>
 </div>
             </section>
