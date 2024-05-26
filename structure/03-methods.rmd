@@ -21,10 +21,11 @@
    - Discuss specific hypotheses regarding associations between the measure and related constructs.
 
 ## Item Creation  
-We employed a combination of literature review and the "person-related empirical method" to derive items as indicators for the latent factors of data literacy. The process involved drafting a set of items, which were then reviewed through ten cognitive interviews in an iterative manner for refinement. These cognitive interviews were conducted with members of the general public, treating laypeople as experts.
+A literature review was done to create items and then ten cognitive interviews were held to refine those potential items. The interviews were administered iteratively to refine the items every time a bit more. We will treat the first 25 participants like a pilot, to check for potential problems in the survey.
 
 ## Rationale for Measurement Model
-The questionnaire will be created as parsimonious as possible, while still ensuring substantive representation.
+One decision that needs to be done by the researcher before the item selection with 'stuart', is the design of the measurement model, or how many items per factor the final scal should have.
+This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the dicision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimoneous choice, where there is already a real model fit, that can be assessed in the end.
 
 ## Sample 
 
