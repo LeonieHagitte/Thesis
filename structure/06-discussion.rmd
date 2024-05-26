@@ -9,3 +9,5 @@
         - POMP method - for differing number of answer formats
 - residuals correlates 
 - heterogeneity of construct 
+
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003).
