@@ -23,20 +23,26 @@
 ## Item Creation  
 We employed a combination of literature review and the "person-related empirical method" to derive items as indicators for the latent factors of data literacy. The process involved drafting a set of items, which were then reviewed through ten cognitive interviews in an iterative manner for refinement. These cognitive interviews were conducted with members of the general public, treating laypeople as experts.
 
-## Construct Validity
+## Rationale for Measurement Model
 The questionnaire will be created as parsimonious as possible, while still ensuring substantive representation.
 
-## Sample  
+## Sample 
+
+The participants are recruited on several online social media platforms. The participation is voluntary. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R (Moshagen & Bader, 2023) and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for N=645, and a simulated estimate N=613, for the respective measurement model. In the literature sample sizes of N=500 up to N=1000 could be found (Algner & Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024). So the optimal sample size, we are aiming at, lies somewhere between those numbers.
+
+Participants have to be of legal age, to be included in the study. Furthermore, attention check questions are included (three instructed response items and one seriousness check item, at the end) within the survey to assess participants' attentiveness. Participants who fail to correctly answer two out of the four attention check questions will be excluded from the analysis.
+
 The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX% identified as female, XXX% as male, and xxx% did not identify with binary gender categories. All participants were aged 18 and above. Regarding education, all participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. Among the participants, n= reported higher knowledge on items x, x, x, leading to their selection for an additional set of items as a preliminary survey for factors four and five.
 The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. The recruitment of participants was carried out through a combination of personal and professional networks, along with outreach on various online social media platforms.
 
 Our study sample serves as a focal point for comparison against the demographic landscape of the general public in Germany. In 2022, the mean age of the German population was 44.6 years, with 45,457,000 individuals engaged in employment. Educational backgrounds varied (XXX), and for gender distribution, the split was nearly 50/50 (41,616,473 males and 42,816,197 females) according to the Statistisches Bundesamt (source: https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/liste-zensus-geschlecht-staatsangehoerigkeit.html#651186).
 
-Analyzing our sample against these benchmarks provides a comprehensive understanding of any distinctions or parallels in age, employment, education, and gender. This comparison enhances the applicability of our findings to the broader German population.
-
 ## Open Science Standards 
 ### Preregistration  
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
+
+## Procedure
+A cross-sectional online survey is used to examine a representative sample from the general population. Participants complete the Self-perceived Data Literacy Scale along with demographic questions and additional validation measures. Survey questions of each measurement are randomised for each participant to minimise order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings. 
 
 ## Instruments  
 ### Measuring Data Literacy
