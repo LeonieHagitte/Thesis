@@ -78,5 +78,5 @@ The personality trait known as Need for Cognition (NFC) originated in social psy
 
 
 ## Aim of the Study  
-Our goal was to derive a holistic definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct (First drafts of items for two additional factors were included as preliminary assessments for future studies, but were not the goal of this study). 
+My aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-perceived data literacy, measuring the three core factors of the construct. While drafts for two additional factors are included as preliminary assessments for future studies, they are not the focus of this study. 
 
