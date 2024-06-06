@@ -1,5 +1,5 @@
 ---
-title: "Development of a German Instrument for Self-Perceived Data Literacy"
+title: "Development of a German Instrument for Self-Rated Data Literacy"
 author: "Leonie Hagitte"
 date: "`r Sys.Date()`"
 output: pdf_document
