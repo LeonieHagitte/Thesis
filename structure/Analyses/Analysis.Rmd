@@ -18,6 +18,7 @@ usethis::use_git_config(
 
 ```
 
+# Reproducibility 
 ```{r}
 if(!requireNamespace("remotes"))
 install.packages("remotes")
@@ -44,6 +45,109 @@ renv::snapshot()
 
 ```
 
+# Model specification
+```{r}
+model <- "
+# Measurement model
+y1 =~ x1 + x2 + x3 + x4
+y2 =~ x5 + x6 + x7 + x8
+y3 =~ x9 + x10 + x11 + x12
+y4 =~ x13 + x14 + x15 + x16
+y5 =~ x17 + x18 + x19 + x20
+
+# Factor variances
+y1 ~~ y1
+y2 ~~ y2
+y3 ~~ y3
+y4 ~~ y4
+y5 ~~ y5
+
+# Factor correlations
+y1 ~~ y2
+y1 ~~ y3
+y1 ~~ y4
+y1 ~~ y5
+y2 ~~ y3
+y2 ~~ y4
+y2 ~~ y5
+y3 ~~ y4
+y3 ~~ y5
+y4 ~~ y5
+"
+
+```
+
+# Data Preparation
+## Data enreading
+```{r}
+library(dplyr)
+library(mice)
+
+data <- read.csv('', 
+    header = F)
+#missing data are coded as -9999, recode to NA
+data[data == -9999] <- NA
+#I know you can do this in dplyr using some command
+#but this is quick and basic
+data2 <- dplyr::select(data, 2, 8:10) #change values
+names(data2) <- c('X', 'X', 'X', 'X')
+
+
+md.pattern(hsbwmiss2, rotate.names = T)
+
+```
+## NAs FIMLn
+```{r}
+library(lavaan)
+model <- sem("
+# Measurement model
+y1 =~ x1 + x2 + x3 + x4
+y2 =~ x5 + x6 + x7 + x8
+y3 =~ x9 + x10 + x11 + x12
+y4 =~ x13 + x14 + x15 + x16
+y5 =~ x17 + x18 + x19 + x20
+
+# Factor variances
+y1 ~~ y1
+y2 ~~ y2
+y3 ~~ y3
+y4 ~~ y4
+y5 ~~ y5
+
+# Factor correlations
+y1 ~~ y2
+y1 ~~ y3
+y1 ~~ y4
+y1 ~~ y5
+y2 ~~ y3
+y2 ~~ y4
+y2 ~~ y5
+y3 ~~ y4
+y3 ~~ y5
+y4 ~~ y5
+", data = data)
+
+summary(model)
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+# Poweranalyse
 ```{r}
 install.packages('semPower')
 devtools::install_github('martscht/stuart/stuart', ref = 'develop')
@@ -52,14 +156,14 @@ library(stuart)
 library(lavaan)
 ```
 
-# Poweranalyse mit SemPower ohne Model
+# Poweranalyse - SemPower ohne Model
 ```{r}
 ap <- semPower.aPriori(effect = .05, effect.measure = 'RMSEA', 
                        alpha = .05, power = .80, df = 150)
 summary(ap)
 ```
 
-# Poweranalyse mit SemPower mit Model
+# Poweranalyse - SemPower mit Model
 ```{r}
 powerLI <- semPower.powerLI(
   type = 'a-priori', alpha = .05, power = .80,
@@ -119,16 +223,36 @@ semPower: A priori power analysis
  Loadings                                    0.06    
  Variances/Covariances                       0.00    
 
+# Stuart - Item selection
+## Sample split
 ```{r}
 library(lavaan)
 library(stuart)
+###########################
+data()
+
 split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
 kfold(
   type,
   k = 5,
-  max.invariance = "strict",
-  seed = NULL,
+  max.invariance = "configural",
+  seed = 2024,
+  seeded.search = TRUE,
+  ...,
+  remove.details = TRUE
+)
+###########################
+
+fs <- list()
+
+stuart::kfold(
+  "gene",
+  k = 5,
+  data = ,
+  factor.structure = fs,
+  max.invariance = "configural",
+  seed = 2024,
   seeded.search = TRUE,
   ...,
   remove.details = TRUE
@@ -136,6 +260,7 @@ kfold(
 
 ```
 
+## Genetic Algorithm
 ```{r}
 library(stuart)
 gene(
@@ -181,43 +306,53 @@ gene(
 
 ```
 
+## Objective-Function
+```{r}
+# threshhold for reliability
+# correlations?
+# variance in item difficulty - via intercepts??
+# configural inveriance as aim, in light of heterogeneitity?
+
+
+fixedobjective(
+  criteria = c("rmsea", "srmr", "crel"),
+  add = c("chisq", "df", "pvalue"),
+  side = NULL, #can this be specified for certain values?
+  scale = 1,
+  matrices = NULL,
+  fixed = NULL,
+  comparisons = NULL,
+  ...
+)
+
+
+```
+
+## Crossvalidation
 ```{r}
 
+crossvalidate(
+  selection,split
+)
 
 ```
 
 ```{r}
 
+```
+
+```{r}
 
 ```
 
 ```{r}
-model <- "
-# Measurement model
-y1 =~ x1 + x2 + x3 + x4
-y2 =~ x5 + x6 + x7 + x8
-y3 =~ x9 + x10 + x11 + x12
-y4 =~ x13 + x14 + x15 + x16
-y5 =~ x17 + x18 + x19 + x20
 
-# Factor variances
-y1 ~~ y1
-y2 ~~ y2
-y3 ~~ y3
-y4 ~~ y4
-y5 ~~ y5
+```
 
-# Factor correlations
-y1 ~~ y2
-y1 ~~ y3
-y1 ~~ y4
-y1 ~~ y5
-y2 ~~ y3
-y2 ~~ y4
-y2 ~~ y5
-y3 ~~ y4
-y3 ~~ y5
-y4 ~~ y5
-"
+```{r}
+
+```
+
+```{r}
 
 ```
