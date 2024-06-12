@@ -96,38 +96,53 @@ names(data2) <- c('X', 'X', 'X', 'X')
 md.pattern(hsbwmiss2, rotate.names = T)
 
 ```
+
+# checking for the Pattern of Missings
+Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the 
+missing data.
+```{r}
+library(mice)
+md.pattern(data, rotate.names = T)
+
+```
+
 ## NAs FIMLn
 ```{r}
 library(lavaan)
-model <- sem("
-# Measurement model
-y1 =~ x1 + x2 + x3 + x4
-y2 =~ x5 + x6 + x7 + x8
-y3 =~ x9 + x10 + x11 + x12
-y4 =~ x13 + x14 + x15 + x16
-y5 =~ x17 + x18 + x19 + x20
+model_fiml <- sem('
+                # Measurement model
+                y1 =~ x1 + x2 + x3 + x4
+                y2 =~ x5 + x6 + x7 + x8
+                y3 =~ x9 + x10 + x11 + x12
+                y4 =~ x13 + x14 + x15 + x16
+                y5 =~ x17 + x18 + x19 + x20
+                
+                # Factor variances
+                y1 ~~ y1
+                y2 ~~ y2
+                y3 ~~ y3
+                y4 ~~ y4
+                y5 ~~ y5
+                
+                # Factor correlations
+                y1 ~~ y2
+                y1 ~~ y3
+                y1 ~~ y4
+                y1 ~~ y5
+                y2 ~~ y3
+                y2 ~~ y4
+                y2 ~~ y5
+                y3 ~~ y4
+                y3 ~~ y5
+                y4 ~~ y5
+              ', data = data, missing = 'fiml', fixed.x = F) 
+# fixed.x = F. FIML works by estimating the relationships of the variables with each other and requires estimating the means and variances of the variables. If fixed.x = T (the default), then the variances and covariances are fixed and are based on the existing sample values and are not estimated.
+summary(model_fiml)
+parameterestimates(model_fiml)
 
-# Factor variances
-y1 ~~ y1
-y2 ~~ y2
-y3 ~~ y3
-y4 ~~ y4
-y5 ~~ y5
+```
 
-# Factor correlations
-y1 ~~ y2
-y1 ~~ y3
-y1 ~~ y4
-y1 ~~ y5
-y2 ~~ y3
-y2 ~~ y4
-y2 ~~ y5
-y3 ~~ y4
-y3 ~~ y5
-y4 ~~ y5
-", data = data)
-
-summary(model)
+```{r}
 
 ```
 
@@ -226,37 +241,13 @@ semPower: A priori power analysis
 # Stuart - Item selection
 ## Sample split
 ```{r}
-library(lavaan)
 library(stuart)
 ###########################
 data()
 
 split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
-kfold(
-  type,
-  k = 5,
-  max.invariance = "configural",
-  seed = 2024,
-  seeded.search = TRUE,
-  ...,
-  remove.details = TRUE
-)
-###########################
 
-fs <- list()
-
-stuart::kfold(
-  "gene",
-  k = 5,
-  data = ,
-  factor.structure = fs,
-  max.invariance = "configural",
-  seed = 2024,
-  seeded.search = TRUE,
-  ...,
-  remove.details = TRUE
-)
 
 ```
 
@@ -313,7 +304,6 @@ gene(
 # variance in item difficulty - via intercepts??
 # configural inveriance as aim, in light of heterogeneitity?
 
-
 fixedobjective(
   criteria = c("rmsea", "srmr", "crel"),
   add = c("chisq", "df", "pvalue"),
@@ -328,12 +318,34 @@ fixedobjective(
 
 ```
 
-## Crossvalidation
+## Crossvalidation or kfold-Crossvalidation
 ```{r}
 
-crossvalidate(
-  selection,split
-)
+# Using the 'holdout' function for data split
+data(data)
+# split was defined above!
+
+########################################################
+# Simple example from gene
+fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
+sel <- gene(split, fs, 3, cores = 1)  # number of cores set to 1
+
+############ k-Folding #########################
+data(data)
+fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
+
+sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
+  data = data, factor.structure = fs,
+  max.invariance = "configural",
+  capacity = 3, seed = 2024, #what does the "capacity" do?
+  seeded.search = TRUE,
+  remove.details = TRUE,
+  cores = 1) #what does the "cores" do?
+#########################################################
+summary(sel)
+
+# Crossvalidation
+crossvalidate(sel, split)
 
 ```
 
