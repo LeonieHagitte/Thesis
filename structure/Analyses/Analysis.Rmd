@@ -188,6 +188,7 @@ powerLI <- semPower.powerLI(
   loadM = c(.6, .7, .6, .7, .7),
   autocorResiduals = TRUE
 )
+# symmetrie annahme, auflösbar?
 # show summary
 summary(powerLI)
 
@@ -248,12 +249,16 @@ data()
 split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
 
+# poweranalyse für split
 
 ```
 
 ## Genetic Algorithm
 ```{r}
 library(stuart)
+# mmas freier in der spezifikation, variabler
+# kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
+
 gene(
   data,                 # Your data frame containing the observed variables
   factor.structure,     # A list defining the factor structure of your model
@@ -301,20 +306,22 @@ gene(
 ```{r}
 # threshhold for reliability
 # correlations?
-# variance in item difficulty - via intercepts??
+# variance in item difficulty - via intercepts?? -> intercepts  matrix in lavaan 
 # configural inveriance as aim, in light of heterogeneitity?
 
 fixedobjective(
-  criteria = c("rmsea", "srmr", "crel"),
+  criteria = c("rmsea", "srmr", "crel"), #rel ohne"c" für einzelne faktoren 
   add = c("chisq", "df", "pvalue"),
   side = NULL, #can this be specified for certain values?
   scale = 1,
   matrices = NULL,
-  fixed = NULL,
+  fixed = NULL, #weitere function einfügen - if-then function etc. subreliabilitäten 
   comparisons = NULL,
   ...
 )
 
+# matritzen mit objectivematrices function
+# theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
 
 ```
 
@@ -328,15 +335,18 @@ data(data)
 ########################################################
 # Simple example from gene
 fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
-sel <- gene(split, fs, 3, cores = 1)  # number of cores set to 1
+sel <- gene(split, fs, 3, cores = 1)  # number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores
 
 ############ k-Folding #########################
+
+# erster der holdout wird an kfold weitergegeben
+
 data(data)
 fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
 
 sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
   data = data, factor.structure = fs,
-  max.invariance = "configural",
+  max.invariance = "configural", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
   capacity = 3, seed = 2024, #what does the "capacity" do?
   seeded.search = TRUE,
   remove.details = TRUE,
