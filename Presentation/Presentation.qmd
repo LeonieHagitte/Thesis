@@ -320,8 +320,10 @@ Each participant will answer 38 items of the 71, that are randomly selected. To 
 
 ## Analysis under Construction
 
+::: small
 Checking for the Pattern of Missings
 - Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data.
+:::
 ```{r, eval=FALSE, echo=TRUE}
 library(mice)
 md.pattern(data, rotate.names = T)
@@ -638,14 +640,15 @@ renv::snapshot()
 \
 
 ::: small
-- How would you approach the data collection - balancing the sample - target group?
+- Ideas for data collection?
 - ACO or GA ?
 - How to rate "don't know" option - especially difficult?
-- Are four items per factor to few?
-- What is a good model?
-  - For what would you optimise or look for? 
+- What to do with comments?
 - What data pre-processing would you consider?
 - "normal" crossvalidation or kfold crossvalidation?
+- how to decide on the proportion for the sample split when kfolding 
+- and on the nuber of folds
+- what is a good variance for the matrix of intercepts?
 :::
 
 ## References {.scrollable}
