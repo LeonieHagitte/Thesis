@@ -20,13 +20,11 @@ format:
 
 \
 
--   Abstract
 -   Background
 -   Method & Planned Analysis
 -   Open Questions
 -   References
 
-## Abstract
 
 ## What is Data Literacy?
 
@@ -91,15 +89,22 @@ And [“producer”]{.highlight} facets ([Communication & Statistics]{.highlight
 ![](DL_Nomological_Net.png){.lightbox}
 
 ## Research Question
-
-\
-*Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?*\
 \
 
 ::: small
--   *Hypothesis 1: The proposed set of items will demonstrate a good model fit.*
--   *Hypothesis 2: The structure of the initial analysis will also be found in a different sample.*
--   *Hypothesis 3: The final questionnaire will show good discriminant validity.*
+[*Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?*]{.highlight}\
+:::
+
+::: scriptsize
+-   *Hypothesis 1: The test-data will support the suggested latent factor structure and the proposed measurement model.*
+-   *Hypothesis 2: I expect that the latent factor structure found in the initial analysis will be supported by a different sample.*
+-   *Hypothesis 3: A moderate to high positive correlation with the SWE-IV-16 (Behm, 2018) is expected.*
+
+-   *Hypothesis 4: A moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021) is expected.*
+
+-   *Hypothesis 5: A small to moderate positive correlation with the NFC-K (Beißert et al., 2015) is expected.*
+
+-   *Hypothesis 6: A small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014) is expected.*
 :::
 
 ## Methods & Planned Analysis
@@ -194,7 +199,7 @@ Item Selection\
 :::
 :::
 
-## Poweranalyse 
+## Poweranalysis 
 \
 
 ::: small
@@ -203,7 +208,7 @@ Item Selection\
 - But highly dependent on the factor structure!
 :::
 
-## Poweranalyse 
+## Poweranalysis 
 
 ::: normalsize
 Poweranalyse with ‘semPower’(Moshagen & Bader, 2023)
@@ -315,10 +320,74 @@ Each participant will answer 38 items of the 71, that are randomly selected. To 
 
 ## Analysis under Construction
 
+Checking for the Pattern of Missings
+- Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data.
+```{r, eval=FALSE, echo=TRUE}
+library(mice)
+md.pattern(data, rotate.names = T)
+
+```
+
+
+## Analysis under Construction
+NAs FIMLn
+```{r, eval=FALSE, echo=TRUE}
+library(lavaan)
+model_fiml <- sem('
+                # Measurement model
+                y1 =~ x1 + x2 + x3 + x4
+                y2 =~ x5 + x6 + x7 + x8
+                y3 =~ x9 + x10 + x11 + x12
+                y4 =~ x13 + x14 + x15 + x16
+                y5 =~ x17 + x18 + x19 + x20
+                
+                # Factor variances
+                y1 ~~ y1
+                y2 ~~ y2
+                y3 ~~ y3
+                y4 ~~ y4
+                y5 ~~ y5
+                
+                # Factor correlations
+                y1 ~~ y2
+                y1 ~~ y3
+                y1 ~~ y4
+                y1 ~~ y5
+                y2 ~~ y3
+                y2 ~~ y4
+                y2 ~~ y5
+                y3 ~~ y4
+                y3 ~~ y5
+                y4 ~~ y5
+              ', data = data, missing = 'fiml', fixed.x = F) 
+# fixed.x = F. FIML works by estimating the relationships of the variables with each other and requires estimating the means and variances of the variables. If fixed.x = T (the default), then the variances and covariances are fixed and are based on the existing sample values and are not estimated.
+summary(model_fiml)
+parameterestimates(model_fiml)
+
+```
+
+## Analysis under Construction
+
+Sample split
+```{r, eval=FALSE, echo=TRUE}
+library(stuart)
+###########################
+data()
+
+split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
+lapply(split, nrow) #check size of sample
+
+# poweranalyse für split
+
+```
+
+## Analysis under Construction
+
+Genetic Algorithm
 ```{r, eval=FALSE, echo=TRUE}
 library(lavaan)
 library(stuart)
-split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
+split <- holdout(data, prop = 0.75, grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
 
 gene(
@@ -373,6 +442,69 @@ kfold(
 )
 
 ```
+
+## Analysis under Construction
+
+Objective-Function
+```{r, eval=FALSE, echo=TRUE}
+# threshhold for reliability
+# correlations?
+# variance in item difficulty - via intercepts?? -> intercepts  matrix in lavaan 
+# configural inveriance as aim, in light of heterogeneitity?
+
+fixedobjective(
+  criteria = c("rmsea", "srmr", "crel"), #rel ohne"c" für einzelne faktoren 
+  add = c("chisq", "df", "pvalue"),
+  side = NULL, #can this be specified for certain values?
+  scale = 1,
+  matrices = NULL,
+  fixed = NULL, #weitere function einfügen - if-then function etc. subreliabilitäten 
+  comparisons = NULL,
+  ...
+)
+
+# matritzen mit objectivematrices function
+# theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
+
+```
+
+
+## Analysis under Construction
+
+Crossvalidation or kfold-Crossvalidation
+```{r, eval=FALSE, echo=TRUE}
+
+# Using the 'holdout' function for data split
+data(data)
+# split was defined above!
+
+########################################################
+# Simple example from gene
+fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
+sel <- gene(split, fs, 3, cores = 1)  # number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores
+
+############ k-Folding #########################
+
+# erster der holdout wird an kfold weitergegeben
+
+data(data)
+fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
+
+sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
+  data = data, factor.structure = fs,
+  max.invariance = "configural", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
+  capacity = 3, seed = 2024, #what does the "capacity" do?
+  seeded.search = TRUE,
+  remove.details = TRUE,
+  cores = 1) #what does the "cores" do?
+#########################################################
+summary(sel)
+
+# Crossvalidation
+crossvalidate(sel, split)
+
+```
+
 
 ## Data Collection Factor 1{.scrollable}
 
@@ -473,6 +605,34 @@ kfold(
   - I write the Thesis in a GitHub repository, it is created as pdf file, as well as a gh-webpage
 
 :::
+
+## Reproducibility 
+```{r, eval=FALSE, echo=TRUE}
+if(!requireNamespace("remotes"))
+install.packages("remotes")
+remotes::install_github("aaronpeikert/repro")
+repro::automate() #creating a Dockerfile.    ####################### BUG ######
+repro::use_docker()
+repro::use_gha_docker() #GitHub action (GHA) is a cloud service that runs software when certain events trigger it.Add a GitHub Action to build the required Docker image with
+
+# Install or update 'renv' package from CRAN if needed
+# Load 'renv' package
+library(renv)
+
+# Initialize 'renv' in your project
+renv::init()
+
+# Activate the project-specific 'renv' environment
+renv::activate()
+
+# Install required packages for your project
+#renv::install()
+
+# Update renv.lock file
+renv::snapshot()
+
+```
+
 
 ## Questions
 \

@@ -11,7 +11,7 @@
 <script src="Presentation_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="Presentation_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="Presentation_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.553">
+  <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Leonie Hagitte">
   <title>Development of a German Self-Rating Instrument for Data Literacy</title>
@@ -485,14 +485,19 @@ And <span class="highlight">“producer”</span> facets (<span class="highlight
 <section id="research-question" class="slide level2">
 <h2>Research Question</h2>
 <p><br>
-<em>Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?</em><br>
-<br>
 </p>
 <div class="small">
+<p><span class="highlight"><em>Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?</em></span><br>
+</p>
+</div>
+<div class="scriptsize">
 <ul>
-<li><em>Hypothesis 1: The proposed set of items will demonstrate a good model fit.</em></li>
-<li><em>Hypothesis 2: The structure of the initial analysis will also be found in a different sample.</em></li>
-<li><em>Hypothesis 3: The final questionnaire will show good discriminant validity.</em></li>
+<li><p><em>Hypothesis 1: The test-data will support the suggested latent factor structure and the proposed measurement model.</em></p></li>
+<li><p><em>Hypothesis 2: I expect that the latent factor structure found in the initial analysis will be supported by a different sample.</em></p></li>
+<li><p><em>Hypothesis 3: A moderate to high positive correlation with the SWE-IV-16 (Behm, 2018) is expected.</em></p></li>
+<li><p><em>Hypothesis 4: A moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021) is expected.</em></p></li>
+<li><p><em>Hypothesis 5: A small to moderate positive correlation with the NFC-K (Beißert et al., 2015) is expected.</em></p></li>
+<li><p><em>Hypothesis 6: A small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014) is expected.</em></p></li>
 </ul>
 </div>
 </section>
@@ -596,8 +601,8 @@ Item Selection<br>
 </div>
 </div>
 </section>
-<section id="poweranalyse" class="slide level2">
-<h2>Poweranalyse</h2>
+<section id="poweranalysis" class="slide level2">
+<h2>Poweranalysis</h2>
 <p><br>
 </p>
 <div class="small">
@@ -607,8 +612,8 @@ Item Selection<br>
 </ul>
 </div>
 </section>
-<section id="poweranalyse-1" class="slide level2">
-<h2>Poweranalyse</h2>
+<section id="poweranalysis-1" class="slide level2">
+<h2>Poweranalysis</h2>
 <div class="normalsize">
 <p>Poweranalyse with ‘semPower’(Moshagen &amp; Bader, 2023)</p>
 </div>
@@ -629,9 +634,9 @@ Item Selection<br>
 </ul>
 </div>
 </section>
-<section id="poweranalyse-2" class="slide level2">
+<section id="poweranalyse" class="slide level2">
 <h2>Poweranalyse</h2>
-<div class="cell quarto-layout-panel" data-tbl-cap="Example" data-layout-ncol="2" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]">
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-tbl-cap="Example" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <pre><code>
@@ -765,62 +770,180 @@ Item Selection<br>
 </section>
 <section id="analysis-under-construction" class="slide level2">
 <h2>Analysis under Construction</h2>
+<p>Checking for the Pattern of Missings - Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(lavaan)</span>
-<span id="cb3-2"><a href=""></a><span class="fu">library</span>(stuart)</span>
-<span id="cb3-3"><a href=""></a>split <span class="ot">&lt;-</span> <span class="fu">holdout</span>(data, <span class="at">prop =</span> <span class="fl">0.5</span>, <span class="at">grouping =</span> <span class="cn">NULL</span>, <span class="at">seed =</span> <span class="dv">2024</span>, <span class="at">determined =</span> <span class="cn">NULL</span>)</span>
-<span id="cb3-4"><a href=""></a><span class="fu">lapply</span>(split, nrow) <span class="co">#check size of sample</span></span>
-<span id="cb3-5"><a href=""></a></span>
-<span id="cb3-6"><a href=""></a><span class="fu">gene</span>(</span>
-<span id="cb3-7"><a href=""></a>  data,                 <span class="co"># Your data frame containing the observed variables</span></span>
-<span id="cb3-8"><a href=""></a>  factor.structure,     <span class="co"># A list defining the factor structure of your model</span></span>
-<span id="cb3-9"><a href=""></a>  <span class="at">capacity =</span> <span class="cn">NULL</span>,      <span class="co"># Optional, capacity constraint for factors</span></span>
-<span id="cb3-10"><a href=""></a>  <span class="at">item.weights =</span> <span class="cn">NULL</span>,  <span class="co"># Optional, initial weights for each indicator</span></span>
-<span id="cb3-11"><a href=""></a>  <span class="at">item.invariance =</span> <span class="st">"congeneric"</span>,  <span class="co"># Specify the type of invariance assumption for items</span></span>
-<span id="cb3-12"><a href=""></a>  <span class="at">repeated.measures =</span> <span class="cn">NULL</span>,        <span class="co"># Optional, specify repeated measures design</span></span>
-<span id="cb3-13"><a href=""></a>  <span class="at">grouping =</span> <span class="cn">NULL</span>,                 <span class="co"># Optional, specify grouping variable for multigroup analysis</span></span>
-<span id="cb3-14"><a href=""></a>  <span class="at">group.invariance =</span> <span class="st">"strict"</span>,     <span class="co"># Specify the type of invariance assumption for multigroup analysis</span></span>
-<span id="cb3-15"><a href=""></a>  <span class="at">comparisons =</span> <span class="cn">NULL</span>,              <span class="co"># Optional, specify comparisons for multigroup analysis</span></span>
-<span id="cb3-16"><a href=""></a>  <span class="at">auxiliary =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify auxiliary variables</span></span>
-<span id="cb3-17"><a href=""></a>  <span class="at">use.order =</span> <span class="cn">FALSE</span>,               <span class="co"># Whether to use order constraints</span></span>
-<span id="cb3-18"><a href=""></a>  <span class="at">software =</span> <span class="st">"lavaan"</span>,             <span class="co"># Specify the SEM software to be used</span></span>
-<span id="cb3-19"><a href=""></a>  <span class="at">cores =</span> <span class="cn">NULL</span>,                    <span class="co"># Number of CPU cores to be used for parallel processing</span></span>
-<span id="cb3-20"><a href=""></a>  <span class="at">objective =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify a custom objective function</span></span>
-<span id="cb3-21"><a href=""></a>  <span class="at">ignore.errors =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to ignore errors during fitness evaluation</span></span>
-<span id="cb3-22"><a href=""></a>  <span class="at">burnin =</span> <span class="dv">5</span>,                      <span class="co"># Number of generations for burn-in phase</span></span>
-<span id="cb3-23"><a href=""></a>  <span class="at">generations =</span> <span class="dv">256</span>,               <span class="co"># Total number of generations</span></span>
-<span id="cb3-24"><a href=""></a>  <span class="at">individuals =</span> <span class="dv">64</span>,                <span class="co"># Number of individuals in each generation</span></span>
-<span id="cb3-25"><a href=""></a>  <span class="at">selection =</span> <span class="st">"tournament"</span>,        <span class="co"># Selection method for genetic algorithm</span></span>
-<span id="cb3-26"><a href=""></a>  <span class="at">selection.pressure =</span> <span class="cn">NULL</span>,       <span class="co"># Pressure for tournament selection</span></span>
-<span id="cb3-27"><a href=""></a>  <span class="at">elitism =</span> <span class="cn">NULL</span>,                  <span class="co"># Rate of elitism</span></span>
-<span id="cb3-28"><a href=""></a>  <span class="at">reproduction =</span> <span class="fl">0.5</span>,               <span class="co"># Proportion of individuals reproduced in each generation</span></span>
-<span id="cb3-29"><a href=""></a>  <span class="at">mutation =</span> <span class="fl">0.05</span>,                  <span class="co"># Mutation rate</span></span>
-<span id="cb3-30"><a href=""></a>  <span class="at">mating.index =</span> <span class="dv">0</span>,                 <span class="co"># Index of mating type</span></span>
-<span id="cb3-31"><a href=""></a>  <span class="at">mating.size =</span> <span class="fl">0.25</span>,               <span class="co"># Proportion of mating pool size</span></span>
-<span id="cb3-32"><a href=""></a>  <span class="at">mating.criterion =</span> <span class="st">"similarity"</span>,  <span class="co"># Criterion for selecting mates</span></span>
-<span id="cb3-33"><a href=""></a>  <span class="at">immigration =</span> <span class="dv">0</span>,                  <span class="co"># Proportion of immigrants in each generation</span></span>
-<span id="cb3-34"><a href=""></a>  <span class="at">convergence.criterion =</span> <span class="st">"geno.between"</span>,  <span class="co"># Convergence criterion</span></span>
-<span id="cb3-35"><a href=""></a>  <span class="at">tolerance =</span> <span class="cn">NULL</span>,                 <span class="co"># Tolerance for convergence</span></span>
-<span id="cb3-36"><a href=""></a>  <span class="at">reinit.n =</span> <span class="dv">1</span>,                     <span class="co"># Number of reinitializations</span></span>
-<span id="cb3-37"><a href=""></a>  <span class="at">reinit.criterion =</span> convergence.criterion,  <span class="co"># Criterion for reinitialization</span></span>
-<span id="cb3-38"><a href=""></a>  <span class="at">reinit.tolerance =</span> <span class="cn">NULL</span>,          <span class="co"># Tolerance for reinitialization</span></span>
-<span id="cb3-39"><a href=""></a>  <span class="at">reinit.prop =</span> <span class="fl">0.75</span>,               <span class="co"># Proportion of population reinitialized</span></span>
-<span id="cb3-40"><a href=""></a>  <span class="at">schedule =</span> <span class="st">"run"</span>,                 <span class="co"># Schedule for genetic algorithm</span></span>
-<span id="cb3-41"><a href=""></a>  <span class="at">analysis.options =</span> <span class="cn">NULL</span>,          <span class="co"># Additional options for analysis</span></span>
-<span id="cb3-42"><a href=""></a>  <span class="at">suppress.model =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to suppress model output</span></span>
-<span id="cb3-43"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,                      <span class="co"># Seed for random number generation</span></span>
-<span id="cb3-44"><a href=""></a>  <span class="at">filename =</span> <span class="cn">NULL</span>                   <span class="co"># Optional, filename for saving results</span></span>
-<span id="cb3-45"><a href=""></a>)</span>
-<span id="cb3-46"><a href=""></a></span>
-<span id="cb3-47"><a href=""></a><span class="fu">kfold</span>(</span>
-<span id="cb3-48"><a href=""></a>  type,</span>
-<span id="cb3-49"><a href=""></a>  <span class="at">k =</span> <span class="dv">5</span>,</span>
-<span id="cb3-50"><a href=""></a>  <span class="at">max.invariance =</span> <span class="st">"strict"</span>,</span>
-<span id="cb3-51"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,</span>
-<span id="cb3-52"><a href=""></a>  <span class="at">seeded.search =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb3-53"><a href=""></a>  ...,</span>
-<span id="cb3-54"><a href=""></a>  <span class="at">remove.details =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-55"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(mice)</span>
+<span id="cb3-2"><a href=""></a><span class="fu">md.pattern</span>(data, <span class="at">rotate.names =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-under-construction-1" class="slide level2">
+<h2>Analysis under Construction</h2>
+<p>NAs FIMLn</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb4-2"><a href=""></a>model_fiml <span class="ot">&lt;-</span> <span class="fu">sem</span>(<span class="st">'</span></span>
+<span id="cb4-3"><a href=""></a><span class="st">                # Measurement model</span></span>
+<span id="cb4-4"><a href=""></a><span class="st">                y1 =~ x1 + x2 + x3 + x4</span></span>
+<span id="cb4-5"><a href=""></a><span class="st">                y2 =~ x5 + x6 + x7 + x8</span></span>
+<span id="cb4-6"><a href=""></a><span class="st">                y3 =~ x9 + x10 + x11 + x12</span></span>
+<span id="cb4-7"><a href=""></a><span class="st">                y4 =~ x13 + x14 + x15 + x16</span></span>
+<span id="cb4-8"><a href=""></a><span class="st">                y5 =~ x17 + x18 + x19 + x20</span></span>
+<span id="cb4-9"><a href=""></a><span class="st">                </span></span>
+<span id="cb4-10"><a href=""></a><span class="st">                # Factor variances</span></span>
+<span id="cb4-11"><a href=""></a><span class="st">                y1 ~~ y1</span></span>
+<span id="cb4-12"><a href=""></a><span class="st">                y2 ~~ y2</span></span>
+<span id="cb4-13"><a href=""></a><span class="st">                y3 ~~ y3</span></span>
+<span id="cb4-14"><a href=""></a><span class="st">                y4 ~~ y4</span></span>
+<span id="cb4-15"><a href=""></a><span class="st">                y5 ~~ y5</span></span>
+<span id="cb4-16"><a href=""></a><span class="st">                </span></span>
+<span id="cb4-17"><a href=""></a><span class="st">                # Factor correlations</span></span>
+<span id="cb4-18"><a href=""></a><span class="st">                y1 ~~ y2</span></span>
+<span id="cb4-19"><a href=""></a><span class="st">                y1 ~~ y3</span></span>
+<span id="cb4-20"><a href=""></a><span class="st">                y1 ~~ y4</span></span>
+<span id="cb4-21"><a href=""></a><span class="st">                y1 ~~ y5</span></span>
+<span id="cb4-22"><a href=""></a><span class="st">                y2 ~~ y3</span></span>
+<span id="cb4-23"><a href=""></a><span class="st">                y2 ~~ y4</span></span>
+<span id="cb4-24"><a href=""></a><span class="st">                y2 ~~ y5</span></span>
+<span id="cb4-25"><a href=""></a><span class="st">                y3 ~~ y4</span></span>
+<span id="cb4-26"><a href=""></a><span class="st">                y3 ~~ y5</span></span>
+<span id="cb4-27"><a href=""></a><span class="st">                y4 ~~ y5</span></span>
+<span id="cb4-28"><a href=""></a><span class="st">              '</span>, <span class="at">data =</span> data, <span class="at">missing =</span> <span class="st">'fiml'</span>, <span class="at">fixed.x =</span> F) </span>
+<span id="cb4-29"><a href=""></a><span class="co"># fixed.x = F. FIML works by estimating the relationships of the variables with each other and requires estimating the means and variances of the variables. If fixed.x = T (the default), then the variances and covariances are fixed and are based on the existing sample values and are not estimated.</span></span>
+<span id="cb4-30"><a href=""></a><span class="fu">summary</span>(model_fiml)</span>
+<span id="cb4-31"><a href=""></a><span class="fu">parameterestimates</span>(model_fiml)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-under-construction-2" class="slide level2">
+<h2>Analysis under Construction</h2>
+<p>Sample split</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(stuart)</span>
+<span id="cb5-2"><a href=""></a><span class="do">###########################</span></span>
+<span id="cb5-3"><a href=""></a><span class="fu">data</span>()</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>split <span class="ot">&lt;-</span> <span class="fu">holdout</span>(data, <span class="at">prop =</span> <span class="fl">0.5</span>, <span class="at">grouping =</span> <span class="cn">NULL</span>, <span class="at">seed =</span> <span class="dv">2024</span>, <span class="at">determined =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-6"><a href=""></a><span class="fu">lapply</span>(split, nrow) <span class="co">#check size of sample</span></span>
+<span id="cb5-7"><a href=""></a></span>
+<span id="cb5-8"><a href=""></a><span class="co"># poweranalyse für split</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-under-construction-3" class="slide level2">
+<h2>Analysis under Construction</h2>
+<p>Genetic Algorithm</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb6-2"><a href=""></a><span class="fu">library</span>(stuart)</span>
+<span id="cb6-3"><a href=""></a>split <span class="ot">&lt;-</span> <span class="fu">holdout</span>(data, <span class="at">prop =</span> <span class="fl">0.75</span>, <span class="at">grouping =</span> <span class="cn">NULL</span>, <span class="at">seed =</span> <span class="dv">2024</span>, <span class="at">determined =</span> <span class="cn">NULL</span>)</span>
+<span id="cb6-4"><a href=""></a><span class="fu">lapply</span>(split, nrow) <span class="co">#check size of sample</span></span>
+<span id="cb6-5"><a href=""></a></span>
+<span id="cb6-6"><a href=""></a><span class="fu">gene</span>(</span>
+<span id="cb6-7"><a href=""></a>  data,                 <span class="co"># Your data frame containing the observed variables</span></span>
+<span id="cb6-8"><a href=""></a>  factor.structure,     <span class="co"># A list defining the factor structure of your model</span></span>
+<span id="cb6-9"><a href=""></a>  <span class="at">capacity =</span> <span class="cn">NULL</span>,      <span class="co"># Optional, capacity constraint for factors</span></span>
+<span id="cb6-10"><a href=""></a>  <span class="at">item.weights =</span> <span class="cn">NULL</span>,  <span class="co"># Optional, initial weights for each indicator</span></span>
+<span id="cb6-11"><a href=""></a>  <span class="at">item.invariance =</span> <span class="st">"congeneric"</span>,  <span class="co"># Specify the type of invariance assumption for items</span></span>
+<span id="cb6-12"><a href=""></a>  <span class="at">repeated.measures =</span> <span class="cn">NULL</span>,        <span class="co"># Optional, specify repeated measures design</span></span>
+<span id="cb6-13"><a href=""></a>  <span class="at">grouping =</span> <span class="cn">NULL</span>,                 <span class="co"># Optional, specify grouping variable for multigroup analysis</span></span>
+<span id="cb6-14"><a href=""></a>  <span class="at">group.invariance =</span> <span class="st">"strict"</span>,     <span class="co"># Specify the type of invariance assumption for multigroup analysis</span></span>
+<span id="cb6-15"><a href=""></a>  <span class="at">comparisons =</span> <span class="cn">NULL</span>,              <span class="co"># Optional, specify comparisons for multigroup analysis</span></span>
+<span id="cb6-16"><a href=""></a>  <span class="at">auxiliary =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify auxiliary variables</span></span>
+<span id="cb6-17"><a href=""></a>  <span class="at">use.order =</span> <span class="cn">FALSE</span>,               <span class="co"># Whether to use order constraints</span></span>
+<span id="cb6-18"><a href=""></a>  <span class="at">software =</span> <span class="st">"lavaan"</span>,             <span class="co"># Specify the SEM software to be used</span></span>
+<span id="cb6-19"><a href=""></a>  <span class="at">cores =</span> <span class="cn">NULL</span>,                    <span class="co"># Number of CPU cores to be used for parallel processing</span></span>
+<span id="cb6-20"><a href=""></a>  <span class="at">objective =</span> <span class="cn">NULL</span>,                <span class="co"># Optional, specify a custom objective function</span></span>
+<span id="cb6-21"><a href=""></a>  <span class="at">ignore.errors =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to ignore errors during fitness evaluation</span></span>
+<span id="cb6-22"><a href=""></a>  <span class="at">burnin =</span> <span class="dv">5</span>,                      <span class="co"># Number of generations for burn-in phase</span></span>
+<span id="cb6-23"><a href=""></a>  <span class="at">generations =</span> <span class="dv">256</span>,               <span class="co"># Total number of generations</span></span>
+<span id="cb6-24"><a href=""></a>  <span class="at">individuals =</span> <span class="dv">64</span>,                <span class="co"># Number of individuals in each generation</span></span>
+<span id="cb6-25"><a href=""></a>  <span class="at">selection =</span> <span class="st">"tournament"</span>,        <span class="co"># Selection method for genetic algorithm</span></span>
+<span id="cb6-26"><a href=""></a>  <span class="at">selection.pressure =</span> <span class="cn">NULL</span>,       <span class="co"># Pressure for tournament selection</span></span>
+<span id="cb6-27"><a href=""></a>  <span class="at">elitism =</span> <span class="cn">NULL</span>,                  <span class="co"># Rate of elitism</span></span>
+<span id="cb6-28"><a href=""></a>  <span class="at">reproduction =</span> <span class="fl">0.5</span>,               <span class="co"># Proportion of individuals reproduced in each generation</span></span>
+<span id="cb6-29"><a href=""></a>  <span class="at">mutation =</span> <span class="fl">0.05</span>,                  <span class="co"># Mutation rate</span></span>
+<span id="cb6-30"><a href=""></a>  <span class="at">mating.index =</span> <span class="dv">0</span>,                 <span class="co"># Index of mating type</span></span>
+<span id="cb6-31"><a href=""></a>  <span class="at">mating.size =</span> <span class="fl">0.25</span>,               <span class="co"># Proportion of mating pool size</span></span>
+<span id="cb6-32"><a href=""></a>  <span class="at">mating.criterion =</span> <span class="st">"similarity"</span>,  <span class="co"># Criterion for selecting mates</span></span>
+<span id="cb6-33"><a href=""></a>  <span class="at">immigration =</span> <span class="dv">0</span>,                  <span class="co"># Proportion of immigrants in each generation</span></span>
+<span id="cb6-34"><a href=""></a>  <span class="at">convergence.criterion =</span> <span class="st">"geno.between"</span>,  <span class="co"># Convergence criterion</span></span>
+<span id="cb6-35"><a href=""></a>  <span class="at">tolerance =</span> <span class="cn">NULL</span>,                 <span class="co"># Tolerance for convergence</span></span>
+<span id="cb6-36"><a href=""></a>  <span class="at">reinit.n =</span> <span class="dv">1</span>,                     <span class="co"># Number of reinitializations</span></span>
+<span id="cb6-37"><a href=""></a>  <span class="at">reinit.criterion =</span> convergence.criterion,  <span class="co"># Criterion for reinitialization</span></span>
+<span id="cb6-38"><a href=""></a>  <span class="at">reinit.tolerance =</span> <span class="cn">NULL</span>,          <span class="co"># Tolerance for reinitialization</span></span>
+<span id="cb6-39"><a href=""></a>  <span class="at">reinit.prop =</span> <span class="fl">0.75</span>,               <span class="co"># Proportion of population reinitialized</span></span>
+<span id="cb6-40"><a href=""></a>  <span class="at">schedule =</span> <span class="st">"run"</span>,                 <span class="co"># Schedule for genetic algorithm</span></span>
+<span id="cb6-41"><a href=""></a>  <span class="at">analysis.options =</span> <span class="cn">NULL</span>,          <span class="co"># Additional options for analysis</span></span>
+<span id="cb6-42"><a href=""></a>  <span class="at">suppress.model =</span> <span class="cn">FALSE</span>,           <span class="co"># Whether to suppress model output</span></span>
+<span id="cb6-43"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,                      <span class="co"># Seed for random number generation</span></span>
+<span id="cb6-44"><a href=""></a>  <span class="at">filename =</span> <span class="cn">NULL</span>                   <span class="co"># Optional, filename for saving results</span></span>
+<span id="cb6-45"><a href=""></a>)</span>
+<span id="cb6-46"><a href=""></a></span>
+<span id="cb6-47"><a href=""></a><span class="fu">kfold</span>(</span>
+<span id="cb6-48"><a href=""></a>  type,</span>
+<span id="cb6-49"><a href=""></a>  <span class="at">k =</span> <span class="dv">5</span>,</span>
+<span id="cb6-50"><a href=""></a>  <span class="at">max.invariance =</span> <span class="st">"strict"</span>,</span>
+<span id="cb6-51"><a href=""></a>  <span class="at">seed =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-52"><a href=""></a>  <span class="at">seeded.search =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-53"><a href=""></a>  ...,</span>
+<span id="cb6-54"><a href=""></a>  <span class="at">remove.details =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-55"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-under-construction-4" class="slide level2">
+<h2>Analysis under Construction</h2>
+<p>Objective-Function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># threshhold for reliability</span></span>
+<span id="cb7-2"><a href=""></a><span class="co"># correlations?</span></span>
+<span id="cb7-3"><a href=""></a><span class="co"># variance in item difficulty - via intercepts?? -&gt; intercepts  matrix in lavaan </span></span>
+<span id="cb7-4"><a href=""></a><span class="co"># configural inveriance as aim, in light of heterogeneitity?</span></span>
+<span id="cb7-5"><a href=""></a></span>
+<span id="cb7-6"><a href=""></a><span class="fu">fixedobjective</span>(</span>
+<span id="cb7-7"><a href=""></a>  <span class="at">criteria =</span> <span class="fu">c</span>(<span class="st">"rmsea"</span>, <span class="st">"srmr"</span>, <span class="st">"crel"</span>), <span class="co">#rel ohne"c" für einzelne faktoren </span></span>
+<span id="cb7-8"><a href=""></a>  <span class="at">add =</span> <span class="fu">c</span>(<span class="st">"chisq"</span>, <span class="st">"df"</span>, <span class="st">"pvalue"</span>),</span>
+<span id="cb7-9"><a href=""></a>  <span class="at">side =</span> <span class="cn">NULL</span>, <span class="co">#can this be specified for certain values?</span></span>
+<span id="cb7-10"><a href=""></a>  <span class="at">scale =</span> <span class="dv">1</span>,</span>
+<span id="cb7-11"><a href=""></a>  <span class="at">matrices =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-12"><a href=""></a>  <span class="at">fixed =</span> <span class="cn">NULL</span>, <span class="co">#weitere function einfügen - if-then function etc. subreliabilitäten </span></span>
+<span id="cb7-13"><a href=""></a>  <span class="at">comparisons =</span> <span class="cn">NULL</span>,</span>
+<span id="cb7-14"><a href=""></a>  ...</span>
+<span id="cb7-15"><a href=""></a>)</span>
+<span id="cb7-16"><a href=""></a></span>
+<span id="cb7-17"><a href=""></a><span class="co"># matritzen mit objectivematrices function</span></span>
+<span id="cb7-18"><a href=""></a><span class="co"># theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analysis-under-construction-5" class="slide level2">
+<h2>Analysis under Construction</h2>
+<p>Crossvalidation or kfold-Crossvalidation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Using the 'holdout' function for data split</span></span>
+<span id="cb8-2"><a href=""></a><span class="fu">data</span>(data)</span>
+<span id="cb8-3"><a href=""></a><span class="co"># split was defined above!</span></span>
+<span id="cb8-4"><a href=""></a></span>
+<span id="cb8-5"><a href=""></a><span class="do">########################################################</span></span>
+<span id="cb8-6"><a href=""></a><span class="co"># Simple example from gene</span></span>
+<span id="cb8-7"><a href=""></a>fs <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ra =</span> <span class="fu">names</span>(data)[<span class="dv">53</span><span class="sc">:</span><span class="dv">57</span>]) <span class="co"># adapt the columns for the respective factor columns</span></span>
+<span id="cb8-8"><a href=""></a>sel <span class="ot">&lt;-</span> <span class="fu">gene</span>(split, fs, <span class="dv">3</span>, <span class="at">cores =</span> <span class="dv">1</span>)  <span class="co"># number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores</span></span>
+<span id="cb8-9"><a href=""></a></span>
+<span id="cb8-10"><a href=""></a><span class="do">############ k-Folding #########################</span></span>
+<span id="cb8-11"><a href=""></a></span>
+<span id="cb8-12"><a href=""></a><span class="co"># erster der holdout wird an kfold weitergegeben</span></span>
+<span id="cb8-13"><a href=""></a></span>
+<span id="cb8-14"><a href=""></a><span class="fu">data</span>(data)</span>
+<span id="cb8-15"><a href=""></a>fs <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ra =</span> <span class="fu">names</span>(data)[<span class="dv">53</span><span class="sc">:</span><span class="dv">57</span>]) <span class="co"># adapt the columns for the respective factor columns</span></span>
+<span id="cb8-16"><a href=""></a></span>
+<span id="cb8-17"><a href=""></a>sel <span class="ot">&lt;-</span> <span class="fu">kfold</span>(<span class="st">'gene'</span>, <span class="at">k =</span> <span class="dv">5</span>, <span class="co">#gene/mmas #how to arrive at number of folds?</span></span>
+<span id="cb8-18"><a href=""></a>  <span class="at">data =</span> data, <span class="at">factor.structure =</span> fs,</span>
+<span id="cb8-19"><a href=""></a>  <span class="at">max.invariance =</span> <span class="st">"configural"</span>, <span class="do">## randomly sampled aus derselben population - höher schon besser/ realistisch </span></span>
+<span id="cb8-20"><a href=""></a>  <span class="at">capacity =</span> <span class="dv">3</span>, <span class="at">seed =</span> <span class="dv">2024</span>, <span class="co">#what does the "capacity" do?</span></span>
+<span id="cb8-21"><a href=""></a>  <span class="at">seeded.search =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-22"><a href=""></a>  <span class="at">remove.details =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-23"><a href=""></a>  <span class="at">cores =</span> <span class="dv">1</span>) <span class="co">#what does the "cores" do?</span></span>
+<span id="cb8-24"><a href=""></a><span class="do">#########################################################</span></span>
+<span id="cb8-25"><a href=""></a><span class="fu">summary</span>(sel)</span>
+<span id="cb8-26"><a href=""></a></span>
+<span id="cb8-27"><a href=""></a><span class="co"># Crossvalidation</span></span>
+<span id="cb8-28"><a href=""></a><span class="fu">crossvalidate</span>(sel, split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-collection-factor-1" class="slide level2 scrollable">
@@ -902,6 +1025,33 @@ Item Selection<br>
 <li>I write the Thesis in a GitHub repository, it is created as pdf file, as well as a gh-webpage</li>
 </ul></li>
 </ul>
+</div>
+</section>
+<section id="reproducibility" class="slide level2">
+<h2>Reproducibility</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>))</span>
+<span id="cb9-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb9-3"><a href=""></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"aaronpeikert/repro"</span>)</span>
+<span id="cb9-4"><a href=""></a>repro<span class="sc">::</span><span class="fu">automate</span>() <span class="co">#creating a Dockerfile.    ####################### </span><span class="al">BUG</span><span class="co"> ######</span></span>
+<span id="cb9-5"><a href=""></a>repro<span class="sc">::</span><span class="fu">use_docker</span>()</span>
+<span id="cb9-6"><a href=""></a>repro<span class="sc">::</span><span class="fu">use_gha_docker</span>() <span class="co">#GitHub action (GHA) is a cloud service that runs software when certain events trigger it.Add a GitHub Action to build the required Docker image with</span></span>
+<span id="cb9-7"><a href=""></a></span>
+<span id="cb9-8"><a href=""></a><span class="co"># Install or update 'renv' package from CRAN if needed</span></span>
+<span id="cb9-9"><a href=""></a><span class="co"># Load 'renv' package</span></span>
+<span id="cb9-10"><a href=""></a><span class="fu">library</span>(renv)</span>
+<span id="cb9-11"><a href=""></a></span>
+<span id="cb9-12"><a href=""></a><span class="co"># Initialize 'renv' in your project</span></span>
+<span id="cb9-13"><a href=""></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb9-14"><a href=""></a></span>
+<span id="cb9-15"><a href=""></a><span class="co"># Activate the project-specific 'renv' environment</span></span>
+<span id="cb9-16"><a href=""></a>renv<span class="sc">::</span><span class="fu">activate</span>()</span>
+<span id="cb9-17"><a href=""></a></span>
+<span id="cb9-18"><a href=""></a><span class="co"># Install required packages for your project</span></span>
+<span id="cb9-19"><a href=""></a><span class="co">#renv::install()</span></span>
+<span id="cb9-20"><a href=""></a></span>
+<span id="cb9-21"><a href=""></a><span class="co"># Update renv.lock file</span></span>
+<span id="cb9-22"><a href=""></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="questions" class="slide level2">
@@ -1397,7 +1547,7 @@ Item Selection<br>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":false});
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;
