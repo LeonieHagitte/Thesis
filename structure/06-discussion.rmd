@@ -1,4 +1,25 @@
 # Discussion
+
+## Summarising the results
+
+## What does it all mean / "Why?"
+
+- Start with the research question
+  - Maybe then towards the hypotheses
+- connecting findings to the related theories
+- very related/ current literature first, than broader is possible
+- When discussind the why - be careful, because i didnt test that
+
+## Limitations
+
+- psych science - authors guide to generelizability
+- attempts to control for limitating factors
+- dont include to general/ broad critiques, but special one for my own study
+
+## Future directions
+
+########################################
+
 - what to optimize the scale for?
 - dynamic fit indices
 - factors 4 and 5
