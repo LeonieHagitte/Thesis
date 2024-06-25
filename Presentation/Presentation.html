@@ -632,7 +632,7 @@ Item Selection<br>
 </section>
 <section id="poweranalyse" class="slide level2">
 <h2>Poweranalyse</h2>
-<div class="cell quarto-layout-panel" data-layout-ncol="2" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]" data-tbl-cap="Example">
+<div class="cell quarto-layout-panel" data-tbl-cap="Example" data-tbl-subcap="[&quot;table&quot;,&quot;figure&quot;]" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <pre><code>
@@ -766,7 +766,9 @@ Item Selection<br>
 </section>
 <section id="analysis-under-construction" class="slide level2">
 <h2>Analysis under Construction</h2>
+<div class="small">
 <p>Checking for the Pattern of Missings - Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data.</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">library</span>(mice)</span>
 <span id="cb3-2"><a href=""></a><span class="fu">md.pattern</span>(data, <span class="at">rotate.names =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1056,16 +1058,15 @@ Item Selection<br>
 </p>
 <div class="small">
 <ul>
-<li>How would you approach the data collection - balancing the sample - target group?</li>
+<li>Ideas for data collection?</li>
 <li>ACO or GA ?</li>
 <li>How to rate “don’t know” option - especially difficult?</li>
-<li>Are four items per factor to few?</li>
-<li>What is a good model?
-<ul>
-<li>For what would you optimise or look for?</li>
-</ul></li>
+<li>What to do with comments?</li>
 <li>What data pre-processing would you consider?</li>
 <li>“normal” crossvalidation or kfold crossvalidation?</li>
+<li>how to decide on the proportion for the sample split when kfolding</li>
+<li>and on the nuber of folds</li>
+<li>what is a good variance for the matrix of intercepts?</li>
 </ul>
 </div>
 </section>
@@ -1581,7 +1582,7 @@ Item Selection<br>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom"});
+    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
     window.onload = () => {
       lightboxQuarto.on('slide_before_load', (data) => {
         const { slideIndex, slideNode, slideConfig, player, trigger } = data;
