@@ -170,74 +170,67 @@ library(semPower)
 library(stuart)
 library(lavaan)
 ```
-
-# Poweranalyse - SemPower ohne Model
-```{r}
-ap <- semPower.aPriori(effect = .05, effect.measure = 'RMSEA', 
-                       alpha = .05, power = .80, df = 150)
-summary(ap)
-```
-
+ 
 # Poweranalyse - SemPower mit Model
 ```{r}
-powerLI <- semPower.powerLI(
-  type = 'a-priori', alpha = .05, power = .80,
+powerMI <- semPower.powerMI(
+  type = 'a-priori',
   comparison = 'configural',
   nullEffect = 'metric',
-  nIndicator = c(4, 4, 4, 4, 4),
-  loadM = c(.6, .7, .6, .7, .7),
-  autocorResiduals = TRUE
+  nIndicator = c(4, 4, 4, 4, 4), # Corrected to a single vector
+  loadM = list(.5, .6), # Assuming baseline loadings for two groups
+  tau = list(rep(0.0, 20), # Assuming intercepts for 20 indicators in the first group
+             rep(seq(.1, .5, .1), each = 4)), # Assuming intercepts for 20 indicators in the second group, with increments
+  alpha = .05, 
+  power = .80,
+  N = list(.80, .20) # Assuming 80/20 sized groups for split
 )
-# symmetrie annahme, auflösbar?
-# show summary
-summary(powerLI)
+# Show summary
+summary(powerMI)
 
 ```
 ## Results Printed
 semPower: A priori power analysis
-
- Simulated power based on 500 successful replications.
- Note that simulated a-priori power analyses are only approximate,
- unless the number of replications is large.
-                                               
-                           Analytical Simulated
-                                               
- F0                        0.029922   0.030359 
- RMSEA                     0.043245   0.043560 
- Mc                        0.985150   0.984935 
-                                               
- df                        16         16       
- Required Num Observations 645        613      
-                                               
- Critical Chi-Square       26.29622   26.29622 
- NCP                       19.26999   18.57971 
- Alpha                     0.050000   0.050000 
- Beta                      0.199943   0.212000 
- Power (1 - Beta)          0.800057   0.788000 
- Implied Alpha/Beta Ratio  0.250072   0.235849 
+                                     
+ F0                        0.033897  
+ RMSEA                     0.058221  
+ Mc                        0.983194  
+                                     
+ df                        20        
+ Required Num Observations 622       
+                           (498, 125)
+                                     
+ Critical Chi-Square       31.41043  
+ NCP                       21.05165  
+ Alpha                     0.050000  
+ Beta                      0.197753  
+ Power (1 - Beta)          0.802247  
+ Implied Alpha/Beta Ratio  0.252841  
 
 
- Simulation Results:
-                                                     
- Convergence Rate (%) of the H0 model        100.00  
-                                                     
- Chi-Square Bias (%)                                 
- H0 Model                                    0.68    
- H1 Model                                    1.48    
- H0-H1 Difference                            -2.03   
-                                                     
- Chi-Square KS-Distance                              
- H0 Model                                    0.017362
- H1 Model                                    0.027111
- H0-H1 Difference                            0.014788
-                                                     
- Rejection Rate (%)                                  
- H0 Model                                    32.80   
- H1 Model                                    8.60    
-                                                     
- Average Parameter Bias (%) in the H1 Model:         
- Loadings                                    0.06    
- Variances/Covariances                       0.00    
+# Poweranalyse - SemPower ohne Model für Sample Split
+```{r}
+ap <- semPower.aPriori(effect = .05, effect.measure = 'RMSEA', 
+                       alpha = .05, power = .80, df = 155)
+summary(ap)
+```
+semPower: A priori power analysis
+                                   
+ F0                        0.387500
+ RMSEA                     0.050000
+ Mc                        0.823864
+                                   
+ df                        155     
+ Required Num Observations 128     
+                                   
+ Critical Chi-Square       185.0523
+ NCP                       49.21250
+ Alpha                     0.050000
+ Beta                      0.199807
+ Power (1 - Beta)          0.800193
+ Implied Alpha/Beta Ratio  0.250242
+
+
 
 # Stuart - Item selection
 ## Sample split
@@ -246,10 +239,8 @@ library(stuart)
 ###########################
 data()
 
-split <- holdout(data, prop = 0.5, grouping = NULL, seed = 2024, determined = NULL)
+split <- holdout(data, prop = c(0.8, 0.20), grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
-
-# poweranalyse für split
 
 ```
 
@@ -307,7 +298,17 @@ gene(
 # threshhold for reliability
 # correlations?
 # variance in item difficulty - via intercepts?? -> intercepts  matrix in lavaan 
-# configural inveriance as aim, in light of heterogeneitity?
+
+# Define a matrix for item intercepts per factor
+# Assuming a structure of 4 factors with 4 items each for simplicity
+interceptsMatrix <- matrix(c(5, 4, 2, 1,  # Factor 1 items
+                             5, 4, 2, 1,  # Factor 2 items
+                             5, 4, 2, 1,  # Factor 3 items
+                             5, 4, 2, 1), # Factor 4 items
+                           nrow = 4, byrow = TRUE,
+                           dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
+                                           c("Factor1", "Factor2", "Factor3", "Factor4")))
+
 
 fixedobjective(
   criteria = c("rmsea", "srmr", "crel"), #rel ohne"c" für einzelne faktoren 
@@ -316,12 +317,29 @@ fixedobjective(
   scale = 1,
   matrices = NULL,
   fixed = NULL, #weitere function einfügen - if-then function etc. subreliabilitäten 
-  comparisons = NULL,
-  ...
+  comparisons = NULL
 )
+
+#Fixed STUART objective function with:
+
+#1 * pnorm(rmsea, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(srmr, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(crel, 0.8, 0.075, lower.tail = TRUE)
+
+
+
 
 # matritzen mit objectivematrices function
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
+
+
+#stuart:::objective.preset + interceptsMatrix
+#function (chisq, df, pvalue, rmsea, srmr, crel,interceptsMatrix) 
+#{
+ #   1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+  #      (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
+   #     0.06)))))
+#}
+
+
 
 ```
 
@@ -346,7 +364,7 @@ fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective facto
 
 sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
   data = data, factor.structure = fs,
-  max.invariance = "configural", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
+  max.invariance = "scalar", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
   capacity = 3, seed = 2024, #what does the "capacity" do?
   seeded.search = TRUE,
   remove.details = TRUE,
