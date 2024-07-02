@@ -69,5 +69,14 @@ The cognitive aspects of data literacy as well as the motivation to understand d
 
 
 ## Aim of the Study  
-The aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-rated data literacy with citizens being the target population. An emphasis lies on measuring the three consumer factors of the construct (Comprehension,Evaluation & Integration). 
+The aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-rated data literacy with citizens being the target population. An emphasis lies on measuring the three consumer factors of the construct (Comprehension,Evaluation & Integration). Thus the research question of this study is: 
+
+"Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?"
+
+*Hypothesis 1: The test-data will support the suggested latent factor structure and the proposed measurement model.*  
+*Hypothesis 2: The latent factor structure of the initial analysis will be supported by a different sample.*  
+*Hypothesis 3: A moderate to high positive correlation with the SWE-IV-16 (Behm, 2018) is expected.*  
+*Hypothesis 4: A moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021) is expected.*  
+*Hypothesis 5: A small to moderate positive correlation with the NFC-K (Beißert et al., 2015) is expected.*  
+*Hypothesis 6: A small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014) is expected.*  
 
