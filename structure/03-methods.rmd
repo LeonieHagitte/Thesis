@@ -58,11 +58,12 @@ scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor
 disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know”
 option.
 
-### Measuring Self-Efficacy to Information Behavior
+### Measuring Information Literacy
 The SWE-IV-16 (Behm, 2018) assesses the self-efficacy beliefs
 of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
-(Brand-Gruwel et al., 2009). It consists of 16 statements addressing self-assessed
+(Brand-Gruwel et al., 2009). In this study this construct is used as a proxy for information literacy.
+It consists of 16 statements addressing self-assessed
 abilities in searching for and evaluating information, as well as managing
 information searches effectively. Each statement begins with "When I search for
 information on a topic or a specific question..." and respondents indicate their
@@ -82,7 +83,7 @@ and Petty (1982) and translated by Bless et al. (1994). To determine an individu
 (scale value) is computed from the four raw score points of the responses. The
 resulting mean values range between 1 and 7.
 
-### Measuring Self-Perceived ICT Competency
+### Measuring Technology Competency
 To assess self-perceived competence in using information and
 communication technology (ICT), the five general items of the ICT-SC25 (Schauffel
 et al., 2021) will be used. The ICT-SC25 is a scale consisting of 25 items designed to

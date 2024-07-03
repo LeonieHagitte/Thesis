@@ -8,10 +8,12 @@
   - Maybe then towards the hypotheses
 - connecting findings to the related theories
 - very related/ current literature first, than broader is possible
-- When discussind the why - be careful, because i didnt test that
+- When discussing the why - be careful, because you didnt test that
 
 ## Limitations
-
+- sample
+- content validity
+- DIF?
 - psych science - authors guide to generelizability
 - attempts to control for limitating factors
 - dont include to general/ broad critiques, but special one for my own study
