@@ -137,7 +137,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.8.4" data-path="methods.html"><a href="methods.html#measuring-technology-competency"><i class="fa fa-check"></i><b>2.8.4</b> Measuring Technology Competency</a></li>
 <li class="chapter" data-level="2.8.5" data-path="methods.html"><a href="methods.html#measuring-openness-and-conscientiousness"><i class="fa fa-check"></i><b>2.8.5</b> Measuring Openness and Conscientiousness</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="methods.html"><a href="methods.html#algorithmbased-item-selection"><i class="fa fa-check"></i><b>2.9</b> Algorithmbased Item selection</a></li>
+<li class="chapter" data-level="2.9" data-path="methods.html"><a href="methods.html#algorithm-based-item-selection"><i class="fa fa-check"></i><b>2.9</b> Algorithm based Item selection</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>3</b> Analysis</a></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
@@ -297,11 +297,11 @@ recoded items. The values for the five dimensions range from 1 to 5 (see
 Rammstedt, 2007 for reference values)</p>
 </div>
 </div>
-<div id="algorithmbased-item-selection" class="section level2 hasAnchor" number="2.9">
-<h2><span class="header-section-number">2.9</span> Algorithmbased Item selection<a href="methods.html#algorithmbased-item-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="algorithm-based-item-selection" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Algorithm based Item selection<a href="methods.html#algorithm-based-item-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The items will be selected via algorithms implemented in the stuart package in R [QUELLE].’Stuart’ can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling (Schultze, 2022).
 In classical approaches items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g. difficulty, discrimination, item-scale-correlations).The automated approach of ‘stuart’ takes the opposite perspective, of meta heuristics, by repeatedly estimating CFAs for a multitude of possible item-combinations[QUELLE]. Thus, a pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose of the final scale is estimated[QUELLE].
-I want to optimise the data literacy self rating scale for model fit and reliability (RMSEA, SRMR, CFI &amp; McDonalds ω) as well as variability in the difficulty of items.</p>
+I want to optimise the data literacy self rating scale for model fit and reliability (RMSEA, SRMR, CFI &amp; McDonalds <span class="math inline">\(\omega\)</span>) as well as variability in the difficulty of items.</p>
 <p>I use the genetic algorithm of stuart for this. Genetic algorithms are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest[QUELLE]. The algorithm selects random subsamples of items as an individual solution. Good Solutions survive and procreate. The items with the lowest fittness are erased from the generation. For the next generation, two item sets are combined to produce a “child”. Furthermore, “Mutation” adds a degree of randomness to this process. This progress is repeated until the algorithm converges into a solution that is dominant[QUELLE].</p>
 
 </div>
