@@ -146,22 +146,6 @@ parameterestimates(model_fiml)
 
 ```
 
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
 # Poweranalyse
 ```{r}
 install.packages('semPower')
@@ -231,6 +215,160 @@ semPower: A priori power analysis
  Implied Alpha/Beta Ratio  0.250242
 
 
+## Descriptive Analyses
+```{r}
+# packages
+library(tidyverse)
+library(psych)
+library(reshape2)
+library(lcsm)
+
+# import data
+#data_long <- rio::import("Data/data_long.csv")
+data_wide <- rio::import("Data/data_wide.csv")
+
+```
+
+## Sample
+```{r}
+# gender (0 = male, female = 1)
+round(prop.table(table(data_wide$female))*100, 0)
+
+# year of birth
+range(data_wide$birthyear, na.rm = TRUE)
+round(mean(data_wide$birthyear, na.rm = TRUE), 2)
+round(sd(data_wide$birthyear, na.rm = TRUE), 2)
+
+```
+
+```{r}
+# prepare subsets for my variables
+describe_age <- data_wide %>% dplyr::select(starts_with("age"))
+describe_eurod <- data_wide %>% dplyr::select(starts_with("eurod"))
+describe_finances <- data_wide %>% dplyr::select(starts_with("finances"))
+
+```
+
+```{r}
+# create table for age
+table_age <- data.frame(colMeans(is.na(describe_age)))
+colnames(table_age) <- "Age"
+rownames(table_age) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+
+# create table for EURO-D
+table_eurod <- data.frame(colMeans(is.na(describe_eurod)))
+colnames(table_eurod) <- "EURO-D"
+rownames(table_eurod) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+
+# create table for finances
+table_finances <- data.frame(colMeans(is.na(describe_finances)))
+colnames(table_finances) <- "Finances"
+rownames(table_finances) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+
+# combine tables
+table_missings <- data.frame(table_age, table_eurod, table_finances, check.names = FALSE)
+# round
+table_missings <- table_missings %>% mutate_if(is.numeric, round, digits = 2) * 100
+# add % symbol
+table_missings <- table_missings %>% 
+  mutate(across(everything(), ~paste0(., "%")))
+table_missings # print for HTML
+
+```
+
+```{r}
+# for Age
+table_descriptive_age <- round(psych::describe(describe_age), 2)
+rownames(table_descriptive_age) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+table_descriptive_age # print for HTML
+
+# for EURO-D
+table_descriptive_eurod <- round(psych::describe(describe_eurod), 2)
+rownames(table_descriptive_eurod) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+table_descriptive_eurod # print for HTML
+
+# for finances
+table_descriptive_finances <- round(psych::describe(describe_finances), 2)
+rownames(table_descriptive_finances) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+table_descriptive_finances # print for HTML
+
+```
+
+## Heatmap
+```{r}
+# for EURO-D + finances over time
+  # create correlation matrix
+both_correlations <- data_wide %>% dplyr::select(starts_with("eurod"), starts_with("finances"))
+  # rename variables for clarity
+both_correlations <- both_correlations %>% rename(
+  "EURO-D (wave 4)" = eurod.4,
+  "EURO-D (wave 5)" = eurod.5,
+  "EURO-D (wave 6)" = eurod.6,
+  "EURO-D (wave 7)" = eurod.7,
+  "EURO-D (wave 8)" = eurod.8,
+  "Finances (wave 4)" = finances.4,
+  "Finances (wave 5)" = finances.5,
+  "Finances (wave 6)" = finances.6,
+  "Finances (wave 7)" = finances.7,
+  "Finances (wave 8)" = finances.8)
+  # get correlations
+both_matrix <- round(corr.test(both_correlations, use = "pairwise")$r, 2)
+  # only use upper part of matrix
+both_matrix_lower_part <- function(both_matrix){
+  both_matrix[lower.tri(both_matrix)]<- NA
+  return(both_matrix)}
+both_matrix_up <- both_matrix_lower_part(both_matrix)
+  # reduce size of correlation matrix/long format
+both_matrix_melted <- melt(both_matrix_up, na.rm = TRUE)
+  # plotting heatmap 
+both_heatmap <- ggplot(data = both_matrix_melted, aes(Var2, Var1, fill = value)) +
+ ggtitle("Correlations - EURO-D + Finances") +
+ geom_tile(color = "white") +
+ scale_fill_gradient2(low = "blue", high = "red", mid = "white",
+   midpoint = 0, limit = c(-1,1), space = "Lab", 
+   name="Pearson\nCorrelations") +
+  theme_minimal() + 
+ theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 8, hjust = 1), axis.text.y = element_text(size = 8), plot.title = element_text(size = 12), legend.position = "right", legend.title = element_text(size = 8)) +
+ coord_fixed()
+  # add correlation coefficients
+heatmap_final <- both_heatmap + 
+geom_text(aes(Var2, Var1, label = value), color = "black", size = 2.5) +
+theme(
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.border = element_blank(),
+  panel.background = element_blank(),
+  axis.ticks = element_blank(),
+  legend.justification = c(1, 0),
+  legend.position = c(0.6, 0.7),
+  legend.direction = "horizontal")+
+  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+                title.position = "top", title.hjust = 0.3))
+heatmap_final # print for HTML
+
+# check p-values
+both_matrix_p <- round(corr.test(both_correlations, use = "pairwise")$p, 5)
+both_matrix_p # print for HTML
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
 
 # Stuart - Item selection
 ## Sample split
@@ -298,16 +436,20 @@ gene(
 # threshhold for reliability
 # correlations?
 # variance in item difficulty - via intercepts?? -> intercepts  matrix in lavaan 
+# "meanstructure" ?
 
 # Define a matrix for item intercepts per factor
 # Assuming a structure of 4 factors with 4 items each for simplicity
-interceptsMatrix <- matrix(c(5, 4, 2, 1,  # Factor 1 items
-                             5, 4, 2, 1,  # Factor 2 items
-                             5, 4, 2, 1,  # Factor 3 items
-                             5, 4, 2, 1), # Factor 4 items
-                           nrow = 4, byrow = TRUE,
-                           dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
-                                           c("Factor1", "Factor2", "Factor3", "Factor4")))
+# Mu?
+# interceptsMatrix
+lvMu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
+                 5, 4, 2, 1,  # Factor 2 items
+                 5, 4, 2, 1,  # Factor 3 items
+                 5, 4, 2, 1,  # Factor 4 items
+                 5, 4, 2, 1), # Factor 5 items
+                 nrow = 4, byrow = TRUE,
+                 dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
+                                 c("Factor1", "Factor2", "Factor3", "Factor4", "Factor5")))
 
 
 fixedobjective(
@@ -320,26 +462,26 @@ fixedobjective(
   comparisons = NULL
 )
 
-#Fixed STUART objective function with:
-
-#1 * pnorm(rmsea, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(srmr, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(crel, 0.8, 0.075, lower.tail = TRUE)
-
-
-
-
 # matritzen mit objectivematrices function
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
 
 
-#stuart:::objective.preset + interceptsMatrix
-#function (chisq, df, pvalue, rmsea, srmr, crel,interceptsMatrix) 
-#{
- #   1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
-  #      (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
-   #     0.06)))))
-#}
 
 
+#Fixed STUART objective function with:
+
+#1 * pnorm(rmsea, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(srmr, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(crel, 0.8, 0.075, lower.tail = TRUE)
+
+####stuart:::objective.preset + interceptsMatrix
+obj.preset <- function (chisq, df, pvalue, rmsea, srmr, crel,lvMu) 
+{
+    1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+    (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06)))))
+}
+###################### 
+obj <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel,lvMu) {
+  (1-rmsea) + (1-srmr) 
+}
 
 ```
 
@@ -352,8 +494,12 @@ data(data)
 
 ########################################################
 # Simple example from gene
-fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
-sel <- gene(split, fs, 3, cores = 1)  # number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores
+fs <- listlist(faktor1 =c('item1','item2','item3',.....),
+            faktor2 = c('item17', 'item18','item19',....),
+           faktor3 = c('item27', 'item28','item29',....),
+           faktor4 = c('item37', 'item38','item39',....)
+           ) # adapt the names for the respective factors and items
+sel <- gene(split, fs, 4, objective = obj, cores = 1, seed = 2024)  # number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores
 
 ############ k-Folding #########################
 
@@ -372,12 +518,13 @@ sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
 #########################################################
 summary(sel)
 
+inspect(sel$final, 'est')
+inspect(sel$final, 'fit')
+
+lavaan::summary(sel$final, standardized = TRUE) # adapt final as name ggf
+
 # Crossvalidation
 crossvalidate(sel, split)
-
-```
-
-```{r}
 
 ```
 

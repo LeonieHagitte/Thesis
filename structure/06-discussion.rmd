@@ -2,6 +2,16 @@
 
 ## Summarising the results
 
+Everything worked - what do I need to report?
+First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g. Jackson et al., 2009). To have a clear structure, answer the following questions:
+How large was the original item pool and how was it created?
+What is the structure of the scale?
+Which algorithm was used (or bruteforce)?
+Which objective function was used?
+How stable is the final variant?
+How was the final variant further validated (e.g. crossvalidate, k-fold)?
+
+
 ## What does it all mean / "Why?"
 
 - Start with the research question
