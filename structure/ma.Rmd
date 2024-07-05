@@ -1,4 +1,57 @@
 ---
+title: "Development of a German Instrument for Self-Rated Data Literacy"
+author: "Leonie Hagitte"
+date: "`r Sys.Date()`"
+output: pdf_document
+site: bookdown::bookdown_site
+documentclass: article
+bibliography:
+- packages.bib
+- literature.bib
+csl: apa7.csl
+link-citations: true
+description: ''
+fontsize: 12pt
+linestretch: 1.2
+geometry: left=3.9cm, right=3.3cm, top=2.5cm, bottom=3cm
+papersize: a4
+classoption: twoside
+repro:
+  packages:
+  - devtools
+  - here
+  - aaronpeikert/repro@adb5fa56
+  - bookdown
+  - usethis
+  - gert
+subtitle: "An Algorithm-based Approach to Scale Development"
+---
+\newpage\null\thispagestyle{empty}\newpage
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = ">"
+)
+```
+
+# Abstract {-}
+
+```{r child='abstract.Rmd'}
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Acknowledgements {-}
+
+I dedicate this thesis to 
+
+I want to thank my advisers, Prof. Martin Schultze, Prof. Timo Lorenz, and Prof. Manuel Völkle for their time and patience, and my friends for their resourceful advice:
+
+\newpage\null\thispagestyle{empty}\newpage
+
+<!--chapter:end:acknowledgements.Rmd-->
+
+---
 output:
   pdf_document: default
   html_document: default
@@ -84,4 +137,218 @@ The aim was to derive a comprehensive definition of data literacy based on exist
 *Hypothesis 4: A moderate to high positive correlation with the the ICT-SC25 (Schauffel et al., 2021) is expected.*  
 *Hypothesis 5: A small to moderate positive correlation with the NFC-K (Beißert et al., 2015) is expected.*  
 *Hypothesis 6: A small to moderate positive correlation with the the BFI-10 (Rammstedt et al., 2014) is expected.*  
+
+
+<!--chapter:end:02-background.Rmd-->
+
+# Methods
+
+## Item Creation  
+A literature review was done to create items and then ten cognitive interviews were held to refine those potential items. The interviews were administered iteratively to refine the items every time a bit more. We will treat the first 25 participants like a pilot, to check for potential problems in the survey.
+
+## Rationale for Measurement Model
+One decision that needs to be done by the researcher before the item selection with 'stuart', is the design of the measurement model, or how many items per factor the final scale should have.
+This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.
+
+## Sample 
+
+The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail) Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R (Moshagen & Bader, 2023) and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for N=645, and a simulated estimate N=613, for the respective measurement model. In the literature sample sizes of N=500 up to N=1000 could be found (Algner & Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024). So the optimal sample size, we are aiming at, lies somewhere between those numbers.
+
+Participants had to be of legal age, to be included in the study. Furthermore, attention check questions are included (three instructed response items and one seriousness check item, at the end) within the survey to assess participants' attentiveness. Participants who fail to correctly answer two out of the four attention check questions will be excluded from the analysis.
+
+The sample for this study comprised XXX participants (M=, SD=). Within the sample, XXX% identified as female(xx%), XXX% as male(xx%), and xxx% did not identify with binary gender categories. The average age was XX(M=, SD=), with an average age of XX amongst women (CXX) and XX amongst men(XXX). Regarding education, participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. The study encompassed every sector within the occupational classification (Bundesagentur für Arbeit, 2020), ensuring comprehensive representation. 
+
+## Open Science Standards 
+This project uses the reproducibility workflow proposed by @Peikert2021. Docker and renv work together to create a reproducible and portable environment. Docker captures the complete software stack, while renv focuses on
+managing R package dependencies and providing a clear documentation of the R
+package environment. This combination ensures that your analysis can be easily
+reproduced and shared with others in a reliable and transparent manner.
+The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
+
+## Procedure
+A cross-sectional online survey is used to examine a sample from the general population. Participants complete the Self-perceived Data Literacy Scale alongside demographic questions and additional validation measures. Survey questions of each measurement are randomized for each participant to minimize order effects and response biases. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire are randomly selected for each participant. That way each participant only answers half of the possible items, the other half are planned missings. 
+
+## Instruments  
+### Measuring Data Literacy
+On Data Literacy the participants will be asked to answer 71
+items. Each participant will answer 38 items of the 71, that are randomly selected.
+To answer the items, respondents indicate their agreement on a five-point Likert
+scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor
+disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know”
+option.
+
+### Measuring Information Literacy
+The SWE-IV-16 (Behm, 2018) assesses the self-efficacy beliefs
+of adolescents and adults in their ability to engage in information behaviour. This
+questionnaire measures the process model of information-related problem-solving
+(Brand-Gruwel et al., 2009). In this study this construct is used as a proxy for information literacy.
+It consists of 16 statements addressing self-assessed
+abilities in searching for and evaluating information, as well as managing
+information searches effectively. Each statement begins with "When I search for
+information on a topic or a specific question..." and respondents indicate their
+agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat
+disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly
+agree”). The total scale value is computed as the arithmetic
+mean of the items, which may be inverted if necessary. Calculation of the total value
+requires valid responses to at least 12 of the 16 items. I expect the final questionnaire to correlate moderately up to highly positive with the SWE-IV-16 (Behm, 2018), measuring peoples ability to engage in information behaviour.
+
+### Measuring Need for Cognition
+The NFC-K (Beißert et al., 2015) is a tool used to assess the
+NFC through four items, which represent two facets: "engagement" and “joy". The
+NFC-K is measured with a seven-point response scale, ranging from "strongly
+disagree" (1) to "strongly agree" (7), with a "neither" option in the middle. The
+German version of the scale is adapted from the original English scale by Cacioppo
+and Petty (1982) and translated by Bless et al. (1994). To determine an individual's NFC score, a mean value
+(scale value) is computed from the four raw score points of the responses. The
+resulting mean values range between 1 and 7. I expect a small to moderate positive correlation with the NFC-K (Beißert et al., 2015), assessing the Need for Cognition (NFC).
+
+### Measuring Technology Competency
+To assess self-perceived competence in using information and
+communication technology (ICT), the five general items of the ICT-SC25 (Schauffel
+et al., 2021) will be used. The ICT-SC25 is a scale consisting of 25 items designed to
+assess self-perceived competence in using information and communication
+technology. It is available in both German (ICT-SC25g) and English (ICT-SC25e). The
+scale measures general and domain-specific ICT competence, including
+communication, processing and storing, content generation, safe application, and
+problem-solving skills. Items are measured using a six-point fully-labeled Likert-type
+rating scale ranging from strongly disagree (1) to strongly agree (6). Researchers can choose to 
+utilise either the entire scale or individual subscales based on their specific research objectives. The ICT-SC25g/e
+is applicable for both manifest and latent analysis. Manifest scale scores for the ICT-
+SC25g/e are calculated separately for each subscale by computing the unweighted
+mean score of the items within each subscale (Schauffel et al., 2021). I expect a moderate, positive correlation of the final scale with the five general items of the ICT-SC25 (Schauffel et al., 2021).
+
+### Measuring Openness and Conscientiousness
+The BFI-10 (Rammstedt et al., 2014) will be used to assess
+personality based on the five-factor model. Only the items on openness and
+conscientiousness were assessed.
+The items are answered on a five-point rating scale from "strongly disagree" (1) to
+"strongly agree" (5). To measure the respondent's individual traits on the five
+personality dimensions, the responses to the two items for each dimension are
+averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then
+the mean value is calculated for each dimension from both the recoded and non-
+recoded items. The values for the five dimensions range from 1 to 5 (see
+Rammstedt, 2007 for reference values). I expect small to moderate positive correlations with openness and conscientiousness of the BFI-10 (Rammstedt et al., 2014). 
+
+
+
+
+
+
+
+<!--chapter:end:03-methods.Rmd-->
+
+# Analysis
+
+## data quality 
+Careless or inattentive response patterns as well as outliers were analyzed by multiple mechanisms ... 
+
+## Meta-Heuristics
+Algorithm-based item selection is used to choose the most relevant items, reducing the initial item pool. In classical approaches items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g. difficulty, discrimination, item-scale-correlations).
+Compared to classical approaches, algorithms are more objective and efficient in finding a good or nearly perfect solution with regard to certain crteria (Leite et al., 2008; Olaru et al., 2015). Furthermore, some empirical studies suggest that the use of algorithms leads to similar or better results in scale construction than traditional approaches (Sandyet al., 2014; Schroeders et al., 2016; Olaru and Danner, 2021). The automated approach takes the opposite perspective to the classical approach, the one of meta heuristics, by repeatedly estimating CFAs for a multitude of possible item-combinations[QUELLE]. Thus, a pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose of the final scale is estimated[QUELLE].Thus, the selection of items and construction of a questionnaire can be viewed as a combinatorial problem, like the knapsack problem (“Choose a set of objects, each having aspecific weight and monetary value, so that the value is maximized and the total weight does not exceed a predetermined limit;”Schroeders et al., 2016, p. 4; Kerber et al., 2022).
+
+'Stuart' can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling (Schultze, 2022). Those meta-heuristics like are utilized to handle these combinatorial optimization problems. 
+For this study, a set of 20 items from a set of 71 items should be selected, to form a questionnaire. I want to optimize the data literacy self rating scale for model fit criteria and composite reliability (RMSEA, SRMR, CFI & McDonalds $\omega$) as well as variability in the difficulty of items. Those criteria will be defined in the objective function in ‘stuart’ (Schultze, 2020). 
+
+I use the genetic algorithm of stuart for this. Genetic algorithms are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest(Holland, 1992; Schroeders et al.,2016). With the genetic algorithm, the initial set of 71 items is to be reduced based on the evolutionary process of selection, but opposing to evolution with a goal: A near-optimal "solution". The survival of an item is determined by its quality (called “fitness”;Galán et al., 2013). The algorithm is build on two processes: Variation(i.e. recombination and mutation) and selection. Variation rewards diversity an innovation of items, whereas selection rewards quality or fitness. The algorithm links "genes" (i.e. items), that represent a certain variable, to a "chromosome" (i.e. a set of items). A predefined number of chromosomes are randomly generated from the 1st generation (i.e. the original item pool). The algorithm tries to maximize the psychometric quality of the "chromosomes"( i.e. item sets) by evaluating the "chromosomes"( i.e. item sets) against a “fitness”function. Based on this fitness function, the fittest "chromosomes"(i.e. item sets) of each generation are determined, which then form the basis for the next generation (forming the selection process). The process of variation establishes genetic diversity and mutation within the generations by spontaneously exchanging items within a scale or between two scales. This adds a degree of randomness to the selection process. This is done a predefined number of iterations. This way the fittest "chromosome"(i.e. set of items), with the highest quality, is to be identified (Schroeders et al., 2016). 
+
+## Validation
+The provided sample will be divided into subsets using the ‘holdout' function in ‘stuart’. The specified item-selection procedure will be then applied to the training dataset. It will then be evaluated against the testing dataset. 
+
+The training data set will be k-folded using the ‘kfold’ function in ‘stuart’
+
+Validation will be conducted using the ‘crossvalidate’ function in ‘stuart’ to assess the invariance of the measurement models between the training and testing datasets. Invariance levels will be measured with  the ‘max.invariance' function. Invariance will be necessary to claim that the scale validation has worked.  
+Construct validity is evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs.
+
+
+residuals
+correlates or the residuals for the adjacent constructs
+
+<!--chapter:end:04-analysis.Rmd-->
+
+# Results
+
+## Demographic Results  
+
+On average, participants were working (M/SD). On average, participants were studying (M/SD). Descriptives and Correlations 
+Table XX 
+presents descriptive statistics, McDonald’s $\omega$ ,
+Cronbach’s $\alpha$ and the correlation matrix for the respective variables.  
+The data literacy scale correlated XXX with the SWE-IV-16(r = , p ). The data literacy scale correlated XXX with the NFC-K(r = , p ). The data literacy scale correlated XXX with the the general items of the ICT-SC25(r = , p ). The data literacy scale correlated XXX with the openness of the BFI-10(r = , p ). The data literacy scale correlated XXX with conscientiousness of the BFI-10(r = , p ). The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures #a similar, yet distinct concept#.
+
+## Model Fit and Latent Structure in the Construction Sample  
+
+The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits good model fit with Satorra-Bentler-$X^{2}$ (XXX, N = XXX) = XXX, p = XXX,CFI = XXX, TLI = XXX, SRMR = XXX, RMSEA = XXX, 90%-CIRMSEA [XXX; XXX]. 
+Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
+All factor loadings including standard errors can be found in the Supplementary Material. 
+
+## Model Fit and Latent Structure in the Validation Sample
+Cross-validation with the second half of the data indicated that the assumption of XXXX measurement invariance holds across the XXX subsamples: $X^{2}$(XXX) = XXX, p < XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; $X^{2}$ = XXX, df = XX, p = 0.XXXX. 
+
+
+
+
+<!--chapter:end:05-results.Rmd-->
+
+# Discussion
+
+## Summarising the results
+
+Everything worked - what do I need to report?
+First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g. Jackson et al., 2009). To have a clear structure, answer the following questions:
+How large was the original item pool and how was it created?
+What is the structure of the scale?
+Which algorithm was used (or bruteforce)?
+Which objective function was used?
+How stable is the final variant?
+How was the final variant further validated (e.g. crossvalidate, k-fold)?
+
+
+## What does it all mean / "Why?"
+
+- Start with the research question
+  - Maybe then towards the hypotheses
+- connecting findings to the related theories
+- very related/ current literature first, than broader is possible
+- When discussing the why - be careful, because you didnt test that
+
+## Limitations
+- sample
+- content validity
+- DIF?
+- psych science - authors guide to generelizability
+- attempts to control for limitating factors
+- dont include to general/ broad critiques, but special one for my own study
+
+## Future directions
+
+########################################
+
+- what to optimize the scale for?
+- dynamic fit indices
+- factors 4 and 5
+    - adaptive testing/ IRT
+        - dimensionality assumption and computationally intense
+    - CART - tree based adaptive testing (classification trees) always binary split
+        - gini index to identify the cut off 
+        - POMP method - for differing number of answer formats
+- residuals correlates 
+- heterogeneity of construct 
+
+The heterogeneous nature of the construct complicates global instrument development and understanding across all participants. The measure is designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction we aim to improve in future studies.
+
+
+Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003).
+
+<!--chapter:end:06-discussion.Rmd-->
+
+# References {-}
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'repro', 'here', 'usethis', 'gert', 'credentials'
+), 'packages.bib')
+```
+
+<!--chapter:end:references.Rmd-->
 
