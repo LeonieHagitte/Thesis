@@ -32,6 +32,8 @@ How was the final variant further validated (e.g. crossvalidate, k-fold)?
 
 ########################################
 
+Construct validity is evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs
+
 - what to optimize the scale for?
 - dynamic fit indices
 - factors 4 and 5
