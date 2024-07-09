@@ -442,6 +442,7 @@ gene(
 # Assuming a structure of 4 factors with 4 items each for simplicity
 # Mu?
 # interceptsMatrix
+# int.ov 
 lvMu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
                  5, 4, 2, 1,  # Factor 2 items
                  5, 4, 2, 1,  # Factor 3 items
@@ -467,7 +468,6 @@ fixedobjective(
 
 
 
-
 #Fixed STUART objective function with:
 
 #1 * pnorm(rmsea, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(srmr, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(crel, 0.8, 0.075, lower.tail = TRUE)
@@ -484,6 +484,7 @@ obj <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel,lvMu) {
 }
 
 #######################
+#ordinal data
 objective.normal <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, lvMu) {
   out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
   out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
