@@ -483,6 +483,15 @@ obj <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel,lvMu) {
   (1-rmsea) + (1-srmr) 
 }
 
+#######################
+objective.normal <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, lvMu) {
+  out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
+  out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
+  out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
+  out = (out1 + out2 + out3)/3
+  return(out)                                
+}
+
 ```
 
 ## Crossvalidation or kfold-Crossvalidation

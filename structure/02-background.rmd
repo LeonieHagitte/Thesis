@@ -59,7 +59,7 @@ Our definition incorporates statistical literacy [@Gal2002] by emphasizing data 
 In contrast to our definition, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing [@Gal2002]. Our definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While information literacy involves assessing the quality of information sources, our definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy [@ACRL2000] and is more specific to data literacy. Data literacy involves proficiency in using technology, but specifically focuses on understanding and working with data. Technology competency encompasses a broader set of digital skills that extend beyond those relevant for data literacy.
 
 ```{r nomnet, eval = TRUE, echo = FALSE, fig.cap="Illustration of the nomological net of data literacy.  ", out.width="100%", fig.align="center"}
-knitr::include_graphics("images/DL_Nomological_Net.png", auto_pdf = TRUE)
+knitr::include_graphics("images/DL_NomNet.png", auto_pdf = TRUE)
 ```
 
 ## Discrimminant Constructs    
