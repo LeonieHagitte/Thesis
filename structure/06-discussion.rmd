@@ -28,6 +28,17 @@ How was the final variant further validated (e.g. crossvalidate, k-fold)?
 - attempts to control for limitating factors
 - dont include to general/ broad critiques, but special one for my own study
 
+This study's results should be interpreted with the following limitations in mind. 
+As shown in the demographic variables, the sample of this study deviated from the 
+general public in several points. Thus, this study might not have reached a representative sample
+and therefore lack generalizability. Also it is to be kept in mind that this influences the 
+item pool selected, because this is specifically trained on the sample of this study. 
+Furthermore the training data set and the testing data set are of different size, which 
+can influence the MI testing (Chen,2007). Additionally, the sample sizes, although appropriate, ideally could have been larger and are on the lower threshold of the prior poweranalysis (e.g., Kass andTinsley, 1979; Hu and Bentler, 1999). 
+Although the questionnaire exhibited good model fit, it is to be kept in mind 
+that algorithm based item selection is essentially a heuristic approach and does not 
+always result in the best solution there is. 
+
 ## Future directions
 
 ########################################
