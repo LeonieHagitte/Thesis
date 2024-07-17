@@ -1,0 +1,3 @@
+Analysis.html: Analysis.Rmd
+	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
+

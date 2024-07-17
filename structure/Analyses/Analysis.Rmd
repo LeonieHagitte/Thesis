@@ -249,6 +249,9 @@ str(df3)
 # Exclude columns 2, 4, 5, 6, 7, 8 and keep only up to column 119
 df3 <- df3[, -c(2, 4, 5, 6, 7, 8)]
 
+# Exclude the ATCs
+df3 <- df3[, !(names(df3) %in% c("ATC1", "ATC2"))]
+
 ```
 
 ```{r}
@@ -264,51 +267,57 @@ df3 <- df3[, -c(2, 4, 5, 6, 7, 8)]
 ```
 
 # checking for the Pattern of Missings
-Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the 
-missing data.
-```{r}
-
-```
+Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data. 
 
 ## NAs FIMLn
 ```{r}
+df_dl <- df3[, 3:71]
+# Load the lavaan package
 library(lavaan)
-model_fiml <- sem('
-                # Measurement model
-                y1 =~ x1 + x2 + x3 + x4
-                y2 =~ x5 + x6 + x7 + x8
-                y3 =~ x9 + x10 + x11 + x12
-                y4 =~ x13 + x14 + x15 + x16
-                y5 =~ x17 + x18 + x19 + x20
-                
-                # Factor variances
-                y1 ~~ y1
-                y2 ~~ y2
-                y3 ~~ y3
-                y4 ~~ y4
-                y5 ~~ y5
-                
-                # Factor correlations
-                y1 ~~ y2
-                y1 ~~ y3
-                y1 ~~ y4
-                y1 ~~ y5
-                y2 ~~ y3
-                y2 ~~ y4
-                y2 ~~ y5
-                y3 ~~ y4
-                y3 ~~ y5
-                y4 ~~ y5
-              ', data = df_subset, missing = 'fiml', fixed.x = F) 
+
+# Model specification
+model <- '
+# Measurement model
+y1 =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
+y2 =~ F2F1 + F2F2 + F2F3 + F2F4 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F17 + F2F18 + F2F19 + F2F20
+y3 =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
+y4 =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
+y5 =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
+
+# Factor variances
+y1 ~~ y1
+y2 ~~ y2
+y3 ~~ y3
+y4 ~~ y4
+y5 ~~ y5
+
+# Factor correlations
+y1 ~~ y2
+y1 ~~ y3
+y1 ~~ y4
+y1 ~~ y5
+y2 ~~ y3
+y2 ~~ y4
+y2 ~~ y5
+y3 ~~ y4
+y3 ~~ y5
+y4 ~~ y5
+'
+
+# Fit the model using FIML for missing data
+fit <- sem(model, data=df_dl, missing="fiml", em.h1.iter.max=10000)
 # fixed.x = F. FIML works by estimating the relationships of the variables with each other and requires estimating the means and variances of the variables. If fixed.x = T (the default), then the variances and covariances are fixed and are based on the existing sample values and are not estimated.
-summary(model_fiml)
-parameterestimates(model_fiml)
-
+# Summary of the fit
+summary(fit)
 ```
 
+## or using mice?
 ```{r}
-
+imputedData <- mice(df_dl, m=5, method='pmm', maxit=50)
+completedData <- complete(imputedData, 1)
 ```
+
+
 
 # Poweranalyse
 ```{r}
@@ -387,9 +396,8 @@ library(psych)
 library(reshape2)
 library(lcsm)
 
-# import data
 # Create a subset of df3 with columns 104 to 112
-demographics <- df3[, 104:112]
+demographics <- df3[, 102:111]
 
 ```
 
@@ -407,9 +415,14 @@ round(sd(demographics$Age, na.rm = TRUE), 2)
 
 ```{r}
 # prepare subsets for my variables
-describe_age <- data_wide %>% dplyr::select(starts_with("age"))
-describe_eurod <- data_wide %>% dplyr::select(starts_with("eurod"))
-describe_finances <- data_wide %>% dplyr::select(starts_with("finances"))
+describe_age <- demographics %>% dplyr::select(starts_with("Age"))
+describe_gender <- demographics %>% dplyr::select(starts_with("Gender"))
+describe_education <- demographics %>% dplyr::select(starts_with("Education"))
+describe_study <- demographics %>% dplyr::select(starts_with("Study"))
+describe_degree <- demographics %>% dplyr::select(starts_with("Degree"))
+describe_workfilter <- demographics %>% dplyr::select(starts_with("Workfilter"))
+describe_worktime <- demographics %>% dplyr::select(starts_with("Worktime"))
+describe_occupation <- demographics %>% dplyr::select(starts_with("Occupation"))
 
 ```
 
@@ -529,44 +542,132 @@ both_matrix_p # print for HTML
 
 ```
 
+## Filter for the partial completes
 ```{r}
+# Splitting df3 into two datasets based on the "lastpage" variable
+df4 <- subset(df3, lastpage == 13)
+df_partial <- subset(df3, lastpage != 13)
 
 ```
-
 
 # Stuart - Item selection
 ## Sample split
 ```{r}
 library(stuart)
-###########################
-data()
-
-split <- holdout(data, prop = c(0.8, 0.20), grouping = NULL, seed = 2024, determined = NULL)
+#, 0.4525
+split <- holdout(df4, prop = 0.5475, grouping = NULL, seed = 2024, determined = NULL)
 lapply(split, nrow) #check size of sample
+
+# Accessing the split datasets
+df_train <- split$calibrate
+df_test <- split$validate
+
+# Remove the 'determined' column by setting it to NULL
+df_train$determined <- NULL
+df_test$determined <- NULL
+
+# adding the partially completed ones to the df train
+df_train <- rbind(df_train, df_partial)
+
+# exclude everything exept the dl items
+df_train <- df_train[,3:71]
 
 ```
 
+## Objective-Function
+```{r}
+library(stuart)
+data(df_dl)
+
+# Define the theoretical nu matrix 
+theoretical_nu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
+                      5, 4, 2, 1,  # Factor 2 items
+                      5, 4, 2, 1,  # Factor 3 items
+                      5, 4, 2, 1,  # Factor 4 items
+                      5, 4, 2, 1), # Factor 5 items
+                    nrow = 4, byrow = TRUE,
+                    dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
+                                    c("Factor1", "Factor2", "Factor3", "Factor4", "Factor5")))
+
+# Convert the matrix to a vector
+nu_vector <- c(theoretical_nu)
+
+# Calculate the standard deviation of the vector
+ideal_sd <- sd(nu_vector)
+
+# Print the ideal standard deviation
+print(ideal_sd) #1.62
+
+# Use 'ideal_sd' in my objective function
+#ordinal data
+obj <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, nu) {
+  out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
+  out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
+  out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
+  out4 = -(sd(nu) - 1.62)^2 + 1.62^2 # Quadratic function peaking at 'ideal_sd'
+  out = (out1 + out2 + out3 + out4)/4
+  return(out)                                
+}
+
+```
+
+```{r}
+
+fs<-list(Comprehension=c('F1F1','F1F2','F1F3','F1F4','F1F5','F1F6','F1F7','F1F8',
+                           'F1F9','F1F10','F1F11','F1F12','F1F13','F1F14'),
+           Evaluation=c('F2F1','F2F2','F2F3','F2F4','F2F5','F2F6','F2F7','F2F8',
+                        'F2F9','F2F10','F2F11','F2F12','F2F13','F2F14','F2F15',
+                        'F2F16','F2F17','F2F18','F2F19','F2F20'),
+           Integration=c('F3F1','F3F2','F3F3','F3F4','F3F5','F3F6','F3F7','F3F8','F3F9'),
+           Communication=c('F4F1','F4F2','F4F3','F4F4','F4F5','F4F6','F4F7','F4F8'),
+           Statistics=c('F5F1','F5F2','F5F3','F5F4','F5F5','F5F6','F5F7','F5F8',
+                        'F5F9','F5F10','F5F11','F5F12','F5F13','F5F14','F5F15',
+                        'F5F16','F5F17','F5F18')
+                           )
+```
+
 ## Genetic Algorithm
+### Kfold-Crossvalidation
+```{r}
+
+############ k-Folding #########################
+
+# erster der holdout wird an kfold weitergegeben
+
+kfold_sel <- kfold('gene', k = 3, #gene #how to arrive at number of folds?
+  data = df_train, 
+  factor.structure = fs,
+  max.invariance = "scalar", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
+  capacity = 4, 
+  seed = 2024, #what does the "capacity" do?
+  seeded.search = TRUE,
+  remove.details = TRUE,
+  cores = 1) #what does the "cores" do?
+#########################################################
+summary(sel)
+
+inspect(sel$final, 'est')
+inspect(sel$final, 'fit')
+
+lavaan::summary(sel$final, standardized = TRUE) # adapt final as name ggf
+summary(selection)
+
+lavaan::inspect(selection$final, 'est')$nu
+```
+
 ```{r}
 library(stuart)
 # mmas freier in der spezifikation, variabler
 # kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
 
 gene(
-  data,                 # Your data frame containing the observed variables
-  factor.structure,     # A list defining the factor structure of your model
-  capacity = NULL,      # Optional, capacity constraint for factors
-  item.weights = NULL,  # Optional, initial weights for each indicator
-  item.invariance = "congeneric",  # Specify the type of invariance assumption for items
-  repeated.measures = NULL,        # Optional, specify repeated measures design
-  grouping = NULL,                 # Optional, specify grouping variable for multigroup analysis
-  group.invariance = "strict",     # Specify the type of invariance assumption for multigroup analysis
-  comparisons = NULL,              # Optional, specify comparisons for multigroup analysis
+  df_dl,                 # Your data frame containing the observed variables
+  factor.structure <- fs, # A list defining the factor structure of your model
+  capacity = 4,      # Optional, capacity constraint for factors
   auxiliary = NULL,                # Optional, specify auxiliary variables
-  use.order = FALSE,               # Whether to use order constraints
   software = "lavaan",             # Specify the SEM software to be used
-  cores = NULL,                    # Number of CPU cores to be used for parallel processing
-  objective = NULL,                # Optional, specify a custom objective function
+  cores = 1,                    # Number of CPU cores to be used for parallel processing
+  objective = obj,                # Optional, specify a custom objective function
   ignore.errors = FALSE,           # Whether to ignore errors during fitness evaluation
   burnin = 5,                      # Number of generations for burn-in phase
   generations = 256,               # Total number of generations
@@ -589,13 +690,14 @@ gene(
   schedule = "run",                 # Schedule for genetic algorithm
   analysis.options = NULL,          # Additional options for analysis
   suppress.model = FALSE,           # Whether to suppress model output
-  seed = NULL,                      # Seed for random number generation
-  filename = NULL                   # Optional, filename for saving results
+  seed = 2024,                      # Seed for random number generation
+  filename = itemselection                   # Optional, filename for saving results
 )
+
 
 ```
 
-## Objective-Function
+## Objective-Function ideas
 ```{r}
 # threshhold for reliability
 # correlations?
@@ -607,15 +709,6 @@ gene(
 # Mu?
 # interceptsMatrix
 # int.ov 
-lvMu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
-                 5, 4, 2, 1,  # Factor 2 items
-                 5, 4, 2, 1,  # Factor 3 items
-                 5, 4, 2, 1,  # Factor 4 items
-                 5, 4, 2, 1), # Factor 5 items
-                 nrow = 4, byrow = TRUE,
-                 dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
-                                 c("Factor1", "Factor2", "Factor3", "Factor4", "Factor5")))
-
 
 fixedobjective(
   criteria = c("rmsea", "srmr", "crel"), #rel ohne"c" für einzelne faktoren 
@@ -629,80 +722,19 @@ fixedobjective(
 
 # matritzen mit objectivematrices function
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
-
-
-
-#Fixed STUART objective function with:
-
-#1 * pnorm(rmsea, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(srmr, 0.05, 0.015, lower.tail = FALSE) + 1 * pnorm(crel, 0.8, 0.075, lower.tail = TRUE)
-
-####stuart:::objective.preset + interceptsMatrix
-obj.preset <- function (chisq, df, pvalue, rmsea, srmr, crel,lvMu) 
-{
-    1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
-    (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06)))))
-}
-###################### 
-obj <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel,lvMu) {
-  (1-rmsea) + (1-srmr) 
-}
-
-#######################
-#ordinal data
-objective.normal <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, lvMu) {
-  out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
-  out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
-  out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
-  out = (out1 + out2 + out3)/3
-  return(out)                                
-}
-
 ```
 
-## Crossvalidation or kfold-Crossvalidation
+
+  # Normalize or scale avg_variance if necessary to align with the scale of out1, out2, out3
+  # This is a placeholder; adjust scaling based on your specific needs
+  out4 = avg_variance / 10 # Example scaling, adjust as needed
+
+
+
 ```{r}
-
-# Using the 'holdout' function for data split
-data(data)
-# split was defined above!
-
-########################################################
-# Simple example from gene
-fs <- listlist(faktor1 =c('item1','item2','item3',.....),
-            faktor2 = c('item17', 'item18','item19',....),
-           faktor3 = c('item27', 'item28','item29',....),
-           faktor4 = c('item37', 'item38','item39',....)
-           ) # adapt the names for the respective factors and items
-sel <- gene(split, fs, 4, objective = obj, cores = 1, seed = 2024)  # number of cores set to 1 - anzahl über N pro gen unsinnig, default nimmt alle cores
-
-############ k-Folding #########################
-
-# erster der holdout wird an kfold weitergegeben
-
-data(data)
-fs <- list(ra = names(data)[53:57]) # adapt the columns for the respective factor columns
-
-sel <- kfold('gene', k = 5, #gene/mmas #how to arrive at number of folds?
-  data = data, factor.structure = fs,
-  max.invariance = "scalar", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
-  capacity = 3, seed = 2024, #what does the "capacity" do?
-  seeded.search = TRUE,
-  remove.details = TRUE,
-  cores = 1) #what does the "cores" do?
-#########################################################
-summary(sel)
-
-inspect(sel$final, 'est')
-inspect(sel$final, 'fit')
-
-lavaan::summary(sel$final, standardized = TRUE) # adapt final as name ggf
 
 # Crossvalidation
 crossvalidate(sel, split)
-
-```
-
-```{r}
 
 ```
 
