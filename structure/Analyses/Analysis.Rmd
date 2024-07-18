@@ -18,6 +18,21 @@ usethis::use_git_config(
 
 ```
 
+```{r, echo=FALSE}
+library(renv)
+library(tidyverse)
+library(psych)
+library(reshape2)
+library(lcsm)
+library(dplyr)
+library(mice)
+library(readr)
+library(lavaan)
+library(semPower)
+library(stuart)
+
+```
+
 # Reproducibility 
 ```{r}
 if(!requireNamespace("remotes"))
@@ -254,20 +269,11 @@ df3 <- df3[, !(names(df3) %in% c("ATC1", "ATC2"))]
 
 ```
 
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
 # checking for the Pattern of Missings
 Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data. 
+```{r}
+
+```
 
 ## NAs FIMLn
 ```{r}
@@ -312,12 +318,10 @@ summary(fit)
 ```
 
 ## or using mice?
-```{r}
+```{r, echo=FALSE}
 imputedData <- mice(df_dl, m=5, method='pmm', maxit=50)
 completedData <- complete(imputedData, 1)
 ```
-
-
 
 # Poweranalyse
 ```{r}
@@ -415,14 +419,49 @@ round(sd(demographics$Age, na.rm = TRUE), 2)
 
 ```{r}
 # prepare subsets for my variables
-describe_age <- demographics %>% dplyr::select(starts_with("Age"))
-describe_gender <- demographics %>% dplyr::select(starts_with("Gender"))
-describe_education <- demographics %>% dplyr::select(starts_with("Education"))
-describe_study <- demographics %>% dplyr::select(starts_with("Study"))
-describe_degree <- demographics %>% dplyr::select(starts_with("Degree"))
-describe_workfilter <- demographics %>% dplyr::select(starts_with("Workfilter"))
-describe_worktime <- demographics %>% dplyr::select(starts_with("Worktime"))
-describe_occupation <- demographics %>% dplyr::select(starts_with("Occupation"))
+describe_age <- demographics %>%
+  dplyr::select(starts_with("Age")) %>%
+  mutate_all(as.numeric)
+
+describe_gender <- demographics %>%
+  select(starts_with("Gender")) %>%
+  mutate_all(as.numeric)
+
+describe_education <- demographics %>%
+  select(starts_with("Education")) %>%
+  mutate_all(as.numeric)
+
+describe_degree <- demographics %>%
+  select(starts_with("Degree")) %>%
+  mutate_all(as.numeric)
+
+describe_workfilter <- demographics %>%
+  select(starts_with("Workfilter")) %>%
+  mutate(
+    Workfilter = case_when(
+      Workfilter == "Y" ~ 1,
+      Workfilter == "N" ~ 0,
+      TRUE ~ NA_integer_  # handle unexpected values, if any
+    )
+  )
+
+describe_study <- demographics %>%
+  select(starts_with("study")) %>%
+  mutate(
+    study = case_when(
+      study == "Y" ~ 1,
+      study == "N" ~ 0,
+      TRUE ~ NA_integer_  # handle unexpected values, if any
+    )
+  )
+
+describe_worktime <- demographics %>%
+  select(starts_with("Worktime")) %>%
+  mutate_all(as.numeric)
+
+describe_occupation <- demographics %>%
+  select(starts_with("Occupation")) %>%
+  mutate_all(as.numeric)
 
 ```
 
@@ -430,22 +469,41 @@ describe_occupation <- demographics %>% dplyr::select(starts_with("Occupation"))
 # create table for age
 table_age <- data.frame(colMeans(is.na(describe_age)))
 colnames(table_age) <- "Age"
-rownames(table_age) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
 
-# create table for EURO-D
-table_eurod <- data.frame(colMeans(is.na(describe_eurod)))
-colnames(table_eurod) <- "EURO-D"
-rownames(table_eurod) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+# create table for Gender
+table_gender <- data.frame(colMeans(is.na(describe_gender)))
+colnames(table_gender) <- "Gender"
 
-# create table for finances
-table_finances <- data.frame(colMeans(is.na(describe_finances)))
-colnames(table_finances) <- "Finances"
-rownames(table_finances) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
+# create table for Education
+table_education <- data.frame(colMeans(is.na(describe_education)))
+colnames(table_finances) <- "Education"
+
+# create table for Studying
+table_study <- data.frame(colMeans(is.na(describe_study)))
+colnames(table_age) <- "Study"
+
+# create table for Degree
+table_degree <- data.frame(colMeans(is.na(describe_degree)))
+colnames(table_eurod) <- "Degree"
+
+# create table for Working Y/N
+table_wokfilter <- data.frame(colMeans(is.na(describe_workfilter)))
+colnames(table_finances) <- "Workfilter"
+
+# create table for Worktime
+table_worktime <- data.frame(colMeans(is.na(describe_worktime)))
+colnames(table_finances) <- "Worktime"
+
+# create table for Occupation
+table_occupation <- data.frame(colMeans(is.na(describe_occupation)))
+colnames(table_finances) <- "Occupation"
 
 # combine tables
-table_missings <- data.frame(table_age, table_eurod, table_finances, check.names = FALSE)
+table_missings <- data.frame(table_age, table_gender, table_education, table_study,
+                             table_degree, table_wokfilter, table_worktime, table_occupation, check.names = FALSE)
 # round
 table_missings <- table_missings %>% mutate_if(is.numeric, round, digits = 2) * 100
+
 # add % symbol
 table_missings <- table_missings %>% 
   mutate(across(everything(), ~paste0(., "%")))
@@ -454,83 +512,126 @@ table_missings # print for HTML
 ```
 
 ```{r}
-# for Age
+library(dplyr)
+library(psych)
+
+# Example: Define and round descriptive statistics for each variable
 table_descriptive_age <- round(psych::describe(describe_age), 2)
-rownames(table_descriptive_age) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
-table_descriptive_age # print for HTML
+table_descriptive_gender <- round(psych::describe(describe_gender), 2)
+table_descriptive_education <- round(psych::describe(describe_education), 2)
+table_descriptive_study <- round(psych::describe(describe_study), 2)
+table_descriptive_degree <- round(psych::describe(describe_degree), 2)
+table_descriptive_workfilter <- round(psych::describe(describe_workfilter), 2)
+table_descriptive_worktime <- round(psych::describe(describe_worktime), 2)
+table_descriptive_occupation <- round(psych::describe(describe_occupation), 2)
 
-# for EURO-D
-table_descriptive_eurod <- round(psych::describe(describe_eurod), 2)
-rownames(table_descriptive_eurod) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
-table_descriptive_eurod # print for HTML
-
-# for finances
-table_descriptive_finances <- round(psych::describe(describe_finances), 2)
-rownames(table_descriptive_finances) <- c("Wave 4", "Wave 5", "Wave 6", "Wave 7", "Wave 8")
-table_descriptive_finances # print for HTML
+# Combine all tables into a single data frame row-wise
+table_descriptives <- bind_rows(
+  table_descriptive_age,
+  table_descriptive_gender,
+  table_descriptive_education,
+  table_descriptive_study,
+  table_descriptive_degree,
+  table_descriptive_workfilter,
+  table_descriptive_worktime,
+  table_descriptive_occupation
+)
 
 ```
 
 ## Heatmap
 ```{r}
-# for EURO-D + finances over time
-  # create correlation matrix
-both_correlations <- data_wide %>% dplyr::select(starts_with("eurod"), starts_with("finances"))
-  # rename variables for clarity
-both_correlations <- both_correlations %>% rename(
-  "EURO-D (wave 4)" = eurod.4,
-  "EURO-D (wave 5)" = eurod.5,
-  "EURO-D (wave 6)" = eurod.6,
-  "EURO-D (wave 7)" = eurod.7,
-  "EURO-D (wave 8)" = eurod.8,
-  "Finances (wave 4)" = finances.4,
-  "Finances (wave 5)" = finances.5,
-  "Finances (wave 6)" = finances.6,
-  "Finances (wave 7)" = finances.7,
-  "Finances (wave 8)" = finances.8)
-  # get correlations
-both_matrix <- round(corr.test(both_correlations, use = "pairwise")$r, 2)
-  # only use upper part of matrix
-both_matrix_lower_part <- function(both_matrix){
-  both_matrix[lower.tri(both_matrix)]<- NA
-  return(both_matrix)}
-both_matrix_up <- both_matrix_lower_part(both_matrix)
-  # reduce size of correlation matrix/long format
-both_matrix_melted <- melt(both_matrix_up, na.rm = TRUE)
-  # plotting heatmap 
-both_heatmap <- ggplot(data = both_matrix_melted, aes(Var2, Var1, fill = value)) +
- ggtitle("Correlations - EURO-D + Finances") +
- geom_tile(color = "white") +
- scale_fill_gradient2(low = "blue", high = "red", mid = "white",
-   midpoint = 0, limit = c(-1,1), space = "Lab", 
-   name="Pearson\nCorrelations") +
-  theme_minimal() + 
- theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 8, hjust = 1), axis.text.y = element_text(size = 8), plot.title = element_text(size = 12), legend.position = "right", legend.title = element_text(size = 8)) +
- coord_fixed()
-  # add correlation coefficients
-heatmap_final <- both_heatmap + 
-geom_text(aes(Var2, Var1, label = value), color = "black", size = 2.5) +
-theme(
-  axis.title.x = element_blank(),
-  axis.title.y = element_blank(),
-  panel.grid.major = element_blank(),
-  panel.border = element_blank(),
-  panel.background = element_blank(),
-  axis.ticks = element_blank(),
-  legend.justification = c(1, 0),
-  legend.position = c(0.6, 0.7),
-  legend.direction = "horizontal")+
-  guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
-                title.position = "top", title.hjust = 0.3))
-heatmap_final # print for HTML
+library(dplyr)
+library(reshape2)  # for melt function
+library(ggplot2)
+library(psych)     # for corr.test function
 
-# check p-values
-both_matrix_p <- round(corr.test(both_correlations, use = "pairwise")$p, 5)
-both_matrix_p # print for HTML
+# Example: Assuming your data frame is demographics
 
-```
+# Ensure variables are numeric
+demographics <- demographics %>%
+  mutate(
+    study = ifelse(study == "Y", 1, 0),  # Convert Y/N to 1/0
+    Workfilter = ifelse(Workfilter == "Y", 1, 0)  # Convert Y/N to 1/0
+    # Add more conversions as needed for other variables
+  ) %>%
+  mutate(
+    Age = as.numeric(Age),
+    Gender = as.numeric(Gender),  # Assuming Gender is already binary
+    Education = as.numeric(Education),
+    Degree = as.numeric(Degree),
+    Worktime = as.numeric(Worktime),
+    Occupation = as.numeric(Occupation)
+  )
 
-```{r}
+# Select variables for correlation analysis
+selected_vars <- demographics %>%
+  select(Gender, Age, Education, study, Degree, Workfilter, Worktime, Occupation)
+
+# Rename variables for clarity in heatmap
+colnames(selected_vars) <- c(
+  "Gender", "Age", "Education", "study", "Degree", "Workfilter", "Worktime", "Occupation"
+)
+
+# Calculate correlations
+correlation_matrix <- round(cor(selected_vars, use = "pairwise"), 2)
+
+# Function to keep only upper part of the matrix
+upper_triangle <- function(mat) {
+  mat[lower.tri(mat)] <- NA
+  return(mat)
+}
+
+correlation_upper <- upper_triangle(correlation_matrix)
+
+# Reshape data for plotting
+melted_data <- melt(correlation_upper, na.rm = TRUE)
+
+# Plot heatmap
+heatmap <- ggplot(data = melted_data, aes(Var2, Var1, fill = value)) +
+  ggtitle("Correlations - Selected Variables") +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(
+    low = "blue", high = "red", mid = "white",
+    midpoint = 0, limit = c(-1, 1), space = "Lab",
+    name = "Pearson\nCorrelations"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, vjust = 1, size = 8, hjust = 1),
+    axis.text.y = element_text(size = 8),
+    plot.title = element_text(size = 12),
+    legend.position = "right",
+    legend.title = element_text(size = 8)
+  ) +
+  coord_fixed()
+
+# Add correlation coefficients as text annotations
+heatmap_final <- heatmap + 
+  geom_text(aes(Var2, Var1, label = value), color = "black", size = 2.5) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_blank(),
+    axis.ticks = element_blank(),
+    legend.justification = c(1, 0),
+    legend.position = c(0.6, 0.7),
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    fill = guide_colorbar(
+      barwidth = 7, barheight = 1,
+      title.position = "top", title.hjust = 0.3
+    )
+  )
+
+# Print or view the final heatmap
+print(heatmap_final)
+
+
+
 
 ```
 
@@ -574,10 +675,19 @@ df_train <- df_train[,3:71]
 
 ```
 
+## using mice and making data ordinal
+```{r, echo=FALSE}
+imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
+imputed_training_data_c <- complete(imputed_training_data, 1)
+
+ords <- imputed_training_data_c[, names(imputed_training_data_c)%in%unlist(fs)]
+ords <- lapply(ords, as.ordered)
+ords <- do.call(data.frame, ords)
+```
+
 ## Objective-Function
 ```{r}
 library(stuart)
-data(df_dl)
 
 # Define the theoretical nu matrix 
 theoretical_nu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
@@ -626,6 +736,9 @@ fs<-list(Comprehension=c('F1F1','F1F2','F1F3','F1F4','F1F5','F1F6','F1F7','F1F8'
                            )
 ```
 
+```{r}
+combinations(imputed_training_data_c, fs,4)
+```
 ## Genetic Algorithm
 ### Kfold-Crossvalidation
 ```{r}
@@ -634,17 +747,46 @@ fs<-list(Comprehension=c('F1F1','F1F2','F1F3','F1F4','F1F5','F1F6','F1F7','F1F8'
 
 # erster der holdout wird an kfold weitergegeben
 
-kfold_sel <- kfold('gene', k = 3, #gene #how to arrive at number of folds?
-  data = df_train, 
-  factor.structure = fs,
-  max.invariance = "scalar", ## randomly sampled aus derselben population - höher schon besser/ realistisch 
-  capacity = 4, 
-  seed = 2024, #what does the "capacity" do?
+# Call the kfold function with factor.structure as an argument
+kfold_sel <- kfold(
+  'gene', 
+  k = 2, 
+  data = ords, 
+  factor.structure = fs,  # Pass the variable directly
+  max.invariance = "strict", 
+  capacity = list(4, 4, 4, 4, 4), 
+  seed = 2024,
   seeded.search = TRUE,
-  remove.details = TRUE,
-  cores = 1) #what does the "cores" do?
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = obj,
+  ignore.errors = FALSE,
+  burnin = 5,
+  generations = 256,
+  individuals = 64,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
 #########################################################
-summary(sel)
+summary(kfold_sel)
 
 inspect(sel$final, 'est')
 inspect(sel$final, 'fit')
@@ -657,11 +799,10 @@ lavaan::inspect(selection$final, 'est')$nu
 
 ```{r}
 library(stuart)
-# mmas freier in der spezifikation, variabler
 # kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
 
-gene(
-  df_dl,                 # Your data frame containing the observed variables
+gene <- gene(
+  data = ords,                 # Your data frame containing the observed variables
   factor.structure <- fs, # A list defining the factor structure of your model
   capacity = 4,      # Optional, capacity constraint for factors
   auxiliary = NULL,                # Optional, specify auxiliary variables
@@ -691,7 +832,7 @@ gene(
   analysis.options = NULL,          # Additional options for analysis
   suppress.model = FALSE,           # Whether to suppress model output
   seed = 2024,                      # Seed for random number generation
-  filename = itemselection                   # Optional, filename for saving results
+  filename = "itemselection"                   # Optional, filename for saving results
 )
 
 
@@ -710,31 +851,22 @@ gene(
 # interceptsMatrix
 # int.ov 
 
-fixedobjective(
-  criteria = c("rmsea", "srmr", "crel"), #rel ohne"c" für einzelne faktoren 
-  add = c("chisq", "df", "pvalue"),
-  side = NULL, #can this be specified for certain values?
-  scale = 1,
-  matrices = NULL,
-  fixed = NULL, #weitere function einfügen - if-then function etc. subreliabilitäten 
-  comparisons = NULL
-)
-
 # matritzen mit objectivematrices function
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
 ```
-
-
-  # Normalize or scale avg_variance if necessary to align with the scale of out1, out2, out3
-  # This is a placeholder; adjust scaling based on your specific needs
-  out4 = avg_variance / 10 # Example scaling, adjust as needed
-
-
 
 ```{r}
 
 # Crossvalidation
 crossvalidate(sel, split)
+
+```
+
+```{r}
+
+```
+
+```{r}
 
 ```
 
