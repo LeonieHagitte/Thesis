@@ -312,6 +312,7 @@ y4 ~~ y5
 
 # Fit the model using FIML for missing data
 fit <- sem(model, data=df_dl, missing="fiml", em.h1.iter.max=10000)
+fit2 <- cfa(model,ords)
 # fixed.x = F. FIML works by estimating the relationships of the variables with each other and requires estimating the means and variances of the variables. If fixed.x = T (the default), then the variances and covariances are fixed and are based on the existing sample values and are not estimated.
 # Summary of the fit
 summary(fit)
@@ -750,7 +751,7 @@ combinations(imputed_training_data_c, fs,4)
 # Call the kfold function with factor.structure as an argument
 kfold_sel <- kfold(
   'gene', 
-  k = 2, 
+  k = 3, 
   data = ords, 
   factor.structure = fs,  # Pass the variable directly
   max.invariance = "strict", 
