@@ -25,10 +25,44 @@ In some instances, multiple grounds may influence a decision. In such cases, the
 
 
 ## Methods
-- 
+- Decision to perform a literature review and conduct ten iterative cognitive interviews to refine survey items.
+- Decision to treat the first 25 participants as a pilot group to identify potential issues with the survey.
+- Decision to determine the design of the measurement model, specifically deciding on the number of items per factor for the final scale.
+- Decision to create a parsimonious scale with four items per factor, balancing model fit and simplicity, while allowing for a real model fit to be assessed.
+- Decision to recruit participants using personal and professional networks and various online platforms (e.g., Instagram, LinkedIn, WhatsApp, Telegram, and email).
+- Decision to conduct the study in German and ensure that participation is entirely voluntary without external incentives.
+- Decision to conduct a priori power analysis using the ‘semPower’ package in R and consider estimates from similar studies to determine the necessary sample size.
+- Decision to aim for an optimal sample size between 500 and 1000, based on power analysis results and literature.
+- Decision to include attention check questions in the survey, with participants who fail to correctly answer at least two of four questions being excluded from the analysis.
+- Decision to include specific criteria for participants (e.g., legal age) and to document demographics such as gender distribution, average age, education level, employment status, and student status.
+- Decision to use the reproducibility workflow proposed by @Peikert2021, combining Docker and renv to create a portable and reproducible environment for analysis.
+- Decision to preregister the study at Zenodo with DOI:10.5281/zenodo.11196495 to ensure transparency and reproducibility.
+- Decision to utilize a cross-sectional online survey to examine a sample from the general population.
+- Decision to randomize survey questions for each participant to minimize order effects and response biases.
+- Decision to randomly select half of the questions from each factor of the data literacy questionnaire for each participant, leaving the other half as planned missings to shorten the assessment.
+- Decision to use a questionnaire with 71 items to measure data literacy, where each participant answers 38 randomly selected items.
+- Decision to utilize a five-point Likert scale (1 = "strongly disagree" to 5 = "strongly agree") with a “don’t know” option for responses.
+- Decision to use the SWE-IV-16 (Behm, 2018) as a proxy for information literacy, measuring self-efficacy in information behavior with 16 statements.
+- Decision to use the NFC-K (Beißert et al., 2015) to assess Need for Cognition through four items, measured with a seven-point scale.
+- Decision to employ the ICT-SC25 (Schauffel et al., 2021) for assessing self-perceived competence in ICT, using five general items from a 25-item scale.
+- Decision to use the BFI-10 (Rammstedt et al., 2014) to measure personality traits of openness and conscientiousness, averaging responses from two items per dimension.
 
 ## Analysis
+- Decision to analyze data quality by using multiple mechanisms to identify careless or inattentive response patterns and outliers.
+- Decision to use algorithm-based item selection to choose the most relevant items from the initial pool, aiming for efficiency and objectivity.
+- Decision to optimize the data literacy self-rating scale based on model fit criteria (RMSEA, SRMR, CFI) and composite reliability (McDonald's ω) as well as variability in item difficulty.
+- Decision to use the genetic algorithm from 'Stuart' to reduce the item pool, leveraging evolutionary principles of selection, crossover, mutation, and survival of the fittest to find a near-optimal solution.
+- Decision to define the criteria for optimization (model fit and composite reliability) within the fitness function used in the genetic algorithm.
+- Decision (gene function setup).
+- Decision HOW to split the sample into two subsets: training data and test data, using the ‘holdout' function in ‘stuart’. - Deciding on the size.
+- Decision HOW to conduct k-fold cross-validation (k=3) on the training data using the ‘kfold’ function in ‘stuart’.
+Evaluate
+- Deciding on the fold number
+- Decision to use the test data for evaluating the final model's performance and latent correlations with convergent measures.
+- Decision HOW to validate the measurement models for invariance between the training and test datasets using the ‘crossvalidate’ and ‘max.invariance' functions in ‘stuart’.
+- Decision to require invariance of the measurement models as a condition for claiming successful scale validation.
 
+## preset
 Decision element: Standard Deviation for nu in the objective function
 Result: 1.62
 Grounds: Primary - other reasons, I investigated it with a theoretical model;
