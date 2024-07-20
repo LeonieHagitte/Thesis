@@ -17,7 +17,15 @@ In some instances, multiple grounds may influence a decision. In such cases, the
 
 ## Background
 
+- Decision to create and use a self-rating questionnaire to assess data literacy among citizens as part of the study.
+- Decision to compare different definitions and frameworks of data literacy across various subjects and professions.
+- Decision to focus on citizens in data literacy research.
+- Decision to describe data literacy not just as a capability or skill but as a competency or proficiency that includes motivation and personal predispositions.
+- correlation expectations
+
+
 ## Methods
+- 
 
 ## Analysis
 
