@@ -15,7 +15,3 @@ I use the genetic algorithm of stuart for this. Genetic algorithms are based on 
 ## Validation
 The provided sample will be divided into two subsets (i.e. training data and test data) using the ‘holdout' function in ‘stuart’. The specified item-selection procedure will be applied to the training data. The training data is undergoing k-fold cross validation (k=3), using the ‘kfold’ function in ‘stuart’. The other sample, the test data, is used for evaluation of the final models performance, as well as the latent correlations with the convergent measures.
 Validation with the test data will be conducted (using the ‘crossvalidate’ function in ‘stuart’) to assess the invariance of the measurement models between the training and testing datasets. Invariance levels will be measured with  the ‘max.invariance' function. Invariance will be necessary to claim that the scale validation has worked.  
-
-
-residuals
-correlates or the residuals for the adjacent constructs

@@ -17,5 +17,6 @@ All factor loadings including standard errors can be found in the Supplementary 
 ## Model Fit and Latent Structure in the Validation Sample
 Cross-validation with the second half of the data indicated that the assumption of XXXX measurement invariance holds across the XXX subsamples: $X^{2}$(XXX) = XXX, p < XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; $X^{2}$ = XXX, df = XX, p = 0.XXXX. 
 
-
+residuals
+correlates or the residuals for the adjacent constructs
 
