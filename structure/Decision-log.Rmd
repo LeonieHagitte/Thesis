@@ -1,10 +1,28 @@
 ---
 title: "Decision-log"
-author: "Leonie"
+author: "Leonie Hagitte"
 date: "2024-07-20"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Decisions in the process of the Masters Thesis
+
+Due to the large number of decisions made in the thesis, documenting all of them within the main text was neither appropriate nor feasible. Therefore, a separate decision log in the appendix documents most of these decisions.
+
+Decision-making can be based on various grounds: evidence-based, pragmatic, arbitrary, or other reasons (e.g., personal values, political issues). Firstly, a decision is considered evidence-based if it can be clearly supported by empirical evidence or literature. Secondly, decisions might be made for pragmatic reasons, such as time constraints. Thirdly, arbitrary reasons come into play when neither evidence nor pragmatism applies, but a decision is still necessary. Although this reason does not directly aid in choosing an option, it highlights the frequency of decisions made without substantive or pragmatic grounds, potentially leading to random choices. Lastly, other reasons for decisions, which are unpredictable but significant, should also be recorded.
+In some instances, multiple grounds may influence a decision. In such cases, the relevance of each reason can be ranked if possible.
+
+## Background
+
+## Methods
+
+## Analysis
+
+Decision element: Standard Deviation for nu in the objective function
+Result: 1.62
+Grounds: Primary - other reasons, I investigated it with a theoretical model;
+         Secondary – pragmatic reason, other models would have been feasable as well,
+         but I just chose one that would be fine, without assessing whether it would be the best possible, due to time               constraints.
