@@ -794,10 +794,23 @@ obj <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, nu) {
   out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
   out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
   out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
-  out4 = -(sd(nu) - 1.62)^2 + 1.62^2 # Quadratic function peaking at 'ideal_sd'
-  out = (out1 + out2 + out3 + out4)/4
+  #out4 = -(sd(nu) - 1.62)^2 + 1.62^2 # Quadratic function peaking at 'ideal_sd'
+  out = (out1 + out2 + out3 )/3 #+ out4)/4
   return(out)                                
 }
+
+#stuart:::objective.preset
+obj_default <- function(chisq, df, pvalue, rmsea, srmr, crel) {
+                      1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+                     (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
+                      0.06)))))
+                       }
+#stuart:::objective.preset2
+obj_default2 <- function(chisq, df, pvalue, rmsea, srmr, crel, nu) {
+                      1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+                     (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
+                      0.06))))) - (sd(nu) - 1.62)^2 + 1.62^2 + 1e-6
+                       }
 
 ```
 
@@ -821,7 +834,7 @@ combinations(imputed_training_data_c, fs,4)
 ```
 ## Genetic Algorithm
 ### Kfold-Crossvalidation
-```{r}
+```{reproducibleR}
 
 ############ k-Folding #########################
 
@@ -831,7 +844,7 @@ combinations(imputed_training_data_c, fs,4)
 kfold_sel <- kfold(
   'gene', 
   k = 3, 
-  data = ords, 
+  data = imputed_training_data_c, 
   factor.structure = fs,  # Pass the variable directly
   max.invariance = "strict", 
   capacity = list(4, 4, 4, 4, 4), 
@@ -840,10 +853,10 @@ kfold_sel <- kfold(
   auxiliary = NULL,
   software = "lavaan",
   cores = 4,
-  objective = obj,
-  ignore.errors = FALSE,
+  objective = obj_default,
+  ignore.errors = TRUE,
   burnin = 5,
-  generations = 256,
+  generations = 300,
   individuals = 64,
   selection = "tournament",
   selection.pressure = NULL,
@@ -868,14 +881,81 @@ kfold_sel <- kfold(
 #########################################################
 summary(kfold_sel)
 
-inspect(sel$final, 'est')
-inspect(sel$final, 'fit')
+inspect(kfold_sel$final, 'est')
+inspect(kfold_sel$final, 'fit')
 
-lavaan::summary(sel$final, standardized = TRUE) # adapt final as name ggf
-summary(selection)
-
-lavaan::inspect(selection$final, 'est')$nu
+lavaan::summary(kfold_sel$final, standardized = TRUE) 
+#lavaan::inspect(selection$final, 'est')$nu
 ```
+- First Time it worked:
+SUMMARY OF ANALYSIS:
+
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 61760 
+Time Required: 1175.532 seconds
+
+Crossvalidation Results with STRICT Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.422, Evaluation: 0.295, Integration: 0.295, Communication: 0.600, Statistics: 0.359
+
+Constructed Subtests: (k = 1)
+Comprehension: F1F2 F1F6 F1F8 F1F10
+Evaluation: F2F2 F2F4 F2F14 F2F15
+Integration: F3F3 F3F4 F3F5 F3F9
+Communication: F4F1 F4F3 F4F6 F4F7
+Statistics: F5F3 F5F4 F5F15 F5F18
+
+```{r}
+# Call the kfold function with factor.structure as an argument
+kfold_sel2 <- kfold(
+  'gene', 
+  k = 3, 
+  data = imputed_training_data_c, 
+  factor.structure = fs,  # Pass the variable directly
+  max.invariance = "strict", 
+  capacity = list(4, 4, 4, 4, 4), 
+  seed = 2024,
+  seeded.search = TRUE,
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = obj_default2,
+  ignore.errors = TRUE,
+  burnin = 5,
+  generations = 300,
+  individuals = 64,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
+#########################################################
+summary(kfold_sel2)
+
+inspect(kfold_sel2$final, 'est')
+inspect(kfold_sel2$final, 'fit')
+
+lavaan::summary(kfold_sel2$final, standardized = TRUE) 
+lavaan::inspect(kfold_sel2$final, 'est')$nu
+```
+
 
 ```{r}
 library(stuart)
@@ -889,7 +969,7 @@ gene <- gene(
   software = "lavaan",             # Specify the SEM software to be used
   cores = 1,                    # Number of CPU cores to be used for parallel processing
   objective = obj,                # Optional, specify a custom objective function
-  ignore.errors = FALSE,           # Whether to ignore errors during fitness evaluation
+  ignore.errors = TRUE,           # Whether to ignore errors during fitness evaluation
   burnin = 5,                      # Number of generations for burn-in phase
   generations = 256,               # Total number of generations
   individuals = 64,                # Number of individuals in each generation
@@ -941,6 +1021,53 @@ gene <- gene(
 crossvalidate(sel, split)
 
 ```
+
+## Check correlated residuals
+```{r}
+# Fit the initial SEM model
+model <- "
+# Measurement model
+y1 =~ x1 + x2 + x3 + x4
+y2 =~ x5 + x6 + x7 + x8
+y3 =~ x9 + x10 + x11 + x12
+y4 =~ x13 + x14 + x15 + x16
+y5 =~ x17 + x18 + x19 + x20
+
+# Factor variances
+y1 ~~ y1
+y2 ~~ y2
+y3 ~~ y3
+y4 ~~ y4
+y5 ~~ y5
+
+# Factor correlations
+y1 ~~ y2
+y1 ~~ y3
+y1 ~~ y4
+y1 ~~ y5
+y2 ~~ y3
+y2 ~~ y4
+y2 ~~ y5
+y3 ~~ y4
+y3 ~~ y5
+y4 ~~ y5
+"
+fit <- sem(model, data = data)
+
+# Check modification indices
+modIndices(fit, sort_ = TRUE)
+
+# If justified, re-specify your model to include correlated residuals
+model_revised <- '
+  # Your original model specification
+  residual1 ~~ residual2 # Add this line to specify correlated residuals
+'
+fit_revised <- sem(model_revised, data = your_data)
+
+# Compare the original and revised models
+anova(fit, fit_revised)
+```
+
 
 ## Convergent Measures
 ```{r}
@@ -1093,13 +1220,6 @@ omega(ICT[1:5],1)
 omega(SWE[1:16],1)
 ```
 
-```{r}
-
-```
-
-```{r}
-
-```
 
 ```{r}
 
