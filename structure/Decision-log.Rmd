@@ -62,6 +62,8 @@ Evaluate
 - Decision HOW to validate the measurement models for invariance between the training and test datasets using the ‘crossvalidate’ and ‘max.invariance' functions in ‘stuart’.
 - Decision to require invariance of the measurement models as a condition for claiming successful scale validation.
 
+## Statistical Analyses
+
 ## preset
 Decision element: Standard Deviation for nu in the objective function
 Result: 1.62

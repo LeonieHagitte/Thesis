@@ -946,8 +946,8 @@ kfold_sel2 <- kfold(
   objective = obj_default2,
   ignore.errors = TRUE,
   burnin = 5,
-  generations = 300,
-  individuals = 64,
+  generations = 500,
+  individuals =100,
   selection = "tournament",
   selection.pressure = NULL,
   elitism = NULL,
@@ -1022,16 +1022,6 @@ gene <- gene(
 
 ## Objective-Function ideas
 ```{r}
-# threshhold for reliability
-# correlations?
-# variance in item difficulty - via intercepts?? -> intercepts  matrix in lavaan 
-# "meanstructure" ?
-
-# Define a matrix for item intercepts per factor
-# Assuming a structure of 4 factors with 4 items each for simplicity
-# Mu?
-# interceptsMatrix
-# int.ov 
 
 # matritzen mit objectivematrices function
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
