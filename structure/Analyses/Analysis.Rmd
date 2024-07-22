@@ -780,6 +780,11 @@ imputed_test_data_c <- complete(imputed_test_data, 1)
 ```
 
 ```{r}
+write.csv2(imputed_training_data_c, "imputed_training_data_c.csv")
+write.csv2(df_train, "df_train.csv")
+```
+
+```{r}
 
 fs<-list(Comprehension=c('F1F1','F1F2','F1F3','F1F4','F1F5','F1F6','F1F7','F1F8',
                            'F1F9','F1F10','F1F11','F1F12','F1F13','F1F14'),
@@ -1145,6 +1150,13 @@ all_means <- data.frame(
   Ict_Row_Means = ICT$Ict_Row_Means,
   Swe_Row_Means = SWE$Swe_Row_Means
 )
+```
+
+## Correlations 
+```{r}
+library(apaTables)
+cortable<-cor(all_means, use = "pairwise" ,method = "pearson")
+apa.cor.table(cortable)
 ```
 
 ```{r}
