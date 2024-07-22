@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Analysis | Development of a German Instrument for Self-Rated Data Literacy</title>
   <meta name="description" content="Chapter 3 Analysis | Development of a German Instrument for Self-Rated Data Literacy" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Analysis | Development of a German Instrument for Self-Rated Data Literacy" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Leonie Hagitte" />
 
 
-<meta name="date" content="2024-07-09" />
+<meta name="date" content="2024-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -183,16 +183,14 @@ div.csl-indent {
 <h2><span class="header-section-number">3.2</span> Meta-Heuristics<a href="analysis.html#meta-heuristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Algorithm-based item selection is used to choose the most relevant items, reducing the initial item pool. In classical approaches items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g. difficulty, discrimination, item-scale-correlations).
 Compared to classical approaches, algorithms are more objective and efficient in finding a good or nearly perfect solution with regard to certain crteria (Leite et al., 2008; Olaru et al., 2015). Furthermore, some empirical studies suggest that the use of algorithms leads to similar or better results in scale construction than traditional approaches (Sandyet al., 2014; Schroeders et al., 2016; Olaru and Danner, 2021). The automated approach takes the opposite perspective to the classical approach, the one of meta heuristics, by repeatedly estimating CFAs for a multitude of possible item-combinations[QUELLE]. Thus, a pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose of the final scale is estimated[QUELLE].Thus, the selection of items and construction of a questionnaire can be viewed as a combinatorial problem, like the knapsack problem (“Choose a set of objects, each having aspecific weight and monetary value, so that the value is maximized and the total weight does not exceed a predetermined limit;”Schroeders et al., 2016, p. 4; Kerber et al., 2022).</p>
-<p>‘Stuart’ can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling (Schultze, 2022). Those meta-heuristics like are utilized to handle these combinatorial optimization problems.
-For this study, a set of 20 items from a set of 71 items should be selected, to form a questionnaire. I want to optimize the data literacy self rating scale for model fit criteria and composite reliability (RMSEA, SRMR, CFI &amp; McDonalds <span class="math inline">\(\omega\)</span>) as well as variability in the difficulty of items. Those criteria will be defined in the objective function in ‘stuart’ (Schultze, 2020).</p>
+‘Stuart’ can construct subsets from a pool of items by using ant-colony- optimization, genetic algorithms, brute force, or random sampling (Schultze, 2022). Those meta-heuristics like are utilized to handle these combinatorial optimization problems.
+<p>For this study, a set of 20 items from a set of 71 items should be selected, to form a questionnaire. I want to optimize the data literacy self rating scale for model fit criteria and composite reliability (RMSEA, SRMR, CFI &amp; McDonalds <span class="math inline">\(\omega\)</span>) as well as variability in the difficulty of items. Those criteria will be defined in the objective function in ‘stuart’ (Schultze, 2020).</p>
 <p>I use the genetic algorithm of stuart for this. Genetic algorithms are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest(Holland, 1992; Schroeders et al.,2016). With the genetic algorithm, the initial set of 71 items is to be reduced based on the evolutionary process of selection, but opposing to evolution with a goal: A near-optimal “solution”. The survival of an item is determined by its quality (called “fitness”;Galán et al., 2013). The algorithm is build on two processes: Variation(i.e. recombination and mutation) and selection. Variation rewards diversity an innovation of items, whereas selection rewards quality or fitness. The algorithm links “genes” (i.e. items), that represent a certain variable, to a “chromosome” (i.e. a set of items). A predefined number of chromosomes are randomly generated from the 1st generation (i.e. the original item pool). The algorithm tries to maximize the psychometric quality of the “chromosomes”( i.e. item sets) by evaluating the “chromosomes”( i.e. item sets) against a “fitness”function. Based on this fitness function, the fittest “chromosomes”(i.e. item sets) of each generation are determined, which then form the basis for the next generation (forming the selection process). The process of variation establishes genetic diversity and mutation within the generations by spontaneously exchanging items within a scale or between two scales. This adds a degree of randomness to the selection process. This is done a predefined number of iterations. This way the fittest “chromosome”(i.e. set of items), with the highest quality, is to be identified (Schroeders et al., 2016).</p>
 </div>
 <div id="validation" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Validation<a href="analysis.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The provided sample will be divided into two subsets (i.e. training data and test data) using the ‘holdout’ function in ‘stuart’. The specified item-selection procedure will be applied to the training data. The training data is undergoing k-fold cross validation (k=3), using the ‘kfold’ function in ‘stuart’. The other sample, the test data, is used for evaluation of the final models performance, as well as the latent correlations with the convergent measures.
 Validation with the test data will be conducted (using the ‘crossvalidate’ function in ‘stuart’) to assess the invariance of the measurement models between the training and testing datasets. Invariance levels will be measured with the ‘max.invariance’ function. Invariance will be necessary to claim that the scale validation has worked.</p>
-<p>residuals
-correlates or the residuals for the adjacent constructs</p>
 
 </div>
 </div>
