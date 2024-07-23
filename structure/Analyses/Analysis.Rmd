@@ -45,19 +45,23 @@ repro::use_gha_docker() #GitHub action (GHA) is a cloud service that runs softwa
 
 # Install or update 'renv' package from CRAN if needed
 # Load 'renv' package
-library(renv)
+#library(renv)
 
 # Initialize 'renv' in your project
-renv::init()
+#renv::init()
 
 # Activate the project-specific 'renv' environment
-renv::activate()
+#renv::activate()
 
 # Install required packages for your project
 #renv::install()
 
 # Update renv.lock file
 renv::snapshot()
+
+if(!requireNamespace("pak"))
+install.packages("pak")
+pak::pkg_install("brandmaier/reproducibleRchunks")
 
 ```
 
@@ -734,7 +738,72 @@ print(heatmap2)
 ```
 
 ```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(scales) # For pretty_breaks
 
+# Adjust the ggplot call to exclude NAs only from the figure
+ggplot(describe_occupation %>% filter(!is.na(Occupation)), aes(x = factor(Occupation))) +
+  geom_bar(fill = "blue", color = "black", alpha = 0.7) +
+  geom_text(stat = 'count', aes(label = ..count..), vjust = -0.5) + # Add count labels
+  labs(title = "Histogram of Occupations",
+       x = "Occupation",
+       y = "Frequency") +
+  scale_x_discrete(labels = function(x) {
+    labels <- c(
+      "1" = "Land-, Forst- und Tierwirtschaft",
+      "2" = "Rohstoffgewinnung, Produktion und Fertigung",
+      "3" = "Bau, Architektur, Gebäudetechnik",
+      "4" = "Naturwissenschaft, Geografie und Informatik",
+      "5" = "Verkehr, Logistik, Schutz und Sicherheit",
+      "6" = "Kaufmännische Dienstleistungen, Vertrieb, Tourismus",
+      "7" = "Buchhaltung, Recht und Verwaltung",
+      "8" = "Gesundheit, Soziales, Lehre und Erziehung",
+      "9" = "Geistes-, Gesellschafts- und Wirtschaftswissenschaften, Medien, Kunst, Kultur und Gestaltung",
+      "10" = "Militär"
+    )
+    wrapped_labels <- lapply(labels[x], function(label) paste(strwrap(label, width = 20), collapse = "\n"))
+    unlist(wrapped_labels) # Ensure the output is a vector, not a list
+  }) +
+  scale_y_continuous(breaks = pretty_breaks(n = 10)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 9, angle = 55, hjust = 1, vjust = 1),
+    axis.text.y = element_text(size = 9),
+    plot.title = element_text(size = 10),
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10)
+  )
+```
+```{r}
+library(dplyr)
+library(tibble) # For creating a tibble if needed
+
+# Assuming describe_occupation is your dataframe
+# First, define the labels as a named vector
+occupation_labels <- c(
+  "1" = "Land-, Forst- und Tierwirtschaft",
+  "2" = "Rohstoffgewinnung, Produktion und Fertigung",
+  "3" = "Bau, Architektur, Gebäudetechnik",
+  "4" = "Naturwissenschaft, Geografie und Informatik",
+  "5" = "Verkehr, Logistik, Schutz und Sicherheit",
+  "6" = "Kaufmännische Dienstleistungen, Vertrieb, Tourismus",
+  "7" = "Buchhaltung, Recht und Verwaltung",
+  "8" = "Gesundheit, Soziales, Lehre und Erziehung",
+  "9" = "Geistes-, Gesellschafts- und Wirtschaftswissenschaften, Medien, Kunst, Kultur und Gestaltung",
+  "10" = "Militär"
+)
+
+# Convert Occupation to factor with labels and count
+frequency_table <- describe_occupation %>%
+  filter(!is.na(Occupation)) %>%
+  mutate(Occupation = factor(Occupation, labels = occupation_labels[names(occupation_labels)])) %>%
+  count(Occupation) %>%
+  arrange(desc(n)) # Arrange by frequency, can be removed if not needed
+
+# Print the frequency table
+print(frequency_table)
 ```
 
 ## Filter for the partial completes
