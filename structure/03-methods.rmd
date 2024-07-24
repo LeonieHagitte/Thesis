@@ -8,12 +8,12 @@ One decision that needs to be done by the researcher before the item selection w
 This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.
 
 ## Sample  
-The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail) Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R (Moshagen & Bader, 2023) and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for N=645, and a simulated estimate N=613, for the respective measurement model. In the literature sample sizes of N=500 up to N=1000 could be found (Algner & Lorenz, 2022; Remmert et al.,2022; Schneider et al.,2024). So the optimal sample size, we are aiming at, lies somewhere between those numbers.
+The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail) Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for **N**=645, and a simulated estimate **N**=613, for the respective measurement model. In the literature sample sizes of **N**=500 up to **N**=1000 could be found [@algner2022; @remmert2022; @schneider2024]. So the optimal sample size, we are aiming at, lies somewhere between those numbers.
 
 Participants had to be of legal age, to be included in the study. Furthermore, attention check questions are included (three instructed response items and one seriousness check item, at the end) within the survey to assess participants' attentiveness. Participants who fail to correctly answer two out of the four attention check questions will be excluded from the analysis.
 
 The following characteristics of this studys sample will be made with referral to the respective stat in the German population of 2022.
-The sample for this study comprised N=612 participants. Within the sample, 48,3% identified as female(50,65%), 50,2% as male(49,35%), and 1,5% did not identify with binary gender categories [@StBA2024a]. The average age was XX(M = 44,6)[@StBA2024b], with an average age of XX amongst women (M = 45,9)[@StBA2023a] and XX amongst men (M = 43,2)[@StBA2023a]. Regarding education, participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. XX% of the participants had a full time employment at the time(65,15%; Men = 42,40%, Women = 22,75%)[@StBA2023b; @BfA2024], XX% had an part time employment (28,22%; Men = 6,16%; Women = 22,06%)[@StBA2023b; @BfA2024] and XX% had no work at the time of the survey (6,63%)[@BfA2024]. The study encompassed every sector within the occupational classification at least once [@BfA2024]. XX% of the participants indicated that they were students at the time of the survey (3,39%)[StBA2024c].
+The sample for this study comprised **N**=612 participants. Within the sample, 48,3% identified as female(50,65%), 50,2% as male(49,35%), and 1,5% did not identify with binary gender categories [@StBA2024a]. The average age was XX(**M** = 44,6)[@StBA2024b], with an average age of XX amongst women (**M** = 45,9)[@StBA2023a] and XX amongst men (**M** = 43,2)[@StBA2023a]. Regarding education, participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. XX% of the participants had a full time employment at the time(65,15%; Men = 42,40%, Women = 22,75%)[@StBA2023b; @BfA2024], XX% had an part time employment (28,22%; Men = 6,16%; Women = 22,06%)[@StBA2023b; @BfA2024] and XX% had no work at the time of the survey (6,63%)[@BfA2024]. The study encompassed every sector within the occupational classification at least once [@BfA2024]. XX% of the participants indicated that they were students at the time of the survey (3,39%)[StBA2024c].
 
 ## Open Science Standards 
 This project uses the reproducibility workflow proposed by @Peikert2021. Docker and renv work together to create a reproducible and portable environment. Docker captures the complete software stack, while renv focuses on
@@ -35,10 +35,10 @@ disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know�
 option.
 
 ### Measuring Information Literacy
-The SWE-IV-16 (Behm, 2018)(McDonalds $\omega$ = .91; Cronbachs McDonalds $\alpha$ =.91) assesses the self-efficacy beliefs
+The SWE-IV-16 [@behm2018] (McDonalds $\omega$ = .91; Cronbachs $\alpha$ =.91) assesses the self-efficacy beliefs
 of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
-(Brand-Gruwel et al., 2009). In this study this construct is used as a proxy for information literacy.
+[@brandgruwel2009]. In this study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed
 abilities in searching for and evaluating information, as well as managing
 information searches effectively. Each statement begins with "When I search for
@@ -47,22 +47,20 @@ agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat
 disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly
 agree”). The total scale value is computed as the arithmetic
 mean of the items, which may be inverted if necessary. Calculation of the total value
-requires valid responses to at least 12 of the 16 items. I expect the final questionnaire to correlate moderately up to highly positive with the SWE-IV-16 (Behm, 2018), measuring peoples ability to engage in information behaviour.
+requires valid responses to at least 12 of the 16 items. I expect the final questionnaire to correlate moderately up to highly positive with the SWE-IV-16 [@behm2018], measuring peoples ability to engage in information behaviour.
 
 ### Measuring Need for Cognition
-The NFC-K (Beißert et al., 2015)(McDonalds $\omega$ = .62; Cronbachs McDonalds $\alpha$ =.60) is a tool used to assess the
+The NFC-K [@beißert2015] (McDonalds $\omega$ = .62; Cronbachs $\alpha$ =.60) is a tool used to assess the
 NFC through four items, which represent two facets: "engagement" and “joy". The
 NFC-K is measured with a seven-point response scale, ranging from "strongly
 disagree" (1) to "strongly agree" (7), with a "neither" option in the middle. The
-German version of the scale is adapted from the original English scale by Cacioppo
-and Petty (1982) and translated by Bless et al. (1994). To determine an individual's NFC score, a mean value
+German version of the scale is adapted from the original English scale by @cacioppo1982 and translated by @bless1994. To determine an individual's NFC score, a mean value
 (scale value) is computed from the four raw score points of the responses. The
-resulting mean values range between 1 and 7. I expect a small to moderate positive correlation with the NFC-K (Beißert et al., 2015), assessing the Need for Cognition (NFC).
+resulting mean values range between 1 and 7. I expect a small to moderate positive correlation with the NFC-K [@beißert2015], assessing the Need for Cognition (NFC).
 
 ### Measuring Technology Competency
 To assess self-perceived competence in using information and
-communication technology (ICT), the five general items of the ICT-SC25 (Schauffel
-et al., 2021) will be used (McDonalds $\omega$ = .93; Cronbachs McDonalds $\alpha$ =.93). The ICT-SC25 is a scale consisting of 25 items designed to
+communication technology (ICT), the five general items of the ICT-SC25 [@schauffel2021] will be used (McDonalds $\omega$ = .93; Cronbachs $\alpha$ =.93). The ICT-SC25 is a scale consisting of 25 items designed to
 assess self-perceived competence in using information and communication
 technology. It is available in both German (ICT-SC25g) and English (ICT-SC25e). The
 scale measures general and domain-specific ICT competence, including
@@ -72,10 +70,10 @@ rating scale ranging from strongly disagree (1) to strongly agree (6). Researche
 utilise either the entire scale or individual subscales based on their specific research objectives. The ICT-SC25g/e
 is applicable for both manifest and latent analysis. Manifest scale scores for the ICT-
 SC25g/e are calculated separately for each subscale by computing the unweighted
-mean score of the items within each subscale (Schauffel et al., 2021). I expect a moderate, positive correlation of the final scale with the five general items of the ICT-SC25 (Schauffel et al., 2021).
+mean score of the items within each subscale [@schauffel2021]. I expect a moderate, positive correlation of the final scale with the five general items of the ICT-SC25 [@schauffel2021].
 
 ### Measuring Openness and Conscientiousness
-The BFI-10 (Rammstedt et al., 2014) will be used to assess
+The BFI-10 [@rammstedt2014] will be used to assess
 personality based on the five-factor model. Only the items on openness and
 conscientiousness were assessed.
 The items are answered on a five-point rating scale from "strongly disagree" (1) to
@@ -84,6 +82,6 @@ personality dimensions, the responses to the two items for each dimension are
 averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then
 the mean value is calculated for each dimension from both the recoded and non-
 recoded items. The values for the five dimensions range from 1 to 5 (see
-Rammstedt, 2007 for reference values). I expect small to moderate positive correlations with openness and conscientiousness of the BFI-10 (Rammstedt et al., 2014). 
+@rammstedt2007 for reference values). I expect small to moderate positive correlations with openness and conscientiousness of the BFI-10 [@rammstedt2014]. 
 
 

@@ -29,9 +29,9 @@ How was the final variant further validated (e.g. crossvalidate, k-fold)?
 
 The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as **"Gesundheit, Soziales, Lehre und Erziehung"**, **"Buchhaltung, Recht und Verwaltung"**, **"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"** and especially **"Naturwissenschaft, Geografie und Informatik"**. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
 
-The item pool for the questionnaire was specifically trained on this non-representative sample, which may affect its validity. Data literacy is a heterogeneous construct, and the questionnaire could incorporate more aspects to better reflect its full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
+The item pool for the questionnaire was specifically trained on this non-representative sample, which may affect its validity. The heterogeneous nature of the construct complicates global instrument development and understanding across all participants. The measure wass designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction to be improved in future studies. Also, as data literacy is a heterogeneous construct, the questionnaire could incorporate more aspects to better reflect its full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
 
-Additionally, the training and testing data sets differed in size, which could influence measurement invariance testing (Chen, 2007). While the sample sizes were appropriate, they were at the lower threshold of the prior power analysis (e.g., Kass and Tinsley, 1979; Hu and Bentler, 1999), suggesting that larger samples might have been ideal. Lastly, although the questionnaire showed good model fit, it should be noted that algorithm-based item selection is a heuristic approach and may not always yield the optimal solution.
+Additionally, the training and testing data sets differed in size, which could influence measurement invariance testing (Chen, 2007). While the sample sizes were appropriate, they were at the lower threshold of the prior power analysis (e.g., Kass and Tinsley, 1979; Hu and Bentler, 1999), suggesting that larger samples might have been ideal. Lastly, although the questionnaire showed good model fit, it should be noted that algorithm-based item selection is a heuristic approach, rather than a deterministic, and may not always yield the optimal solution(Schultze & Lorenz ,2023; Blum and Roli, 2003).
 
 ## Future directions
 Future research should explore adaptive testing using Item Response Theory (IRT). IRT provides a method to tailor item difficulty to respondents' ability levels in real-time, enhancing assessment efficiency and precision. This reduces the number of items required while maintaining high measurement accuracy. Implementing IRT is particularly advantageous for heterogeneous constructs like data literacy, as it ensures each participant is evaluated with items suited to their skill level. One of the significant challenges in applying IRT is the assumption of unidimensionality, where items are presumed to measure a single underlying trait. Data literacy, however, is a multi-faceted construct, and future studies should investigate the dimensionality of the scale rigorously. 
@@ -44,16 +44,4 @@ Construct validity is evaluated through confirmatory factor analysis (CFA), usin
 
 - what to optimize the scale for?
 - dynamic fit indices
-- factors 4 and 5
-    - adaptive testing/ IRT
-        - dimensionality assumption and computationally intense
-    - CART - tree based adaptive testing (classification trees) always binary split
-        - gini index to identify the cut off 
-        - POMP method - for differing number of answer formats
 - residuals correlates 
-- heterogeneity of construct 
-
-The heterogeneous nature of the construct complicates global instrument development and understanding across all participants. The measure is designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction we aim to improve in future studies.
-
-
-Noteworthy is the inherent approximate, rather than deterministic, nature of metaheuristics (Schultze & Lorenz ,2023; Blum and Roli, 2003).
