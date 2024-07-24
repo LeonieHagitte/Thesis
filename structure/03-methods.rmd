@@ -74,8 +74,7 @@ mean score of the items within each subscale [@schauffel2021]. I expect a modera
 
 ### Measuring Openness and Conscientiousness
 The BFI-10 [@rammstedt2014] will be used to assess
-personality based on the five-factor model. Only the items on openness and
-conscientiousness were assessed.
+personality based on the five-factor model. Only the items on openness (McDonalds $\omega$ = .63; Cronbachs $\alpha$ =.63) and conscientiousness (McDonalds $\omega$ = .56; Cronbachs $\alpha$ =.56) were assessed.
 The items are answered on a five-point rating scale from "strongly disagree" (1) to
 "strongly agree" (5). To measure the respondent's individual traits on the five
 personality dimensions, the responses to the two items for each dimension are

@@ -1174,6 +1174,21 @@ B5_con <- df3 %>%
   mutate_all(as.numeric)
 ```
 
+## Inverting negatively keyed items
+```{r}
+# Recoding for B5_con and B5_openness
+B5_con$B5.G1. <- 6 - B5_con$B5.G1.
+B5_openness$B5.O2. <- 6 - B5_openness$B5.O2.
+
+# Recoding for NFC
+NFC$NFC.NFC1. <- 8 - NFC$NFC.NFC1.
+NFC$NFC.NFC4. <- 8 - NFC$NFC.NFC4.
+
+# Recoding for SWE
+SWE$SWE16.SWE4. <- 6 - SWE$SWE16.SWE4.
+SWE$SWE16s2.SWE14. <- 6 - SWE$SWE16s2.SWE14.
+```
+
 ## Calculating meanscores
 ```{r}
 # Calculate row means for each row and add as a new column

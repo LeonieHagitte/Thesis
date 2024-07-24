@@ -1,36 +1,3 @@
 Analysis.html: Analysis.Rmd
 	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
 
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/ci.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/ci.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/docker.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/docker.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/faq.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/faq.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/package-install.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/package-install.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/package-sources.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/package-sources.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/packages.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/packages.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/packrat.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/packrat.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/profiles.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/profiles.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/python.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/python.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/renv.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/renv.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
-renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/rsconnect.html: renv/library/R-4.2/aarch64-apple-darwin20/renv/doc/rsconnect.Rmd
-	$(RUN1) Rscript -e 'rmarkdown::render("$(WORKDIR)/$<", "all")' $(RUN2)
-
