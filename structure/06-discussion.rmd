@@ -21,27 +21,22 @@ How was the final variant further validated (e.g. crossvalidate, k-fold)?
 - When discussing the why - be careful, because you didnt test that
 
 ## Limitations
-- sample
 - content validity
 - DIF?
 - psych science - authors guide to generelizability
 - attempts to control for limitating factors
 - dont include to general/ broad critiques, but special one for my own study
 
-This study's results should be interpreted with the following limitations in mind. 
-As shown in the demographic variables, the sample of this study deviated from the 
-general public in several points. Thus, this study might not have reached a representative sample
-and therefore lack generalizability. For example the distribution of the occupations, in which the 
-participants work, show that they are not evenly distributed. There is some clustering in **"Gesundheit, Soziales, Lehre und Erziehung"**, **"Buchhaltung, Recht und Verwaltung"**, **"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"** and especially in **"Naturwissenschaft, Geografie und Informatik"**. This speaks to a selection bias in the data, as those could be professions, held by people, who are more interested in the topic of data literacy, but who are also more likely to be reached with the acquisition methods, used in this study. It is to be kept in mind that this influences the 
-item pool selected, because this is specifically trained on the sample of this study. 
-From a theoretical perspective, data literacy is such a heterogeneous construct, that one could of corse incorporate more aspects of data literacy in the items of the questionnaire, making it more reflective of the whole concept and increase its content validity. Ideally this draft of a questionnaire for data literacy would be expanded with items on such areas, giving it a specific focus, much like a plug-in system. This then would not adhere as closely to the idea of a parsimonious questionnaire but could be a pratical solution for the need of more specific questions, or more difficult items.
-Furthermore the training data set and the testing data set are of different size, which 
-can influence the MI testing (Chen,2007). Additionally, the sample sizes, although appropriate, ideally could have been larger and are on the lower threshold of the prior poweranalysis (e.g., Kass andTinsley, 1979; Hu and Bentler, 1999). 
-Although the questionnaire exhibited good model fit, it is to be kept in mind 
-that algorithm based item selection is essentially a heuristic approach and does not 
-always result in the best solution there is. 
+The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as **"Gesundheit, Soziales, Lehre und Erziehung"**, **"Buchhaltung, Recht und Verwaltung"**, **"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"** and especially **"Naturwissenschaft, Geografie und Informatik"**. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
+
+The item pool for the questionnaire was specifically trained on this non-representative sample, which may affect its validity. Data literacy is a heterogeneous construct, and the questionnaire could incorporate more aspects to better reflect its full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
+
+Additionally, the training and testing data sets differed in size, which could influence measurement invariance testing (Chen, 2007). While the sample sizes were appropriate, they were at the lower threshold of the prior power analysis (e.g., Kass and Tinsley, 1979; Hu and Bentler, 1999), suggesting that larger samples might have been ideal. Lastly, although the questionnaire showed good model fit, it should be noted that algorithm-based item selection is a heuristic approach and may not always yield the optimal solution.
 
 ## Future directions
+Future research should explore adaptive testing using Item Response Theory (IRT). IRT provides a method to tailor item difficulty to respondents' ability levels in real-time, enhancing assessment efficiency and precision. This reduces the number of items required while maintaining high measurement accuracy. Implementing IRT is particularly advantageous for heterogeneous constructs like data literacy, as it ensures each participant is evaluated with items suited to their skill level. One of the significant challenges in applying IRT is the assumption of unidimensionality, where items are presumed to measure a single underlying trait. Data literacy, however, is a multi-faceted construct, and future studies should investigate the dimensionality of the scale rigorously. 
+An alternative to IRT-based adaptive testing is the use of Classification and Regression Trees (CART). CART is a tree-based method that splits data into subsets based on binary decisions, optimizing for predictive accuracy. This approach could simplify adaptive testing by using binary splits to classify respondents into different levels of data literacy. The Gini index can be employed within CART to identify the optimal cutoff points for these splits, ensuring that each branch of the tree maximally distinguishes between different levels of data literacy competence.
+
 
 ########################################
 
