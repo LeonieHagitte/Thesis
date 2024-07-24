@@ -31,8 +31,10 @@ How was the final variant further validated (e.g. crossvalidate, k-fold)?
 This study's results should be interpreted with the following limitations in mind. 
 As shown in the demographic variables, the sample of this study deviated from the 
 general public in several points. Thus, this study might not have reached a representative sample
-and therefore lack generalizability. Also it is to be kept in mind that this influences the 
+and therefore lack generalizability. For example the distribution of the occupations, in which the 
+participants work, show that they are not evenly distributed. There is some clustering in **"Gesundheit, Soziales, Lehre und Erziehung"**, **"Buchhaltung, Recht und Verwaltung"**, **"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"** and especially in **"Naturwissenschaft, Geografie und Informatik"**. This speaks to a selection bias in the data, as those could be professions, held by people, who are more interested in the topic of data literacy, but who are also more likely to be reached with the acquisition methods, used in this study. It is to be kept in mind that this influences the 
 item pool selected, because this is specifically trained on the sample of this study. 
+From a theoretical perspective, data literacy is such a heterogeneous construct, that one could of corse incorporate more aspects of data literacy in the items of the questionnaire, making it more reflective of the whole concept and increase its content validity. Ideally this draft of a questionnaire for data literacy would be expanded with items on such areas, giving it a specific focus, much like a plug-in system. This then would not adhere as closely to the idea of a parsimonious questionnaire but could be a pratical solution for the need of more specific questions, or more difficult items.
 Furthermore the training data set and the testing data set are of different size, which 
 can influence the MI testing (Chen,2007). Additionally, the sample sizes, although appropriate, ideally could have been larger and are on the lower threshold of the prior poweranalysis (e.g., Kass andTinsley, 1979; Hu and Bentler, 1999). 
 Although the questionnaire exhibited good model fit, it is to be kept in mind 

@@ -19,7 +19,7 @@ The sample for this study comprised N=612 participants. Within the sample, 48,3%
 This project uses the reproducibility workflow proposed by @Peikert2021. Docker and renv work together to create a reproducible and portable environment. Docker captures the complete software stack, while renv focuses on
 managing R package dependencies and providing a clear documentation of the R
 package environment. This combination ensures that your analysis can be easily
-reproduced and shared with others in a reliable and transparent manner.
+reproduced and shared with others in a reliable and transparent manner. It is to be mentioned, that the repro package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software gets reinstalled. Furthermore I used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, one can see the results for the respective chunks, as to whether they are reproducible or not.
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 
 ## Procedure

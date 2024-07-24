@@ -43,15 +43,13 @@ repro::automate() #creating a Dockerfile.    ####################### BUG ######
 repro::use_docker()
 repro::use_gha_docker() #GitHub action (GHA) is a cloud service that runs software when certain events trigger it.Add a GitHub Action to build the required Docker image with
 
-# Install or update 'renv' package from CRAN if needed
-# Load 'renv' package
-#library(renv)
-
+library(renv)
+setwd("/Users/leo/Desktop/Programming stuff/Thesis")
 # Initialize 'renv' in your project
-#renv::init()
+renv::init()
 
 # Activate the project-specific 'renv' environment
-#renv::activate()
+renv::activate()
 
 # Install required packages for your project
 #renv::install()
@@ -105,7 +103,6 @@ library(mice)
 library(readr)
 
 dataMA <- read_csv("/Users/leo/Desktop/Programming stuff/Thesis/structure/Analyses/DataMA.csv")
-View(dataMA)
 
 # Convert all columns to character to ensure consistent replacement
 df <- data.frame(lapply(dataMA, as.character))
@@ -259,7 +256,7 @@ df3[, 9:109] <- lapply(df3[, 9:109], as.numeric)
 str(df3[, 9:109])
 ```
 
-```{r}
+```{r, echo=FALSE}
 # Subset df3 to include only columns up to column 119
 df3 <- df3[, 1:119]
 
@@ -492,7 +489,7 @@ table_degree <- data.frame(colMeans(is.na(describe_degree)))
 colnames(table_degree) <- "Degree"
 
 # create table for Working Y/N
-table_wokfilter <- data.frame(colMeans(is.na(describe_workfilter)))
+table_workfilter <- data.frame(colMeans(is.na(describe_workfilter)))
 colnames(table_workfilter) <- "Workfilter"
 
 # create table for Worktime
@@ -520,6 +517,7 @@ table_missings # print for HTML
 library(dplyr)
 library(psych)
 library(rempsyc)
+library(flextable)
 
 # Example: Define and round descriptive statistics for each variable
 table_descriptive_age <- round(psych::describe(describe_age), 2)
@@ -796,7 +794,7 @@ occupation_labels <- c(
 )
 
 # Convert Occupation to factor with labels and count
-frequency_table <- describe_occupation %>%
+frequency_table_occ <- describe_occupation %>%
   filter(!is.na(Occupation)) %>%
   mutate(Occupation = factor(Occupation, labels = occupation_labels[names(occupation_labels)])) %>%
   count(Occupation) %>%
@@ -1003,7 +1001,7 @@ Integration: F3F3 F3F4 F3F5 F3F9
 Communication: F4F1 F4F3 F4F6 F4F7
 Statistics: F5F3 F5F4 F5F15 F5F18
 
-```{r}
+```{r, eval=FALSE}
 # Call the kfold function with factor.structure as an argument
 kfold_sel2 <- kfold(
   'gene', 
@@ -1053,7 +1051,7 @@ lavaan::inspect(kfold_sel2$final, 'est')$nu
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 library(stuart)
 # kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
 
