@@ -43,10 +43,8 @@ repro::automate() #creating a Dockerfile.    ####################### BUG ######
 repro::use_docker()
 repro::use_gha_docker() #GitHub action (GHA) is a cloud service that runs software when certain events trigger it.Add a GitHub Action to build the required Docker image with
 
-# Install or update 'renv' package from CRAN if needed
-# Load 'renv' package
 library(renv)
-
+setwd("/Users/leo/Desktop/Programming stuff/Thesis")
 # Initialize 'renv' in your project
 renv::init()
 
@@ -58,6 +56,10 @@ renv::activate()
 
 # Update renv.lock file
 renv::snapshot()
+
+if(!requireNamespace("pak"))
+install.packages("pak")
+pak::pkg_install("brandmaier/reproducibleRchunks")
 
 ```
 
@@ -101,7 +103,6 @@ library(mice)
 library(readr)
 
 dataMA <- read_csv("/Users/leo/Desktop/Programming stuff/Thesis/structure/Analyses/DataMA.csv")
-View(dataMA)
 
 # Convert all columns to character to ensure consistent replacement
 df <- data.frame(lapply(dataMA, as.character))
@@ -255,7 +256,7 @@ df3[, 9:109] <- lapply(df3[, 9:109], as.numeric)
 str(df3[, 9:109])
 ```
 
-```{r}
+```{r, echo=FALSE}
 # Subset df3 to include only columns up to column 119
 df3 <- df3[, 1:119]
 
@@ -488,7 +489,7 @@ table_degree <- data.frame(colMeans(is.na(describe_degree)))
 colnames(table_degree) <- "Degree"
 
 # create table for Working Y/N
-table_wokfilter <- data.frame(colMeans(is.na(describe_workfilter)))
+table_workfilter <- data.frame(colMeans(is.na(describe_workfilter)))
 colnames(table_workfilter) <- "Workfilter"
 
 # create table for Worktime
@@ -516,6 +517,7 @@ table_missings # print for HTML
 library(dplyr)
 library(psych)
 library(rempsyc)
+library(flextable)
 
 # Example: Define and round descriptive statistics for each variable
 table_descriptive_age <- round(psych::describe(describe_age), 2)
@@ -734,7 +736,72 @@ print(heatmap2)
 ```
 
 ```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(scales) # For pretty_breaks
 
+# Adjust the ggplot call to exclude NAs only from the figure
+ggplot(describe_occupation %>% filter(!is.na(Occupation)), aes(x = factor(Occupation))) +
+  geom_bar(fill = "blue", color = "black", alpha = 0.7) +
+  geom_text(stat = 'count', aes(label = ..count..), vjust = -0.5) + # Add count labels
+  labs(title = "Histogram of Occupations",
+       x = "Occupation",
+       y = "Frequency") +
+  scale_x_discrete(labels = function(x) {
+    labels <- c(
+      "1" = "Land-, Forst- und Tierwirtschaft",
+      "2" = "Rohstoffgewinnung, Produktion und Fertigung",
+      "3" = "Bau, Architektur, Gebäudetechnik",
+      "4" = "Naturwissenschaft, Geografie und Informatik",
+      "5" = "Verkehr, Logistik, Schutz und Sicherheit",
+      "6" = "Kaufmännische Dienstleistungen, Vertrieb, Tourismus",
+      "7" = "Buchhaltung, Recht und Verwaltung",
+      "8" = "Gesundheit, Soziales, Lehre und Erziehung",
+      "9" = "Geistes-, Gesellschafts- und Wirtschaftswissenschaften, Medien, Kunst, Kultur und Gestaltung",
+      "10" = "Militär"
+    )
+    wrapped_labels <- lapply(labels[x], function(label) paste(strwrap(label, width = 20), collapse = "\n"))
+    unlist(wrapped_labels) # Ensure the output is a vector, not a list
+  }) +
+  scale_y_continuous(breaks = pretty_breaks(n = 10)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 9, angle = 55, hjust = 1, vjust = 1),
+    axis.text.y = element_text(size = 9),
+    plot.title = element_text(size = 10),
+    axis.title.x = element_text(size = 10),
+    axis.title.y = element_text(size = 10)
+  )
+```
+```{r}
+library(dplyr)
+library(tibble) # For creating a tibble if needed
+
+# Assuming describe_occupation is your dataframe
+# First, define the labels as a named vector
+occupation_labels <- c(
+  "1" = "Land-, Forst- und Tierwirtschaft",
+  "2" = "Rohstoffgewinnung, Produktion und Fertigung",
+  "3" = "Bau, Architektur, Gebäudetechnik",
+  "4" = "Naturwissenschaft, Geografie und Informatik",
+  "5" = "Verkehr, Logistik, Schutz und Sicherheit",
+  "6" = "Kaufmännische Dienstleistungen, Vertrieb, Tourismus",
+  "7" = "Buchhaltung, Recht und Verwaltung",
+  "8" = "Gesundheit, Soziales, Lehre und Erziehung",
+  "9" = "Geistes-, Gesellschafts- und Wirtschaftswissenschaften, Medien, Kunst, Kultur und Gestaltung",
+  "10" = "Militär"
+)
+
+# Convert Occupation to factor with labels and count
+frequency_table_occ <- describe_occupation %>%
+  filter(!is.na(Occupation)) %>%
+  mutate(Occupation = factor(Occupation, labels = occupation_labels[names(occupation_labels)])) %>%
+  count(Occupation) %>%
+  arrange(desc(n)) # Arrange by frequency, can be removed if not needed
+
+# Print the frequency table
+print(frequency_table)
 ```
 
 ## Filter for the partial completes
@@ -934,7 +1001,7 @@ Integration: F3F3 F3F4 F3F5 F3F9
 Communication: F4F1 F4F3 F4F6 F4F7
 Statistics: F5F3 F5F4 F5F15 F5F18
 
-```{r}
+```{r, eval=FALSE}
 # Call the kfold function with factor.structure as an argument
 kfold_sel2 <- kfold(
   'gene', 
@@ -984,7 +1051,7 @@ lavaan::inspect(kfold_sel2$final, 'est')$nu
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 library(stuart)
 # kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
 
@@ -1105,6 +1172,21 @@ B5_openness <- df3 %>%
 B5_con <- df3 %>%
   select(starts_with("B5.G")) %>%
   mutate_all(as.numeric)
+```
+
+## Inverting negatively keyed items
+```{r}
+# Recoding for B5_con and B5_openness
+B5_con$B5.G1. <- 6 - B5_con$B5.G1.
+B5_openness$B5.O2. <- 6 - B5_openness$B5.O2.
+
+# Recoding for NFC
+NFC$NFC.NFC1. <- 8 - NFC$NFC.NFC1.
+NFC$NFC.NFC4. <- 8 - NFC$NFC.NFC4.
+
+# Recoding for SWE
+SWE$SWE16.SWE4. <- 6 - SWE$SWE16.SWE4.
+SWE$SWE16s2.SWE14. <- 6 - SWE$SWE16s2.SWE14.
 ```
 
 ## Calculating meanscores
