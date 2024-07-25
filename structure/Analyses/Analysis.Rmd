@@ -1238,7 +1238,7 @@ all_means <- data.frame(
 ```{r}
 library(apaTables)
 cortable<-cor(all_means, use = "pairwise" ,method = "pearson")
-apa.cor.table(cortable)
+apa.cor.table(all_means)
 ```
 
 ```{r}
