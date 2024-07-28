@@ -67,30 +67,30 @@ pak::pkg_install("brandmaier/reproducibleRchunks")
 ```{reproducibleR}
 model <- "
 # Measurement model
-y1 =~ x1 + x2 + x3 + x4
-y2 =~ x5 + x6 + x7 + x8
-y3 =~ x9 + x10 + x11 + x12
-y4 =~ x13 + x14 + x15 + x16
-y5 =~ x17 + x18 + x19 + x20
+Comprehension =~ x1 + x2 + x3 + x4
+Evaluation =~ x5 + x6 + x7 + x8
+Integration =~ x9 + x10 + x11 + x12
+Communication =~ x13 + x14 + x15 + x16
+Statistics =~ x17 + x18 + x19 + x20
 
 # Factor variances
-y1 ~~ y1
-y2 ~~ y2
-y3 ~~ y3
-y4 ~~ y4
-y5 ~~ y5
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
 
 # Factor correlations
-y1 ~~ y2
-y1 ~~ y3
-y1 ~~ y4
-y1 ~~ y5
-y2 ~~ y3
-y2 ~~ y4
-y2 ~~ y5
-y3 ~~ y4
-y3 ~~ y5
-y4 ~~ y5
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
 "
 
 ```
@@ -280,36 +280,52 @@ Although it may not be necessary, because the missings are planned, random missi
 ## NAs FIMLn
 ```{r}
 df_dl <- df3[, 3:71]
+
+```
+
+```{r}
+library(dplyr)
+
+# Assuming df_fl is your dataframe
+# Calculate the number of columns
+num_columns <- ncol(df_dl)
+
+# Filter rows where most columns have a value of 0
+filtered_df_dl <- df_dl %>%
+  filter(rowSums(. == 0) >= num_columns * 0.8)  # Adjust the threshold as needed
+```
+
+
+```{r}
 # Load the lavaan package
 library(lavaan)
-
 # Model specification
 model <- '
 # Measurement model
-y1 =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
-y2 =~ F2F1 + F2F2 + F2F3 + F2F4 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F17 + F2F18 + F2F19 + F2F20
-y3 =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
-y4 =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
-y5 =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
+Comprehension =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
+Evaluation =~ F2F1 + F2F2 + F2F3 + F2F4 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F17 + F2F18 + F2F19 + F2F20
+Integration =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
+Communication =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
 
 # Factor variances
-y1 ~~ y1
-y2 ~~ y2
-y3 ~~ y3
-y4 ~~ y4
-y5 ~~ y5
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
 
 # Factor correlations
-y1 ~~ y2
-y1 ~~ y3
-y1 ~~ y4
-y1 ~~ y5
-y2 ~~ y3
-y2 ~~ y4
-y2 ~~ y5
-y3 ~~ y4
-y3 ~~ y5
-y4 ~~ y5
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
 '
 
 # Fit the model using FIML for missing data
@@ -851,74 +867,223 @@ write.csv2(imputed_training_data_c, "imputed_training_data_c.csv")
 write.csv2(df_train, "df_train.csv")
 ```
 
+# Count values for each variable
 ```{r}
+library(dplyr)
+library(tidyr)
 
-fs<-list(Comprehension=c('F1F1','F1F2','F1F3','F1F4','F1F5','F1F6','F1F7','F1F8',
-                           'F1F9','F1F10','F1F11','F1F12','F1F13','F1F14'),
-           Evaluation=c('F2F1','F2F2','F2F3','F2F4','F2F5','F2F6','F2F7','F2F8',
-                        'F2F9','F2F10','F2F11','F2F12','F2F13','F2F14','F2F15',
-                        'F2F16','F2F17','F2F18','F2F19','F2F20'),
-           Integration=c('F3F1','F3F2','F3F3','F3F4','F3F5','F3F6','F3F7','F3F8','F3F9'),
+# Count values for each variable in imputed_training_data_c
+value_counts <- imputed_training_data_c %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts)
+
+# Filter for cases with values smaller or equal to 2
+filtered_value_counts <- value_counts %>%
+  filter(rowSums(. <= 2) > 0)
+
+print(filtered_value_counts)
+
+# Get the list of items to be modified
+items_to_modify <- filtered_value_counts$Variable
+
+# Ensure items_to_modify is a character vector
+items_to_modify <- as.character(items_to_modify)
+
+# Modify the imputed_training_data_c to merge answers 0 and 1 into 1 for these items
+imputed_training_data_merged <- imputed_training_data_c %>%
+  mutate(across(all_of(items_to_modify), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+imputed_training_data_merged <- imputed_training_data_merged %>%
+  select(-c(F2F17, F2F4))
+
+print(imputed_training_data_merged)
+
+
+```
+```{r}
+value_counts_merged <- imputed_training_data_merged %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged)
+```
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
+
+# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+imputed_training_data_merged1 <- imputed_training_data_merged %>%
+  mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_training_data_merged1)
+
+```
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2F1", "F2F9", "F2F8", "F2F12", "F2F13", "F2F7", "F3F7", "F3F8" ,"F3F9", "F4F2", "F4F5", "F5F17", "F5F15", "F1F14", "F1F13")
+
+# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+imputed_training_data_merged2 <- imputed_training_data_merged1 %>%
+  mutate(across(all_of(selected_items), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_training_data_merged2)
+
+```
+
+```{r}
+value_counts_merged2 <- imputed_training_data_merged2 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged2)
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
+
+# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+imputed_training_data_merged3 <- imputed_training_data_merged2 %>%
+  mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
+
+print(imputed_training_data_merged3)
+```
+
+```{r}
+value_counts_merged3 <- imputed_training_data_merged3 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged3)
+```
+
+```{r}
+names(imputed_training_data_merged3)
+
+#F2F17 and F2F4 deleted
+fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11", "F1F12",                             "F1F13", "F1F14"),
+           Evaluation=c('F2F1',"F2F2",  "F2F3",  "F2F5",  "F2F6",  "F2F7",  "F2F8",  "F2F9",  "F2F10", "F2F11", "F2F12", "F2F13",                               "F2F14", "F2F15", "F2F16", "F2F18",'F2F19','F2F20'),
+           Integration=c("F3F1",  "F3F2",  "F3F3",  "F3F4",  "F3F5",  "F3F6",  "F3F7",  "F3F8",  "F3F9"),
            Communication=c('F4F1','F4F2','F4F3','F4F4','F4F5','F4F6','F4F7','F4F8'),
-           Statistics=c('F5F1','F5F2','F5F3','F5F4','F5F5','F5F6','F5F7','F5F8',
-                        'F5F9','F5F10','F5F11','F5F12','F5F13','F5F14','F5F15',
-                        'F5F16','F5F17','F5F18')
+           Statistics=c("F5F1",  "F5F2",  "F5F3",  "F5F4",  "F5F5",  "F5F6",  "F5F7",  "F5F8",  "F5F9",  "F5F10", "F5F11","F5F12",                             "F5F13", "F5F14", "F5F15", "F5F16", "F5F17", "F5F18")
                            )
 ```
 
 ## ordinal data transformation?
 ```{r}
-ords <- imputed_training_data_c[, names(imputed_training_data_c)%in%unlist(fs)]
+ords <- imputed_training_data_merged3[, names(imputed_training_data_merged3)%in%unlist(fs)]
 ords <- lapply(ords, as.ordered)
 ords <- do.call(data.frame, ords)
+```
+
+```{r}
+model <- '
+# Measurement model
+Comprehension =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
+Evaluation =~ F2F1 + F2F2 + F2F3 + F2F4 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F17 + F2F18 + F2F19 + F2F20
+Integration =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
+Communication =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_again <- cfa(model, ords, ordered = TRUE, estimator = "WLSMV")
+summary(fit_again)
 ```
 
 ## Objective-Function
 ```{r}
 library(stuart)
+library(lavaan)
 
-# Define the theoretical nu matrix 
-theoretical_nu <- matrix(c(5, 4, 2, 1,  # Factor 1 items
-                      5, 4, 2, 1,  # Factor 2 items
-                      5, 4, 2, 1,  # Factor 3 items
-                      5, 4, 2, 1,  # Factor 4 items
-                      5, 4, 2, 1), # Factor 5 items
-                    nrow = 4, byrow = TRUE,
-                    dimnames = list(c("Item1", "Item2", "Item3", "Item4"),
-                                    c("Factor1", "Factor2", "Factor3", "Factor4", "Factor5")))
+#extracting the taus
+taus <- lavInspect(fit_again, "est")$tau
+# printing them
+print(taus)
 
-# Convert the matrix to a vector
-nu_vector <- c(theoretical_nu)
+## taus?
+theothrsh_tau <- sd(taus[grep('t1', rownames(taus))]) + 
+                 sd(taus[grep('t2', rownames(taus))]) +
+                 sd(taus[grep('t3', rownames(taus))]) + 
+                 sd(taus[grep('t4', rownames(taus))]) +
+                 sd(taus[grep('t5', rownames(taus))])
 
-# Calculate the standard deviation of the vector
-ideal_sd <- sd(nu_vector)
+print(theothrsh_tau)
 
-# Print the ideal standard deviation
-print(ideal_sd) #1.62
+# Assuming tau is a vector containing all tau values across items
+overall_sd_tau <- sd(taus)
+print(overall_sd_tau)# 1.136692
 
-# Use 'ideal_sd' in my objective function
 #ordinal data
-obj <- function(chisq, df, pvalue,rmsea.scaled, srmr, cfi.scaled, crel, nu) {
+objective.normal <- function(rmsea.scaled, srmr, cfi.scaled) {
   out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
   out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
   out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
-  #out4 = -(sd(nu) - 1.62)^2 + 1.62^2 # Quadratic function peaking at 'ideal_sd'
-  out = (out1 + out2 + out3 )/3 #+ out4)/4
+  out = (out1 + out2 + out3)/3
   return(out)                                
 }
 
+obj <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, tau) {
+  out1 = 0.5 - (0.5 / (1 + exp(-100 * (rmsea.robust - .05))))
+  out2 = 0.5 - (0.5 / (1 + exp(-100 * (srmr - .05))))
+  out3 = (1 / (1 + exp(-100 * (cfi.robust - .95))))
+  out4 = 1 / (1 + exp(-10 * (tau - 0.1))) # Maximizing the standard deviation of tau
+  out = (out1 + out2 + out3 + out4) / 4
+  return(out)
+}
+
+sd(tau)
+
 #stuart:::objective.preset
-obj_default <- function(chisq, df, pvalue, rmsea, srmr, crel) {
+obj_default <- function(chisq, df, pvalue, rmsea.robust, srmr, crel,nu) {
                       1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
-                     (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
-                      0.06)))))
-                       }
-#stuart:::objective.preset2
-obj_default2 <- function(chisq, df, pvalue, rmsea, srmr, crel, nu) {
-                      1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
-                     (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
-                      0.06))))) - (sd(nu) - 1.62)^2 + 1.62^2 + 1e-6
-                       }
+                     (rmsea.robust - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
+                      0.06))))) + 1 / (1 + exp(-10 * (nu - 0.1)))
+}
+#1 / (1 + exp(-10 * (nu_sd - 0.1))) #0.1 is the threshhold and can be adjusted
+
+obj_default3 <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel, nu)
+                        {(1-rmsea)+(1-srmr) + sd(nu)}
+
+#(sd(nu) - 1.62)^2 + 1.62^2 + 1e-6
+
 
 ```
 
@@ -950,8 +1115,8 @@ kfold_sel <- kfold(
   objective = obj_default,
   ignore.errors = TRUE,
   burnin = 5,
-  generations = 300,
-  individuals = 64,
+  generations = 200,
+  individuals = 34,
   selection = "tournament",
   selection.pressure = NULL,
   elitism = NULL,
@@ -973,6 +1138,10 @@ kfold_sel <- kfold(
   remove.details = TRUE
 )
 #########################################################
+```
+
+```{r}
+
 summary(kfold_sel)
 
 inspect(kfold_sel$final, 'est')
@@ -1001,25 +1170,65 @@ Integration: F3F3 F3F4 F3F5 F3F9
 Communication: F4F1 F4F3 F4F6 F4F7
 Statistics: F5F3 F5F4 F5F15 F5F18
 
+##Second Time it worked:
+SUMMARY OF ANALYSIS:
+
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 85824 
+Time Required: 1637.815 seconds
+
+Crossvalidation Results with STRICT Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.270, Evaluation: 0.270, Integration: 0.422, Communication: 0.733, Statistics: 0.733
+
+Constructed Subtests: (k = 3)
+Comprehension: F1F5 F1F6 F1F11 F1F12
+Evaluation: F2F6 F2F7 F2F12 F2F17
+Integration: F3F2 F3F3 F3F4 F3F9
+Communication: F4F3 F4F6 F4F7 F4F8
+Statistics: F5F6 F5F7 F5F17 F5F18
+
+## First time with robust indices:
+SUMMARY OF ANALYSIS:
+
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 85824 
+Time Required: 1625.887 seconds
+
+Crossvalidation Results with STRICT Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.270, Evaluation: 0.270, Integration: 0.422, Communication: 0.733, Statistics: 0.733
+
+Constructed Subtests: (k = 3)
+Comprehension: F1F5 F1F6 F1F11 F1F12
+Evaluation: F2F6 F2F7 F2F12 F2F17
+Integration: F3F2 F3F3 F3F4 F3F9
+Communication: F4F3 F4F6 F4F7 F4F8
+Statistics: F5F6 F5F7 F5F17 F5F18
+
 ```{r, eval=FALSE}
 # Call the kfold function with factor.structure as an argument
 kfold_sel2 <- kfold(
   'gene', 
   k = 3, 
-  data = imputed_training_data_c, 
-  factor.structure = fs,  # Pass the variable directly
-  max.invariance = "strict", 
+  data = ords, 
+  factor.structure = fs,  
+  max.invariance = "strong", 
   capacity = list(4, 4, 4, 4, 4), 
-  seed = 2024,
+  seed = 2026,
   seeded.search = TRUE,
   auxiliary = NULL,
   software = "lavaan",
   cores = 4,
-  objective = obj_default2,
+  objective = objective.normal,
   ignore.errors = TRUE,
   burnin = 5,
   generations = 500,
-  individuals =100,
+  individuals = 34,
   selection = "tournament",
   selection.pressure = NULL,
   elitism = NULL,
@@ -1047,9 +1256,29 @@ inspect(kfold_sel2$final, 'est')
 inspect(kfold_sel2$final, 'fit')
 
 lavaan::summary(kfold_sel2$final, standardized = TRUE) 
-lavaan::inspect(kfold_sel2$final, 'est')$nu
+lavaan::inspect(kfold_sel2$final, 'est')$tau
 ```
+## OMG first time ordinal ran (w.o. tau)
+Warning: This is a beta-build of stuart. Please report any bugs you encounter.
 
+SUMMARY OF ANALYSIS:
+
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 52088 
+Time Required: 1096.398 seconds
+
+Crossvalidation Results with STRONG Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.600, Evaluation: 0.333, Integration: 0.600, Communication: 0.600, Statistics: 0.333
+
+Constructed Subtests: (k = 1)
+Comprehension: F1F3 F1F6 F1F12 F1F14
+Evaluation: F2F5 F2F12 F2F14 F2F16
+Integration: F3F3 F3F4 F3F7 F3F8
+Communication: F4F1 F4F2 F4F3 F4F8
+Statistics: F5F3 F5F6 F5F15 F5F18
 
 ```{r, eval=FALSE}
 library(stuart)
@@ -1094,9 +1323,8 @@ gene <- gene(
 
 ## Objective-Function ideas
 ```{r}
+# theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices?
 
-# matritzen mit objectivematrices function
-# theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices? 
 ```
 
 ## Crossvalidation
@@ -1110,30 +1338,30 @@ crossvalidate(imputed_training_data_c, imputed_test_data_c)
 # Fit the initial SEM model
 model <- "
 # Measurement model
-y1 =~ x1 + x2 + x3 + x4
-y2 =~ x5 + x6 + x7 + x8
-y3 =~ x9 + x10 + x11 + x12
-y4 =~ x13 + x14 + x15 + x16
-y5 =~ x17 + x18 + x19 + x20
+Comprehension =~ x1 + x2 + x3 + x4
+Evaluation =~ x5 + x6 + x7 + x8
+Integration =~ x9 + x10 + x11 + x12
+Communication =~ x13 + x14 + x15 + x16
+Statistics =~ x17 + x18 + x19 + x20
 
 # Factor variances
-y1 ~~ y1
-y2 ~~ y2
-y3 ~~ y3
-y4 ~~ y4
-y5 ~~ y5
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
 
 # Factor correlations
-y1 ~~ y2
-y1 ~~ y3
-y1 ~~ y4
-y1 ~~ y5
-y2 ~~ y3
-y2 ~~ y4
-y2 ~~ y5
-y3 ~~ y4
-y3 ~~ y5
-y4 ~~ y5
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
 "
 fit <- sem(model, data = data)
 
