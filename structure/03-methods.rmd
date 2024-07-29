@@ -1,25 +1,21 @@
 # Methods
 
 ## Item Creation  
-A literature review was done to create items and then ten cognitive interviews were held to refine those potential items. The interviews were administered iteratively to refine the items every time a bit more. We will treat the first 25 participants like a pilot, to check for potential problems in the survey.
-
-## Rationale for Measurement Model
-One decision that needs to be done by the researcher before the item selection with 'stuart', is the design of the measurement model, or how many items per factor the final scale should have.
-This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.
+A literature review was done to create items and then ten cognitive interviews were held to refine those potential items. The interviews were administered iteratively to refine the items consecutively. The refined items are then asked alongside other questionnaires in a online survey. We will treat the first 25 participants like a pilot, to check for potential problems in the survey(like length, spelling mistakes that have been overlooked etc.).
 
 ## Sample  
-The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail) Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for **N**=645, and a simulated estimate **N**=613, for the respective measurement model. In the literature sample sizes of **N**=500 up to **N**=1000 could be found [@algner2022; @remmert2022; @schneider2024]. So the optimal sample size, we are aiming at, lies somewhere between those numbers.
+The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail). Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for *N*=645, and a simulated estimate *N*=613, for the respective measurement model. In the literature sample sizes of *N*=500 up to *N*=1000 could be found [@algner2022; @remmert2022; @schneider2024]. So the optimal sample size, we are aiming at, lies somewhere between those numbers.
 
-Participants had to be of legal age, to be included in the study. Furthermore, attention check questions are included (three instructed response items and one seriousness check item, at the end) within the survey to assess participants' attentiveness. Participants who fail to correctly answer two out of the four attention check questions will be excluded from the analysis.
+Participants had to be of legal age to be included in the study. Furthermore, attention check questions are included (three instructed response items and one seriousness check item at the end) within the survey to assess participants' attentiveness. Participants who fail to correctly answer two out of the four attention check questions will be excluded from the analysis.
 
-The following characteristics of this studys sample will be made with referral to the respective stat in the German population of 2022.
-The sample for this study comprised **N**=612 participants. Within the sample, 48,3% identified as female(50,65%), 50,2% as male(49,35%), and 1,5% did not identify with binary gender categories [@StBA2024a]. The average age was XX(**M** = 44,6)[@StBA2024b], with an average age of XX amongst women (**M** = 45,9)[@StBA2023a] and XX amongst men (**M** = 43,2)[@StBA2023a]. Regarding education, participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. XX% of the participants had a full time employment at the time(65,15%; Men = 42,40%, Women = 22,75%)[@StBA2023b; @BfA2024], XX% had an part time employment (28,22%; Men = 6,16%; Women = 22,06%)[@StBA2023b; @BfA2024] and XX% had no work at the time of the survey (6,63%)[@BfA2024]. The study encompassed every sector within the occupational classification at least once [@BfA2024]. XX% of the participants indicated that they were students at the time of the survey (3,39%)[StBA2024c].
+The following characteristics of this study's sample will be made with referral to the respective statistics in the German population of 2022.
+The sample for this study comprised *N*=612 participants. Within the sample, 48,3% identified as female(50,65%), 50,2% as male(49,35%), and 1,5% did not identify with binary gender categories [@StBA2024a]. The average age was XX(*M* = 44,6)[@StBA2024b], with an average age of XX amongst women (*M* = 45,9)[@StBA2023a] and XX amongst men (*M* = 43,2)[@StBA2023a]. Regarding education, participants exhibited a [insert educational level- specifying the range or types of educational levels observed in the sample]. XX% of the participants had a full time employment at the time(65,15%; Men = 42,40%, Women = 22,75%)[@StBA2023b; @BfA2024], XX% had an part time employment (28,22%; Men = 6,16%; Women = 22,06%)[@StBA2023b; @BfA2024] and XX% had no work at the time of the survey (6,63%)[@BfA2024]. The study encompassed every sector within the occupational classification at least once [@BfA2024]. XX% of the participants indicated that they were students at the time of the survey (3,39%)[@StBA2024c].
 
 ## Open Science Standards 
 This project uses the reproducibility workflow proposed by @Peikert2021. Docker and renv work together to create a reproducible and portable environment. Docker captures the complete software stack, while renv focuses on
 managing R package dependencies and providing a clear documentation of the R
-package environment. This combination ensures that your analysis can be easily
-reproduced and shared with others in a reliable and transparent manner. It is to be mentioned, that the repro package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software gets reinstalled. Furthermore I used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, one can see the results for the respective chunks, as to whether they are reproducible or not.
+package environment. This combination ensures that the analysis can be easily
+reproduced and shared with others in a reliable and transparent manner. It is to be mentioned, that the repro package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software get reinstalled. Furthermore we used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, one can see the results for the respective chunks, as to whether they are reproducible or not.
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 
 ## Procedure
@@ -28,7 +24,7 @@ A cross-sectional online survey is used to examine a sample from the general pop
 ## Instruments  
 ### Measuring Data Literacy
 On Data Literacy the participants will be asked to answer 71
-items. Each participant will answer 38 items of the 71, that are randomly selected.
+items. Each participant will answer 38 items of the 71 that are randomly selected.
 To answer the items, respondents indicate their agreement on a five-point Likert
 scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor
 disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know”
@@ -38,7 +34,7 @@ option.
 The SWE-IV-16 [@behm2018] (McDonalds $\omega$ = .91; Cronbachs $\alpha$ =.91) assesses the self-efficacy beliefs
 of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
-[@brandgruwel2009]. In this study this construct is used as a proxy for information literacy.
+[@brandgruwel2009]. In our study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed
 abilities in searching for and evaluating information, as well as managing
 information searches effectively. Each statement begins with "When I search for
@@ -47,7 +43,7 @@ agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat
 disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly
 agree”). The total scale value is computed as the arithmetic
 mean of the items, which may be inverted if necessary. Calculation of the total value
-requires valid responses to at least 12 of the 16 items. I expect the final questionnaire to correlate moderately up to highly positive with the SWE-IV-16 [@behm2018], measuring peoples ability to engage in information behaviour.
+requires valid responses to at least 12 of the 16 items. The final questionnaire is expected to correlate moderately up to highly positive with the SWE-IV-16 [@behm2018], measuring peoples ability to engage in information behaviour.
 
 ### Measuring Need for Cognition
 The NFC-K [@beißert2015] (McDonalds $\omega$ = .62; Cronbachs $\alpha$ =.60) is a tool used to assess the
@@ -56,7 +52,7 @@ NFC-K is measured with a seven-point response scale, ranging from "strongly
 disagree" (1) to "strongly agree" (7), with a "neither" option in the middle. The
 German version of the scale is adapted from the original English scale by @cacioppo1982 and translated by @bless1994. To determine an individual's NFC score, a mean value
 (scale value) is computed from the four raw score points of the responses. The
-resulting mean values range between 1 and 7. I expect a small to moderate positive correlation with the NFC-K [@beißert2015], assessing the Need for Cognition (NFC).
+resulting mean values range between 1 and 7. A small to moderate positive correlation with the NFC-K [@beißert2015] is expected, assessing the Need for Cognition (NFC).
 
 ### Measuring Technology Competency
 To assess self-perceived competence in using information and
@@ -70,17 +66,15 @@ rating scale ranging from strongly disagree (1) to strongly agree (6). Researche
 utilise either the entire scale or individual subscales based on their specific research objectives. The ICT-SC25g/e
 is applicable for both manifest and latent analysis. Manifest scale scores for the ICT-
 SC25g/e are calculated separately for each subscale by computing the unweighted
-mean score of the items within each subscale [@schauffel2021]. I expect a moderate, positive correlation of the final scale with the five general items of the ICT-SC25 [@schauffel2021].
+mean score of the items within each subscale [@schauffel2021]. A moderate, positive correlation of the final scale with the five general items of the ICT-SC25 [@schauffel2021] is expected.
 
 ### Measuring Openness and Conscientiousness
 The BFI-10 [@rammstedt2014] will be used to assess
 personality based on the five-factor model. Only the items on openness (McDonalds $\omega$ = .63; Cronbachs $\alpha$ =.63) and conscientiousness (McDonalds $\omega$ = .56; Cronbachs $\alpha$ =.56) were assessed.
 The items are answered on a five-point rating scale from "strongly disagree" (1) to
-"strongly agree" (5). To measure the respondent's individual traits on the five
+"strongly agree" (5). To measure the respondent's individual traits on the two
 personality dimensions, the responses to the two items for each dimension are
 averaged. First, the negatively worded item is recoded (items 1, 3, 4, 5, and 7), then
-the mean value is calculated for each dimension from both the recoded and non-
-recoded items. The values for the five dimensions range from 1 to 5 (see
-@rammstedt2007 for reference values). I expect small to moderate positive correlations with openness and conscientiousness of the BFI-10 [@rammstedt2014]. 
+the mean value is calculated for each dimension from both the recoded and non-recoded items. The values for the five dimensions range from 1 to 5 (see @rammstedt2007 for reference values). Small to moderate positive correlations with openness and conscientiousness of the BFI-10 [@rammstedt2014] are expected. 
 
 
