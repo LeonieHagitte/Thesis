@@ -1064,9 +1064,15 @@ obj <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, tau) {
   out1 = 0.5 - (0.5 / (1 + exp(-100 * (rmsea.robust - .05))))
   out2 = 0.5 - (0.5 / (1 + exp(-100 * (srmr - .05))))
   out3 = (1 / (1 + exp(-100 * (cfi.robust - .95))))
-  out4 = 1 / (1 + exp(-10 * (tau - 0.1))) # Maximizing the standard deviation of tau
+  # Calculating the standard deviation of tau
+  sd_tau = sd(tau)
+  
+  # Adjusting out4 to maximize the standard deviation of tau
+  out4 = 1 / (1 + exp(-5 * (sd_tau - 0.5))) 
+  
   out = (out1 + out2 + out3 + out4) / 4
   return(out)
+
 }
 
 sd(tau)
@@ -1096,8 +1102,6 @@ combinations(imputed_training_data_c, fs,4)
 ```{r}
 
 ############ k-Folding #########################
-
-# erster der holdout wird an kfold weitergegeben
 
 # Call the kfold function with factor.structure as an argument
 kfold_sel <- kfold(
@@ -1170,25 +1174,6 @@ Integration: F3F3 F3F4 F3F5 F3F9
 Communication: F4F1 F4F3 F4F6 F4F7
 Statistics: F5F3 F5F4 F5F15 F5F18
 
-##Second Time it worked:
-SUMMARY OF ANALYSIS:
-
-Number of Folds: 3 
-Analysis Type: gene 
-Estimation Software: lavaan 
-Models Estimated: 85824 
-Time Required: 1637.815 seconds
-
-Crossvalidation Results with STRICT Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.270, Evaluation: 0.270, Integration: 0.422, Communication: 0.733, Statistics: 0.733
-
-Constructed Subtests: (k = 3)
-Comprehension: F1F5 F1F6 F1F11 F1F12
-Evaluation: F2F6 F2F7 F2F12 F2F17
-Integration: F3F2 F3F3 F3F4 F3F9
-Communication: F4F3 F4F6 F4F7 F4F8
-Statistics: F5F6 F5F7 F5F17 F5F18
 
 ## First time with robust indices:
 SUMMARY OF ANALYSIS:
@@ -1250,6 +1235,9 @@ kfold_sel2 <- kfold(
   remove.details = TRUE
 )
 #########################################################
+```
+
+```{r}
 summary(kfold_sel2)
 
 inspect(kfold_sel2$final, 'est')
@@ -1279,6 +1267,80 @@ Evaluation: F2F5 F2F12 F2F14 F2F16
 Integration: F3F3 F3F4 F3F7 F3F8
 Communication: F4F1 F4F2 F4F3 F4F8
 Statistics: F5F3 F5F6 F5F15 F5F18
+
+```{r, eval=FALSE}
+library(stuart)
+
+lavaan::inspect(kfold_sel2$final, 'est')$tau
+
+# objective
+objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
+  out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
+  out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
+  out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
+  out = (out1 + out2 + out3)/3
+  return(out)                                
+}
+
+
+kfold_sel3 <- kfold(
+  'gene', 
+  k = 3, 
+  data = ords, 
+  factor.structure = fs,  
+  max.invariance = "strong", 
+  capacity = list(4, 4, 4, 4, 4), 
+  seed = 2026,
+  seeded.search = TRUE,
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = objective.normal,
+  ignore.errors = TRUE,
+  burnin = 5,
+  generations = 500,
+  individuals = 34,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
+
+summary(kfold_sel23)
+
+lavaan::inspect(kfold_sel23$final, 'est')$tau
+
+# Call the kfold function with factor.structure as an argument
+
+
+#########################################################
+```
+
+```{r}
+summary(kfold_sel3)
+
+inspect(kfold_sel3$final, 'est')
+inspect(kfold_sel3$final, 'fit')
+
+lavaan::summary(kfold_sel3$final, standardized = TRUE) 
+lavaan::inspect(kfold_sel3$final, 'est')$tau
+```
+
 
 ```{r, eval=FALSE}
 library(stuart)
