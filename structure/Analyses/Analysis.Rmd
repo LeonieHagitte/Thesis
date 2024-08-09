@@ -1498,7 +1498,7 @@ Integration: F3F2 F3F3 F3F4 F3F9
 Communication: F4F3 F4F6 F4F7 F4F8
 Statistics: F5F6 F5F7 F5F17 F5F18
 ```{r}
-obj_default_nu <- function(chisq, df, pvalue, rmsea.robust, srmr, crel, nu) {
+obj_default_nu <- function(chisq, df, pvalue, cfi.robust, rmsea.robust, srmr, crel, nu) {
   # Ensure nu is an atomic vector
   if (!is.atomic(nu)) {
     nu <- unlist(nu)
@@ -1509,6 +1509,7 @@ obj_default_nu <- function(chisq, df, pvalue, rmsea.robust, srmr, crel, nu) {
   
   # Compute the objective function
   1/(1 + exp(-10 * (crel - 0.6))) + 
+  1/(1 + exp(-10 * (cfi.robust - 0.6))) +
   0.5 * (1 - (1/(1 + exp(-100 * (rmsea.robust - 0.05))))) + 
   0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06))))) + 
   1 / (1 + exp(-10 * (nu_sd - 0.1))) # Adjust the threshold as needed
