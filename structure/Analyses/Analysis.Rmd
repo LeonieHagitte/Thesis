@@ -571,6 +571,178 @@ nice_table(table_descriptives[selected_columns], stars = TRUE, title = "Sample D
 
 ```
 
+```{r}
+library(dplyr)
+
+# Calculate the mean, SD, and frequencies for age by gender
+mean_sd_age_by_gender <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_age = mean(Age, na.rm = TRUE),
+    sd_age = sd(Age, na.rm = TRUE),
+    count_age = n()
+  )
+
+# Calculate the mean, SD, and frequencies for education by gender
+mean_sd_education_by_gender <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_education = mean(Education, na.rm = TRUE),
+    sd_education = sd(Education, na.rm = TRUE),
+    count_education = n()
+  )
+
+# Calculate the mean, SD, and frequencies for degree by gender
+mean_sd_degree_by_gender <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_degree = mean(Degree, na.rm = TRUE),
+    sd_degree = sd(Degree, na.rm = TRUE),
+    count_degree = n()
+  )
+
+# Calculate the mean, SD, and frequencies for worktime by gender
+mean_sd_worktime_by_gender <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_worktime = mean(Worktime, na.rm = TRUE),
+    sd_worktime = sd(Worktime, na.rm = TRUE),
+    count_worktime = n()
+  )
+
+# Calculate the mean, SD, and frequencies for occupation by gender
+mean_sd_occupation_by_gender <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_occupation = mean(Occupation, na.rm = TRUE),
+    sd_occupation = sd(Occupation, na.rm = TRUE),
+    count_occupation = n()
+  )
+
+
+# Print the resulting data frames
+print(mean_sd_age_by_gender)
+print(mean_sd_education_by_gender)
+print(mean_sd_degree_by_gender)
+print(mean_sd_worktime_by_gender)
+print(mean_sd_occupation_by_gender)
+```
+
+```{r}
+# Load the necessary library
+library(dplyr)
+
+# Assuming demographics is your data frame and it has the relevant columns
+
+# Calculate the mean, SD, and frequencies for age by gender
+table2_descriptive_age <- demographics %>%
+  group_by(Gender) %>%
+  summarize(
+    mean_age = mean(Age, na.rm = TRUE),
+    sd_age = sd(Age, na.rm = TRUE),
+    count_age = n()
+  )
+
+# Calculate the mean, SD, and frequencies for education by gender
+table2_descriptive_education <- demographics %>%
+  group_by(Gender, Education) %>%
+  summarize(
+    mean_education = mean(Education, na.rm = TRUE),
+    sd_education = sd(Education, na.rm = TRUE),
+    count_education = n()
+  ) %>%
+  ungroup()
+
+# Calculate the mean, SD, and frequencies for degree by gender
+table2_descriptive_degree <- demographics %>%
+  group_by(Gender, Degree) %>%
+  summarize(
+    mean_degree = mean(Degree, na.rm = TRUE),
+    sd_degree = sd(Degree, na.rm = TRUE),
+    count_degree = n()
+  ) %>%
+  ungroup()
+
+# Calculate the mean, SD, and frequencies for worktime by gender
+table2_descriptive_worktime <- demographics %>%
+  group_by(Gender, Worktime) %>%
+  summarize(
+    mean_worktime = mean(Worktime, na.rm = TRUE),
+    sd_worktime = sd(Worktime, na.rm = TRUE),
+    count_worktime = n()
+  ) %>%
+  ungroup()
+
+# Calculate the mean, SD, and frequencies for occupation by gender
+table2_descriptive_occupation <- demographics %>%
+  group_by(Gender, Occupation) %>%
+  summarize(
+    mean_occupation = mean(Occupation, na.rm = TRUE),
+    sd_occupation = sd(Occupation, na.rm = TRUE),
+    count_occupation = n()
+  ) %>%
+  ungroup()
+
+# Print the resulting data frames
+print(table2_descriptive_age)
+print(table2_descriptive_education)
+print(table2_descriptive_degree)
+print(table2_descriptive_worktime)
+print(table2_descriptive_occupation)
+```
+```{r}
+# Load the necessary libraries
+library(dplyr)
+library(tidyr)
+
+# Assuming demographics is your data frame and it has the relevant columns
+
+# Function to calculate frequencies and percentages
+calculate_frequencies <- function(data, variable) {
+  data %>%
+    mutate(Gender = as.factor(Gender), !!sym(variable) := as.factor(!!sym(variable))) %>%
+    group_by(Gender, !!sym(variable)) %>%
+    summarize(count = n(), .groups = 'drop') %>%
+    ungroup() %>%
+    group_by(Gender) %>%
+    mutate(percentage = count / sum(count) * 100) %>%
+    ungroup() %>%
+    complete(Gender, !!sym(variable), fill = list(count = 0, percentage = 0)) %>%
+    mutate(Gender = as.character(Gender)) %>%
+    bind_rows(
+      data %>%
+        mutate(!!sym(variable) := as.factor(!!sym(variable))) %>%
+        group_by(!!sym(variable)) %>%
+        summarize(count = n(), .groups = 'drop') %>%
+        mutate(Gender = "All") %>%
+        mutate(percentage = count / sum(count) * 100)
+    ) %>%
+    arrange(Gender, !!sym(variable))
+}
+
+# Calculate frequencies and percentages for study
+table_descriptive_study <- calculate_frequencies(demographics, "study")
+
+# Calculate frequencies and percentages for workfilter
+table_descriptive_workfilter <- calculate_frequencies(demographics, "Workfilter")
+
+# Calculate frequencies and percentages for worktime
+table_descriptive_worktime <- calculate_frequencies(demographics, "Worktime")
+
+# Calculate frequencies and percentages for occupation
+table_descriptive_occupation <- calculate_frequencies(demographics, "Occupation")
+
+# Calculate frequencies and percentages for education
+table_descriptive_education <- calculate_frequencies(demographics, "Education")
+
+# Print the resulting data frames N= 540
+print(table_descriptive_study) #136 25,19% yes; 74,81 no
+print(table_descriptive_workfilter) #13,52% no; 86,48 yes +33women no 
+print(table_descriptive_worktime) #N=467;64,88% VZ, 35,12TZ; of 228 women, 51,75% vollzeit , 48,25% teilzeit ; of men 238, 77,73%VZ, 22,27%tz
+print(table_descriptive_occupation)
+print(table_descriptive_education)
+```
+
 ## Heatmap
 ```{r}
 library(dplyr)
@@ -661,10 +833,6 @@ heatmap_final <- heatmap +
 
 # Print or view the final heatmap
 print(heatmap_final)
-
-
-
-
 ```
 
 ```{r}
@@ -855,6 +1023,7 @@ df_test_dl <- df_test[,3:71]
 
 ## using mice 
 ```{r, echo=FALSE}
+seed(2025)
 imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
 imputed_training_data_c <- complete(imputed_training_data, 1)
 
@@ -903,6 +1072,7 @@ print(imputed_training_data_merged)
 
 
 ```
+
 ```{r}
 value_counts_merged <- imputed_training_data_merged %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
@@ -977,30 +1147,152 @@ value_counts_merged3 <- imputed_training_data_merged3 %>%
 print(value_counts_merged3)
 ```
 
+## The same for test data
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Count values for each variable in imputed_test_data_c
+value_counts_test <- imputed_test_data_c %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts_test)
+```
+
+```{r}
+# Filter for cases with values smaller or equal to 2
+filtered_value_counts_test <- value_counts_test %>%
+  filter(rowSums(. <= 2) > 0)
+
+print(filtered_value_counts_test)
+
+# Get the list of items to be modified
+items_to_modify_test <- filtered_value_counts_test$Variable
+
+# Ensure items_to_modify_test is a character vector
+items_to_modify_test <- as.character(items_to_modify_test)
+
+# Modify the imputed_test_data_c to merge answers 0 and 1 into 1 for these items
+imputed_test_data_merged <- imputed_test_data_c %>%
+  mutate(across(all_of(items_to_modify_test), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+imputed_test_data_merged <- imputed_test_data_merged %>%
+  select(-c(F2F17, F2F4))
+
+print(imputed_test_data_merged)
+```
+
+```{r}
+# Count values for each variable in the merged test data
+value_counts_merged_test <- imputed_test_data_merged %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts_merged_test)
+
+# Define the selected items
+selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
+
+# Modify the imputed_test_data_merged to merge answers 1 and 2 into 2 for these selected items
+imputed_test_data_merged1 <- imputed_test_data_merged %>%
+  mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_test_data_merged1)
+```
+
+```{r}
+# Define the selected items
+selected_items <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2F1", "F2F9", "F2F8", "F2F12", "F2F13", "F2F7", "F3F7", "F3F8" ,"F3F9", "F4F2", "F4F5", "F5F17", "F5F15", "F1F14", "F1F13")
+
+# Modify the imputed_test_data_merged1 to merge answers 1 and 2 into 2 for these selected items
+imputed_test_data_merged2 <- imputed_test_data_merged1 %>%
+  mutate(across(all_of(selected_items), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_test_data_merged2)
+
+# Count values for each variable in the merged test data
+value_counts_merged2_test <- imputed_test_data_merged2 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts_merged2_test)
+```
+
+```{r}
+# Define the selected items
+selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
+
+# Modify the imputed_test_data_merged2 to merge answers 1 and 2 into 2 for these selected items
+imputed_test_data_merged3 <- imputed_test_data_merged2 %>%
+  mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
+
+print(imputed_test_data_merged3)
+```
+
+```{r}
+# Count values for each variable in the merged test data
+value_counts_merged3_test <- imputed_test_data_merged3 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts_merged3_test)
+```
+
 ```{r}
 names(imputed_training_data_merged3)
 
 #F2F17 and F2F4 deleted
-fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11", "F1F12",                             "F1F13", "F1F14"),
-           Evaluation=c('F2F1',"F2F2",  "F2F3",  "F2F5",  "F2F6",  "F2F7",  "F2F8",  "F2F9",  "F2F10", "F2F11", "F2F12", "F2F13",                               "F2F14", "F2F15", "F2F16", "F2F18",'F2F19','F2F20'),
-           Integration=c("F3F1",  "F3F2",  "F3F3",  "F3F4",  "F3F5",  "F3F6",  "F3F7",  "F3F8",  "F3F9"),
+fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11",                              "F1F12", "F1F13", "F1F14"),
+           Evaluation=c('F2F1',"F2F2",  "F2F3",  "F2F5",  "F2F6",  "F2F7",  "F2F8",  "F2F9",  "F2F10", "F2F11", "F2F12",                                "F2F13", "F2F14", "F2F15", "F2F16", "F2F18",'F2F19','F2F20'),
+           Integration=c("F3F1",  "F3F2",  "F3F3",  "F3F4",  "F3F5",  "F3F6",  "F3F7", "F3F8",  "F3F9"),
            Communication=c('F4F1','F4F2','F4F3','F4F4','F4F5','F4F6','F4F7','F4F8'),
-           Statistics=c("F5F1",  "F5F2",  "F5F3",  "F5F4",  "F5F5",  "F5F6",  "F5F7",  "F5F8",  "F5F9",  "F5F10", "F5F11","F5F12",                             "F5F13", "F5F14", "F5F15", "F5F16", "F5F17", "F5F18")
+           Statistics=c("F5F1",  "F5F2",  "F5F3",  "F5F4",  "F5F5",  "F5F6",  "F5F7", "F5F8",  "F5F9",  "F5F10",                                       "F5F11","F5F12", "F5F13", "F5F14", "F5F15", "F5F16", "F5F17", "F5F18")
                            )
 ```
+
 
 ## ordinal data transformation?
 ```{r}
 ords <- imputed_training_data_merged3[, names(imputed_training_data_merged3)%in%unlist(fs)]
 ords <- lapply(ords, as.ordered)
 ords <- do.call(data.frame, ords)
+
+ords2 <- imputed_test_data_merged3[, names(imputed_test_data_merged3)%in%unlist(fs)]
+ords2 <- lapply(ords2, as.ordered)
+ords2 <- do.call(data.frame, ords2)
+
+#for (col in names(ords)) {
+#  if (is.factor(ords[[col]]) && is.factor(ords2[[col]])) {
+#    levels_combined <- union(levels(ords[[col]]), levels(ords2[[col]]))
+#    ords[[col]] <- factor(ords[[col]], levels = levels_combined, ordered = TRUE)
+#    ords2[[col]] <- factor(ords2[[col]], levels = levels_combined, ordered = TRUE)
+#  }
+#}
+
+# Add the 'split' column to each data frame
+ords <- ords %>%
+  mutate(split = 1)
+
+ords2 <- ords2 %>%
+  mutate(split = 2)
+
+# Combine the two data frames
+ords_c <- bind_rows(ords, ords2)
+
+# Print the resulting data frame
+print(ords_c)
 ```
 
 ```{r}
 model <- '
 # Measurement model
 Comprehension =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
-Evaluation =~ F2F1 + F2F2 + F2F3 + F2F4 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F17 + F2F18 + F2F19 + F2F20
+Evaluation =~ F2F1 + F2F2 + F2F3 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F18 + F2F19 + F2F20
 Integration =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
 Communication =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
 Statistics =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
@@ -1026,6 +1318,7 @@ Communication ~~ Statistics
 '
 fit_again <- cfa(model, ords, ordered = TRUE, estimator = "WLSMV")
 summary(fit_again)
+lavInspect(fit_again, "est")$tau
 ```
 
 ## Objective-Function
@@ -1039,13 +1332,13 @@ taus <- lavInspect(fit_again, "est")$tau
 print(taus)
 
 ## taus?
-theothrsh_tau <- sd(taus[grep('t1', rownames(taus))]) + 
+sd_tau <- sd(taus[grep('t1', rownames(taus))]) + 
                  sd(taus[grep('t2', rownames(taus))]) +
                  sd(taus[grep('t3', rownames(taus))]) + 
                  sd(taus[grep('t4', rownames(taus))]) +
                  sd(taus[grep('t5', rownames(taus))])
 
-print(theothrsh_tau)
+print(theothrsh_tau)#2.194
 
 # Assuming tau is a vector containing all tau values across items
 overall_sd_tau <- sd(taus)
@@ -1078,10 +1371,10 @@ obj <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, tau) {
 sd(tau)
 
 #stuart:::objective.preset
-obj_default <- function(chisq, df, pvalue, rmsea.robust, srmr, crel,nu) {
+obj_default <- function(chisq, df, pvalue, rmsea.robust, srmr, crel, nu) {
                       1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
                      (rmsea.robust - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
-                      0.06))))) + 1 / (1 + exp(-10 * (nu - 0.1)))
+                      0.06)))))
 }
 #1 / (1 + exp(-10 * (nu_sd - 0.1))) #0.1 is the threshhold and can be adjusted
 
@@ -1090,6 +1383,15 @@ obj_default3 <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel, nu)
 
 #(sd(nu) - 1.62)^2 + 1.62^2 + 1e-6
 
+fixedobjective(
+  criteria = c("rmsea.robust", "srmr", "crel"),
+  add = c("chisq", "df", "pvalue"),
+  side = NULL,
+  scale = 1,
+  matrices = 'nu',
+  fixed = NULL,
+  comparisons = NULL
+)
 
 ```
 
@@ -1152,7 +1454,8 @@ inspect(kfold_sel$final, 'est')
 inspect(kfold_sel$final, 'fit')
 
 lavaan::summary(kfold_sel$final, standardized = TRUE) 
-#lavaan::inspect(selection$final, 'est')$nu
+lavaan::inspect(kfold_sel$final, 'est')$A$nu
+lavaan::inspect(kfold_sel$final, 'est')$B$nu
 ```
 - First Time it worked:
 SUMMARY OF ANALYSIS:
@@ -1194,7 +1497,211 @@ Evaluation: F2F6 F2F7 F2F12 F2F17
 Integration: F3F2 F3F3 F3F4 F3F9
 Communication: F4F3 F4F6 F4F7 F4F8
 Statistics: F5F6 F5F7 F5F17 F5F18
+```{r}
+obj_default_nu <- function(chisq, df, pvalue, rmsea.robust, srmr, crel, nu) {
+  # Ensure nu is an atomic vector
+  if (!is.atomic(nu)) {
+    nu <- unlist(nu)
+  }
+  
+  # Calculate the standard deviation of nu
+  nu_sd <- sd(nu)
+  
+  # Compute the objective function
+  1/(1 + exp(-10 * (crel - 0.6))) + 
+  0.5 * (1 - (1/(1 + exp(-100 * (rmsea.robust - 0.05))))) + 
+  0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06))))) + 
+  1 / (1 + exp(-10 * (nu_sd - 0.1))) # Adjust the threshold as needed
+}
+```
 
+```{r}
+kfold_sel_nu <- kfold(
+  'gene', 
+  k = 3, 
+  data = imputed_training_data_c, 
+  factor.structure = fs,  # Pass the variable directly
+  max.invariance = "strict", 
+  capacity = list(4, 4, 4, 4, 4), 
+  seed = 2024,
+  seeded.search = TRUE,
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = obj_default_nu,
+  ignore.errors = TRUE,
+  burnin = 5,
+  generations = 200,
+  individuals = 34,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
+#########################################################
+```
+
+```{r}
+summary(kfold_sel_nu)
+
+inspect(kfold_sel_nu$final, 'est')
+inspect(kfold_sel_nu$final, 'fit') # better fit than without nu
+
+lavaan::summary(kfold_sel_nu$final, standardized = TRUE) 
+lavaan::inspect(kfold_sel_nu$final, 'est')$A$nu
+lavaan::inspect(kfold_sel_nu$final, 'est')$B$nu
+```
+
+SUMMARY OF ANALYSIS:
+
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 36788 
+Time Required: 467.855 seconds
+
+Crossvalidation Results with STRICT Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.143, Integration: 0.422, Communication: 0.511, Statistics: 0.200
+
+Constructed Subtests: (k = 3)
+Comprehension: F1F1 F1F5 F1F6 F1F11
+Evaluation: F2F2 F2F5 F2F6 F2F12
+Integration: F3F2 F3F3 F3F4 F3F9
+Communication: F4F3 F4F6 F4F7 F4F8
+Statistics: F5F6 F5F7 F5F17 F5F18
+
+## Crossvalidation
+```{r}
+# Load the necessary library
+library(dplyr)
+
+# Assuming imputed_training_data_c and imputed_test_data_c are your data frames
+
+# Add the 'split' column to each data frame
+imputed_training_data_c <- imputed_training_data_c %>%
+  mutate(split = 1)
+
+imputed_test_data_c <- imputed_test_data_c %>%
+  mutate(split = 2)
+
+# Join the two data frames
+joined_mgcfa_data <- bind_rows(imputed_training_data_c, imputed_test_data_c)
+
+# Print the resulting data frame
+print(joined_mgcfa_data)
+```
+
+
+```{r}
+library(lavaan)
+#stuart::crossvalidate(kfold_sel_nu, imputed_training_data_c, imputed_test_data_c, filename = NULL )
+
+cfa_model_m <- '
+# Measurement model
+Comprehension =~ F1F1 + F1F5 + F1F6 + F1F11 
+Evaluation =~ F2F2 + F2F5 + F2F6 + F2F12 
+Integration =~ F3F2 + F3F3 + F3F4 + F3F9 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F6 + F5F7 + F5F17 + F5F18 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_cfa_model_m <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split" )
+summary(fit_cfa_model_m, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_m, 'fit')
+```
+
+```{r}
+library(lavaan)
+library(semTools)
+fit_cfa_model_metric <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split", group.equal= "loadings")
+
+
+# We can compare models using compareFit
+
+comp_fit_metric <- compareFit(fit_cfa_model_m, fit_cfa_model_metric)
+summary(comp_fit_metric)
+
+```
+## configural to metric
+Cfi delta: .016 #fail
+rmsea delta: .001 #check
+srmr delta: .009 #check
+
+```{r}
+library(lavaan)
+library(semTools)
+
+fit_cfa_model_scalar <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split",
+                            group.equal = c('loadings','intercepts'))
+
+
+# We can compare models using compareFit
+
+comp_fit_scalar <- compareFit(fit_cfa_model_metric,fit_cfa_model_scalar)
+summary(comp_fit_scalar)
+
+```
+## metric to scalar
+Cfi delta: .003 #check
+rmsea delta: .002 #check
+srmr delta: .001 #check
+```{r}
+library(lavaan)
+library(semTools)
+
+fit_cfa_model_strict <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split",
+                            group.equal = c('loadings','intercepts','residuals'))
+
+
+# We can compare models using compareFit
+
+comp_fit_strict <- compareFit(fit_cfa_model_scalar, fit_cfa_model_strict)
+summary(comp_fit_strict)
+
+```
+## scalar to strict
+Cfi delta: .015 #fail
+rmsea delta: 0 #check
+srmr delta: .006 #check
+
+################################################
+################################################
+## Ordinal data Structure
 ```{r, eval=FALSE}
 # Call the kfold function with factor.structure as an argument
 kfold_sel2 <- kfold(
@@ -1242,10 +1749,13 @@ summary(kfold_sel2)
 
 inspect(kfold_sel2$final, 'est')
 inspect(kfold_sel2$final, 'fit')
-
 lavaan::summary(kfold_sel2$final, standardized = TRUE) 
-lavaan::inspect(kfold_sel2$final, 'est')$tau
+lavaan::inspect(kfold_sel2$final, 'est')$B$tau
+
+fit_kfold_sel2 <- cfa(model, ords, ordered = TRUE, estimator = "WLSMV")
+summary(fit_kfold_sel2)
 ```
+
 ## OMG first time ordinal ran (w.o. tau)
 Warning: This is a beta-build of stuart. Please report any bugs you encounter.
 
@@ -1268,20 +1778,112 @@ Integration: F3F3 F3F4 F3F7 F3F8
 Communication: F4F1 F4F2 F4F3 F4F8
 Statistics: F5F3 F5F6 F5F15 F5F18
 
-```{r, eval=FALSE}
-library(stuart)
+```{r}
+library(lavaan)
 
-lavaan::inspect(kfold_sel2$final, 'est')$tau
+cfa_model_ord <- '
+# Measurement model
+Comprehension =~ F1F3 + F1F6 + F1F12 + F1F14 
+Evaluation =~ F2F5 + F2F12 + F2F14 + F2F16 
+Integration =~ F3F3 + F3F4 + F3F7 + F3F8 
+Communication =~ F4F1 + F4F2 + F4F3 + F4F8 
+Statistics =~ F5F3 + F5F6 + F5F15 + F5F18 
 
-# objective
-objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
-  out1 = 0.5-(0.5/(1 + exp(- 100 * (rmsea.scaled-.05))))
-  out2 = 0.5-(0.5/(1 + exp(- 100 * (srmr-.05))))
-  out3 = (1/(1 + exp(- 100 * (cfi.scaled-.95))))
-  out = (out1 + out2 + out3)/3
-  return(out)                                
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_cfa_model_ords <- cfa(cfa_model_ord, ords_c, ordered = TRUE, estimator = "WLSMV", group = "split")
+summary(fit_cfa_model_ords, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_ords, 'fit')
+```
+
+```{r}
+library(lavaan)
+
+# Assuming 'fit_again' is your fitted lavaan model object
+# Example: fit_again <- cfa(model, data = your_data)
+
+# Extract the tau matrix from the fitted model
+tau <- lavInspect(fit_again, "est")$tau
+
+# Extract the item names by splitting the row names at the "|" character
+item_names <- sapply(strsplit(rownames(tau), "\\|"), `[`, 1)
+
+# Get unique item names
+unique_items <- unique(item_names)
+
+# Initialize an empty matrix to store the results
+taus <- matrix(NA, nrow = length(unique_items), ncol = 2)
+colnames(taus) <- c("Item", "Avg_SD")
+
+# Loop through each unique item
+for (i in seq_along(unique_items)) {
+  item <- unique_items[i]
+  
+  # Extract the thresholds for the item
+  thresholds <- tau[item_names == item, , drop = FALSE]
+  
+  # Calculate the standard deviation for the thresholds
+  sd_values <- sd(thresholds, na.rm = TRUE)
+  
+  # Store the item name and average standard deviation in the matrix
+  taus[i, ] <- c(item, sd_values)
 }
 
+# Convert the matrix to a data frame for better readability
+taus <- as.data.frame(taus)
+taus$Avg_SD <- as.numeric(as.character(taus$Avg_SD))
+
+# Print the resulting matrix
+print(taus)
+
+# Create a new matrix with Avg_SD values and row names as Item names
+taus_matrix <- matrix(taus$Avg_SD, nrow = length(unique_items), ncol = 1)
+rownames(taus_matrix) <- taus$Item
+colnames(taus_matrix) <- "Avg_SD"
+
+# Print the resulting matrix
+print(taus_matrix)
+```
+
+
+```{r, eval=FALSE}
+library(stuart)
+# objective
+# Define the objective function
+#
+objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
+
+  if (!is.numeric(tau)) {
+    tau <- as.numeric(tau)
+  }
+  # Compute the components of the objective function
+  out1 <- 0.5 - (0.5 / (1 + exp(-100 * (rmsea.scaled - 0.05))))
+  out2 <- 0.5 - (0.5 / (1 + exp(-100 * (srmr - 0.05))))
+  out3 <- 1 / (1 + exp(-100 * (cfi.scaled - 0.95)))
+  out4 <- sd(tau)  
+  
+  # Combine the components into the final objective function
+  out <- (out1 + out2 + out3 + out4) / 4
+  return(out)
+}
 
 kfold_sel3 <- kfold(
   'gene', 
@@ -1295,7 +1897,85 @@ kfold_sel3 <- kfold(
   auxiliary = NULL,
   software = "lavaan",
   cores = 4,
-  objective = objective.normal,
+  objective = objective.normal2,
+  ignore.errors = TRUE,
+  burnin = 5,
+  generations = 300,
+  individuals = 30,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
+# Inspect the structure of kfold_sel2$final
+tau_values3a <- lavaan::inspect(kfold_sel3$final, 'est')$A$tau
+tau_values3b <- lavaan::inspect(kfold_sel3$final, 'est')$B$tau
+print(tau_values3a)
+print(tau_values3b)
+
+#########################################################
+```
+
+```{r, eval=FALSE}
+library(stuart)
+
+# Inspect the structure of kfold_sel2$final
+tau_valuesa <- lavaan::inspect(kfold_sel2$final, 'est')$A$tau
+tau_valuesb <- lavaan::inspect(kfold_sel2$final, 'est')$B$tau
+print(tau_valuesa)
+print(tau_valuesb)
+
+# objective
+# Define the objective function
+objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
+  # Ensure tau is an atomic vector
+  if (!is.atomic(tau)) {
+    tau <- as.numeric(unlist(tau))
+  }
+  # Calculate the standard deviation of tau
+  sd_tau <- sd(tau)
+  
+  # Compute the components of the objective function
+  out1 <- 0.5 - (0.5 / (1 + exp(-100 * (rmsea.scaled - 0.05))))
+  out2 <- 0.5 - (0.5 / (1 + exp(-100 * (srmr - 0.05))))
+  out3 <- 1 / (1 + exp(-100 * (cfi.scaled - 0.95)))
+  
+  # Adjust out4 to maximize the standard deviation of tau
+  out4 <- 1 / (1 + exp(-5 * (sd_tau - 0.5)))
+  
+  # Combine the components into the final objective function
+  out <- (out1 + out2 + out3 + out4) / 4
+  return(out)
+}
+
+kfold_sel3 <- kfold(
+  'gene',
+  k = 3,
+  data = ords,
+  factor.structure = fs,
+  max.invariance = "strong",
+  capacity = list(4, 4, 4, 4, 4),
+  seed = 2026,
+  seeded.search = TRUE,
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = objective.normal2,
   ignore.errors = TRUE,
   burnin = 5,
   generations = 500,
@@ -1320,16 +2000,14 @@ kfold_sel3 <- kfold(
   suppress.model = FALSE,
   remove.details = TRUE
 )
-
-summary(kfold_sel23)
-
-lavaan::inspect(kfold_sel23$final, 'est')$tau
-
-# Call the kfold function with factor.structure as an argument
-
-
-#########################################################
 ```
+
+Running cross-validation.
+
+Error in dimnames(x) <- dn : 
+  length of 'dimnames' [1] not equal to array extent
+Warning: The crossvalidation produced an error in fold 1
+
 
 ```{r}
 summary(kfold_sel3)
@@ -1338,97 +2016,49 @@ inspect(kfold_sel3$final, 'est')
 inspect(kfold_sel3$final, 'fit')
 
 lavaan::summary(kfold_sel3$final, standardized = TRUE) 
-lavaan::inspect(kfold_sel3$final, 'est')$tau
+lavaan::inspect(kfold_sel3$final, 'est')$A$tau
+lavaan::inspect(kfold_sel3$final, 'est')$B$tau
 ```
+SUMMARY OF ANALYSIS:
 
+Number of Folds: 3 
+Analysis Type: gene 
+Estimation Software: lavaan 
+Models Estimated: 52088 
+Time Required: 1064.206 seconds
+
+Crossvalidation Results with STRONG Invariance:
+
+Average Jaccard Similarity: Comprehension: 0.600, Evaluation: 0.333, Integration: 0.600, Communication: 0.600, Statistics: 0.333
+
+Constructed Subtests: (k = 1)
+Comprehension: F1F3 F1F6 F1F12 F1F14
+Evaluation: F2F5 F2F12 F2F14 F2F16
+Integration: F3F3 F3F4 F3F7 F3F8
+Communication: F4F1 F4F2 F4F3 F4F8
+Statistics: F5F3 F5F6 F5F15 F5F18
 
 ```{r, eval=FALSE}
 library(stuart)
 # kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
-
-gene <- gene(
-  data = ords,                 # Your data frame containing the observed variables
-  factor.structure <- fs, # A list defining the factor structure of your model
-  capacity = 4,      # Optional, capacity constraint for factors
-  auxiliary = NULL,                # Optional, specify auxiliary variables
-  software = "lavaan",             # Specify the SEM software to be used
-  cores = 1,                    # Number of CPU cores to be used for parallel processing
-  objective = obj,                # Optional, specify a custom objective function
-  ignore.errors = TRUE,           # Whether to ignore errors during fitness evaluation
-  burnin = 5,                      # Number of generations for burn-in phase
-  generations = 256,               # Total number of generations
-  individuals = 64,                # Number of individuals in each generation
-  selection = "tournament",        # Selection method for genetic algorithm
-  selection.pressure = NULL,       # Pressure for tournament selection
-  elitism = NULL,                  # Rate of elitism
-  reproduction = 0.5,               # Proportion of individuals reproduced in each generation
-  mutation = 0.05,                  # Mutation rate
-  mating.index = 0,                 # Index of mating type
-  mating.size = 0.25,               # Proportion of mating pool size
-  mating.criterion = "similarity",  # Criterion for selecting mates
-  immigration = 0,                  # Proportion of immigrants in each generation
-  convergence.criterion = "geno.between",  # Convergence criterion
-  tolerance = NULL,                 # Tolerance for convergence
-  reinit.n = 1,                     # Number of reinitializations
-  reinit.criterion = convergence.criterion,  # Criterion for reinitialization
-  reinit.tolerance = NULL,          # Tolerance for reinitialization
-  reinit.prop = 0.75,               # Proportion of population reinitialized
-  schedule = "run",                 # Schedule for genetic algorithm
-  analysis.options = NULL,          # Additional options for analysis
-  suppress.model = FALSE,           # Whether to suppress model output
-  seed = 2024,                      # Seed for random number generation
-  filename = "itemselection"                   # Optional, filename for saving results
-)
-
-
-```
-
-## Objective-Function ideas
-```{r}
 # theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices?
-
 ```
 
-## Crossvalidation
+## Ordinal crossvalidation
 ```{r}
-crossvalidate(imputed_training_data_c, imputed_test_data_c)
+
 
 ```
-
+#####################################
+#####################################
 ## Check correlated residuals
 ```{r}
 # Fit the initial SEM model
-model <- "
-# Measurement model
-Comprehension =~ x1 + x2 + x3 + x4
-Evaluation =~ x5 + x6 + x7 + x8
-Integration =~ x9 + x10 + x11 + x12
-Communication =~ x13 + x14 + x15 + x16
-Statistics =~ x17 + x18 + x19 + x20
 
-# Factor variances
-Comprehension ~~ Comprehension
-Evaluation ~~ Evaluation
-Integration ~~ Integration
-Communication ~~ Communication
-Statistics ~~ Statistics
-
-# Factor correlations
-Comprehension ~~ Evaluation
-Comprehension ~~ Integration
-Comprehension ~~ Communication
-Comprehension ~~ Statistics
-Evaluation ~~ Integration
-Evaluation ~~ Communication
-Evaluation ~~ Statistics
-Integration ~~ Communication
-Integration ~~ Statistics
-Communication ~~ Statistics
-"
-fit <- sem(model, data = data)
+fit <- sem(cfa_model_m, joined_mgcfa_data)
 
 # Check modification indices
-modIndices(fit, sort_ = TRUE)
+modificationIndices(fit, sort = TRUE)
 
 # If justified, re-specify your model to include correlated residuals
 model_revised <- '

@@ -105,7 +105,6 @@
 \usepackage{libertinust1math}
 \usepackage{sourcecodepro}
 \usepackage{emptypage}
-\usepackage{amsmath}
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
 \renewcommand{\bottomfraction}{0.8}
@@ -387,7 +386,7 @@ $\Phi = F(\textrm{RMSEA}) + F(CFI)+ F(\textrm{SRMR}) + F(\omega) + F(\nu)$ (1)
 For this study, a set of 20 items from a set of 71 items are selected, to form a questionnaire. The data literacy self rating scale is optimated for model fit criteria and composite reliability (RMSEA, SRMR, CFI \& McDonalds \(\omega\)) as well as variability in the difficulty of items. Those criteria will be defined in the objective function (equations 1 \& 2) in `stuart'Schultze (\citeproc{ref-schultze2017}{2017}).
 
 \begin{center}
-$\Phi = \frac{1}{1 + \exp(-10 \cdot (\omega - 0.6))} + 0.5 \cdot \left(1 - \frac{1}{1 + \exp(-100 \cdot (\textrm{RMSEA} - 0.05))}\right) + 0.5 \cdot \left(1 - \frac{1}{1 + \exp(-100 \cdot (\textrm{SRMR} - 0.06))}\right) - (\textrm{sd}(\nu) - 1.62)^2 + 1.62^2 + 10^{-6}$ 
+$\Phi = \frac{1}{1 + \exp(-10 \cdot (\omega - 0.6))} + 0.5 \cdot \left(1 - \frac{1}{1 + \exp(-100 \cdot (\textrm{RMSEA} - 0.05))}\right) + 0.5 \cdot \left(1 - \frac{1}{1 + \exp(-100 \cdot (\textrm{SRMR} - 0.06))}\right) - (\textrm{sd}(\nu) - 1.62)^2 + 1.62^2 + 10^{-6}$ (2)
 \end{center}
 
 We use the genetic algorithm of `stuart' for the item selection. Genetic algorithms are based on Darwinian evolution principles -- selection, crossover, mutation and survival of the fittest {[}Holland (\citeproc{ref-holland1992}{1992}); Schroeders (\citeproc{ref-schroeders2016}{2016})). With the genetic algorithm, the initial set of 71 items is to be reduced based on the evolutionary process of selection, but opposing to evolution with a goal: A near-optimal ``solution''. The survival of an item is determined by its quality (called ``fitness'')(\citeproc{ref-galan2013}{Galán et al., 2013}). The algorithm is build on two processes: Variation (i.e.~recombination and mutation) and selection. Variation rewards diversity and innovation of items, whereas selection rewards quality or fitness. The algorithm links ``genes'' (i.e.~items), that represent a certain variable, to a ``chromosome'' (i.e.~a set of items). A predefined number of chromosomes are randomly generated from the 1st generation (i.e.~the original item pool). The algorithm tries to maximize the psychometric quality of the ``chromosomes''(i.e.~item sets) by evaluating the ``chromosomes''(i.e.~item sets) against a ``fitness''function. Based on this fitness function, the fittest ``chromosomes''(i.e.~item sets) of each generation are determined, which then form the basis for the next generation (forming the selection process). The process of variation establishes genetic diversity and mutation within the generations by spontaneously exchanging items within a scale or between two scales, which adds a degree of randomness to the selection process. This is done a predefined number of iterations. Thereby, the fittest ``chromosome''(i.e.~set of items), with the highest quality, is to be identified (\citeproc{ref-schroeders2016}{Schroeders, 2016}).
