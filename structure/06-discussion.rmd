@@ -45,3 +45,4 @@ Construct validity is evaluated through confirmatory factor analysis (CFA), usin
 - what to optimize the scale for?
 - dynamic fit indices
 - residuals correlates 
+- is NOT optimized for model fit criteria and composite reliability (RMSEA, SRMR, CFI & McDonalds $\omega$) as well as variability in the difficulty of items.

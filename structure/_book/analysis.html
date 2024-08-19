@@ -23,7 +23,7 @@
 <meta name="author" content="Leonie Hagitte" />
 
 
-<meta name="date" content="2024-07-31" />
+<meta name="date" content="2024-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,16 +138,24 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>3</b> Analysis</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="analysis.html"><a href="analysis.html#data-quality"><i class="fa fa-check"></i><b>3.1</b> Data Quality</a></li>
-<li class="chapter" data-level="3.2" data-path="analysis.html"><a href="analysis.html#main-analyses"><i class="fa fa-check"></i><b>3.2</b> Main Analyses</a></li>
-<li class="chapter" data-level="3.3" data-path="analysis.html"><a href="analysis.html#rationale-for-measurement-model"><i class="fa fa-check"></i><b>3.3</b> Rationale for Measurement Model</a></li>
-<li class="chapter" data-level="3.4" data-path="analysis.html"><a href="analysis.html#meta-heuristics"><i class="fa fa-check"></i><b>3.4</b> Meta-Heuristics</a></li>
-<li class="chapter" data-level="3.5" data-path="analysis.html"><a href="analysis.html#validation"><i class="fa fa-check"></i><b>3.5</b> Validation</a></li>
+<li class="chapter" data-level="3.2" data-path="analysis.html"><a href="analysis.html#main-analyses"><i class="fa fa-check"></i><b>3.2</b> Main Analyses</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="analysis.html"><a href="analysis.html#rationale-for-measurement-model"><i class="fa fa-check"></i><b>3.2.1</b> Rationale for Measurement Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="analysis.html"><a href="analysis.html#meta-heuristics"><i class="fa fa-check"></i><b>3.2.2</b> Meta-Heuristics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="analysis.html"><a href="analysis.html#validation"><i class="fa fa-check"></i><b>3.3</b> Validation</a></li>
+<li class="chapter" data-level="3.4" data-path="analysis.html"><a href="analysis.html#exploratory-analyses"><i class="fa fa-check"></i><b>3.4</b> Exploratory Analyses</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#demographic-results"><i class="fa fa-check"></i><b>4.1</b> Demographic Results</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-construction-sample"><i class="fa fa-check"></i><b>4.2</b> Model Fit and Latent Structure in the Construction Sample</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-validation-sample"><i class="fa fa-check"></i><b>4.3</b> Model Fit and Latent Structure in the Validation Sample</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-construction-sample"><i class="fa fa-check"></i><b>4.1</b> Model Fit and Latent Structure in the Construction Sample</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="results.html"><a href="results.html#model-1"><i class="fa fa-check"></i><b>4.1.1</b> Model 1</a></li>
+<li class="chapter" data-level="4.1.2" data-path="results.html"><a href="results.html#model-2"><i class="fa fa-check"></i><b>4.1.2</b> Model 2</a></li>
+<li class="chapter" data-level="4.1.3" data-path="results.html"><a href="results.html#model-3"><i class="fa fa-check"></i><b>4.1.3</b> Model 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#model-fit-and-latent-structure-in-the-validation-sample"><i class="fa fa-check"></i><b>4.2</b> Model Fit and Latent Structure in the Validation Sample</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#latent-correlations"><i class="fa fa-check"></i><b>4.3</b> Latent Correlations</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5</b> Discussion</a>
 <ul>
@@ -183,24 +191,27 @@ div.csl-indent {
 <div id="main-analyses" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Main Analyses<a href="analysis.html#main-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Algorithm based item selection via the R package ‘stuart’<span class="citation">(<a href="#ref-schultze2022">Schultze, 2022</a>)</span> and CFA via the R package ‘lavaan’<span class="citation">(<a href="#ref-rosseel2012">Rosseel, 2012</a>)</span>. Inference criteria: Model fit will be assessed using established criteria (e.g.: <span class="citation">Hu &amp; Bentler (<a href="#ref-hu1999">1999</a>)</span>). Comprising of Chi square significance testing as well as a combination of several fit indices, i.e.,RMSEA &lt; 0.05, SRMR &lt; 0.07, CFI &gt; 0.95. Model-specific cutoff values will be considered as well, using the ‘ezCutoffs’ package<span class="citation">(<a href="#ref-schmalbach2019">Schmalbach et al., 2019</a>)</span></p>
-</div>
-<div id="rationale-for-measurement-model" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Rationale for Measurement Model<a href="analysis.html#rationale-for-measurement-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rationale-for-measurement-model" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Rationale for Measurement Model<a href="analysis.html#rationale-for-measurement-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One decision that needs to be done by the researcher before the item selection with ‘stuart’, is the design of the measurement model, or how many items per factor the final scale should have.
 This scale will be created as parsimonious as possible, while ensuring that there is a real model fit to be estimated. So the decision in this case was of statistical nature, while with three items per factor, the model would have been just identified, four items per factor is the most parsimonious choice, where there is already a real model fit, that can be assessed in the end.</p>
 </div>
-<div id="meta-heuristics" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Meta-Heuristics<a href="analysis.html#meta-heuristics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="meta-heuristics" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Meta-Heuristics<a href="analysis.html#meta-heuristics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 Algorithm-based item selection is used to choose the most relevant items, reducing the initial item pool. In classical approaches, items are evaluated within the overall item pool and are then often selected based on their individual properties (e.g. difficulty, discrimination, item-scale-correlations).
 Compared to classical approaches, algorithms are more objective and efficient in finding a good or nearly perfect solution with regard to certain criteria <span class="citation">(<a href="#ref-leite2008">Leite et al., 2008</a>; <a href="#ref-olaru2015">Olaru et al., 2015</a>)</span>. Furthermore, some empirical studies suggest that the use of algorithms leads to similar or better results in scale construction than traditional approaches <span class="citation">(<a href="#ref-olaru2021">Olaru &amp; Danner, 2021</a>; <a href="#ref-sandy2014">Sandy et al., 2014</a>; <a href="#ref-schroeders2016">Schroeders, 2016</a>)</span>. The automated approach takes the opposite perspective to the classical approach, the one of meta heuristics, by repeatedly estimating CFAs for a multitude of possible item-combinations <span class="citation">(<a href="#ref-schultze2017">Schultze, 2017</a>)</span>. Thus, a pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose (e.g. equation 1) of the final scale is estimated <span class="citation">(<a href="#ref-schultze2017">Schultze, 2017</a>)</span>.Thus, the selection of items and construction of a questionnaire can be viewed as a combinatorial problem, like the knapsack problem (“Choose a set of objects, each having a specific weight and monetary value, so that the value is maximized and the total weight does not exceed a predetermined limit”)<span class="citation">(<a href="#ref-kerber2022">Kerber et al., 2022</a>; <a href="#ref-schroeders2016">Schroeders, 2016, p. 4</a>; <a href="#ref-schultze2017">Schultze, 2017</a>)</span>.
 <p>‘Stuart’<span class="citation">(<a href="#ref-schultze2022">Schultze, 2022</a>)</span> can construct subsets from a pool of items by using ant-colony-optimization, genetic algorithms, brute force, or random sampling <span class="citation">(<a href="#ref-schultze2017">Schultze, 2017</a>)</span>. Those meta-heuristics like are utilized to handle these combinatorial optimization problems.
-For this study, a set of 20 items from a set of 71 items are selected, to form a questionnaire. The data literacy self rating scale is optimated for model fit criteria and composite reliability (RMSEA, SRMR, CFI &amp; McDonalds <span class="math inline">\(\omega\)</span>) as well as variability in the difficulty of items. Those criteria will be defined in the objective function (equations 1 &amp; 2) in ‘stuart’<span class="citation">Schultze (<a href="#ref-schultze2017">2017</a>)</span>.</p>
+For this study, a set of 20 items from a set of 71 items are selected, to form a questionnaire. The data literacy self rating scale is optimized for model fit criteria (RMSEA, SRMR, CFI). Those criteria will be defined in the objective function (equations 1 &amp; 2) in ‘stuart’<span class="citation">Schultze (<a href="#ref-schultze2017">2017</a>)</span>.</p>
 <p>We use the genetic algorithm of ‘stuart’ for the item selection. Genetic algorithms are based on Darwinian evolution principles – selection, crossover, mutation and survival of the fittest [<span class="citation">Holland (<a href="#ref-holland1992">1992</a>)</span>; <span class="citation">Schroeders (<a href="#ref-schroeders2016">2016</a>)</span>). With the genetic algorithm, the initial set of 71 items is to be reduced based on the evolutionary process of selection, but opposing to evolution with a goal: A near-optimal “solution”. The survival of an item is determined by its quality (called “fitness”)<span class="citation">(<a href="#ref-galan2013">Galán et al., 2013</a>)</span>. The algorithm is build on two processes: Variation (i.e. recombination and mutation) and selection. Variation rewards diversity and innovation of items, whereas selection rewards quality or fitness. The algorithm links “genes” (i.e. items), that represent a certain variable, to a “chromosome” (i.e. a set of items). A predefined number of chromosomes are randomly generated from the 1st generation (i.e. the original item pool). The algorithm tries to maximize the psychometric quality of the “chromosomes”(i.e. item sets) by evaluating the “chromosomes”(i.e. item sets) against a “fitness”function. Based on this fitness function, the fittest “chromosomes”(i.e. item sets) of each generation are determined, which then form the basis for the next generation (forming the selection process). The process of variation establishes genetic diversity and mutation within the generations by spontaneously exchanging items within a scale or between two scales, which adds a degree of randomness to the selection process. This is done a predefined number of iterations. Thereby, the fittest “chromosome”(i.e. set of items), with the highest quality, is to be identified <span class="citation">(<a href="#ref-schroeders2016">Schroeders, 2016</a>)</span>.</p>
 </div>
-<div id="validation" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Validation<a href="analysis.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="validation" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Validation<a href="analysis.html#validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The provided sample will be divided into two subsets (i.e. training data and test data) using the ‘holdout’ function in ‘stuart’. The specified item-selection procedure will be applied to the training data. The training data is undergoing k-fold cross validation (k=3), using the ‘kfold’ function in ‘stuart’. The other sample, the test data, is used for evaluation of the final models performance, as well as the latent correlations with the convergent measures.
-Validation with the test data is conducted (using the ‘crossvalidate’ function in ‘stuart’) to assess the invariance of the measurement models between the training and testing datasets. Invariance levels are measured with the ‘max.invariance’ function. Invariance is necessary to claim that the scale validation has worked.</p>
+Validation with the test data is conducted (using an MG-CFA in ‘lavaan’) to assess the invariance of the measurement models between the training and testing datasets. Invariance levels are measured with the ‘max.invariance’ function. Invariance is necessary to claim that the scale validation has worked.</p>
+</div>
+<div id="exploratory-analyses" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Exploratory Analyses<a href="analysis.html#exploratory-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>

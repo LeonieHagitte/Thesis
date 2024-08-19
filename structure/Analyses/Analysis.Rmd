@@ -271,6 +271,52 @@ df3 <- df3[, !(names(df3) %in% c("ATC1", "ATC2"))]
 
 ```
 
+```{r}
+df99 <- data.frame(df2)
+# Convert 'lastpage' to numeric
+df99$lastpage <- as.numeric(df2$lastpage)
+
+# Inspect unique values of 'lastpage' after conversion
+unique(df99$lastpage)
+
+# Exclude rows where 'lastpage' is smaller than 6
+df99 <- df99[df99$lastpage >= 13, ]
+
+# This code updates df3 to keep only the rows where lastpage doesnt contain NA values.
+
+# Check if 'lastpage' column exists in df3
+if("lastpage" %in% names(df99)) {
+  # If it exists, filter out NA values from 'lastpage'
+  df99 <- df99[!is.na(df99$lastpage), ]
+} else {
+  cat("Column 'lastpage' does not exist in df99\n")
+}
+
+```
+```{r, echo=FALSE}
+# Recode columns 9 to 109 as numeric
+df99[, 9:109] <- lapply(df99[, 9:109], as.numeric)
+
+# Check the structure of the first few columns to confirm the change
+str(df99[, 9:109])
+```
+
+```{r, echo=FALSE}
+# Subset df3 to include only columns up to column 119
+df99 <- df99[, 1:119]
+
+# Check the structure of the modified dataframe to confirm the change
+str(df99)
+
+# Exclude columns 2, 4, 5, 6, 7, 8 and keep only up to column 119
+df99 <- df99[, -c(2, 4, 5, 6, 7, 8)]
+
+# Exclude the ATCs
+df99 <- df99[, !(names(df99) %in% c("ATC1", "ATC2"))]
+
+```
+
+
 # checking for the Pattern of Missings
 Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data. 
 ```{r}
@@ -280,13 +326,13 @@ Although it may not be necessary, because the missings are planned, random missi
 ## NAs FIMLn
 ```{r}
 df_dl <- df3[, 3:71]
+df_dl99 <- df99[, 3:71]
 
 ```
 
 ```{r}
 library(dplyr)
 
-# Assuming df_fl is your dataframe
 # Calculate the number of columns
 num_columns <- ncol(df_dl)
 
@@ -339,6 +385,11 @@ summary(fit)
 ```{r, echo=FALSE}
 imputedData <- mice(df_dl, m=5, method='pmm', maxit=50)
 completedData <- complete(imputedData, 1)
+```
+
+```{r, echo=FALSE}
+imputedData99 <- mice(df_dl99, m=5, method='pmm', maxit=50)
+completedData99 <- complete(imputedData99, 1)
 ```
 
 # Poweranalyse
@@ -1019,9 +1070,10 @@ df_train <- rbind(df_train, df_partial)
 df_train <- df_train[,3:71]
 
 df_test_dl <- df_test[,3:71]
+
 ```
 
-## using mice 
+## using mice to impute the missing data
 ```{r, echo=FALSE}
 seed(2025)
 imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
@@ -1029,18 +1081,19 @@ imputed_training_data_c <- complete(imputed_training_data, 1)
 
 imputed_test_data <- mice(df_test_dl, m=5, method='pmm', maxit=50)
 imputed_test_data_c <- complete(imputed_test_data, 1)
+
+imputed_test_data4 <- mice(df_dl99, m=5, method='pmm', maxit=50)
+imputed_data_all_c4 <- complete(imputed_test_data4, 1)
 ```
 
+### making it seperate files
 ```{r}
 write.csv2(imputed_training_data_c, "imputed_training_data_c.csv")
 write.csv2(df_train, "df_train.csv")
 ```
 
-# Count values for each variable
+# Finding Thresholds of Items to merge in order to ose ordered data in the item selection and crossvalidation
 ```{r}
-library(dplyr)
-library(tidyr)
-
 # Count values for each variable in imputed_training_data_c
 value_counts <- imputed_training_data_c %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
@@ -1097,7 +1150,6 @@ print(imputed_training_data_merged1)
 
 ```
 
-
 ```{r}
 library(dplyr)
 library(tidyr)
@@ -1149,102 +1201,89 @@ print(value_counts_merged3)
 
 ## The same for test data
 ```{r}
+# Load necessary libraries
 library(dplyr)
 library(tidyr)
 
-# Count values for each variable in imputed_test_data_c
-value_counts_test <- imputed_test_data_c %>%
-  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
-  count(Variable, Value) %>%
-  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+# Function to count unique values for each variable in a dataset
+count_unique_values <- function(data) {
+  data %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+    count(Variable, Value) %>%
+    pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+}
 
-print(value_counts_test)
+# Count unique values for each variable in imputed_test_data_c
+value_counts_test <- count_unique_values(imputed_test_data_c)
+
+# Count unique values for each variable in imputed_training_data_merged3
+value_counts_train <- count_unique_values(imputed_training_data_merged3)
+
+# Identify common variables in both datasets
+common_vars <- intersect(names(value_counts_train), names(value_counts_test))
+
+# Exclude specific variables if they are not present in the training dataset
+excluded_vars <- c("F2F17", "F2F4")
+common_vars_filtered <- setdiff(common_vars, excluded_vars)
+
+# Filter out variables not present in both datasets
+value_counts_train_filtered <- value_counts_train %>%
+  select(all_of(common_vars_filtered))
+
+value_counts_test_filtered <- value_counts_test %>%
+  select(all_of(common_vars_filtered))
+
+# Ensure both dataframes have the same structure for comparison
+value_counts_train_full <- value_counts_train_filtered %>%
+  replace_na(list(n = 0))
+
+value_counts_test_full <- value_counts_test_filtered %>%
+  replace_na(list(n = 0))
+
+# Combine both datasets for comparison
+comparison <- value_counts_train_full %>%
+  full_join(value_counts_test_full, by = "Variable", suffix = c("_train", "_test"))
+
+# Function to compare sets of categories
+compare_category_sets <- function(comp) {
+  discrepancies <- comp %>%
+    rowwise() %>%
+    mutate(
+      # Extract and count non-zero categories for train and test
+      Unique_categories_train = sum(c_across(contains("_train")) > 0),
+      Unique_categories_test = sum(c_across(contains("_test")) > 0),
+      # Check if the number of unique categories differs
+      Different_categories = Unique_categories_train != Unique_categories_test
+    ) %>%
+    filter(Different_categories) %>%
+    select(Variable, Unique_categories_train, Unique_categories_test)
+  
+  return(discrepancies)
+}
+
+# Get discrepancies where category counts differ
+discrepancies <- compare_category_sets(comparison)
+
+# Print summary of discrepancies
+cat("Variables with Different Number of Dimensions/Categories:\n")
+print(discrepancies)
+
+
+
+```
+```{r}
+# Create a list of variables with different counts in Unique_categories_train and Unique_categories_test
+variables_with_different_counts <- discrepancies %>%
+  filter(Unique_categories_train != Unique_categories_test) %>%
+  pull(Variable)
+
+# Print list of variables with different counts
+print(variables_with_different_counts)
+
 ```
 
-```{r}
-# Filter for cases with values smaller or equal to 2
-filtered_value_counts_test <- value_counts_test %>%
-  filter(rowSums(. <= 2) > 0)
-
-print(filtered_value_counts_test)
-
-# Get the list of items to be modified
-items_to_modify_test <- filtered_value_counts_test$Variable
-
-# Ensure items_to_modify_test is a character vector
-items_to_modify_test <- as.character(items_to_modify_test)
-
-# Modify the imputed_test_data_c to merge answers 0 and 1 into 1 for these items
-imputed_test_data_merged <- imputed_test_data_c %>%
-  mutate(across(all_of(items_to_modify_test), ~ ifelse(. %in% c(0, 1), 1, .)))
-
-imputed_test_data_merged <- imputed_test_data_merged %>%
-  select(-c(F2F17, F2F4))
-
-print(imputed_test_data_merged)
-```
 
 ```{r}
-# Count values for each variable in the merged test data
-value_counts_merged_test <- imputed_test_data_merged %>%
-  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
-  count(Variable, Value) %>%
-  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
-print(value_counts_merged_test)
-
-# Define the selected items
-selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
-
-# Modify the imputed_test_data_merged to merge answers 1 and 2 into 2 for these selected items
-imputed_test_data_merged1 <- imputed_test_data_merged %>%
-  mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
-
-print(imputed_test_data_merged1)
-```
-
-```{r}
-# Define the selected items
-selected_items <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2F1", "F2F9", "F2F8", "F2F12", "F2F13", "F2F7", "F3F7", "F3F8" ,"F3F9", "F4F2", "F4F5", "F5F17", "F5F15", "F1F14", "F1F13")
-
-# Modify the imputed_test_data_merged1 to merge answers 1 and 2 into 2 for these selected items
-imputed_test_data_merged2 <- imputed_test_data_merged1 %>%
-  mutate(across(all_of(selected_items), ~ ifelse(. %in% c(1, 2), 2, .)))
-
-print(imputed_test_data_merged2)
-
-# Count values for each variable in the merged test data
-value_counts_merged2_test <- imputed_test_data_merged2 %>%
-  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
-  count(Variable, Value) %>%
-  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
-print(value_counts_merged2_test)
-```
-
-```{r}
-# Define the selected items
-selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
-
-# Modify the imputed_test_data_merged2 to merge answers 1 and 2 into 2 for these selected items
-imputed_test_data_merged3 <- imputed_test_data_merged2 %>%
-  mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
-
-print(imputed_test_data_merged3)
-```
-
-```{r}
-# Count values for each variable in the merged test data
-value_counts_merged3_test <- imputed_test_data_merged3 %>%
-  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
-  count(Variable, Value) %>%
-  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
-print(value_counts_merged3_test)
-```
-
-```{r}
-names(imputed_training_data_merged3)
 
 #F2F17 and F2F4 deleted
 fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11",                              "F1F12", "F1F13", "F1F14"),
@@ -1255,7 +1294,6 @@ fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "
                            )
 ```
 
-
 ## ordinal data transformation?
 ```{r}
 ords <- imputed_training_data_merged3[, names(imputed_training_data_merged3)%in%unlist(fs)]
@@ -1265,14 +1303,6 @@ ords <- do.call(data.frame, ords)
 ords2 <- imputed_test_data_merged3[, names(imputed_test_data_merged3)%in%unlist(fs)]
 ords2 <- lapply(ords2, as.ordered)
 ords2 <- do.call(data.frame, ords2)
-
-#for (col in names(ords)) {
-#  if (is.factor(ords[[col]]) && is.factor(ords2[[col]])) {
-#    levels_combined <- union(levels(ords[[col]]), levels(ords2[[col]]))
-#    ords[[col]] <- factor(ords[[col]], levels = levels_combined, ordered = TRUE)
-#    ords2[[col]] <- factor(ords2[[col]], levels = levels_combined, ordered = TRUE)
-#  }
-#}
 
 # Add the 'split' column to each data frame
 ords <- ords %>%
@@ -1287,38 +1317,20 @@ ords_c <- bind_rows(ords, ords2)
 # Print the resulting data frame
 print(ords_c)
 ```
-
+## Preparing a data frame for the MG-CFA
 ```{r}
-model <- '
-# Measurement model
-Comprehension =~ F1F1 + F1F2 + F1F3 + F1F4 + F1F5 + F1F6 + F1F7 + F1F8 + F1F9 + F1F10 + F1F11 + F1F12 + F1F13 + F1F14
-Evaluation =~ F2F1 + F2F2 + F2F3 + F2F5 + F2F6 + F2F7 + F2F8 + F2F9 + F2F10 + F2F11 + F2F12 + F2F13 + F2F14 + F2F15 + F2F16 + F2F18 + F2F19 + F2F20
-Integration =~ F3F1 + F3F2 + F3F3 + F3F4 + F3F5 + F3F6 + F3F7 + F3F8 + F3F9 
-Communication =~ F4F1 + F4F2 + F4F3 + F4F4 + F4F5 + F4F6 + F4F7 + F4F8 
-Statistics =~ F5F1 + F5F2 + F5F3 + F5F4 + F5F5 + F5F6 + F5F7 + F5F8 + F5F9 + F5F10 + F5F11 + F5F12 + F5F13 + F5F14 + F5F15 + F5F16 + F5F17 + F5F18 
+# Add the 'split' column to each data frame
+imputed_training_data_c <- imputed_training_data_c %>%
+  mutate(split = 1)
 
-# Factor variances
-Comprehension ~~ Comprehension
-Evaluation ~~ Evaluation
-Integration ~~ Integration
-Communication ~~ Communication
-Statistics ~~ Statistics
+imputed_test_data_c <- imputed_test_data_c %>%
+  mutate(split = 2)
 
-# Factor correlations
-Comprehension ~~ Evaluation
-Comprehension ~~ Integration
-Comprehension ~~ Communication
-Comprehension ~~ Statistics
-Evaluation ~~ Integration
-Evaluation ~~ Communication
-Evaluation ~~ Statistics
-Integration ~~ Communication
-Integration ~~ Statistics
-Communication ~~ Statistics
-'
-fit_again <- cfa(model, ords, ordered = TRUE, estimator = "WLSMV")
-summary(fit_again)
-lavInspect(fit_again, "est")$tau
+# Join the two data frames
+joined_mgcfa_data <- bind_rows(imputed_training_data_c, imputed_test_data_c)
+
+# Print the resulting data frame
+print(joined_mgcfa_data)
 ```
 
 ## Objective-Function
@@ -1368,60 +1380,56 @@ obj <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, tau) {
 
 }
 
-sd(tau)
-
 #stuart:::objective.preset
-obj_default <- function(chisq, df, pvalue, rmsea.robust, srmr, crel, nu) {
-                      1/(1 + exp(-10 * (crel - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+obj_default <- function (chisq, df, pvalue, rmsea, srmr, cfi) 
+{
+    1/(1 + exp(-10 * (cfi - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
+        (rmsea - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
+        0.06)))))
+}
+
+obj_default1 <- function(chisq, df, cfi.robust, pvalue, rmsea.robust, srmr, crel, nu) {
+                     1/(1 + exp(-10 * (cfi.robust - 0.6))) + 0.5 * (1 - (1/(1 + exp(-100 * 
                      (rmsea.robust - 0.05))))) + 0.5 * (1 - (1/(1 + exp(-100 * (srmr - 
                       0.06)))))
 }
 #1 / (1 + exp(-10 * (nu_sd - 0.1))) #0.1 is the threshhold and can be adjusted
 
-obj_default3 <- function(chisq, df, pvalue, rmsea, srmr, cfi, crel, nu)
-                        {(1-rmsea)+(1-srmr) + sd(nu)}
+obj_default3 <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, nu)
+                        {(1-rmsea.robust)+(1-srmr)+(1+cfi.robust)} # best jet
 
+obj_default4 <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, nu)
+                        {(1-rmsea.robust)+(1-srmr)}
+# 0.125*(1-rmsea.robust) + 0.875* 0.125*(1-srmr)
 #(sd(nu) - 1.62)^2 + 1.62^2 + 1e-6
-
-fixedobjective(
-  criteria = c("rmsea.robust", "srmr", "crel"),
-  add = c("chisq", "df", "pvalue"),
-  side = NULL,
-  scale = 1,
-  matrices = 'nu',
-  fixed = NULL,
-  comparisons = NULL
-)
 
 ```
 
-
+## Estimating the total number of item-combinations
 ```{r}
 combinations(imputed_training_data_c, fs,4)
 ```
 ## Genetic Algorithm
 ### Kfold-Crossvalidation
 ```{r}
-
 ############ k-Folding #########################
 
-# Call the kfold function with factor.structure as an argument
 kfold_sel <- kfold(
   'gene', 
   k = 3, 
-  data = imputed_training_data_c, 
-  factor.structure = fs,  # Pass the variable directly
+  data = imputed_training_data_c,
+  factor.structure = fs,  
   max.invariance = "strict", 
   capacity = list(4, 4, 4, 4, 4), 
-  seed = 2024,
+  seed = 2028,
   seeded.search = TRUE,
   auxiliary = NULL,
   software = "lavaan",
   cores = 4,
-  objective = obj_default,
+  objective = obj_default3,
   ignore.errors = TRUE,
   burnin = 5,
-  generations = 200,
+  generations = 500,
   individuals = 34,
   selection = "tournament",
   selection.pressure = NULL,
@@ -1445,9 +1453,8 @@ kfold_sel <- kfold(
 )
 #########################################################
 ```
-
+### Summary Results No.1
 ```{r}
-
 summary(kfold_sel)
 
 inspect(kfold_sel$final, 'est')
@@ -1457,169 +1464,133 @@ lavaan::summary(kfold_sel$final, standardized = TRUE)
 lavaan::inspect(kfold_sel$final, 'est')$A$nu
 lavaan::inspect(kfold_sel$final, 'est')$B$nu
 ```
-- First Time it worked:
 SUMMARY OF ANALYSIS:
 
 Number of Folds: 3 
 Analysis Type: gene 
 Estimation Software: lavaan 
-Models Estimated: 61760 
-Time Required: 1175.532 seconds
+Models Estimated: 78720 
+Time Required: 8852.842 seconds
 
 Crossvalidation Results with STRICT Invariance:
 
-Average Jaccard Similarity: Comprehension: 0.422, Evaluation: 0.295, Integration: 0.295, Communication: 0.600, Statistics: 0.359
-
-Constructed Subtests: (k = 1)
-Comprehension: F1F2 F1F6 F1F8 F1F10
-Evaluation: F2F2 F2F4 F2F14 F2F15
-Integration: F3F3 F3F4 F3F5 F3F9
-Communication: F4F1 F4F3 F4F6 F4F7
-Statistics: F5F3 F5F4 F5F15 F5F18
-
-
-## First time with robust indices:
-SUMMARY OF ANALYSIS:
-
-Number of Folds: 3 
-Analysis Type: gene 
-Estimation Software: lavaan 
-Models Estimated: 85824 
-Time Required: 1625.887 seconds
-
-Crossvalidation Results with STRICT Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.270, Evaluation: 0.270, Integration: 0.422, Communication: 0.733, Statistics: 0.733
+Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.000, Integration: 0.206, Communication: 0.511, Statistics: 0.270
 
 Constructed Subtests: (k = 3)
-Comprehension: F1F5 F1F6 F1F11 F1F12
-Evaluation: F2F6 F2F7 F2F12 F2F17
-Integration: F3F2 F3F3 F3F4 F3F9
+Comprehension: F1F3 F1F4 F1F5 F1F14
+Evaluation: F2F1 F2F7 F2F14 F2F20
+Integration: F3F1 F3F4 F3F7 F3F8
 Communication: F4F3 F4F6 F4F7 F4F8
-Statistics: F5F6 F5F7 F5F17 F5F18
+Statistics: F5F1 F5F7 F5F9 F5F17
+
+### Kfold-Crossvalidation with multiple iterations
 ```{r}
-obj_default_nu <- function(chisq, df, pvalue, cfi.robust, rmsea.robust, srmr, crel, nu) {
-  # Ensure nu is an atomic vector
-  if (!is.atomic(nu)) {
-    nu <- unlist(nu)
-  }
-  
-  # Calculate the standard deviation of nu
-  nu_sd <- sd(nu)
-  
-  # Compute the objective function
-  1/(1 + exp(-10 * (crel - 0.6))) + 
-  1/(1 + exp(-10 * (cfi.robust - 0.6))) +
-  0.5 * (1 - (1/(1 + exp(-100 * (rmsea.robust - 0.05))))) + 
-  0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06))))) + 
-  1 / (1 + exp(-10 * (nu_sd - 0.1))) # Adjust the threshold as needed
+# Load the necessary libraries
+library(stuart)
+
+# Number of iterations for averaging
+num_iterations <- 3
+
+# Initialize a list to store the results of each iteration
+results_list <- vector("list", num_iterations)
+
+# Loop over the number of iterations
+for (i in 1:num_iterations) {
+  # Perform k-fold cross-validation and store the result
+  results_list[[i]] <- kfold(
+    'gene', 
+    k = 3, 
+    data = imputed_training_data_c,
+    factor.structure = fs,
+    max.invariance = "strict", 
+    capacity = list(4, 4, 4, 4, 4), 
+    seed = 2028 + i, # Change seed each time for variability
+    seeded.search = TRUE,
+    auxiliary = NULL,
+    software = "lavaan",
+    cores = 4,
+    objective = obj_default3,
+    ignore.errors = TRUE,
+    burnin = 5,
+    generations = 500,
+    individuals = 34,
+    selection = "tournament",
+    selection.pressure = NULL,
+    elitism = NULL,
+    reproduction = 0.5,
+    mutation = 0.05,
+    mating.index = 0,
+    mating.size = 0.25,
+    mating.criterion = "similarity",
+    immigration = 0,
+    convergence.criterion = "geno.between",
+    tolerance = NULL,
+    reinit.n = 1,
+    reinit.criterion = "geno.between",
+    reinit.tolerance = NULL,
+    reinit.prop = 0.75,
+    schedule = "run",
+    analysis.options = NULL,
+    suppress.model = FALSE,
+    remove.details = TRUE
+  )
 }
-```
 
-```{r}
-kfold_sel_nu <- kfold(
-  'gene', 
-  k = 3, 
-  data = imputed_training_data_c, 
-  factor.structure = fs,  # Pass the variable directly
-  max.invariance = "strict", 
-  capacity = list(4, 4, 4, 4, 4), 
-  seed = 2024,
-  seeded.search = TRUE,
-  auxiliary = NULL,
-  software = "lavaan",
-  cores = 4,
-  objective = obj_default_nu,
-  ignore.errors = TRUE,
-  burnin = 5,
-  generations = 200,
-  individuals = 34,
-  selection = "tournament",
-  selection.pressure = NULL,
-  elitism = NULL,
-  reproduction = 0.5,
-  mutation = 0.05,
-  mating.index = 0,
-  mating.size = 0.25,
-  mating.criterion = "similarity",
-  immigration = 0,
-  convergence.criterion = "geno.between",
-  tolerance = NULL,
-  reinit.n = 1,
-  reinit.criterion = "geno.between",
-  reinit.tolerance = NULL,
-  reinit.prop = 0.75,
-  schedule = "run",
-  analysis.options = NULL,
-  suppress.model = FALSE,
-  remove.details = TRUE
+# Initialize a list to store averaged fit indices
+fit_indices <- list(
+  SRMR = numeric(num_iterations),
+  RMSEA = numeric(num_iterations),
+  CFI = numeric(num_iterations)
 )
-#########################################################
+
+# Extract fit indices from each result
+for (i in 1:num_iterations) {
+  # Ensure the results are not NULL
+  if (!is.null(results_list[[i]])) {
+    # Use the inspect function to get the fit measures
+    fit_measures <- lavaan::inspect(results_list[[i]]$final, "fit")
+    
+    # Store the fit indices if they exist
+    if (!is.null(fit_measures)) {
+      fit_indices$SRMR[i] <- fit_measures["srmr"]
+      fit_indices$RMSEA[i] <- fit_measures["rmsea"]
+      fit_indices$CFI[i] <- fit_measures["cfi"]
+    }
+  }
+}
+
+# Compute the average of each fit index, ensuring NA values are handled
+average_fit_indices <- sapply(fit_indices, function(x) mean(x, na.rm = TRUE))
+
+# Print the average fit indices
+print("Average Fit Indices from Results:")
+print(average_fit_indices)
+
+# Inspect the complete output for available information
+inspect(results_list[[1]]$final, 'fit')
+inspect(results_list[[1]]$final, 'est')
+
+lavaan::standardizedSolution(results_list[[i]]$final)
+
 ```
-
-```{r}
-summary(kfold_sel_nu)
-
-inspect(kfold_sel_nu$final, 'est')
-inspect(kfold_sel_nu$final, 'fit') # better fit than without nu
-
-lavaan::summary(kfold_sel_nu$final, standardized = TRUE) 
-lavaan::inspect(kfold_sel_nu$final, 'est')$A$nu
-lavaan::inspect(kfold_sel_nu$final, 'est')$B$nu
-```
-
-SUMMARY OF ANALYSIS:
-
-Number of Folds: 3 
-Analysis Type: gene 
-Estimation Software: lavaan 
-Models Estimated: 36788 
-Time Required: 467.855 seconds
-
-Crossvalidation Results with STRICT Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.143, Integration: 0.422, Communication: 0.511, Statistics: 0.200
-
-Constructed Subtests: (k = 3)
-Comprehension: F1F1 F1F5 F1F6 F1F11
-Evaluation: F2F2 F2F5 F2F6 F2F12
-Integration: F3F2 F3F3 F3F4 F3F9
-Communication: F4F3 F4F6 F4F7 F4F8
-Statistics: F5F6 F5F7 F5F17 F5F18
-
-## Crossvalidation
-```{r}
-# Load the necessary library
-library(dplyr)
-
-# Assuming imputed_training_data_c and imputed_test_data_c are your data frames
-
-# Add the 'split' column to each data frame
-imputed_training_data_c <- imputed_training_data_c %>%
-  mutate(split = 1)
-
-imputed_test_data_c <- imputed_test_data_c %>%
-  mutate(split = 2)
-
-# Join the two data frames
-joined_mgcfa_data <- bind_rows(imputed_training_data_c, imputed_test_data_c)
-
-# Print the resulting data frame
-print(joined_mgcfa_data)
-```
+Comprehension: F1F2 F1F5 F1F6 F1F14
+Evaluation: F2F6 F2F10 F2F12 F2F13
+Integration: F3F2 F3F6 F3F7 F3F9
+Communication: F4F1 F4F6 F4F7 F4F8
+Statistics: F5F1 F5F6 F5F7 F5F18
 
 
+### Validation via MG-CFA for MI
 ```{r}
 library(lavaan)
-#stuart::crossvalidate(kfold_sel_nu, imputed_training_data_c, imputed_test_data_c, filename = NULL )
 
 cfa_model_m <- '
 # Measurement model
-Comprehension =~ F1F1 + F1F5 + F1F6 + F1F11 
-Evaluation =~ F2F2 + F2F5 + F2F6 + F2F12 
-Integration =~ F3F2 + F3F3 + F3F4 + F3F9 
-Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
-Statistics =~ F5F6 + F5F7 + F5F17 + F5F18 
+Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
+Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
+Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F6 + F5F7 + F5F18 
 
 # Factor variances
 Comprehension ~~ Comprehension
@@ -1646,66 +1617,242 @@ summary(fit_cfa_model_m, fit.measures = TRUE, standardized = TRUE)
 inspect(fit_cfa_model_m, 'fit')
 ```
 
+#### configural to metric
 ```{r}
-library(lavaan)
-library(semTools)
 fit_cfa_model_metric <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split", group.equal= "loadings")
-
-
-# We can compare models using compareFit
 
 comp_fit_metric <- compareFit(fit_cfa_model_m, fit_cfa_model_metric)
 summary(comp_fit_metric)
 
 ```
-## configural to metric
-Cfi delta: .016 #fail
-rmsea delta: .001 #check
+#### configural to metric
+Cfi delta: .011 #check?
+rmsea delta: .000 #check
 srmr delta: .009 #check
 
+#### metric to scalar
 ```{r}
-library(lavaan)
-library(semTools)
-
 fit_cfa_model_scalar <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split",
                             group.equal = c('loadings','intercepts'))
-
-
-# We can compare models using compareFit
 
 comp_fit_scalar <- compareFit(fit_cfa_model_metric,fit_cfa_model_scalar)
 summary(comp_fit_scalar)
 
 ```
-## metric to scalar
-Cfi delta: .003 #check
-rmsea delta: .002 #check
-srmr delta: .001 #check
-```{r}
-library(lavaan)
-library(semTools)
+#### metric to scalar
+Cfi delta: .009 #check
+rmsea delta: .000 #check
+srmr delta: .002 #check
 
+#### scalar to strict
+```{r}
 fit_cfa_model_strict <- cfa(cfa_model_m, joined_mgcfa_data, estimator = "MLR", group = "split",
                             group.equal = c('loadings','intercepts','residuals'))
-
-
-# We can compare models using compareFit
 
 comp_fit_strict <- compareFit(fit_cfa_model_scalar, fit_cfa_model_strict)
 summary(comp_fit_strict)
 
 ```
-## scalar to strict
-Cfi delta: .015 #fail
-rmsea delta: 0 #check
-srmr delta: .006 #check
+#### scalar to strict
+Cfi delta: .019 #fail
+rmsea delta: .001 #check
+srmr delta: .004 #check
+
+### Objective Function with NU (Metric and MLR)
+```{r}
+obj_default_nu <- function(chisq, df, pvalue, cfi.robust, rmsea.robust, srmr, crel, nu) {
+  # Ensure nu is an atomic vector
+  if (!is.atomic(nu)) {
+    nu <- unlist(nu)
+  }
+  
+  # Calculate the standard deviation of nu
+  nu_sd <- sd(nu)
+  
+  # Compute the objective function
+  1/(1 + exp(-10 * (crel - 0.6))) + 
+  1/(1 + exp(-10 * (cfi.robust - 0.6))) +
+  0.5 * (1 - (1/(1 + exp(-100 * (rmsea.robust - 0.05))))) + 
+  0.5 * (1 - (1/(1 + exp(-100 * (srmr - 0.06))))) + 
+  1 / (1 + exp(-10 * (nu_sd - 0.1))) # Adjust the threshold as needed
+}
+```
+
+### Kfold-Crossvalidation with NU (Metric and MLR) - looped
+```{r}
+library(stuart)
+
+# Number of iterations for averaging
+num_iterations <- 3
+
+# Initialize a list to store the results of each iteration
+results_list_nu <- vector("list", num_iterations)
+
+# Loop over the number of iterations
+for (i in 1:num_iterations) {
+  # Perform k-fold cross-validation and store the result
+  results_list_nu[[i]] <- kfold(
+  'gene', 
+  k = 3, 
+  data = imputed_training_data_c, 
+  factor.structure = fs,  # Pass the variable directly
+  max.invariance = "strict", 
+  capacity = list(4, 4, 4, 4, 4), 
+  seed = 2024,
+  seeded.search = TRUE,
+  auxiliary = NULL,
+  software = "lavaan",
+  cores = 4,
+  objective = obj_default_nu,
+  ignore.errors = TRUE,
+  burnin = 5,
+  generations = 500,
+  individuals = 34,
+  selection = "tournament",
+  selection.pressure = NULL,
+  elitism = NULL,
+  reproduction = 0.5,
+  mutation = 0.05,
+  mating.index = 0,
+  mating.size = 0.25,
+  mating.criterion = "similarity",
+  immigration = 0,
+  convergence.criterion = "geno.between",
+  tolerance = NULL,
+  reinit.n = 1,
+  reinit.criterion = "geno.between",
+  reinit.tolerance = NULL,
+  reinit.prop = 0.75,
+  schedule = "run",
+  analysis.options = NULL,
+  suppress.model = FALSE,
+  remove.details = TRUE
+)
+}
+
+# Initialize a list to store averaged fit indices
+fit_indices_nu <- list(
+  SRMR = numeric(num_iterations),
+  RMSEA = numeric(num_iterations),
+  CFI = numeric(num_iterations)
+)
+
+# Extract fit indices from each result
+for (i in 1:num_iterations) {
+  # Ensure the results are not NULL
+  if (!is.null(results_list_nu[[i]])) {
+    # Use the inspect function to get the fit measures
+    fit_measures <- lavaan::inspect(results_list_nu[[i]]$final, "fit")
+    
+    # Store the fit indices if they exist
+    if (!is.null(fit_measures)) {
+      fit_indices_nu$SRMR[i] <- fit_measures["srmr"]
+      fit_indices_nu$RMSEA[i] <- fit_measures["rmsea"]
+      fit_indices_nu$CFI[i] <- fit_measures["cfi"]
+    }
+  }
+}
+
+# Compute the average of each fit index, ensuring NA values are handled
+average_fit_indices <- sapply(fit_indices_nu, function(x) mean(x, na.rm = TRUE))
+
+# Print the average fit indices
+print("Average Fit Indices from Results:")
+print(average_fit_indices)
+
+# Inspect the complete output for available information
+inspect(results_list_nu[[1]]$final, 'fit')
+inspect(results_list_nu[[1]]$final, 'est')
+
+lavaan::standardizedSolution(results_list_nu[[i]]$final)
+#########################################################
+```
+
+### MG-CFA with NU and Metric data 
+```{r}
+cfa_model_m1 <- '
+# Measurement model
+Comprehension =~ F1F5 + F1F6 + F1F8 + F1F9 
+Evaluation =~ F2F3 + F2F7 + F2F8 + F2F20 
+Integration =~ F3F1 + F3F2 + F3F7 + F3F9 
+Communication =~ F4F3 + F4F4 + F4F6 + F4F7 
+Statistics =~ F5F3 + F5F5 + F5F7 + F5F8 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_cfa_model_m1 <- cfa(cfa_model_m1, joined_mgcfa_data, estimator = "MLR", group = "split" )
+summary(fit_cfa_model_m1, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_m1, 'fit')
+```
+
+#### configural to metric
+```{r}
+fit_cfa_model_metric1 <- cfa(cfa_model_m1, joined_mgcfa_data, estimator = "MLR", group = "split", group.equal= "loadings")
+
+comp_fit_metric1 <- compareFit(fit_cfa_model_m1, fit_cfa_model_metric1)
+summary(comp_fit_metric1)
+
+```
+#### metric to scalar
+```{r}
+fit_cfa_model_scalar1 <- cfa(cfa_model_m1, joined_mgcfa_data, estimator = "MLR", group = "split",
+                            group.equal = c('loadings','intercepts'))
+
+comp_fit_scalar1 <- compareFit(fit_cfa_model_metric1,fit_cfa_model_scalar1)
+summary(comp_fit_scalar1)
+
+```
+
+#### scalar to strict
+```{r}
+fit_cfa_model_strict1 <- cfa(cfa_model_m1, joined_mgcfa_data, estimator = "MLR", group = "split",
+                            group.equal = c('loadings','intercepts','residuals'))
+
+comp_fit_strict1 <- compareFit(fit_cfa_model_scalar1, fit_cfa_model_strict1)
+summary(comp_fit_strict1)
+
+```
 
 ################################################
+## EFA Investigation 
+```{r}
+efa_fit <- efa(imputed_training_data_c[1:69], rotation = "varimax", nfactors = 1:10)
+summary(efa_fit)
+```
 ################################################
-## Ordinal data Structure
+
+## K-fold Crossvalidation with Ordinal data Structure (WLSMV)
 ```{r, eval=FALSE}
-# Call the kfold function with factor.structure as an argument
-kfold_sel2 <- kfold(
+library(stuart)
+
+# Number of iterations for averaging
+num_iterations <- 3
+
+# Initialize a list to store the results of each iteration
+results_list_ord <- vector("list", num_iterations)
+
+# Loop over the number of iterations
+for (i in 1:num_iterations) {
+  # Perform k-fold cross-validation and store the result
+  results_list_ord[[i]] <- kfold(
   'gene', 
   k = 3, 
   data = ords, 
@@ -1742,43 +1889,47 @@ kfold_sel2 <- kfold(
   suppress.model = FALSE,
   remove.details = TRUE
 )
-#########################################################
+}
+
+# Initialize a list to store averaged fit indices
+fit_indices_ord <- list(
+  SRMR = numeric(num_iterations),
+  RMSEA = numeric(num_iterations),
+  CFI = numeric(num_iterations)
+)
+
+# Extract fit indices from each result
+for (i in 1:num_iterations) {
+  # Ensure the results are not NULL
+  if (!is.null(results_list_ord[[i]])) {
+    # Use the inspect function to get the fit measures
+    fit_measures <- lavaan::inspect(results_list_ord[[i]]$final, "fit")
+    
+    # Store the fit indices if they exist
+    if (!is.null(fit_measures)) {
+      fit_indices_ord$SRMR[i] <- fit_measures["srmr"]
+      fit_indices_ord$RMSEA[i] <- fit_measures["rmsea"]
+      fit_indices_ord$CFI[i] <- fit_measures["cfi"]
+    }
+  }
+}
+
+# Compute the average of each fit index, ensuring NA values are handled
+average_fit_indices_ord <- sapply(fit_indices_ord, function(x) mean(x, na.rm = TRUE))
+
+# Print the average fit indices
+print("Average Fit Indices from Results:")
+print(average_fit_indices_ord)
+
+# Inspect the complete output for available information
+inspect(results_list_ord[[1]]$final, 'fit')
+inspect(results_list_ord[[1]]$final, 'est')
+
+lavaan::standardizedSolution(results_list_ord[[i]]$final)
+
 ```
 
-```{r}
-summary(kfold_sel2)
-
-inspect(kfold_sel2$final, 'est')
-inspect(kfold_sel2$final, 'fit')
-lavaan::summary(kfold_sel2$final, standardized = TRUE) 
-lavaan::inspect(kfold_sel2$final, 'est')$B$tau
-
-fit_kfold_sel2 <- cfa(model, ords, ordered = TRUE, estimator = "WLSMV")
-summary(fit_kfold_sel2)
-```
-
-## OMG first time ordinal ran (w.o. tau)
-Warning: This is a beta-build of stuart. Please report any bugs you encounter.
-
-SUMMARY OF ANALYSIS:
-
-Number of Folds: 3 
-Analysis Type: gene 
-Estimation Software: lavaan 
-Models Estimated: 52088 
-Time Required: 1096.398 seconds
-
-Crossvalidation Results with STRONG Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.600, Evaluation: 0.333, Integration: 0.600, Communication: 0.600, Statistics: 0.333
-
-Constructed Subtests: (k = 1)
-Comprehension: F1F3 F1F6 F1F12 F1F14
-Evaluation: F2F5 F2F12 F2F14 F2F16
-Integration: F3F3 F3F4 F3F7 F3F8
-Communication: F4F1 F4F2 F4F3 F4F8
-Statistics: F5F3 F5F6 F5F15 F5F18
-
+### MG-CFA with Ordinal data Structure (WLSMV)
 ```{r}
 library(lavaan)
 
@@ -1815,6 +1966,37 @@ summary(fit_cfa_model_ords, fit.measures = TRUE, standardized = TRUE)
 inspect(fit_cfa_model_ords, 'fit')
 ```
 
+#### configural to metric
+```{r}
+library(lavaan)
+library(semTools)
+fit_cfa_model_ords_m <- cfa(cfa_model_ord, joined_mgcfa_data, estimator = "WLSMV", group = "split", group.equal= "loadings")
+
+comp_fit_ord <- compareFit(fit_cfa_model_ords, fit_cfa_model_ords_m)
+summary(comp_fit_ord)
+
+```
+#### configural to metric
+Cfi delta: 
+rmsea delta: 
+srmr delta: 
+
+#### metric to scalar
+```{r}
+fit_cfa_model_ords_scalar <- cfa(cfa_model_ord, joined_mgcfa_data, estimator = "WLSMV", group = "split",
+                            group.equal = c('loadings','intercepts'))
+
+comp_fit_ords_scalar <- compareFit(fit_cfa_model_ords_m,fit_cfa_model_ords_scalar)
+summary(comp_fit_ords_scalar)
+```
+#### metric to scalar
+Cfi delta: 
+rmsea delta: 
+srmr delta: 
+
+##########################################################################
+
+## Trying to incorporate tau 
 ```{r}
 library(lavaan)
 
@@ -1864,7 +2046,7 @@ colnames(taus_matrix) <- "Avg_SD"
 print(taus_matrix)
 ```
 
-
+### K-fold Crossvalidation with Ordinal data Structure (WLSMV) and Tau
 ```{r, eval=FALSE}
 library(stuart)
 # objective
@@ -1932,84 +2114,7 @@ print(tau_values3b)
 #########################################################
 ```
 
-```{r, eval=FALSE}
-library(stuart)
-
-# Inspect the structure of kfold_sel2$final
-tau_valuesa <- lavaan::inspect(kfold_sel2$final, 'est')$A$tau
-tau_valuesb <- lavaan::inspect(kfold_sel2$final, 'est')$B$tau
-print(tau_valuesa)
-print(tau_valuesb)
-
-# objective
-# Define the objective function
-objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
-  # Ensure tau is an atomic vector
-  if (!is.atomic(tau)) {
-    tau <- as.numeric(unlist(tau))
-  }
-  # Calculate the standard deviation of tau
-  sd_tau <- sd(tau)
-  
-  # Compute the components of the objective function
-  out1 <- 0.5 - (0.5 / (1 + exp(-100 * (rmsea.scaled - 0.05))))
-  out2 <- 0.5 - (0.5 / (1 + exp(-100 * (srmr - 0.05))))
-  out3 <- 1 / (1 + exp(-100 * (cfi.scaled - 0.95)))
-  
-  # Adjust out4 to maximize the standard deviation of tau
-  out4 <- 1 / (1 + exp(-5 * (sd_tau - 0.5)))
-  
-  # Combine the components into the final objective function
-  out <- (out1 + out2 + out3 + out4) / 4
-  return(out)
-}
-
-kfold_sel3 <- kfold(
-  'gene',
-  k = 3,
-  data = ords,
-  factor.structure = fs,
-  max.invariance = "strong",
-  capacity = list(4, 4, 4, 4, 4),
-  seed = 2026,
-  seeded.search = TRUE,
-  auxiliary = NULL,
-  software = "lavaan",
-  cores = 4,
-  objective = objective.normal2,
-  ignore.errors = TRUE,
-  burnin = 5,
-  generations = 500,
-  individuals = 34,
-  selection = "tournament",
-  selection.pressure = NULL,
-  elitism = NULL,
-  reproduction = 0.5,
-  mutation = 0.05,
-  mating.index = 0,
-  mating.size = 0.25,
-  mating.criterion = "similarity",
-  immigration = 0,
-  convergence.criterion = "geno.between",
-  tolerance = NULL,
-  reinit.n = 1,
-  reinit.criterion = "geno.between",
-  reinit.tolerance = NULL,
-  reinit.prop = 0.75,
-  schedule = "run",
-  analysis.options = NULL,
-  suppress.model = FALSE,
-  remove.details = TRUE
-)
-```
-
-Running cross-validation.
-
-Error in dimnames(x) <- dn : 
-  length of 'dimnames' [1] not equal to array extent
-Warning: The crossvalidation produced an error in fold 1
-
-
+### Summary and Results of K-fold Crossvalidation with Ordinal data Structure (WLSMV) and Tau
 ```{r}
 summary(kfold_sel3)
 
@@ -2039,19 +2144,8 @@ Integration: F3F3 F3F4 F3F7 F3F8
 Communication: F4F1 F4F2 F4F3 F4F8
 Statistics: F5F3 F5F6 F5F15 F5F18
 
-```{r, eval=FALSE}
-library(stuart)
-# kfold & genetic loop paar mal laufen lassen, für stabile ergebnisse
-# theoretisch festlegen, oder kombinatorisch/technisch festlegen? Random draws für fit indices?
-```
+##########################################################################
 
-## Ordinal crossvalidation
-```{r}
-
-
-```
-#####################################
-#####################################
 ## Check correlated residuals
 ```{r}
 # Fit the initial SEM model
@@ -2246,9 +2340,70 @@ omega(SWE[1:16],1)
 #omega(DataLiteracy[],5)
 ```
 
-
+## Fit Indices Evaluation
 ```{r}
+# Load necessary libraries
+library(stuart)
+library(lavaan)  # Assuming the model fitting uses lavaan
+set.seed(2024)   # For reproducibility
 
+# Function to simulate data
+simulate_data <- function(n, num_variables) {
+  # Create random normal data with the same structure as your original data
+  data <- matrix(rnorm(n * num_variables), nrow = n, ncol = num_variables)
+  colnames(data) <- paste0("V", 1:num_variables)
+  return(as.data.frame(data))
+}
+
+# Number of simulations and variables
+num_simulations <- 10
+num_variables <- 20  # Change according to your actual data
+sample_size <- nrow(imputed_training_data_c)  # Same sample size as your original data
+
+# List to store results from simulations
+simulated_results <- vector("list", num_simulations)
+
+# Loop over the number of simulations
+for (i in 1:num_simulations) {
+  # Simulate data
+  simulated_data <- simulate_data(sample_size, num_variables)
+  
+  # Define a model using lavaan syntax
+  model <- ' # Define your model structure here
+             # For example: factor1 =~ V1 + V2 + V3 + V4'
+  
+  # Fit the model to the simulated data
+  fit <- cfa(model, data = simulated_data)
+  
+  # Extract fit indices
+  fit_indices <- fitMeasures(fit, c("aic", "bic", "rmsea", "cfi"))
+  
+  # Store the results
+  simulated_results[[i]] <- fit_indices
+}
+
+# Initialize vectors to store averaged fit indices
+average_simulated_fit_indices <- list(
+  AIC = numeric(num_simulations),
+  BIC = numeric(num_simulations),
+  RMSEA = numeric(num_simulations),
+  CFI = numeric(num_simulations)
+)
+
+# Collect fit indices from each simulation
+for (i in 1:num_simulations) {
+  average_simulated_fit_indices$AIC[i] <- simulated_results[[i]]["aic"]
+  average_simulated_fit_indices$BIC[i] <- simulated_results[[i]]["bic"]
+  average_simulated_fit_indices$RMSEA[i] <- simulated_results[[i]]["rmsea"]
+  average_simulated_fit_indices$CFI[i] <- simulated_results[[i]]["cfi"]
+}
+
+# Compute the average fit indices
+average_fit_indices_simulated <- sapply(average_simulated_fit_indices, mean)
+
+# Print the average fit indices from simulations
+print("Average Fit Indices from Simulated Data:")
+print(average_fit_indices_simulated)
 ```
 
 ```{r}
