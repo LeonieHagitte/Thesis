@@ -11,6 +11,7 @@ Which objective function was used?
 How stable is the final variant?
 How was the final variant further validated (e.g. crossvalidate, k-fold)?
 
+The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures #a similar, yet distinct concept#.
 
 ## What does it all mean / "Why?"
 

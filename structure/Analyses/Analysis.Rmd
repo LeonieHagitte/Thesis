@@ -2166,6 +2166,44 @@ fit_revised <- sem(model_revised, data = your_data)
 anova(fit, fit_revised)
 ```
 
+
+```{r}
+# Calculate average scores for each construct
+df_dl$Comprehension <- rowMeans(df_dl[, c("F1F3", "F1F6", "F1F12", "F1F14")], na.rm = TRUE)
+df_dl$Evaluation <- rowMeans(df_dl[, c("F2F5", "F2F12", "F2F14", "F2F16")], na.rm = TRUE)
+df_dl$Integration <- rowMeans(df_dl[, c("F3F3", "F3F4", "F3F7", "F3F8")], na.rm = TRUE)
+df_dl$Communication <- rowMeans(df_dl[, c("F4F1", "F4F2", "F4F3", "F4F8")], na.rm = TRUE)
+df_dl$Statistics <- rowMeans(df_dl[, c("F5F3", "F5F6", "F5F15", "F5F18")], na.rm = TRUE)
+
+# Create a data frame from specified columns of df_dl
+df_result <- data.frame(
+  F1F3 = df_dl$F1F3,
+  F1F6 = df_dl$F1F6,
+  F1F12 = df_dl$F1F12,
+  F1F14 = df_dl$F1F14,
+  F2F5 = df_dl$F2F5,
+  F2F12 = df_dl$F2F12,
+  F2F14 = df_dl$F2F14,
+  F2F16 = df_dl$F2F16,
+  F3F3 = df_dl$F3F3,
+  F3F4 = df_dl$F3F4,
+  F3F7 = df_dl$F3F7,
+  F3F8 = df_dl$F3F8,
+  F4F1 = df_dl$F4F1,
+  F4F2 = df_dl$F4F2,
+  F4F3 = df_dl$F4F3,
+  F4F8 = df_dl$F4F8,
+  F5F3 = df_dl$F5F3,
+  F5F6 = df_dl$F5F6,
+  F5F15 = df_dl$F5F15,
+  F5F18 = df_dl$F5F18
+)
+
+# Display the updated data frame with the new scores
+print(df_dl)
+
+```
+
 ## Convergent Measures
 ```{r}
 SWE <- df3 %>%
@@ -2245,15 +2283,214 @@ all_means <- data.frame(
   B5o_Row_Means = B5_openness$B5o_Row_Means,
   Nfc_Row_Means = NFC$Nfc_Row_Means,
   Ict_Row_Means = ICT$Ict_Row_Means,
-  Swe_Row_Means = SWE$Swe_Row_Means
+  Swe_Row_Means = SWE$Swe_Row_Means,
+  Comprehension = df_dl$Comprehension,
+  Evaluation = df_dl$Evaluation,
+  Integration = df_dl$Integration,
+  Communication = df_dl$Communication,
+  Statistics = df_dl$Statistics
 )
 ```
 
-## Correlations 
+## Normality test - B5 Conscientiousness
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- B5_con[, -3]  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data) #nonnormal
+```
+
+## Normality openness
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- B5_openness[, -3]  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data) # nonnormal
+```
+
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- SWE[, -17]  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data) #nonnormal
+```
+
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- ICT[, -6]  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data) #nonnormal
+```
+
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- NFC[, -5]  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data)
+```
+
+```{r}
+# Exclude the third column (Mean) for normality checks
+raw_data <- df_result  # This excludes the third column
+
+# Function to check normality for each column in the data frame
+check_normality <- function(data) {
+  for (col_name in colnames(data)) {
+    cat("Checking normality for", col_name, "\n")
+    
+    variable <- data[[col_name]]
+    
+    # Visual checks
+    hist(variable, main=paste("Histogram of", col_name), xlab=col_name, ylab="Frequency")
+    qqnorm(variable)
+    qqline(variable, col = "red")
+    
+    # Statistical tests
+    shapiro_test <- shapiro.test(variable)
+    cat("Shapiro-Wilk Test p-value:", shapiro_test$p.value, "\n")
+    
+    # Skewness and Kurtosis
+    skew <- skewness(variable)
+    kurt <- kurtosis(variable)
+    cat("Skewness:", skew, "\n")
+    cat("Kurtosis:", kurt, "\n\n")
+  }
+}
+
+# Check normality for the relevant columns
+check_normality(raw_data)
+```
+
+## Correlations - nonnormal
 ```{r}
 library(apaTables)
-cortable<-cor(all_means, use = "pairwise" ,method = "pearson")
-apa.cor.table(all_means)
+cortable<-cor(all_means, use = "pairwise" ,method = "kendall")
+apa.cor.table(all_means, filename = "cortable.rtf")
 ```
 
 ```{r}
@@ -2264,15 +2501,15 @@ library(psych)     # for corr.test function
 
 # Select newly created row means for correlation analysis
 selected_vars <- all_means %>%
-  select(B5con_Row_Means, B5o_Row_Means, Nfc_Row_Means, Ict_Row_Means, Swe_Row_Means)
+  select(B5con_Row_Means, B5o_Row_Means, Nfc_Row_Means, Ict_Row_Means, Swe_Row_Means, Comprehension, Evaluation, Integration, Communication, Statistics)
 
 # Rename variables for clarity in heatmap
 colnames(selected_vars) <- c(
-  "B5con", "B5o", "Nfc", "Ict", "Swe"
+  "B5con", "B5o", "Nfc", "Ict", "Swe", "Comprehension", "Evaluation", "Integration", "Communication", "Statistics"
 )
 
 # Calculate correlations
-correlation_matrix <- round(cor(selected_vars, use = "pairwise"), 2)
+correlation_matrix <- round(cor(selected_vars, use = "pairwise",method = "kendall"), 2)
 
 # Function to keep only upper part of the matrix
 upper_triangle <- function(mat) {
@@ -2337,73 +2574,195 @@ omega(B5_openness[1:2],1)
 omega(NFC[1:4],1)
 omega(ICT[1:5],1)
 omega(SWE[1:16],1)
-#omega(DataLiteracy[],5)
+omega(df_result,5)
 ```
 
-## Fit Indices Evaluation
 ```{r}
-# Load necessary libraries
-library(stuart)
-library(lavaan)  # Assuming the model fitting uses lavaan
-set.seed(2024)   # For reproducibility
+df_sens <- data.frame(
+  F1F3 = ords_c$F1F3,
+  F1F6 = ords_c$F1F6,
+  F1F12 = ords_c$F1F12,
+  F1F14 = ords_c$F1F14,
+  F2F5 = ords_c$F2F5,
+  F2F12 = ords_c$F2F12,
+  F2F14 = ords_c$F2F14,
+  F2F16 = ords_c$F2F16,
+  F3F3 = ords_c$F3F3,
+  F3F4 = ords_c$F3F4,
+  F3F7 = ords_c$F3F7,
+  F3F8 = ords_c$F3F8,
+  F4F1 = ords_c$F4F1,
+  F4F2 = ords_c$F4F2,
+  F4F3 = ords_c$F4F3,
+  F4F8 = ords_c$F4F8,
+  F5F3 = ords_c$F5F3,
+  F5F6 = ords_c$F5F6,
+  F5F15 = ords_c$F5F15,
+  F5F18 = ords_c$F5F18
+)
+```
 
-# Function to simulate data
-simulate_data <- function(n, num_variables) {
-  # Create random normal data with the same structure as your original data
-  data <- matrix(rnorm(n * num_variables), nrow = n, ncol = num_variables)
-  colnames(data) <- paste0("V", 1:num_variables)
-  return(as.data.frame(data))
-}
-
-# Number of simulations and variables
-num_simulations <- 10
-num_variables <- 20  # Change according to your actual data
-sample_size <- nrow(imputed_training_data_c)  # Same sample size as your original data
-
-# List to store results from simulations
-simulated_results <- vector("list", num_simulations)
-
-# Loop over the number of simulations
-for (i in 1:num_simulations) {
-  # Simulate data
-  simulated_data <- simulate_data(sample_size, num_variables)
-  
-  # Define a model using lavaan syntax
-  model <- ' # Define your model structure here
-             # For example: factor1 =~ V1 + V2 + V3 + V4'
-  
-  # Fit the model to the simulated data
-  fit <- cfa(model, data = simulated_data)
-  
-  # Extract fit indices
-  fit_indices <- fitMeasures(fit, c("aic", "bic", "rmsea", "cfi"))
-  
-  # Store the results
-  simulated_results[[i]] <- fit_indices
-}
-
-# Initialize vectors to store averaged fit indices
-average_simulated_fit_indices <- list(
-  AIC = numeric(num_simulations),
-  BIC = numeric(num_simulations),
-  RMSEA = numeric(num_simulations),
-  CFI = numeric(num_simulations)
+```{r}
+df_sens_m <- data.frame(
+  F1F2 = joined_mgcfa_data$F1F3,
+  F1F5 = joined_mgcfa_data$F1F6,
+  F1F6 = joined_mgcfa_data$F1F12,
+  F1F14 = joined_mgcfa_data$F1F14,
+  F2F6 = joined_mgcfa_data$F2F5,
+  F2F10 = joined_mgcfa_data$F2F12,
+  F2F12 = joined_mgcfa_data$F2F14,
+  F2F13 = joined_mgcfa_data$F2F16,
+  F3F2 = joined_mgcfa_data$F3F3,
+  F3F6 = joined_mgcfa_data$F3F4,
+  F3F7 = joined_mgcfa_data$F3F7,
+  F3F9 = joined_mgcfa_data$F3F8,
+  F4F1 = joined_mgcfa_data$F4F1,
+  F4F6 = joined_mgcfa_data$F4F2,
+  F4F7 = joined_mgcfa_data$F4F3,
+  F4F8 = joined_mgcfa_data$F4F8,
+  F5F1 = joined_mgcfa_data$F5F3,
+  F5F6 = joined_mgcfa_data$F5F6,
+  F5F7 = joined_mgcfa_data$F5F15,
+  F5F18 = joined_mgcfa_data$F5F18
 )
 
-# Collect fit indices from each simulation
-for (i in 1:num_simulations) {
-  average_simulated_fit_indices$AIC[i] <- simulated_results[[i]]["aic"]
-  average_simulated_fit_indices$BIC[i] <- simulated_results[[i]]["bic"]
-  average_simulated_fit_indices$RMSEA[i] <- simulated_results[[i]]["rmsea"]
-  average_simulated_fit_indices$CFI[i] <- simulated_results[[i]]["cfi"]
-}
+# Compute the variance-covariance matrix
+cov_matrix_m <- cov(df_sens_m, use = "complete.obs")
+```
 
-# Compute the average fit indices
-average_fit_indices_simulated <- sapply(average_simulated_fit_indices, mean)
+## Sensitivity Analysis
+```{r}
+require(lavaan)
+require(SEMsens)
+library(polycor)
+set.seed(1)
+ 
+# Compute the variance-covariance matrix
 
-# Print the average fit indices from simulations
-print("Average Fit Indices from Simulated Data:")
-print(average_fit_indices_simulated)
+polychoric_corr <- hetcor(df_sens)
+
+var_names <- colnames(df_sens)  # Get the variable names from your data
+
+corr_matrix <- polychoric_corr$correlations  # Extract the correlation matrix
+
+# Get the standard deviations of the ordinal variables
+std_devs <- apply(df_sens, 2, sd)
+
+# Convert correlation matrix to covariance matrix
+cov_matrix <- diag(std_devs) %*% corr_matrix %*% diag(std_devs)
+# Assign the names to the covariance matrix
+colnames(cov_matrix) <- var_names
+```
+
+```{r}
+# STEP 2: Set up analytic model and sensitivity anaysis model
+# Original Analytic Model
+cfa_model_m <- '
+# Measurement model
+Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
+Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
+Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F6 + F5F7 + F5F18 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+
+'
+# A sensitivity analysis model template, which additionally includes paths
+#  from a phantom variable to a set of variables (= number of sensitivity parameters)
+#   in the analytic model.
+# Sensitivity Analysis Model
+sens_model_m <- '
+# Measurement model
+Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
+Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
+Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F6 + F5F7 + F5F18 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+
+
+  # Sensitivity analysis with phantom variable
+  Comprehension ~ phantom1*phantom
+  Evaluation ~ phantom2*phantom
+  Integration ~ phantom3*phantom
+  Communication ~ phantom4*phantom
+  Statistics ~ phantom5*phantom
+
+  phantom =~ 0 # added for mean of zero
+  phantom ~~ 1*phantom
+'
+```
+
+```{r}
+
+old.model = cfa_model_m
+old.out  = sem(model = cfa_model_m, df_sens_m, estimator = "MLR")
+
+summary(old.out, standardized=TRUE)
+old.model.par <- standardizedSolution(old.out,type = "std.all")
+old.model.par
+
+```
+
+
+```{r}
+
+old.model = cfa_model_ord
+old.out  = sem(model = cfa_model_ord, df_sens, ordered = TRUE, estimator = "WLSMV")
+
+summary(old.out, standardized=TRUE)
+old.model.par <- standardizedSolution(old.out,type = "std.all")
+old.model.par
+
+```
+
+```{r}
+  # STEP 4: Perform sensitivity analysis.
+my.sa <-sa.aco(model = cfa_model_m, sens.model = sens_model_m, sample.cov = cov_matrix_m,
+               sample.nobs = 616, k = 100, max.value= 2000, max.iter = 1000,
+               opt.fun = 2, ## 
+               paths = c(1:20), seed = 1, verbose = FALSE)
+```
+
+```{r}
+my.sa.results = sens.tables(my.sa, path=TRUE) # get results
+my.sa.results = lapply(my.sa.results, round, digits = 3) # round results (optional)
 ```
 
 ```{r}
