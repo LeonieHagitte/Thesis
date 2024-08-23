@@ -1,12 +1,17 @@
 # Discussion
 
+This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via 'stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.  
+The final model showed acceptable fit (XXX), according to the combinational rule for RMSEA and SRMR of @hu1999. But not according to the rules that are most commonly used not to the combinational rule, that resulted in the least sum of type 1 and type 2 error rates [@hu1999]. 
+Comparison of the training sample and the test sample on the chosen model, measurement invariance analyses indicated
+
+
 ## Summarising the results
 
 Everything worked - what do I need to report?
 First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g. Jackson et al., 2009). To have a clear structure, answer the following questions:
 How large was the original item pool and how was it created?
 What is the structure of the scale?
-Which algorithm was used (or bruteforce)?
+Which algorithm was used ?
 Which objective function was used?
 How stable is the final variant?
 How was the final variant further validated (e.g. crossvalidate, k-fold)?
@@ -22,7 +27,11 @@ The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-1
 - When discussing the why - be careful, because you didnt test that
 
 ## Limitations
+- model fit
+- ceiling effects
+- melted answer categories
 - content validity
+- reliability!
 - DIF?
 - psych science - authors guide to generelizability
 - attempts to control for limitating factors

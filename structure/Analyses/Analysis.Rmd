@@ -1135,14 +1135,12 @@ value_counts_merged <- imputed_training_data_merged %>%
 
 print(value_counts_merged)
 ```
-```{r}
-library(dplyr)
-library(tidyr)
 
+```{r}
 # Define the selected items
 selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
 
-# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+# Modify the imputed_training_data_c to merge answers 0 and 1 into 1 for these selected items
 imputed_training_data_merged1 <- imputed_training_data_merged %>%
   mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
 
@@ -1151,9 +1149,6 @@ print(imputed_training_data_merged1)
 ```
 
 ```{r}
-library(dplyr)
-library(tidyr)
-
 # Define the selected items
 selected_items <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2F1", "F2F9", "F2F8", "F2F12", "F2F13", "F2F7", "F3F7", "F3F8" ,"F3F9", "F4F2", "F4F5", "F5F17", "F5F15", "F1F14", "F1F13")
 
@@ -1176,9 +1171,6 @@ print(value_counts_merged2)
 ```
 
 ```{r}
-library(dplyr)
-library(tidyr)
-
 # Define the selected items
 selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
 
@@ -1199,12 +1191,7 @@ value_counts_merged3 <- imputed_training_data_merged3 %>%
 print(value_counts_merged3)
 ```
 
-## The same for test data
 ```{r}
-# Load necessary libraries
-library(dplyr)
-library(tidyr)
-
 # Function to count unique values for each variable in a dataset
 count_unique_values <- function(data) {
   data %>%
@@ -1214,7 +1201,7 @@ count_unique_values <- function(data) {
 }
 
 # Count unique values for each variable in imputed_test_data_c
-value_counts_test <- count_unique_values(imputed_test_data_c)
+value_counts_test <- count_unique_values(imputed_test_data_merged3) #imputed_test_data_c
 
 # Count unique values for each variable in imputed_training_data_merged3
 value_counts_train <- count_unique_values(imputed_training_data_merged3)
@@ -1268,27 +1255,104 @@ discrepancies <- compare_category_sets(comparison)
 cat("Variables with Different Number of Dimensions/Categories:\n")
 print(discrepancies)
 
-
-
-```
-```{r}
-# Create a list of variables with different counts in Unique_categories_train and Unique_categories_test
-variables_with_different_counts <- discrepancies %>%
-  filter(Unique_categories_train != Unique_categories_test) %>%
-  pull(Variable)
-
-# Print list of variables with different counts
-print(variables_with_different_counts)
-
 ```
 
+# The same for test data
+## Finding Thresholds of Items to merge in order to ose ordered data in the item selection and crossvalidation
+```{r}
+# Count values for each variable in imputed_test_data_c
+value_counts_test <- imputed_test_data_c %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+print(value_counts_test)
+
+# Filter for cases with values smaller or equal to 2
+filtered_value_counts_test <- value_counts %>%
+  filter(rowSums(. <= 2) > 0)
+
+print(filtered_value_counts)
+
+# Get the list of items to be modified
+items_to_modify <- filtered_value_counts$Variable
+
+# Ensure items_to_modify is a character vector
+items_to_modify <- as.character(items_to_modify)
+
+# Modify the imputed_test_data_c to merge answers 0 and 1 into 1 for these items
+imputed_test_data_merged <- imputed_test_data_c %>%
+  mutate(across(all_of(items_to_modify), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+imputed_test_data_merged <- imputed_test_data_merged %>%
+  select(-c(F2F17, F2F4))
+
+print(imputed_test_data_merged)
+
+```
+
+```{r}
+value_counts_merged_test <- imputed_test_data_c %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged_test)
+```
 
 ```{r}
 
-#F2F17 and F2F4 deleted
+# Define the selected items
+selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
+
+# Modify the imputed_training_data_c to merge answers 0 and 1 into 1 for these selected items
+imputed_test_data_merged1 <- imputed_test_data_merged %>%
+  mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_training_data_merged1)
+
+```
+
+```{r}
+# Define the selected items
+selected_items12t <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2F1", "F2F9", "F2F8", "F2F12", "F2F13", "F2F7", "F3F7", "F3F8" ,"F3F9", "F4F2", "F4F5", "F5F17", "F5F15", "F1F14", "F1F13")
+
+# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+imputed_test_data_merged2 <- imputed_test_data_merged1 %>%
+  mutate(across(all_of(selected_items12t), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_test_data_merged2)
+
+```
+
+```{r}
+# Define the selected items
+selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
+
+# Modify the imputed_test_data_c to merge answers 2 and 3 into 3 for these selected items
+imputed_test_data_merged3 <- imputed_test_data_merged2 %>%
+  mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
+
+print(imputed_test_data_merged3)
+```
+
+
+```{r}
+value_counts_merged3_test <- imputed_test_data_merged3 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged3_test)
+```
+
+```{r}
+#F2F17, F2F4, F3F1 and F3F9 deleted
 fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11",                              "F1F12", "F1F13", "F1F14"),
            Evaluation=c('F2F1',"F2F2",  "F2F3",  "F2F5",  "F2F6",  "F2F7",  "F2F8",  "F2F9",  "F2F10", "F2F11", "F2F12",                                "F2F13", "F2F14", "F2F15", "F2F16", "F2F18",'F2F19','F2F20'),
-           Integration=c("F3F1",  "F3F2",  "F3F3",  "F3F4",  "F3F5",  "F3F6",  "F3F7", "F3F8",  "F3F9"),
+           Integration=c("F3F2",'F3F3' ,"F3F4",  "F3F5",  "F3F6",  "F3F7", "F3F8"),
            Communication=c('F4F1','F4F2','F4F3','F4F4','F4F5','F4F6','F4F7','F4F8'),
            Statistics=c("F5F1",  "F5F2",  "F5F3",  "F5F4",  "F5F5",  "F5F6",  "F5F7", "F5F8",  "F5F9",  "F5F10",                                       "F5F11","F5F12", "F5F13", "F5F14", "F5F15", "F5F16", "F5F17", "F5F18")
                            )
@@ -1300,24 +1364,161 @@ ords <- imputed_training_data_merged3[, names(imputed_training_data_merged3)%in%
 ords <- lapply(ords, as.ordered)
 ords <- do.call(data.frame, ords)
 
-ords2 <- imputed_test_data_merged3[, names(imputed_test_data_merged3)%in%unlist(fs)]
+# Print the resulting data frame
+print(ords)
+```
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+
+# Function to count unique values for each variable in a dataset
+count_unique_values <- function(data) {
+  data %>%
+    pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+    count(Variable, Value) %>%
+    pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+}
+
+# Count unique values for each variable in imputed_test_data_c
+value_counts_test <- count_unique_values(imputed_test_data_merged3) #imputed_test_data_c
+
+# Count unique values for each variable in imputed_training_data_merged3
+value_counts_train <- count_unique_values(imputed_training_data_merged3)
+
+# Identify common variables in both datasets
+common_vars <- intersect(names(value_counts_train), names(value_counts_test))
+
+# Exclude specific variables if they are not present in the training dataset
+excluded_vars <- c("F2F17", "F2F4")
+common_vars_filtered <- setdiff(common_vars, excluded_vars)
+
+# Filter out variables not present in both datasets
+value_counts_train_filtered <- value_counts_train %>%
+  select(all_of(common_vars_filtered))
+
+value_counts_test_filtered <- value_counts_test %>%
+  select(all_of(common_vars_filtered))
+
+# Ensure both dataframes have the same structure for comparison
+value_counts_train_full <- value_counts_train_filtered %>%
+  replace_na(list(n = 0))
+
+value_counts_test_full <- value_counts_test_filtered %>%
+  replace_na(list(n = 0))
+
+# Combine both datasets for comparison
+comparison <- value_counts_train_full %>%
+  full_join(value_counts_test_full, by = "Variable", suffix = c("_train", "_test"))
+
+# Function to compare sets of categories
+compare_category_sets <- function(comp) {
+  discrepancies <- comp %>%
+    rowwise() %>%
+    mutate(
+      # Extract and count non-zero categories for train and test
+      Unique_categories_train = sum(c_across(contains("_train")) > 0),
+      Unique_categories_test = sum(c_across(contains("_test")) > 0),
+      # Check if the number of unique categories differs
+      Different_categories = Unique_categories_train != Unique_categories_test
+    ) %>%
+    filter(Different_categories) %>%
+    select(Variable, Unique_categories_train, Unique_categories_test)
+  
+  return(discrepancies)
+}
+
+# Get discrepancies where category counts differ
+discrepancies <- compare_category_sets(comparison)
+
+# Print summary of discrepancies
+cat("Variables with Different Number of Dimensions/Categories:\n")
+print(discrepancies)
+
+```
+
+### Creating data frame with equal levels per item for MI testing with ordinal data format
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items01 <- c("F1F8", "F2F14", "F2F20")
+
+# Modify the imputed_test_data_c to merge answers 0 and 1 into 1 for these selected items in a new data frame
+imputed_test_data_merged_MI <- imputed_test_data_merged3 %>%
+  mutate(across(all_of(selected_items01), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_test_data_merged_MI)
+##########
+
+# Define the selected items
+selected_items02 <- "F3F2"
+
+# Modify the imputed_test_data_c to merge answers 0 ,1 and 2 into 2 for these selected items
+imputed_test_data_merged_MI <- imputed_test_data_merged_MI %>%
+  mutate(across(all_of(selected_items02), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_test_data_merged_MI)
+
+###########
+# Define the selected items
+selected_items_tr01 <- c("F1F8","F2F14", "F2F20")
+
+# Modify the imputed_training_data_merged3 to merge answers 0 and 1 into 1 for these selected items
+imputed_train_data_merged_MI <- imputed_training_data_merged3 %>%
+  mutate(across(all_of(selected_items_tr01), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_train_data_merged_MI)
+############
+
+# Define the selected items
+selected_items_tr12 <- c("F1F1", "F1F5" , "F1F12", "F2F15", "F3F3")
+
+# Modify the imputed_training_data_merged3 to merge answers 0 and 1 into 1 for these selected items
+imputed_train_data_merged_MI <- imputed_train_data_merged_MI %>%
+  mutate(across(all_of(selected_items_tr12), ~ ifelse(. %in% c(0, 1, 2), 2, .)))
+
+print(imputed_train_data_merged_MI)
+
+```
+
+## ordinal MI data
+```{r}
+ords1 <- imputed_train_data_merged_MI[, names(imputed_train_data_merged_MI)%in%unlist(fs)]
+ords1 <- lapply(ords1, as.ordered)
+ords1 <- do.call(data.frame, ords1)
+
+ords2 <- imputed_test_data_merged_MI[, names(imputed_test_data_merged_MI)%in%unlist(fs)]
 ords2 <- lapply(ords2, as.ordered)
 ords2 <- do.call(data.frame, ords2)
 
-# Add the 'split' column to each data frame
-ords <- ords %>%
-  mutate(split = 1)
+# Step 1: Get the list of common factor levels for each column
+common_levels <- lapply(names(ords1), function(col) {
+  unique(c(levels(ords1[[col]]), levels(ords2[[col]])))
+})
 
-ords2 <- ords2 %>%
-  mutate(split = 2)
+# Step 2: Ensure each column in both data frames has these common levels
+for (i in seq_along(ords1)) {
+  ords1[[i]] <- factor(ords1[[i]], levels = common_levels[[i]], ordered = TRUE)
+  ords2[[i]] <- factor(ords2[[i]], levels = common_levels[[i]], ordered = TRUE)
+}
 
-# Combine the two data frames
-ords_c <- bind_rows(ords, ords2)
+# Step 3: Convert lists back to data frames
+ords1 <- as.data.frame(ords1)
+ords2 <- as.data.frame(ords2)
 
-# Print the resulting data frame
-print(ords_c)
+# Step 4: Add the 'split' column to each data frame
+ords1$split <- 1
+ords2$split <- 2
+
+# Step 5: Combine the data frames
+ords_mi <- bind_rows(ords1, ords2)
+
 ```
-## Preparing a data frame for the MG-CFA
+
+## Preparing a metric data frame for the MG-CFA
 ```{r}
 # Add the 'split' column to each data frame
 imputed_training_data_c <- imputed_training_data_c %>%
@@ -1343,7 +1544,6 @@ taus <- lavInspect(fit_again, "est")$tau
 # printing them
 print(taus)
 
-## taus?
 sd_tau <- sd(taus[grep('t1', rownames(taus))]) + 
                  sd(taus[grep('t2', rownames(taus))]) +
                  sd(taus[grep('t3', rownames(taus))]) + 
@@ -1352,7 +1552,6 @@ sd_tau <- sd(taus[grep('t1', rownames(taus))]) +
 
 print(theothrsh_tau)#2.194
 
-# Assuming tau is a vector containing all tau values across items
 overall_sd_tau <- sd(taus)
 print(overall_sd_tau)# 1.136692
 
@@ -1377,7 +1576,6 @@ obj <- function(chisq, df, pvalue, rmsea.robust, srmr, cfi.robust, crel, tau) {
   
   out = (out1 + out2 + out3 + out4) / 4
   return(out)
-
 }
 
 #stuart:::objective.preset
@@ -1453,6 +1651,7 @@ kfold_sel <- kfold(
 )
 #########################################################
 ```
+
 ### Summary Results No.1
 ```{r}
 summary(kfold_sel)
@@ -1832,12 +2031,6 @@ summary(comp_fit_strict1)
 ```
 
 ################################################
-## EFA Investigation 
-```{r}
-efa_fit <- efa(imputed_training_data_c[1:69], rotation = "varimax", nfactors = 1:10)
-summary(efa_fit)
-```
-################################################
 
 ## K-fold Crossvalidation with Ordinal data Structure (WLSMV)
 ```{r, eval=FALSE}
@@ -1855,7 +2048,7 @@ for (i in 1:num_iterations) {
   results_list_ord[[i]] <- kfold(
   'gene', 
   k = 3, 
-  data = ords, 
+  data = ords,
   factor.structure = fs,  
   max.invariance = "strong", 
   capacity = list(4, 4, 4, 4, 4), 
@@ -1929,17 +2122,14 @@ lavaan::standardizedSolution(results_list_ord[[i]]$final)
 
 ```
 
-### MG-CFA with Ordinal data Structure (WLSMV)
 ```{r}
-library(lavaan)
-
 cfa_model_ord <- '
 # Measurement model
-Comprehension =~ F1F3 + F1F6 + F1F12 + F1F14 
-Evaluation =~ F2F5 + F2F12 + F2F14 + F2F16 
-Integration =~ F3F3 + F3F4 + F3F7 + F3F8 
-Communication =~ F4F1 + F4F2 + F4F3 + F4F8 
-Statistics =~ F5F3 + F5F6 + F5F15 + F5F18 
+Comprehension =~ F1F4 + F1F6 + F1F10 + F1F11 
+Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16 
+Integration =~ F3F5 + F3F6 + F3F7 + F3F8 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F6 + F5F8 + F5F9 + F5F16 
 
 # Factor variances
 Comprehension ~~ Comprehension
@@ -1960,49 +2150,81 @@ Integration ~~ Communication
 Integration ~~ Statistics
 Communication ~~ Statistics
 '
-fit_cfa_model_ords <- cfa(cfa_model_ord, ords_c, ordered = TRUE, estimator = "WLSMV", group = "split")
+fit_cfa_model_ords <- cfa(cfa_model_ord, ords, ordered = TRUE, estimator = "WLSMV")
 summary(fit_cfa_model_ords, fit.measures = TRUE, standardized = TRUE)
 
-inspect(fit_cfa_model_ords, 'fit')
+inspect(fit_cfa_model_ords,'fit')
+```
+
+### MG-CFA with Ordinal data Structure (WLSMV)
+```{r}
+cfa_model_ord <- '
+# Measurement model
+Comprehension =~ F1F4 + F1F6 + F1F10 + F1F11 
+Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16 
+Integration =~ F3F5 + F3F6 + F3F7 + F3F8 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F6 + F5F8 + F5F9 + F5F16 
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_cfa_model_ords <- cfa(cfa_model_ord, ords_mi, ordered = TRUE, estimator = "WLSMV", group = "split")
+summary(fit_cfa_model_ords, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_ords,'fit')
 ```
 
 #### configural to metric
 ```{r}
 library(lavaan)
 library(semTools)
-fit_cfa_model_ords_m <- cfa(cfa_model_ord, joined_mgcfa_data, estimator = "WLSMV", group = "split", group.equal= "loadings")
+fit_cfa_model_ords_m <- cfa(cfa_model_ord, ords_mi, estimator = "WLSMV", group = "split", group.equal= "loadings")
 
 comp_fit_ord <- compareFit(fit_cfa_model_ords, fit_cfa_model_ords_m)
 summary(comp_fit_ord)
-
+inspect(fit_cfa_model_ords_m ,'fit')
 ```
 #### configural to metric
-Cfi delta: 
-rmsea delta: 
-srmr delta: 
+Cfi scaled: .947  delta: .007
+rmsea scaled: .056 delta: .001
+srmr delta: .005
 
 #### metric to scalar
 ```{r}
-fit_cfa_model_ords_scalar <- cfa(cfa_model_ord, joined_mgcfa_data, estimator = "WLSMV", group = "split",
+fit_cfa_model_ords_scalar <- cfa(cfa_model_ord, ords_mi, estimator = "WLSMV", group = "split",
                             group.equal = c('loadings','intercepts'))
 
 comp_fit_ords_scalar <- compareFit(fit_cfa_model_ords_m,fit_cfa_model_ords_scalar)
 summary(comp_fit_ords_scalar)
+inspect(fit_cfa_model_ords_scalar,'fit')
 ```
 #### metric to scalar
-Cfi delta: 
-rmsea delta: 
-srmr delta: 
+Cfi 0.944, delta: .003
+rmsea  0.053  ,delta: .003
+srmr 0.069, delta: .003
 
 ##########################################################################
 
 ## Trying to incorporate tau 
 ```{r}
 library(lavaan)
-
-# Assuming 'fit_again' is your fitted lavaan model object
-# Example: fit_again <- cfa(model, data = your_data)
-
 # Extract the tau matrix from the fitted model
 tau <- lavInspect(fit_again, "est")$tau
 
@@ -2145,12 +2367,12 @@ Communication: F4F1 F4F2 F4F3 F4F8
 Statistics: F5F3 F5F6 F5F15 F5F18
 
 ##########################################################################
+##########################################################################
 
 ## Check correlated residuals
 ```{r}
 # Fit the initial SEM model
-
-fit <- sem(cfa_model_m, joined_mgcfa_data)
+fit <- sem(cfa_model_ord, ords_mi)
 
 # Check modification indices
 modificationIndices(fit, sort = TRUE)
@@ -2169,38 +2391,38 @@ anova(fit, fit_revised)
 
 ```{r}
 # Calculate average scores for each construct
-df_dl$Comprehension <- rowMeans(df_dl[, c("F1F3", "F1F6", "F1F12", "F1F14")], na.rm = TRUE)
-df_dl$Evaluation <- rowMeans(df_dl[, c("F2F5", "F2F12", "F2F14", "F2F16")], na.rm = TRUE)
-df_dl$Integration <- rowMeans(df_dl[, c("F3F3", "F3F4", "F3F7", "F3F8")], na.rm = TRUE)
-df_dl$Communication <- rowMeans(df_dl[, c("F4F1", "F4F2", "F4F3", "F4F8")], na.rm = TRUE)
-df_dl$Statistics <- rowMeans(df_dl[, c("F5F3", "F5F6", "F5F15", "F5F18")], na.rm = TRUE)
+df_dl$Comprehension <- rowMeans(df_dl[, c("F1F4", "F1F6", "F1F10", "F1F11")], na.rm = TRUE)
+df_dl$Evaluation <- rowMeans(df_dl[, c("F2F1", "F2F6", "F2F13", "F2F16")], na.rm = TRUE)
+df_dl$Integration <- rowMeans(df_dl[, c("F3F5", "F3F6", "F3F7", "F3F8")], na.rm = TRUE)
+df_dl$Communication <- rowMeans(df_dl[, c("F4F3", "F4F6", "F4F7", "F4F8")], na.rm = TRUE)
+df_dl$Statistics <- rowMeans(df_dl[, c("F5F6", "F5F8", "F5F9", "F5F16")], na.rm = TRUE)
 
 # Create a data frame from specified columns of df_dl
 df_result <- data.frame(
-  F1F3 = df_dl$F1F3,
+  F1F4 = df_dl$F1F3,
   F1F6 = df_dl$F1F6,
-  F1F12 = df_dl$F1F12,
-  F1F14 = df_dl$F1F14,
-  F2F5 = df_dl$F2F5,
-  F2F12 = df_dl$F2F12,
-  F2F14 = df_dl$F2F14,
+  F1F10 = df_dl$F1F12,
+  F1F11 = df_dl$F1F14,
+  F2F1 = df_dl$F2F5,
+  F2F6 = df_dl$F2F12,
+  F2F13 = df_dl$F2F14,
   F2F16 = df_dl$F2F16,
-  F3F3 = df_dl$F3F3,
-  F3F4 = df_dl$F3F4,
+  F3F5 = df_dl$F3F3,
+  F3F6 = df_dl$F3F4,
   F3F7 = df_dl$F3F7,
   F3F8 = df_dl$F3F8,
-  F4F1 = df_dl$F4F1,
-  F4F2 = df_dl$F4F2,
-  F4F3 = df_dl$F4F3,
+  F4F4 = df_dl$F4F1,
+  F4F6 = df_dl$F4F2,
+  F4F7 = df_dl$F4F3,
   F4F8 = df_dl$F4F8,
-  F5F3 = df_dl$F5F3,
-  F5F6 = df_dl$F5F6,
-  F5F15 = df_dl$F5F15,
-  F5F18 = df_dl$F5F18
+  F5F6 = df_dl$F5F3,
+  F5F8 = df_dl$F5F6,
+  F5F9 = df_dl$F5F15,
+  F5F16 = df_dl$F5F18
 )
 
 # Display the updated data frame with the new scores
-print(df_dl)
+print(df_result)
 
 ```
 
@@ -2327,6 +2549,7 @@ check_normality(raw_data) #nonnormal
 
 ## Normality openness
 ```{r}
+library(e1071)
 # Exclude the third column (Mean) for normality checks
 raw_data <- B5_openness[, -3]  # This excludes the third column
 
@@ -2764,7 +2987,12 @@ my.sa <-sa.aco(model = cfa_model_m, sens.model = sens_model_m, sample.cov = cov_
 my.sa.results = sens.tables(my.sa, path=TRUE) # get results
 my.sa.results = lapply(my.sa.results, round, digits = 3) # round results (optional)
 ```
-
+## EFA Investigation 
+```{r}
+efa_fit <- efa(imputed_training_data_c[1:69], rotation = "varimax", nfactors = 1:10)
+summary(efa_fit)
+```
+################################################
 ```{r}
 
 ```
@@ -2774,5 +3002,90 @@ my.sa.results = lapply(my.sa.results, round, digits = 3) # round results (option
 ```
 
 ```{r}
+
+```
+############################################
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items1 <- c("F3F2")
+
+# Modify the imputed_training_data_c to merge answers 0 and 1 into 1 for these selected items
+imputed_test_data_merged4 <- imputed_test_data_merged4 %>%
+  mutate(across(all_of(selected_items1), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_test_data_merged4)
+
+```
+
+```{r}
+value_counts_merged4_test <- imputed_test_data_merged4 %>%
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
+  count(Variable, Value) %>%
+  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
+
+
+print(value_counts_merged3_test)
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items2 <- c("F1F8","F2F2","F2F5")
+
+# Modify the imputed_training_data_ic to merge answers 0 and 1 into 1 for these selected items
+imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
+  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 1), 1, .)))
+
+print(imputed_training_data_merged4)
+
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items2 <- "F1F2"
+
+# Modify the imputed_training_data_ic to merge answers 0 and 2 into 2 for these selected items
+imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
+  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 2), 2, .)))
+
+print(imputed_training_data_merged4)
+
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items2 <- "F1F5"
+
+# Modify the imputed_training_data_ic to merge answers 0 and 2 into 2 for these selected items
+imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
+  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 1), 2, .)))
+
+print(imputed_training_data_merged4)
+
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+# Define the selected items
+selected_items1 <- "F1F6"
+
+# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
+imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
+  mutate(across(all_of(selected_items1), ~ ifelse(. %in% c(1, 2), 2, .)))
+
+print(imputed_training_data_merged4)
 
 ```
