@@ -135,7 +135,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2024-08-20}
+\date{2024-08-25}
 
 \begin{document}
 \maketitle
@@ -378,59 +378,63 @@ Algorithm-based item selection is used to choose the most relevant items, reduci
 Compared to classical approaches, algorithms are more objective and efficient in finding a good or nearly perfect solution with regard to certain criteria (\citeproc{ref-leite2008}{Leite et al., 2008}; \citeproc{ref-olaru2015}{Olaru et al., 2015}). Furthermore, some empirical studies suggest that the use of algorithms leads to similar or better results in scale construction than traditional approaches (\citeproc{ref-olaru2021}{Olaru \& Danner, 2021}; \citeproc{ref-sandy2014}{Sandy et al., 2014}; \citeproc{ref-schroeders2016}{Schroeders, 2016}). The automated approach takes the opposite perspective to the classical approach, the one of meta heuristics, by repeatedly estimating CFAs for a multitude of possible item-combinations (\citeproc{ref-schultze2017}{Schultze, 2017}). Thus, a pool of items with some constraints and the goal to find the one combination that best fits the suggested purpose (e.g.~equation 1) of the final scale is estimated (\citeproc{ref-schultze2017}{Schultze, 2017}).Thus, the selection of items and construction of a questionnaire can be viewed as a combinatorial problem, like the knapsack problem (``Choose a set of objects, each having a specific weight and monetary value, so that the value is maximized and the total weight does not exceed a predetermined limit'')(\citeproc{ref-kerber2022}{Kerber et al., 2022}; \citeproc{ref-schroeders2016}{Schroeders, 2016, p. 4}; \citeproc{ref-schultze2017}{Schultze, 2017}).
 
 \begin{center}
-$\Phi = F(\textrm{RMSEA}) + F(CFI)+ F(\textrm{SRMR}) + F(\omega) + F(\nu)$ (1)
+$\Phi = F(\textrm{RMSEA}) + F(CFI)+ F(\textrm{SRMR}) $ (1)
 \end{center}
 
 `Stuart'(\citeproc{ref-schultze2022}{Schultze, 2022}) can construct subsets from a pool of items by using ant-colony-optimization, genetic algorithms, brute force, or random sampling (\citeproc{ref-schultze2017}{Schultze, 2017}). Those meta-heuristics like are utilized to handle these combinatorial optimization problems.
-For this study, a set of 20 items from a set of 71 items are selected, to form a questionnaire. The data literacy self rating scale is optimized for model fit criteria (RMSEA, SRMR, CFI). Those criteria will be defined in the objective function (equations 1 \& 2) in `stuart'Schultze (\citeproc{ref-schultze2017}{2017}).
+For this study, a set of 20 items from a set of 71 items is selected, to form a questionnaire. The data literacy self rating scale is optimized for model fit criteria (RMSEA, SRMR, CFI). Those criteria will be defined in the objective function (equations 1 \& 2) in `stuart'Schultze (\citeproc{ref-schultze2017}{2017}).
 
 We use the genetic algorithm of `stuart' for the item selection. Genetic algorithms are based on Darwinian evolution principles -- selection, crossover, mutation and survival of the fittest {[}Holland (\citeproc{ref-holland1992}{1992}); Schroeders (\citeproc{ref-schroeders2016}{2016})). With the genetic algorithm, the initial set of 71 items is to be reduced based on the evolutionary process of selection, but opposing to evolution with a goal: A near-optimal ``solution''. The survival of an item is determined by its quality (called ``fitness'')(\citeproc{ref-galan2013}{Galán et al., 2013}). The algorithm is build on two processes: Variation (i.e.~recombination and mutation) and selection. Variation rewards diversity and innovation of items, whereas selection rewards quality or fitness. The algorithm links ``genes'' (i.e.~items), that represent a certain variable, to a ``chromosome'' (i.e.~a set of items). A predefined number of chromosomes are randomly generated from the 1st generation (i.e.~the original item pool). The algorithm tries to maximize the psychometric quality of the ``chromosomes''(i.e.~item sets) by evaluating the ``chromosomes''(i.e.~item sets) against a ``fitness''function. Based on this fitness function, the fittest ``chromosomes''(i.e.~item sets) of each generation are determined, which then form the basis for the next generation (forming the selection process). The process of variation establishes genetic diversity and mutation within the generations by spontaneously exchanging items within a scale or between two scales, which adds a degree of randomness to the selection process. This is done a predefined number of iterations. Thereby, the fittest ``chromosome''(i.e.~set of items), with the highest quality, is to be identified (\citeproc{ref-schroeders2016}{Schroeders, 2016}).
 
 \subsection{Validation}\label{validation}
 
-The provided sample will be divided into two subsets (i.e.~training data and test data) using the `holdout' function in `stuart'. The specified item-selection procedure will be applied to the training data. The training data is undergoing k-fold cross validation (k=3), using the `kfold' function in `stuart'. The other sample, the test data, is used for evaluation of the final models performance, as well as the latent correlations with the convergent measures.
-Validation with the test data is conducted (using an MG-CFA in `lavaan') to assess the invariance of the measurement models between the training and testing datasets. Invariance levels are measured with the `max.invariance' function. Invariance is necessary to claim that the scale validation has worked.
+The provided sample is divided into two subsets (i.e.~training data and test data) using the `holdout' function in `stuart'. The specified item-selection procedure is applied to the training data. The training data is undergoing k-fold cross validation (k=3), using the `kfold' function in `stuart'. Those kfolded selections are then again iterated three times, to enhance the stability of the solution even more. The other sample, the test data, is used for evaluation of the final models performance, as well as the latent correlations with the convergent measures.
+Validation with the test data is conducted (using an MG-CFA in `lavaan') to assess the invariance of the measurement models between the training and testing datasets. Invariance levels are assessed using the criteria of F. F. Chen (\citeproc{ref-chen2007}{2007}). Invariance is necessary to claim that the scale validation has worked.
 
 \subsection{Exploratory Analyses}\label{exploratory-analyses}
 
+Because the complexity of the model, as well as the several objectives of the initially planned objective function, the genetic algorithm had problems converging into a solution, let alone a solution with sufficient model fit. Therefore some objectives were dropped (the composite reliability and the varying item intercepts per factor), in favor of model fit. Different solutions were systematically explored, dependent on the estimator (MLR or WLSMV) and the respective data structure (data treated as metric or ordinal data), as well as on the objective function, to lead to the best solution. That way four models got selected by the algorithm. And a fifth model was created based on the best model of those four models, but with slight ``manual'' changes; exchanging some items, that showed very low loadings, for others with higher loadings of the respective latent factor.
+
 \section{Results}\label{results}
 
-\subsection{Model Fit and Latent Structure in the Construction Sample}\label{model-fit-and-latent-structure-in-the-construction-sample}
+\subsection{Model Fit and Measurement Invariance}\label{model-fit-and-measurement-invariance}
 
-\subsubsection{Model 1}\label{model-1}
-
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits acceptable model fit (according to the combinational rule of \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with MLR as estimator: Satorra-Bentler-\(X^{2}\) (df = 375, N = 373) = 637.99, p \textless{} 0.001, CFI = .88, TLI = .87, SRMR = .07, RMSEA = .06, 90\%-CIRMSEA {[}.053; .069{]}.
-Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
+Of the four explored conditions and respective models, the following model is to be highlighted. An overview over all models and their model fit can be found in the supplementary material.
+With an objective function, only optimising for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit (according to \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with ordered data and WLSMV as estimator: Satorra-Bentler-\(X^{2}\) (df = 414, N = 373) = 582.582, p \textless{} 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90\%-CIRMSEA {[}.036; .054{]}.
+Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in figure X.
 All factor loadings including standard errors can be found in the Supplementary Material.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = 389, N = 373) = 659.746, p \textless{} 0.001, CFI = .94, SRMR = .069, RMSEA = .053; \(\Delta\text{CFI}\) = 0.003 , \(\Delta\text{SRMR}\) = .003, \(\Delta\text{RMSEA}\) = .003.
 
-\subsubsection{Model 2}\label{model-2}
-
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits acceptable model fit (according to the combinational rule of \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with MLR as estimator: Satorra-Bentler-\(X^{2}\) (df = 375, N = 373) = 596.455, p \textless{} 0.001, CFI = .85, TLI = .85, SRMR = .07, RMSEA = .06, 90\%-CIRMSEA {[}.048; .065{]}.
-Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
+Due to the really low loadings of some of the factors onto some respective items. Those items were exchanged manually to explore the resulting impact on the overall model fit, as well as on the MI testing. The manually adapted solution exhibits good model fit (according to \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with ordered data and WLSMV as estimator: Satorra-Bentler-\(X^{2}\) (df = XXX, N = 373) = XXX, p \textless{} XXX, CFI = XXX, TLI = .XXX, SRMR = XXX, RMSEA = .XXX, 90\%-CIRMSEA {[}.XXX; .XXX{]}.
+Standardized loadings of the factor Comprehension ranged from .XXX to XXX. For the factor Evaluation loadings ranged from .XXX to XXX. For the factor Integration loadings ranged from XXX to .XXX. For the factor Communication loadings ranged from .XXX to .XXX. For the factor Statistics loadings ranged from XXX to XXX. The complete model is also displayed in figure X.
 All factor loadings including standard errors can be found in the Supplementary Material.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = XXX, N = XXX) = XXX, p \textless{} XXX, CFI = XXX, SRMR = XXX, RMSEA = XXX; \(\Delta\text{CFI}\) = .XXX, \(\Delta\text{SRMR}\) = .XXX, \(\Delta\text{RMSEA}\) = XXX.
 
-\subsubsection{Model 3}\label{model-3}
+\begin{figure}
 
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits acceptable model fit (according to the combinational rule of \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with ordered data and WLSMV as estimator: Satorra-Bentler-\(X^{2}\) (df = 375, N = 373) = 493.896, p = 0.003, CFI = .99, TLI = .97, SRMR = .07, RMSEA = .03, 90\%-CIRMSEA {[}.026; .047{]}.
-Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
-All factor loadings including standard errors can be found in the Supplementary Material.
+{\centering \includegraphics[width=2\linewidth]{images/Model5} 
 
-\subsection{Model Fit and Latent Structure in the Validation Sample}\label{model-fit-and-latent-structure-in-the-validation-sample}
+}
 
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of XXXX measurement invariance holds across the two subsamples: \(X^{2}\)(XXX) = XXX, p \textless{} XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; \(X^{2}\) = XXX, df = XX, p = 0.XXXX.
+\caption{Measurement Model of Model 5.  }\label{fig:model3}
+\end{figure}
+
+\subsection{Latent Correlations}\label{latent-correlations}
+
+For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication \& Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16( \(\tau\) =.36, \(\tau\) =.44, \(\tau\) =.36, \(\tau\) =.50, \(\tau\) =.43 ; p \textless{} .01). The factors of data literacy showed small to moderate correlations with the NFC-K(\(\tau\) =.17, p \textless{} .01; \(\tau\) =.24, p \textless{} .01; \(\tau\) =.27, p \textless{} .01; \(\tau\) =.32, p \textless{} .01; \(\tau\) =.36, p \textless{} .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25(\(\tau\) =.26, \(\tau\) =.20, \(\tau\) =.19, \(\tau\) =.41, \(\tau\) =.28 , p \textless{} .01). The factors Evaluation, Integration and Communication correlated slightly negative with the openness of the BFI-10(\(\tau\) = -.14, p \textless{} .01; \(\tau\) = -.10, p \textless{} .05; \(\tau\) = -.11, p \textless{} .05). Openness did not correlate statistically significant with the other factors. The factors of the data literacy scale correlated slightly positive with conscientiousness of the BFI-10(\(\tau\) = .14, p \textless{} .01; \(\tau\) = .13, p \textless{} .01; \(\tau\) = .17, p \textless{} .01; \(\tau\) = .16, p \textless{} .01; \(\tau\) = .18, p \textless{} .01). The latent correlations with respective confidence intervalls are also displayed in table 3.
 
 \subsection{Reliability and Sensitivity Analysis}\label{reliability-and-sensitivity-analysis}
 
 The model of the final set of items shows McDonald's \(\omega\) total = .92. The composite values McDonald's \(\omega\) total of the factors are Comprehension = .85, Evaluation = .70, Integration = .65, Communication = .68 and Statistics = .56.
 
-\subsection{Latent Correlations}\label{latent-correlations}
-
-The factors (Comprehension, Evaluation, Integration, Communication \& Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16(r =.47, r =.45, r =.42, r =.48, r =.42 ; p \textless{} .01). The factors Comprehension, Communication and Statistics showed small correlations with the NFC-K(r =.09, p \textless{} .05; r =.16, p \textless{} .01; r =.16, p \textless{} .01). The other factors showed no statistically significant correlations. The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25(r =.32, r =.21, r =.22, r =.38, r =.30 , p \textless{} .01). The factor Evaluation correlated slightly negative with the openness of the BFI-10(r = -.10, p \textless{} .05). Openness did not correlate statistically significant with the other factors. The factors of the data literacy scale correlated slightly positive with conscientiousness of the BFI-10(r = .22, p \textless{} .01; r = .13, p \textless{} .01; r = .15, p \textless{} .01; r = .16, p \textless{} .01; r = .18, p \textless{} .01). The latent correlations are also displayed in table 3.
-
 residuals
 correlates or the residuals for the adjacent constructs
 
 \section{Discussion}\label{discussion}
+
+This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via `stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.\\
+The final model showed acceptable fit (XXX), according to the combinational rule for RMSEA and SRMR of Hu \& Bentler (\citeproc{ref-hu1999}{1999}). But not according to the rules that are most commonly used not to the combinational rule, that resulted in the least sum of type 1 and type 2 error rates (\citeproc{ref-hu1999}{Hu \& Bentler, 1999}).
+Comparison of the training sample and the test sample on the chosen model, measurement invariance analyses indicated
 
 \subsection{Summarising the results}\label{summarising-the-results}
 
@@ -438,7 +442,7 @@ Everything worked - what do I need to report?
 First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g.~Jackson et al., 2009). To have a clear structure, answer the following questions:
 How large was the original item pool and how was it created?
 What is the structure of the scale?
-Which algorithm was used (or bruteforce)?
+Which algorithm was used ?
 Which objective function was used?
 How stable is the final variant?
 How was the final variant further validated (e.g.~crossvalidate, k-fold)?
@@ -470,7 +474,15 @@ The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-1
 \begin{itemize}
 \tightlist
 \item
+  model fit
+\item
+  ceiling effects
+\item
+  melted answer categories
+\item
   content validity
+\item
+  reliability!
 \item
   DIF?
 \item

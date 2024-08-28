@@ -214,6 +214,7 @@ matching_ids #id= 760
 # leaves 10 people to exclude
 
 ```
+
 ```{r}
 # Define the IDs to exclude
 ids_to_exclude <- c(46, 92, 283, 512, 588, 599, 613, 663, 668, 713,796)
@@ -316,13 +317,6 @@ df99 <- df99[, !(names(df99) %in% c("ATC1", "ATC2"))]
 
 ```
 
-
-# checking for the Pattern of Missings
-Although it may not be necessary, because the missings are planned, random missings, one could check for the pattern of the missing data. 
-```{r}
-
-```
-
 ## NAs FIMLn
 ```{r}
 df_dl <- df3[, 3:71]
@@ -339,6 +333,23 @@ num_columns <- ncol(df_dl)
 # Filter rows where most columns have a value of 0
 filtered_df_dl <- df_dl %>%
   filter(rowSums(. == 0) >= num_columns * 0.8)  # Adjust the threshold as needed
+```
+## Outlier
+```{r}
+# Create boxplots for all variables in df_dl
+boxplot(df_dl, main = "Boxplot for Outlier Detection", col = "lightblue", las = 2, outline = TRUE)
+
+
+```
+## Outliers, but keep ceiling effects in mind
+```{r}
+# Compute Z-scores for each variable in df_dl
+z_scores <- scale(df_dl)
+
+# Identify outliers based on Z-scores (absolute value greater than 3)
+outliers_z_scores <- which(abs(z_scores) > 3, arr.ind = TRUE)
+print(outliers_z_scores)
+
 ```
 
 
@@ -1009,6 +1020,7 @@ ggplot(describe_occupation %>% filter(!is.na(Occupation)), aes(x = factor(Occupa
     axis.title.y = element_text(size = 10)
   )
 ```
+
 ```{r}
 library(dplyr)
 library(tibble) # For creating a tibble if needed
@@ -1121,7 +1133,7 @@ imputed_training_data_merged <- imputed_training_data_c %>%
 imputed_training_data_merged <- imputed_training_data_merged %>%
   select(-c(F2F17, F2F4))
 
-print(imputed_training_data_merged)
+#print(imputed_training_data_merged)
 
 
 ```
@@ -1133,7 +1145,7 @@ value_counts_merged <- imputed_training_data_merged %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
 
 
-print(value_counts_merged)
+#print(value_counts_merged)
 ```
 
 ```{r}
@@ -1144,7 +1156,7 @@ selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16",
 imputed_training_data_merged1 <- imputed_training_data_merged %>%
   mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
 
-print(imputed_training_data_merged1)
+#print(imputed_training_data_merged1)
 
 ```
 
@@ -1156,7 +1168,7 @@ selected_items <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", "F2
 imputed_training_data_merged2 <- imputed_training_data_merged1 %>%
   mutate(across(all_of(selected_items), ~ ifelse(. %in% c(1, 2), 2, .)))
 
-print(imputed_training_data_merged2)
+#print(imputed_training_data_merged2)
 
 ```
 
@@ -1167,7 +1179,7 @@ value_counts_merged2 <- imputed_training_data_merged2 %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
 
 
-print(value_counts_merged2)
+#print(value_counts_merged2)
 ```
 
 ```{r}
@@ -1178,7 +1190,7 @@ selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
 imputed_training_data_merged3 <- imputed_training_data_merged2 %>%
   mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
 
-print(imputed_training_data_merged3)
+#print(imputed_training_data_merged3)
 ```
 
 ```{r}
@@ -1188,7 +1200,7 @@ value_counts_merged3 <- imputed_training_data_merged3 %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
 
 
-print(value_counts_merged3)
+#print(value_counts_merged3)
 ```
 
 ```{r}
@@ -1297,8 +1309,7 @@ value_counts_merged_test <- imputed_test_data_c %>%
   count(Variable, Value) %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
 
-
-print(value_counts_merged_test)
+#print(value_counts_merged_test)
 ```
 
 ```{r}
@@ -1310,7 +1321,7 @@ selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16",
 imputed_test_data_merged1 <- imputed_test_data_merged %>%
   mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
 
-print(imputed_training_data_merged1)
+#print(imputed_training_data_merged1)
 
 ```
 
@@ -1322,7 +1333,7 @@ selected_items12t <- c("F1F2", "F1F4", "F1F5", "F1F6", "F1F7", "F1F11", "F1F3", 
 imputed_test_data_merged2 <- imputed_test_data_merged1 %>%
   mutate(across(all_of(selected_items12t), ~ ifelse(. %in% c(1, 2), 2, .)))
 
-print(imputed_test_data_merged2)
+#print(imputed_test_data_merged2)
 
 ```
 
@@ -1334,7 +1345,7 @@ selected_items23 <- c("F2F7", "F2F13", "F2F12", "F2F1")
 imputed_test_data_merged3 <- imputed_test_data_merged2 %>%
   mutate(across(all_of(selected_items23), ~ ifelse(. %in% c(2, 3), 3, .)))
 
-print(imputed_test_data_merged3)
+#print(imputed_test_data_merged3)
 ```
 
 
@@ -1349,10 +1360,10 @@ print(value_counts_merged3_test)
 ```
 
 ```{r}
-#F2F17, F2F4, F3F1 and F3F9 deleted
+#F2F17, F2F4, F3F1  deleted
 fs<-list(Comprehension=c("F1F1",  "F1F2",  "F1F3",  "F1F4",  "F1F5",  "F1F6",  "F1F7",  "F1F8",  "F1F9",  "F1F10", "F1F11",                              "F1F12", "F1F13", "F1F14"),
            Evaluation=c('F2F1',"F2F2",  "F2F3",  "F2F5",  "F2F6",  "F2F7",  "F2F8",  "F2F9",  "F2F10", "F2F11", "F2F12",                                "F2F13", "F2F14", "F2F15", "F2F16", "F2F18",'F2F19','F2F20'),
-           Integration=c("F3F2",'F3F3' ,"F3F4",  "F3F5",  "F3F6",  "F3F7", "F3F8"),
+           Integration=c("F3F2",'F3F3' ,"F3F4",  "F3F5",  "F3F6",  "F3F7", "F3F8","F3F9"),
            Communication=c('F4F1','F4F2','F4F3','F4F4','F4F5','F4F6','F4F7','F4F8'),
            Statistics=c("F5F1",  "F5F2",  "F5F3",  "F5F4",  "F5F5",  "F5F6",  "F5F7", "F5F8",  "F5F9",  "F5F10",                                       "F5F11","F5F12", "F5F13", "F5F14", "F5F15", "F5F16", "F5F17", "F5F18")
                            )
@@ -1474,11 +1485,20 @@ print(imputed_train_data_merged_MI)
 ############
 
 # Define the selected items
-selected_items_tr12 <- c("F1F1", "F1F5" , "F1F12", "F2F15", "F3F3")
+selected_items_tr12 <- c("F1F1", "F1F5", "F1F12", "F2F15", "F3F3")
 
-# Modify the imputed_training_data_merged3 to merge answers 0 and 1 into 1 for these selected items
+# Modify the imputed_training_data_merged3 to merge answers 0,1 and 2 into 2 for these selected items
 imputed_train_data_merged_MI <- imputed_train_data_merged_MI %>%
   mutate(across(all_of(selected_items_tr12), ~ ifelse(. %in% c(0, 1, 2), 2, .)))
+
+############
+
+# Define the selected items
+selected_items_tr23 <- "F3F9"
+
+# Modify the imputed_training_data_merged3 to merge answers 2 and 3 into 3 for these selected items
+imputed_train_data_merged_MI <- imputed_train_data_merged_MI %>%
+  mutate(across(all_of(selected_items_tr23), ~ ifelse(. %in% c(2, 3), 3, .)))
 
 print(imputed_train_data_merged_MI)
 
@@ -2123,6 +2143,12 @@ lavaan::standardizedSolution(results_list_ord[[i]]$final)
 ```
 
 ```{r}
+#Comprehension =~ F1F2 + F1F5 + F1F6 + F1F11 
+#Evaluation =~ F2F1* + F2F6 + F2F13 + F2F16* 
+#Integration =~ F3F5 + F3F6 + F3F7 + F3F9 /F3F1
+#Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+#Statistics =~ F5F1 + F5F6 + F5F8 + F5F9 
+
 cfa_model_ord <- '
 # Measurement model
 Comprehension =~ F1F4 + F1F6 + F1F10 + F1F11 
@@ -2202,9 +2228,9 @@ summary(comp_fit_ord)
 inspect(fit_cfa_model_ords_m ,'fit')
 ```
 #### configural to metric
-Cfi scaled: .947  delta: .007
-rmsea scaled: .056 delta: .001
-srmr delta: .005
+Cfi scaled: 
+rmsea scaled: 
+srmr delta: 
 
 #### metric to scalar
 ```{r}
@@ -2220,54 +2246,81 @@ Cfi 0.944, delta: .003
 rmsea  0.053  ,delta: .003
 srmr 0.069, delta: .003
 
+### Trying to exchange some items with especially low loadings
+```{r}
+cfa_model_ord_manu <- '
+# Measurement model
+Comprehension =~ F1F2 + F1F5 + F1F6 + F1F11 
+Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16 
+Integration =~ F3F5 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F6 + F5F8 + F5F9
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+fit_cfa_model_ords_manu <- cfa(cfa_model_ord_manu, ords, ordered = TRUE, estimator = "WLSMV")
+summary(fit_cfa_model_ords_manu, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_ords_manu,'fit')
+```
+
+```{r}
+fit_cfa_model_ords_manu <- cfa(cfa_model_ord_manu, ords_mi, ordered = TRUE, estimator = "WLSMV", group = "split")
+summary(fit_cfa_model_ords_manu, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_ords_manu,'fit')
+```
+
+#### configural to metric
+```{r}
+library(lavaan)
+library(semTools)
+fit_model_ord_manu_m <- cfa(cfa_model_ord_manu, ords_mi, estimator = "WLSMV", group = "split", group.equal= "loadings")
+
+comp_fit_ord_manu <- compareFit(fit_cfa_model_ords_manu, fit_model_ord_manu_m)
+summary(comp_fit_ord_manu)
+inspect(fit_model_ord_manu_m ,'fit')
+```
+#### configural to metric
+Cfi scaled: 
+rmsea scaled: 
+srmr delta: 
+
+#### metric to scalar
+```{r}
+fit_cfa_model_ords_scalar <- cfa(cfa_model_ord, ords_mi, estimator = "WLSMV", group = "split",
+                            group.equal = c('loadings','intercepts'))
+
+comp_fit_ords_scalar <- compareFit(fit_cfa_model_ords_m,fit_cfa_model_ords_scalar)
+summary(comp_fit_ords_scalar)
+inspect(fit_cfa_model_ords_scalar,'fit')
+```
+#### metric to scalar
+Cfi 0.944, delta: .003
+rmsea  0.053  ,delta: .003
+srmr 0.069, delta: .003
+
+
 ##########################################################################
 
 ## Trying to incorporate tau 
-```{r}
-library(lavaan)
-# Extract the tau matrix from the fitted model
-tau <- lavInspect(fit_again, "est")$tau
-
-# Extract the item names by splitting the row names at the "|" character
-item_names <- sapply(strsplit(rownames(tau), "\\|"), `[`, 1)
-
-# Get unique item names
-unique_items <- unique(item_names)
-
-# Initialize an empty matrix to store the results
-taus <- matrix(NA, nrow = length(unique_items), ncol = 2)
-colnames(taus) <- c("Item", "Avg_SD")
-
-# Loop through each unique item
-for (i in seq_along(unique_items)) {
-  item <- unique_items[i]
-  
-  # Extract the thresholds for the item
-  thresholds <- tau[item_names == item, , drop = FALSE]
-  
-  # Calculate the standard deviation for the thresholds
-  sd_values <- sd(thresholds, na.rm = TRUE)
-  
-  # Store the item name and average standard deviation in the matrix
-  taus[i, ] <- c(item, sd_values)
-}
-
-# Convert the matrix to a data frame for better readability
-taus <- as.data.frame(taus)
-taus$Avg_SD <- as.numeric(as.character(taus$Avg_SD))
-
-# Print the resulting matrix
-print(taus)
-
-# Create a new matrix with Avg_SD values and row names as Item names
-taus_matrix <- matrix(taus$Avg_SD, nrow = length(unique_items), ncol = 1)
-rownames(taus_matrix) <- taus$Item
-colnames(taus_matrix) <- "Avg_SD"
-
-# Print the resulting matrix
-print(taus_matrix)
-```
-
 ### K-fold Crossvalidation with Ordinal data Structure (WLSMV) and Tau
 ```{r, eval=FALSE}
 library(stuart)
@@ -2369,82 +2422,278 @@ Statistics: F5F3 F5F6 F5F15 F5F18
 ##########################################################################
 ##########################################################################
 
+## ezfit
+```{r}
+library(ezCutoffs)
+
+## model specification examples
+cfa_model_ord_manu <- '
+# Measurement model
+Comprehension =~ F1F2 + F1F5 + F1F6 + F1F11 
+Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16 
+Integration =~ F3F5 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F1 + F5F6 + F5F8 + F5F9
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+   
+## function call
+out <- ezCutoffs(model = cfa_model_ord_manu, n_obs = 1000, n_rep = 10, n_cores = 1)
+
+out <- ezCutoffs(model = cfa_model_ord_manu, n_obs = c(300, 400), n_rep = 50, fit_indices = c("cfi.scaled","rmsea.scaled","srmr"), alpha_level = 0.05, estimator = "MLR", group = "group", group.equal = c("loadings", "intercepts"), n_cores = 1 )
+
+#out<-ezCutoffs(model = cfa_model_ord, data = ords_mi, n_rep = 1000, fit_indices = c("chisq", "cfi.scaled", "tli.scaled", "rmsea.scaled", "srmr"), alpha_level = 0.05, missing_data = FALSE, bootstrapped_ci = FALSE, n_boot = 1000, boot_alpha = 0.05, boot_internal = FALSE, n_cores = 2, estimator = "WLSMV", ordered = TRUE, group = "split", group.equal = c("loadings"))
+
+## retrieve output
+summary(out)
+plot(out)
+
+```
+
 ## Check correlated residuals
 ```{r}
 # Fit the initial SEM model
-fit <- sem(cfa_model_ord, ords_mi)
+fit <- sem(cfa_model_ord_manu, ords_mi)
 
 # Check modification indices
 modificationIndices(fit, sort = TRUE)
 
-# If justified, re-specify your model to include correlated residuals
-model_revised <- '
-  # Your original model specification
-  residual1 ~~ residual2 # Add this line to specify correlated residuals
-'
-fit_revised <- sem(model_revised, data = your_data)
-
-# Compare the original and revised models
-anova(fit, fit_revised)
 ```
 
+## Haywood cases
+```{r}
+library(lavaan)
+
+# Fit the SEM model
+fit_cfa_model_ords <- cfa(cfa_model_ord_manu, ords, ordered = TRUE, estimator = "WLSMV")
+
+# Get predicted values
+predicted_values <- predict(fit_cfa_model_ords)
+
+# Check for extreme values (Haywood cases)
+extreme_values <- predicted_values[which(predicted_values > quantile(predicted_values, 0.95) | 
+                                         predicted_values < quantile(predicted_values, 0.05))]
+
+print(extreme_values)
+```
 
 ```{r}
-# Calculate average scores for each construct
-df_dl$Comprehension <- rowMeans(df_dl[, c("F1F4", "F1F6", "F1F10", "F1F11")], na.rm = TRUE)
-df_dl$Evaluation <- rowMeans(df_dl[, c("F2F1", "F2F6", "F2F13", "F2F16")], na.rm = TRUE)
-df_dl$Integration <- rowMeans(df_dl[, c("F3F5", "F3F6", "F3F7", "F3F8")], na.rm = TRUE)
-df_dl$Communication <- rowMeans(df_dl[, c("F4F3", "F4F6", "F4F7", "F4F8")], na.rm = TRUE)
-df_dl$Statistics <- rowMeans(df_dl[, c("F5F6", "F5F8", "F5F9", "F5F16")], na.rm = TRUE)
+library(lavaan)
 
+# Fit the SEM model
+fit_cfa_model_ords <- cfa(cfa_model_ord_manu, ords, ordered = TRUE, estimator = "WLSMV")
+
+# Get standardized residuals
+residuals_standardized <- residuals(fit_cfa_model_ords, type = "standardized")
+
+# Convert residuals to a vector if necessary
+if (is.data.frame(residuals_standardized)) {
+  residuals_vector <- unlist(residuals_standardized)
+} else if (is.list(residuals_standardized)) {
+  residuals_vector <- do.call(c, residuals_standardized)
+} else {
+  residuals_vector <- residuals_standardized
+}
+
+# Extract the covariance matrix (standardized residuals)
+residuals_matrix <- residuals_standardized$cov
+
+# Convert the matrix to a numeric vector
+residuals_vector <- as.numeric(residuals_matrix)
+
+# Remove NA values if any
+residuals_vector <- na.omit(residuals_vector)
+
+# Calculate absolute values and quantiles
+absolute_residuals <- abs(residuals_vector)
+quantile_95 <- quantile(absolute_residuals, 0.95)
+
+# Find extreme residuals
+extreme_residuals <- residuals_vector[absolute_residuals > quantile_95]
+
+print(extreme_residuals)
+
+# Optional: Examine residuals at different quantiles
+quantile_05 <- quantile(absolute_residuals, 0.05)
+extreme_residuals_low <- residuals_vector[absolute_residuals < quantile_05]
+
+print(extreme_residuals_low)
+
+```
+
+```{r}
+library(ggplot2)
+residuals_df <- data.frame(residuals = residuals_vector)
+ggplot(residuals_df, aes(x = residuals)) +
+  geom_histogram(bins = 30) +
+  ggtitle("Histogram of Residuals") +
+  xlab("Residuals") +
+  ylab("Frequency")
+
+```
+
+## Factor Scores / Bartlett Scores
+```{r}
+
+## Factor Scores / Bartlett Scores
+# Convert the specific subset of items to numeric
+subset_ords_fa <- ords_mi[, c("F1F2", "F1F5", "F1F6", "F1F11", 
+                            "F2F1", "F2F6", "F2F13", "F2F16",
+                            "F3F5", "F3F6", "F3F7", "F3F9",
+                            "F4F3", "F4F6", "F4F7", "F4F8",
+                            "F5F1", "F5F6", "F5F8", "F5F9")]
+
+# Convert factors to numeric
+subset_ords_fa_numeric <- data.frame(lapply(subset_ords_fa, function(x) as.numeric(as.factor(x))))
+
+# Fit the CFA model to the numeric data
+fit <- cfa(cfa_model_ord_manu, data = subset_ords_fa_numeric, ordered = TRUE)
+
+# Summary of the model
+summary(fit, fit.measures = TRUE, standardized = TRUE)
+
+# Calculate factor scores using the fitted model
+factor_scores <- lavPredict(fit, method = "Bartlett")
+
+# Add the 'split' column to the factor scores
+factor_scores_combined <- data.frame(factor_scores)
+factor_scores_combined$split <- ords_mi$split
+
+# View the factor scores
+print(factor_scores_combined)
+
+```
+
+### Perform t-tests to compare factor scores between groups
+```{r}
+# Compute means of factor scores by group
+mean_factor_scores <- aggregate(. ~ split, data = factor_scores_combined, FUN = mean)
+
+# View the means
+print(mean_factor_scores)
+
+# Exclude the 'split' column from the comparison
+factor_names <- names(factor_scores_combined)[names(factor_scores_combined) != "split"]
+
+# Compute t-tests for each factor
+t_test_results <- lapply(factor_names, function(factor) {
+  t.test(factor_scores_combined[factor_scores_combined$split == 1, factor],
+         factor_scores_combined[factor_scores_combined$split == 2, factor])
+})
+
+# Print the results of the t-tests
+print(t_test_results)
+```
+
+```{r}
 # Create a data frame from specified columns of df_dl
 df_result <- data.frame(
-  F1F4 = df_dl$F1F3,
-  F1F6 = df_dl$F1F6,
-  F1F10 = df_dl$F1F12,
-  F1F11 = df_dl$F1F14,
-  F2F1 = df_dl$F2F5,
-  F2F6 = df_dl$F2F12,
-  F2F13 = df_dl$F2F14,
-  F2F16 = df_dl$F2F16,
-  F3F5 = df_dl$F3F3,
-  F3F6 = df_dl$F3F4,
-  F3F7 = df_dl$F3F7,
-  F3F8 = df_dl$F3F8,
-  F4F4 = df_dl$F4F1,
-  F4F6 = df_dl$F4F2,
-  F4F7 = df_dl$F4F3,
-  F4F8 = df_dl$F4F8,
-  F5F6 = df_dl$F5F3,
-  F5F8 = df_dl$F5F6,
-  F5F9 = df_dl$F5F15,
-  F5F16 = df_dl$F5F18
+  F1F4 = df_test_dl$F1F4,
+  F1F6 = df_test_dl$F1F6,
+  F1F10 = df_test_dl$F1F10,
+  F1F11 = df_test_dl$F1F11,
+  F2F1 = df_test_dl$F2F1,
+  F2F6 = df_test_dl$F2F6,
+  F2F13 = df_test_dl$F2F13,
+  F2F16 = df_test_dl$F2F16,
+  F3F5 = df_test_dl$F3F5,
+  F3F6 = df_test_dl$F3F6,
+  F3F7 = df_test_dl$F3F7,
+  F3F8 = df_test_dl$F3F8,
+  F4F3 = df_test_dl$F4F3,
+  F4F6 = df_test_dl$F4F6,
+  F4F7 = df_test_dl$F4F7,
+  F4F8 = df_test_dl$F4F8,
+  F5F6 = df_test_dl$F5F6,
+  F5F8 = df_test_dl$F5F8,
+  F5F9 = df_test_dl$F5F9,
+  F5F16 = df_test_dl$F5F16
 )
+# Calculate average scores for each construct
+df_result$Comprehension <- rowMeans(df_result[, c("F1F4", "F1F6", "F1F10", "F1F11")], na.rm = TRUE)
+df_result$Evaluation <- rowMeans(df_result[, c("F2F1", "F2F6", "F2F13", "F2F16")], na.rm = TRUE)
+df_result$Integration <- rowMeans(df_result[, c("F3F5", "F3F6", "F3F7", "F3F8")], na.rm = TRUE)
+df_result$Communication <- rowMeans(df_result[, c("F4F3", "F4F6", "F4F7", "F4F8")], na.rm = TRUE)
+df_result$Statistics <- rowMeans(df_result[, c("F5F6", "F5F8", "F5F9", "F5F16")], na.rm = TRUE)
 
 # Display the updated data frame with the new scores
 print(df_result)
 
 ```
 
+```{r}
+# Create a data frame from specified columns of df_dl
+df_result_manu <- data.frame(
+  F1F2 = df_test_dl$F1F2,
+  F1F5 = df_test_dl$F1F5,
+  F1F6 = df_test_dl$F1F6,
+  F1F11 = df_test_dl$F1F11,
+  F2F1 = df_test_dl$F2F1,
+  F2F6 = df_test_dl$F2F6,
+  F2F13 = df_test_dl$F2F13,
+  F2F16 = df_test_dl$F2F16,
+  F3F5 = df_test_dl$F3F5,
+  F3F6 = df_test_dl$F3F6,
+  F3F7 = df_test_dl$F3F7,
+  F3F9 = df_test_dl$F3F9,
+  F4F3 = df_test_dl$F4F3,
+  F4F6 = df_test_dl$F4F6,
+  F4F7 = df_test_dl$F4F7,
+  F4F8 = df_test_dl$F4F8,
+  F5F1 = df_test_dl$F5F1,
+  F5F6 = df_test_dl$F5F6,
+  F5F8 = df_test_dl$F5F8,
+  F5F9 = df_test_dl$F5F9
+)
+# Calculate average scores for each construct
+df_result_manu $Comprehension <- rowMeans(df_result_manu [, c("F1F2", "F1F5", "F1F6", "F1F11")], na.rm = TRUE)
+df_result_manu $Evaluation <- rowMeans(df_result_manu [, c("F2F1", "F2F6", "F2F13", "F2F16")], na.rm = TRUE)
+df_result_manu $Integration <- rowMeans(df_result_manu [, c("F3F5", "F3F6", "F3F7", "F3F9")], na.rm = TRUE)
+df_result_manu $Communication <- rowMeans(df_result_manu [, c("F4F3", "F4F6", "F4F7", "F4F8")], na.rm = TRUE)
+df_result_manu $Statistics <- rowMeans(df_result_manu [, c("F5F1", "F5F6", "F5F8", "F5F9")], na.rm = TRUE)
+
+# Display the updated data frame with the new scores
+print(df_result_manu)
+
+```
+
 ## Convergent Measures
 ```{r}
-SWE <- df3 %>%
+SWE <- df_test %>%
   dplyr::select(starts_with("SWE")) %>%
   mutate_all(as.numeric)
 
-NFC <- df3 %>%
+NFC <- df_test %>%
   select(starts_with("NFC")) %>%
   mutate_all(as.numeric)
 
-ICT <- df3 %>%
+ICT <- df_test %>%
   select(starts_with("ICT")) %>%
   mutate_all(as.numeric)
 
-B5_openness <- df3 %>%
+B5_openness <- df_test %>%
   select(starts_with("B5.o")) %>%
   mutate_all(as.numeric)
 
-B5_con <- df3 %>%
+B5_con <- df_test %>%
   select(starts_with("B5.G")) %>%
   mutate_all(as.numeric)
 ```
@@ -2506,11 +2755,27 @@ all_means <- data.frame(
   Nfc_Row_Means = NFC$Nfc_Row_Means,
   Ict_Row_Means = ICT$Ict_Row_Means,
   Swe_Row_Means = SWE$Swe_Row_Means,
-  Comprehension = df_dl$Comprehension,
-  Evaluation = df_dl$Evaluation,
-  Integration = df_dl$Integration,
-  Communication = df_dl$Communication,
-  Statistics = df_dl$Statistics
+  Comprehension = df_result$Comprehension,
+  Evaluation = df_result$Evaluation,
+  Integration = df_result$Integration,
+  Communication = df_result$Communication,
+  Statistics = df_result$Statistics
+)
+```
+
+```{r}
+# Combine the row means into a single data frame
+all_means_manu <- data.frame(
+  B5con_Row_Means = B5_con$B5con_Row_Means,
+  B5o_Row_Means = B5_openness$B5o_Row_Means,
+  Nfc_Row_Means = NFC$Nfc_Row_Means,
+  Ict_Row_Means = ICT$Ict_Row_Means,
+  Swe_Row_Means = SWE$Swe_Row_Means,
+  Comprehension = df_result_manu$Comprehension,
+  Evaluation = df_result_manu$Evaluation,
+  Integration = df_result_manu$Integration,
+  Communication = df_result_manu$Communication,
+  Statistics = df_result_manu$Statistics
 )
 ```
 
@@ -2712,6 +2977,12 @@ check_normality(raw_data)
 ## Correlations - nonnormal
 ```{r}
 library(apaTables)
+cortable<-cor(all_means_manu, use = "pairwise" ,method = "kendall")
+apa.cor.table(all_means_manu, filename = "cortable.rtf")
+```
+
+```{r}
+library(apaTables)
 cortable<-cor(all_means, use = "pairwise" ,method = "kendall")
 apa.cor.table(all_means, filename = "cortable.rtf")
 ```
@@ -2723,7 +2994,7 @@ library(ggplot2)
 library(psych)     # for corr.test function
 
 # Select newly created row means for correlation analysis
-selected_vars <- all_means %>%
+selected_vars <- all_means_manu %>%
   select(B5con_Row_Means, B5o_Row_Means, Nfc_Row_Means, Ict_Row_Means, Swe_Row_Means, Comprehension, Evaluation, Integration, Communication, Statistics)
 
 # Rename variables for clarity in heatmap
@@ -2790,6 +3061,124 @@ print(heatmap_final3)
 
 ```
 
+
+```{r}
+df_sens <- data.frame(
+  F1F2 = ords_mi$F1F2,
+  F1F5 = ords_mi$F1F5,
+  F1F6 = ords_mi$F1F6,
+  F1F11 = ords_mi$F1F11,
+  F2F1 = ords_mi$F2F1,
+  F2F6 = ords_mi$F2F6,
+  F2F13 = ords_mi$F2F13,
+  F2F16 = ords_mi$F2F16,
+  F3F5 = ords_mi$F3F5,
+  F3F6 = ords_mi$F3F6,
+  F3F7 = ords_mi$F3F7,
+  F3F9 = ords_mi$F3F9,
+  F4F3 = ords_mi$F4F3,
+  F4F6 = ords_mi$F4F6,
+  F4F7 = ords_mi$F4F7,
+  F4F8 = ords_mi$F4F8,
+  F5F1 = ords_mi$F5F1,
+  F5F6 = ords_mi$F5F6,
+  F5F8 = ords_mi$F5F8,
+  F5F9 = ords_mi$F5F9
+)
+```
+
+## Sensitivity Analysis
+```{r}
+library(lavaan)
+library(SEMsens)
+
+# Define your original model
+cfa_model_ord_manu <- '
+  Comprehension =~ F1F2 + F1F5 + F1F6 + F1F11
+  Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16
+  Integration =~ F3F5 + F3F6 + F3F7 + F3F9
+  Communication =~ F4F3 + F4F6 + F4F7 + F4F8
+  Statistics =~ F5F1 + F5F6 + F5F8 + F5F9
+
+  Comprehension ~~ Comprehension
+  Evaluation ~~ Evaluation
+  Integration ~~ Integration
+  Communication ~~ Communication
+  Statistics ~~ Statistics
+
+  Comprehension ~~ Evaluation
+  Comprehension ~~ Integration
+  Comprehension ~~ Communication
+  Comprehension ~~ Statistics
+  Evaluation ~~ Integration
+  Evaluation ~~ Communication
+  Evaluation ~~ Statistics
+  Integration ~~ Communication
+  Integration ~~ Statistics
+  Communication ~~ Statistics
+'
+
+# Define sensitivity model
+sens_model_ord <- '
+  Comprehension =~ F1F2 + F1F5 + F1F6 + F1F11
+  Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16
+  Integration =~ F3F5 + F3F6 + F3F7 + F3F9
+  Communication =~ F4F3 + F4F6 + F4F7 + F4F8
+  Statistics =~ F5F1 + F5F6 + F5F8 + F5F9
+
+  Comprehension ~~ Comprehension
+  Evaluation ~~ Evaluation
+  Integration ~~ Integration
+  Communication ~~ Communication
+  Statistics ~~ Statistics
+
+  Comprehension ~~ Evaluation
+  Comprehension ~~ Integration
+  Comprehension ~~ Communication
+  Comprehension ~~ Statistics
+  Evaluation ~~ Integration
+  Evaluation ~~ Communication
+  Evaluation ~~ Statistics
+  Integration ~~ Communication
+  Integration ~~ Statistics
+  Communication ~~ Statistics
+
+  Comprehension ~ phantom1*phantom
+  Evaluation ~ phantom2*phantom
+  Integration ~ phantom3*phantom
+  Communication ~ phantom4*phantom
+  Statistics ~ phantom5*phantom
+  
+  phantom =~ 0
+  phantom ~~ 1*phantom
+'
+
+# Fit the original model
+old.out <- sem(cfa_model_ord_manu, data = df_sens, ordered = TRUE)
+
+# Fit the sensitivity analysis model
+my.sa <- sa.aco(
+  data = df_sens,
+  model = cfa_model_ord_manu,
+  sens.model = sens_model_ord,
+  sample.nobs = nrow(df_sens),
+  k = 10,
+  max.value = 2000,
+  max.iter = 100,
+  opt.fun = 1,
+  estimator = "WLSMV",
+  rate.of.conv = .1,
+  paths = c(1:20),
+  seed = 1,
+  verbose = FALSE
+)
+
+# Get and review results
+my.sa.table <- sens.tables(my.sa)
+print(my.sa.table)
+
+```
+
 ## Reliability
 ```{r}
 omega(B5_con[1:2],1)
@@ -2797,96 +3186,264 @@ omega(B5_openness[1:2],1)
 omega(NFC[1:4],1)
 omega(ICT[1:5],1)
 omega(SWE[1:16],1)
+
 omega(df_result,5)
+omega(df_result_manu,5)
+```
+
+
+## Trennschärfe
+```{r}
+library(psych)
+alpha(df_result_manu)
 ```
 
 ```{r}
-df_sens <- data.frame(
-  F1F3 = ords_c$F1F3,
-  F1F6 = ords_c$F1F6,
-  F1F12 = ords_c$F1F12,
-  F1F14 = ords_c$F1F14,
-  F2F5 = ords_c$F2F5,
-  F2F12 = ords_c$F2F12,
-  F2F14 = ords_c$F2F14,
-  F2F16 = ords_c$F2F16,
-  F3F3 = ords_c$F3F3,
-  F3F4 = ords_c$F3F4,
-  F3F7 = ords_c$F3F7,
-  F3F8 = ords_c$F3F8,
-  F4F1 = ords_c$F4F1,
-  F4F2 = ords_c$F4F2,
-  F4F3 = ords_c$F4F3,
-  F4F8 = ords_c$F4F8,
-  F5F3 = ords_c$F5F3,
-  F5F6 = ords_c$F5F6,
-  F5F15 = ords_c$F5F15,
-  F5F18 = ords_c$F5F18
-)
+library(MBESS)
+MBESS::ci.reliability(df_result_manu, type = "omega", interval.type = "perc", B = 10000, conf.level = 0.95)
+
+```
+
+## Item Difficulty
+```{r}
+
 ```
 
 ```{r}
-df_sens_m <- data.frame(
-  F1F2 = joined_mgcfa_data$F1F3,
-  F1F5 = joined_mgcfa_data$F1F6,
-  F1F6 = joined_mgcfa_data$F1F12,
-  F1F14 = joined_mgcfa_data$F1F14,
-  F2F6 = joined_mgcfa_data$F2F5,
-  F2F10 = joined_mgcfa_data$F2F12,
-  F2F12 = joined_mgcfa_data$F2F14,
-  F2F13 = joined_mgcfa_data$F2F16,
-  F3F2 = joined_mgcfa_data$F3F3,
-  F3F6 = joined_mgcfa_data$F3F4,
-  F3F7 = joined_mgcfa_data$F3F7,
-  F3F9 = joined_mgcfa_data$F3F8,
-  F4F1 = joined_mgcfa_data$F4F1,
-  F4F6 = joined_mgcfa_data$F4F2,
-  F4F7 = joined_mgcfa_data$F4F3,
-  F4F8 = joined_mgcfa_data$F4F8,
-  F5F1 = joined_mgcfa_data$F5F3,
-  F5F6 = joined_mgcfa_data$F5F6,
-  F5F7 = joined_mgcfa_data$F5F15,
-  F5F18 = joined_mgcfa_data$F5F18
-)
+library(car)
 
-# Compute the variance-covariance matrix
-cov_matrix_m <- cov(df_sens_m, use = "complete.obs")
+# Set up graphics to have 1 row and 4 columns for histograms
+par(mfrow=c(1,4))
+# Plot histograms for each item
+#Comprehension
+hist(joined_mgcfa_data$F1F2, ylab='Häufigkeit', xlab='Item 1', main='Histogramm')
+hist(joined_mgcfa_data$F1F5, ylab='Häufigkeit', xlab='Item 2', main='Histogramm')
+hist(joined_mgcfa_data$F1F6, ylab='Häufigkeit', xlab='Item 3', main='Histogramm')
+hist(joined_mgcfa_data$F1F11, ylab='Häufigkeit', xlab='Item 4', main='Histogramm')
 ```
 
-## Sensitivity Analysis
+
 ```{r}
-require(lavaan)
-require(SEMsens)
-library(polycor)
-set.seed(1)
- 
-# Compute the variance-covariance matrix
-
-polychoric_corr <- hetcor(df_sens)
-
-var_names <- colnames(df_sens)  # Get the variable names from your data
-
-corr_matrix <- polychoric_corr$correlations  # Extract the correlation matrix
-
-# Get the standard deviations of the ordinal variables
-std_devs <- apply(df_sens, 2, sd)
-
-# Convert correlation matrix to covariance matrix
-cov_matrix <- diag(std_devs) %*% corr_matrix %*% diag(std_devs)
-# Assign the names to the covariance matrix
-colnames(cov_matrix) <- var_names
+par(mfrow=c(1,4))
+#Evaluation
+hist(joined_mgcfa_data$F2F1, ylab='Häufigkeit', xlab='Item 5', main='Histogramm')
+hist(joined_mgcfa_data$F2F6, ylab='Häufigkeit', xlab='Item 6', main='Histogramm')
+hist(joined_mgcfa_data$F2F13, ylab='Häufigkeit', xlab='Item 7', main='Histogramm')
+hist(joined_mgcfa_data$F2F16, ylab='Häufigkeit', xlab='Item 8', main='Histogramm')
 ```
 
 ```{r}
-# STEP 2: Set up analytic model and sensitivity anaysis model
-# Original Analytic Model
-cfa_model_m <- '
+par(mfrow=c(1,4))
+#Integration 
+hist(joined_mgcfa_data$F3F5, ylab='Häufigkeit', xlab='Item 9', main='Histogramm')
+hist(joined_mgcfa_data$F3F6, ylab='Häufigkeit', xlab='Item 10', main='Histogramm')
+hist(joined_mgcfa_data$F3F7, ylab='Häufigkeit', xlab='Item 11', main='Histogramm')
+hist(joined_mgcfa_data$F3F9, ylab='Häufigkeit', xlab='Item 12', main='Histogramm')
+```
+
+```{r}
+par(mfrow=c(1,4))
+#Communication
+hist(joined_mgcfa_data$F4F3, ylab='Häufigkeit', xlab='Item 13', main='Histogramm')
+hist(joined_mgcfa_data$F4F6, ylab='Häufigkeit', xlab='Item 14', main='Histogramm')
+hist(joined_mgcfa_data$F4F7, ylab='Häufigkeit', xlab='Item 15', main='Histogramm')
+hist(joined_mgcfa_data$F4F8, ylab='Häufigkeit', xlab='Item 16', main='Histogramm')
+```
+
+```{r}
+par(mfrow=c(1,4))
+#Statistics
+hist(joined_mgcfa_data$F5F1, ylab='Häufigkeit', xlab='Item 17', main='Histogramm')
+hist(joined_mgcfa_data$F5F6, ylab='Häufigkeit', xlab='Item 18', main='Histogramm')
+hist(joined_mgcfa_data$F5F8, ylab='Häufigkeit', xlab='Item 19', main='Histogramm')
+hist(joined_mgcfa_data$F5F9, ylab='Häufigkeit', xlab='Item 20', main='Histogramm')
+```
+
+```{r}
+library(car)
+
+# Create a boxplot for the columns in joined_mgcfa_data
+car::Boxplot(joined_mgcfa_data, ylab='Frequency', xlab='Items', main='Boxplot', col='darkgreen')
+
+```
+
+```{r}
+# Means
+mean_F1F2 <- mean(joined_mgcfa_data$F1F2, na.rm = TRUE)
+mean_F1F5 <- mean(joined_mgcfa_data$F1F5, na.rm = TRUE)
+mean_F1F6 <- mean(joined_mgcfa_data$F1F6, na.rm = TRUE)
+mean_F1F11 <- mean(joined_mgcfa_data$F1F11, na.rm = TRUE)
+mean_F2F1 <- mean(joined_mgcfa_data$F2F1, na.rm = TRUE)
+mean_F2F6 <- mean(joined_mgcfa_data$F2F6, na.rm = TRUE)
+mean_F2F13 <- mean(joined_mgcfa_data$F2F13, na.rm = TRUE)
+mean_F2F16 <- mean(joined_mgcfa_data$F2F16, na.rm = TRUE)
+mean_F3F5 <- mean(joined_mgcfa_data$F3F5, na.rm = TRUE)
+mean_F3F6 <- mean(joined_mgcfa_data$F3F6, na.rm = TRUE)
+mean_F3F7 <- mean(joined_mgcfa_data$F3F7, na.rm = TRUE)
+mean_F3F9 <- mean(joined_mgcfa_data$F3F9, na.rm = TRUE)
+mean_F4F3 <- mean(joined_mgcfa_data$F4F3, na.rm = TRUE)
+mean_F4F6 <- mean(joined_mgcfa_data$F4F6, na.rm = TRUE)
+mean_F4F7 <- mean(joined_mgcfa_data$F4F7, na.rm = TRUE)
+mean_F4F8 <- mean(joined_mgcfa_data$F4F8, na.rm = TRUE)
+mean_F5F1 <- mean(joined_mgcfa_data$F5F1, na.rm = TRUE)
+mean_F5F6 <- mean(joined_mgcfa_data$F5F6, na.rm = TRUE)
+mean_F5F8 <- mean(joined_mgcfa_data$F5F8, na.rm = TRUE)
+mean_F5F9 <- mean(joined_mgcfa_data$F5F9, na.rm = TRUE)
+
+# Standard Deviations
+sd_F1F2 <- sd(joined_mgcfa_data$F1F2, na.rm = TRUE)
+sd_F1F5 <- sd(joined_mgcfa_data$F1F5, na.rm = TRUE)
+sd_F1F6 <- sd(joined_mgcfa_data$F1F6, na.rm = TRUE)
+sd_F1F11 <- sd(joined_mgcfa_data$F1F11, na.rm = TRUE)
+sd_F2F1 <- sd(joined_mgcfa_data$F2F1, na.rm = TRUE)
+sd_F2F6 <- sd(joined_mgcfa_data$F2F6, na.rm = TRUE)
+sd_F2F13 <- sd(joined_mgcfa_data$F2F13, na.rm = TRUE)
+sd_F2F16 <- sd(joined_mgcfa_data$F2F16, na.rm = TRUE)
+sd_F3F5 <- sd(joined_mgcfa_data$F3F5, na.rm = TRUE)
+sd_F3F6 <- sd(joined_mgcfa_data$F3F6, na.rm = TRUE)
+sd_F3F7 <- sd(joined_mgcfa_data$F3F7, na.rm = TRUE)
+sd_F3F9 <- sd(joined_mgcfa_data$F3F9, na.rm = TRUE)
+sd_F4F3 <- sd(joined_mgcfa_data$F4F3, na.rm = TRUE)
+sd_F4F6 <- sd(joined_mgcfa_data$F4F6, na.rm = TRUE)
+sd_F4F7 <- sd(joined_mgcfa_data$F4F7, na.rm = TRUE)
+sd_F4F8 <- sd(joined_mgcfa_data$F4F8, na.rm = TRUE)
+sd_F5F1 <- sd(joined_mgcfa_data$F5F1, na.rm = TRUE)
+sd_F5F6 <- sd(joined_mgcfa_data$F5F6, na.rm = TRUE)
+sd_F5F8 <- sd(joined_mgcfa_data$F5F8, na.rm = TRUE)
+sd_F5F9 <- sd(joined_mgcfa_data$F5F9, na.rm = TRUE)
+
+```
+
+```{r}
+# Print means
+cat("Means of items:\n")
+cat("Mean of F1F2: ", mean_F1F2, "\n")
+cat("Mean of F1F5: ", mean_F1F5, "\n")
+cat("Mean of F1F6: ", mean_F1F6, "\n")
+cat("Mean of F1F11: ", mean_F1F11, "\n")
+cat("Mean of F2F1: ", mean_F2F1, "\n")
+cat("Mean of F2F6: ", mean_F2F6, "\n")
+cat("Mean of F2F13: ", mean_F2F13, "\n")
+cat("Mean of F2F16: ", mean_F2F16, "\n")
+cat("Mean of F3F5: ", mean_F3F5, "\n")
+cat("Mean of F3F6: ", mean_F3F6, "\n")
+cat("Mean of F3F7: ", mean_F3F7, "\n")
+cat("Mean of F3F9: ", mean_F3F9, "\n")
+cat("Mean of F4F3: ", mean_F4F3, "\n")
+cat("Mean of F4F6: ", mean_F4F6, "\n")
+cat("Mean of F4F7: ", mean_F4F7, "\n")
+cat("Mean of F4F8: ", mean_F4F8, "\n")
+cat("Mean of F5F1: ", mean_F5F1, "\n")
+cat("Mean of F5F6: ", mean_F5F6, "\n")
+cat("Mean of F5F8: ", mean_F5F8, "\n")
+cat("Mean of F5F9: ", mean_F5F9, "\n")
+
+# Print standard deviations
+cat("\nStandard Deviations of items:\n")
+cat("SD of F1F2: ", sd_F1F2, "\n")
+cat("SD of F1F5: ", sd_F1F5, "\n")
+cat("SD of F1F6: ", sd_F1F6, "\n")
+cat("SD of F1F11: ", sd_F1F11, "\n")
+cat("SD of F2F1: ", sd_F2F1, "\n")
+cat("SD of F2F6: ", sd_F2F6, "\n")
+cat("SD of F2F13: ", sd_F2F13, "\n")
+cat("SD of F2F16: ", sd_F2F16, "\n")
+cat("SD of F3F5: ", sd_F3F5, "\n")
+cat("SD of F3F6: ", sd_F3F6, "\n")
+cat("SD of F3F7: ", sd_F3F7, "\n")
+cat("SD of F3F9: ", sd_F3F9, "\n")
+cat("SD of F4F3: ", sd_F4F3, "\n")
+cat("SD of F4F6: ", sd_F4F6, "\n")
+cat("SD of F4F7: ", sd_F4F7, "\n")
+cat("SD of F4F8: ", sd_F4F8, "\n")
+cat("SD of F5F1: ", sd_F5F1, "\n")
+cat("SD of F5F6: ", sd_F5F6, "\n")
+cat("SD of F5F8: ", sd_F5F8, "\n")
+cat("SD of F5F9: ", sd_F5F9, "\n")
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+library(lavaan)
+# Extract the tau matrix from the fitted model
+tau <- lavInspect(fit_again, "est")$tau
+
+# Extract the item names by splitting the row names at the "|" character
+item_names <- sapply(strsplit(rownames(tau), "\\|"), `[`, 1)
+
+# Get unique item names
+unique_items <- unique(item_names)
+
+# Initialize an empty matrix to store the results
+taus <- matrix(NA, nrow = length(unique_items), ncol = 2)
+colnames(taus) <- c("Item", "Avg_SD")
+
+# Loop through each unique item
+for (i in seq_along(unique_items)) {
+  item <- unique_items[i]
+  
+  # Extract the thresholds for the item
+  thresholds <- tau[item_names == item, , drop = FALSE]
+  
+  # Calculate the standard deviation for the thresholds
+  sd_values <- sd(thresholds, na.rm = TRUE)
+  
+  # Store the item name and average standard deviation in the matrix
+  taus[i, ] <- c(item, sd_values)
+}
+
+# Convert the matrix to a data frame for better readability
+taus <- as.data.frame(taus)
+taus$Avg_SD <- as.numeric(as.character(taus$Avg_SD))
+
+# Print the resulting matrix
+print(taus)
+
+# Create a new matrix with Avg_SD values and row names as Item names
+taus_matrix <- matrix(taus$Avg_SD, nrow = length(unique_items), ncol = 1)
+rownames(taus_matrix) <- taus$Item
+colnames(taus_matrix) <- "Avg_SD"
+
+# Print the resulting matrix
+print(taus_matrix)
+```
+
+### only for tryout
+```{r}
+model_manu <- '
 # Measurement model
-Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
-Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
-Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
-Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
-Statistics =~ F5F1 + F5F6 + F5F7 + F5F18 
+Comprehension =~ F1F2 + F1F6 + F1F8 + F1F13 
+Evaluation =~ F2F1 + F2F6 + F2F13 + F2F16 
+Integration =~ F3F5 + F3F6 + F3F7 + F3F9 
+Communication =~ F4F3 + F4F6 + F4F7 + F4F8 
+Statistics =~ F5F8 + F5F9 + F5F13 + F5F16
 
 # Factor variances
 Comprehension ~~ Comprehension
@@ -2906,186 +3463,9 @@ Evaluation ~~ Statistics
 Integration ~~ Communication
 Integration ~~ Statistics
 Communication ~~ Statistics
-
 '
-# A sensitivity analysis model template, which additionally includes paths
-#  from a phantom variable to a set of variables (= number of sensitivity parameters)
-#   in the analytic model.
-# Sensitivity Analysis Model
-sens_model_m <- '
-# Measurement model
-Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
-Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
-Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
-Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
-Statistics =~ F5F1 + F5F6 + F5F7 + F5F18 
+fit_model_manu <- cfa(model_manu, ords, ordered = TRUE, estimator = "WLSMV")
+summary(fit_model_manu, fit.measures = TRUE, standardized = TRUE)
 
-# Factor variances
-Comprehension ~~ Comprehension
-Evaluation ~~ Evaluation
-Integration ~~ Integration
-Communication ~~ Communication
-Statistics ~~ Statistics
-
-# Factor correlations
-Comprehension ~~ Evaluation
-Comprehension ~~ Integration
-Comprehension ~~ Communication
-Comprehension ~~ Statistics
-Evaluation ~~ Integration
-Evaluation ~~ Communication
-Evaluation ~~ Statistics
-Integration ~~ Communication
-Integration ~~ Statistics
-Communication ~~ Statistics
-
-
-  # Sensitivity analysis with phantom variable
-  Comprehension ~ phantom1*phantom
-  Evaluation ~ phantom2*phantom
-  Integration ~ phantom3*phantom
-  Communication ~ phantom4*phantom
-  Statistics ~ phantom5*phantom
-
-  phantom =~ 0 # added for mean of zero
-  phantom ~~ 1*phantom
-'
-```
-
-```{r}
-
-old.model = cfa_model_m
-old.out  = sem(model = cfa_model_m, df_sens_m, estimator = "MLR")
-
-summary(old.out, standardized=TRUE)
-old.model.par <- standardizedSolution(old.out,type = "std.all")
-old.model.par
-
-```
-
-
-```{r}
-
-old.model = cfa_model_ord
-old.out  = sem(model = cfa_model_ord, df_sens, ordered = TRUE, estimator = "WLSMV")
-
-summary(old.out, standardized=TRUE)
-old.model.par <- standardizedSolution(old.out,type = "std.all")
-old.model.par
-
-```
-
-```{r}
-  # STEP 4: Perform sensitivity analysis.
-my.sa <-sa.aco(model = cfa_model_m, sens.model = sens_model_m, sample.cov = cov_matrix_m,
-               sample.nobs = 616, k = 100, max.value= 2000, max.iter = 1000,
-               opt.fun = 2, ## 
-               paths = c(1:20), seed = 1, verbose = FALSE)
-```
-
-```{r}
-my.sa.results = sens.tables(my.sa, path=TRUE) # get results
-my.sa.results = lapply(my.sa.results, round, digits = 3) # round results (optional)
-```
-## EFA Investigation 
-```{r}
-efa_fit <- efa(imputed_training_data_c[1:69], rotation = "varimax", nfactors = 1:10)
-summary(efa_fit)
-```
-################################################
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-############################################
-```{r}
-library(dplyr)
-library(tidyr)
-
-# Define the selected items
-selected_items1 <- c("F3F2")
-
-# Modify the imputed_training_data_c to merge answers 0 and 1 into 1 for these selected items
-imputed_test_data_merged4 <- imputed_test_data_merged4 %>%
-  mutate(across(all_of(selected_items1), ~ ifelse(. %in% c(1, 2), 2, .)))
-
-print(imputed_test_data_merged4)
-
-```
-
-```{r}
-value_counts_merged4_test <- imputed_test_data_merged4 %>%
-  pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
-  count(Variable, Value) %>%
-  pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
-
-print(value_counts_merged3_test)
-```
-
-```{r}
-library(dplyr)
-library(tidyr)
-
-# Define the selected items
-selected_items2 <- c("F1F8","F2F2","F2F5")
-
-# Modify the imputed_training_data_ic to merge answers 0 and 1 into 1 for these selected items
-imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
-  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 1), 1, .)))
-
-print(imputed_training_data_merged4)
-
-```
-
-```{r}
-library(dplyr)
-library(tidyr)
-
-# Define the selected items
-selected_items2 <- "F1F2"
-
-# Modify the imputed_training_data_ic to merge answers 0 and 2 into 2 for these selected items
-imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
-  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 2), 2, .)))
-
-print(imputed_training_data_merged4)
-
-```
-
-```{r}
-library(dplyr)
-library(tidyr)
-
-# Define the selected items
-selected_items2 <- "F1F5"
-
-# Modify the imputed_training_data_ic to merge answers 0 and 2 into 2 for these selected items
-imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
-  mutate(across(all_of(selected_items2), ~ ifelse(. %in% c(0, 1), 2, .)))
-
-print(imputed_training_data_merged4)
-
-```
-
-```{r}
-library(dplyr)
-library(tidyr)
-
-# Define the selected items
-selected_items1 <- "F1F6"
-
-# Modify the imputed_training_data_c to merge answers 1 and 2 into 2 for these selected items
-imputed_training_data_merged4 <- imputed_training_data_merged4 %>%
-  mutate(across(all_of(selected_items1), ~ ifelse(. %in% c(1, 2), 2, .)))
-
-print(imputed_training_data_merged4)
-
+inspect(fit_model_manu,'fit')
 ```

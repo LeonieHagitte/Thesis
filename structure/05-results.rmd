@@ -1,29 +1,24 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Results
-## Model Fit and Latent Structure in the Construction Sample
-### Model 1
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits acceptable model fit [according to the combinational rule of @hu1999] with MLR as estimator: Satorra-Bentler-$X^{2}$ (df = 375, N = 373) = 637.99, p < 0.001, CFI = .88, TLI = .87, SRMR = .07, RMSEA = .06, 90%-CIRMSEA [.053; .069]. 
-Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
-All factor loadings including standard errors can be found in the Supplementary Material. 
-
-### Model 2
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits acceptable model fit [according to the combinational rule of @hu1999] with MLR as estimator: Satorra-Bentler-$X^{2}$ (df = 375, N = 373) = 596.455, p < 0.001, CFI = .85, TLI = .85, SRMR = .07, RMSEA = .06, 90%-CIRMSEA [.048; .065]. 
-Standardized loadings of the factor Comprehension ranged from 0.XX to 0.XX. For the factor Evaluation loadings ranged from 0.XX to 0.XX. For the factor Integration loadings ranged from 0.XX to 0.XX. For the factor Communication loadings ranged from 0.XX to 0.XX. For the factor Statistics loadings ranged from 0.XX to 0.XX.
-All factor loadings including standard errors can be found in the Supplementary Material. 
-
-### Model 3
-The Algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The final solution exhibits good model fit [according to @hu1999] with ordered data and WLSMV as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
+## Model Fit and Measurement Invariance
+Of the four explored conditions and respective models, the following model is to be highlighted. An overview over all models and their model fit can be found in the supplementary material.
+With an objective function, only optimising for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit [according to @hu1999] with ordered data and WLSMV as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
 Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in figure X.
 All factor loadings including standard errors can be found in the Supplementary Material. 
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .94, SRMR = .069, RMSEA = .053; $\Delta\text{CFI}$ = 0.003 , $\Delta\text{SRMR}$ = .003, $\Delta\text{RMSEA}$ = .003. 
 
-## Model Fit and Latent Structure in the Validation Sample
-### Model 1
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of XXXX measurement invariance holds across the two subsamples: $X^{2}$(XXX) = XXX, p < XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; $X^{2}$ = XXX, df = XX, p = 0.XXXX. 
+Due to the really low loadings of some of the factors onto some respective items. Those items were exchanged manually to explore the resulting impact on the overall model fit, as well as on the MI testing. The manually adapted solution exhibits good model fit [according to @hu1999] with ordered data and WLSMV as estimator: Satorra-Bentler-$X^{2}$ (df = XXX, N = 373) = XXX, p < XXX, CFI = XXX, TLI = .XXX, SRMR = XXX, RMSEA = .XXX, 90%-CIRMSEA [.XXX; .XXX]. 
+Standardized loadings of the factor Comprehension ranged from .XXX to XXX. For the factor Evaluation loadings ranged from .XXX to XXX. For the factor Integration loadings ranged from XXX to .XXX. For the factor Communication loadings ranged from .XXX to .XXX. For the factor Statistics loadings ranged from XXX to XXX. The complete model is also displayed in figure X.
+All factor loadings including standard errors can be found in the Supplementary Material. 
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = XXX, N = XXX) = XXX, p < XXX, CFI = XXX, SRMR = XXX, RMSEA = XXX; $\Delta\text{CFI}$ = .XXX, $\Delta\text{SRMR}$ = .XXX, $\Delta\text{RMSEA}$ = XXX. 
 
-### Model 2
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of XXXX measurement invariance holds across the two subsamples: $X^{2}$(XXX) = XXX, p < XXX, CFI = 0.XXX, SRMR = 0.XXX, RMSEA = 0.XXX; $X^{2}$ = XXX, df = XX, p = 0.XXXX. 
-
-### Model 3
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .94, SRMR = .069, RMSEA = .053; $Delta$CFI = .003, $Delta$SRMR = .003, $Delta$RMSEA = .003 . 
+```{r model3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of Model 5.  ", out.width="100%", fig.align="center"}
+knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
+```
 
 ## Latent Correlations 
 For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16( $\tau$ =.36, $\tau$ =.44, $\tau$ =.36, $\tau$ =.50, $\tau$ =.43 ; p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K($\tau$ =.17, p < .01; $\tau$ =.24, p < .01; $\tau$ =.27, p < .01; $\tau$ =.32, p < .01; $\tau$ =.36, p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25($\tau$ =.26, $\tau$ =.20, $\tau$ =.19, $\tau$ =.41, $\tau$ =.28 , p < .01). The factors Evaluation, Integration and Communication correlated slightly negative with the openness of the BFI-10($\tau$ = -.14, p < .01; $\tau$ = -.10, p < .05; $\tau$ = -.11, p < .05). Openness did not correlate statistically significant with the other factors. The factors of the data literacy scale correlated slightly positive with conscientiousness of the BFI-10($\tau$ = .14, p < .01; $\tau$ = .13, p < .01; $\tau$ = .17, p < .01; $\tau$ = .16, p < .01; $\tau$ = .18, p < .01). The latent correlations with respective confidence intervalls are also displayed in table 3.
