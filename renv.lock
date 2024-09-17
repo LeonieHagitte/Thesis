@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://packagemanager.posit.co/cran/latest"
+        "URL": "https://cran.rstudio.com"
       }
     ]
   },
@@ -241,6 +241,18 @@
         "R"
       ],
       "Hash": "a45594a00f5dbb073d5ec9f48592a08a"
+    },
+    "SEMsens": {
+      "Package": "SEMsens",
+      "Version": "1.5.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "lavaan",
+        "stats"
+      ],
+      "Hash": "72d60d2c17ef843b4cf9548f79ba1e81"
     },
     "SparseM": {
       "Package": "SparseM",
@@ -568,6 +580,19 @@
       ],
       "Hash": "c01cab1cb0f9125211a6fc99d540e315"
     },
+    "class": {
+      "Package": "class",
+      "Version": "7.3-22",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "MASS",
+        "R",
+        "stats",
+        "utils"
+      ],
+      "Hash": "f91f6b29f38b8c280f2b9477787d4bb2"
+    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.3",
@@ -724,9 +749,9 @@
     },
     "crul": {
       "Package": "crul",
-      "Version": "1.5.0",
+      "Version": "1.4.2",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
         "R6",
         "curl",
@@ -735,7 +760,7 @@
         "mime",
         "urltools"
       ],
-      "Hash": "22e70c5046981d39b7bf7af74433e396"
+      "Hash": "5685d2603020d0f879a147ba23d51292"
     },
     "curl": {
       "Package": "curl",
@@ -883,6 +908,20 @@
       ],
       "Hash": "a9b56885b9596c284168df26d6179c40"
     },
+    "doSNOW": {
+      "Package": "doSNOW",
+      "Version": "1.0.20",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "foreach",
+        "iterators",
+        "snow",
+        "utils"
+      ],
+      "Hash": "4bf4423d2c8b68c93b47e32ec554c2f1"
+    },
     "downlit": {
       "Package": "downlit",
       "Version": "0.4.4",
@@ -945,6 +984,22 @@
       ],
       "Hash": "54ed3ea01b11e81a86544faaecfef8e2"
     },
+    "e1071": {
+      "Package": "e1071",
+      "Version": "1.7-14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "class",
+        "grDevices",
+        "graphics",
+        "methods",
+        "proxy",
+        "stats",
+        "utils"
+      ],
+      "Hash": "4ef372b716824753719a8a38b258442d"
+    },
     "ellipsis": {
       "Package": "ellipsis",
       "Version": "0.3.2",
@@ -966,6 +1021,25 @@
         "methods"
       ],
       "Hash": "a1066cbc05caee9a4bf6d90f194ff4da"
+    },
+    "ezCutoffs": {
+      "Package": "ezCutoffs",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "doSNOW",
+        "foreach",
+        "ggplot2",
+        "lavaan",
+        "moments",
+        "parallel",
+        "progress",
+        "stats",
+        "utils"
+      ],
+      "Hash": "93c6fd12b0937fff8c5662fa8473eab8"
     },
     "fansi": {
       "Package": "fansi",
@@ -1996,6 +2070,13 @@
       ],
       "Hash": "4f50122dc256b1b6996a4703fecea821"
     },
+    "moments": {
+      "Package": "moments",
+      "Version": "0.14.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bb94fd8ee5f7f127eae2bddbff26864d"
+    },
     "munsell": {
       "Package": "munsell",
       "Version": "0.5.1",
@@ -2372,6 +2453,18 @@
       ],
       "Hash": "434cd5388a3979e74be5c219bcd6e77d"
     },
+    "proxy": {
+      "Package": "proxy",
+      "Version": "0.4-27",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "stats",
+        "utils"
+      ],
+      "Hash": "e0ef355c12942cf7a6b91a6cfaea8b3e"
+    },
     "ps": {
       "Package": "ps",
       "Version": "1.7.6",
@@ -2658,7 +2751,7 @@
     },
     "reproducibleRchunks": {
       "Package": "reproducibleRchunks",
-      "Version": "1.0.1",
+      "Version": "1.0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
@@ -2666,13 +2759,13 @@
       "RemoteUsername": "brandmaier",
       "RemotePkgRef": "brandmaier/reproducibleRchunks",
       "RemoteRef": "HEAD",
-      "RemoteSha": "68d8a6b12ba459b185f916109fc27feaa2d6898b",
+      "RemoteSha": "1ec1b73924014bff6bb181952f763ff7574391c1",
       "Requirements": [
         "digest",
         "jsonlite",
         "knitr"
       ],
-      "Hash": "f7f758a285a9a09db778455d4958c527"
+      "Hash": "4f9a6c9dacf5995afe79b47b698223d7"
     },
     "reshape2": {
       "Package": "reshape2",
@@ -3011,6 +3104,17 @@
         "xtable"
       ],
       "Hash": "54b26646816af9960a4c64d8ceec75d6"
+    },
+    "snow": {
+      "Package": "snow",
+      "Version": "0.4-4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "utils"
+      ],
+      "Hash": "40b74690debd20c57d93d8c246b305d4"
     },
     "sourcetools": {
       "Package": "sourcetools",
