@@ -9,13 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 # to clear environment while working
+# and setting my account in github
 rm(list=ls()) 
 
 usethis::use_git_config(
   user.name = "LeonieHagitte",
   user.email = "leonie.hagitte@student.hu-berlin.de",
   init.defaultBranch = "devl")
-
 ```
 
 ```{r, echo=FALSE}
