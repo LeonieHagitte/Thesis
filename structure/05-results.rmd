@@ -15,15 +15,14 @@ Cross-validation of the MG-CFA with the test-data indicated that the assumption 
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
 ```
 
+While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
+The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both saples show several residuals to be correlated.
+
 ## Latent Correlations 
 To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in table X. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in table X. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. 
 
 For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all p < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10($\tau$ = -.15, p < .05; $\tau$ = -.18, p < .01; $\tau$ = -.26, p < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10($\tau$ = .13, p < .05; $\tau$ = .25, p < .01; $\tau$ = .16, p < .05; $\tau$ = .17, p < .01). The latent correlations with respective confidence intervals are also displayed in table 3.
 
 ## Reliability
-The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .85, Evaluation = .70, Integration = .65, Communication = .68 and  Statistics = .56. 
-
-
-residuals
-correlates or the residuals for the adjacent constructs
+The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
 

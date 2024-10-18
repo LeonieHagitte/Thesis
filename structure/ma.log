@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.25)  14 OCT 2024 14:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.25)  18 OCT 2024 12:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -511,57 +511,60 @@ Package pdftex.def Info: images/Model5.png  used on input line 996.
 [22 <./images/Model5.png>]
 
 [23]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1087.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1091.
 (/Users/leo/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 [24{/Users/leo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+Underfull \vbox (badness 2818) has occurred while \output is active []
+
+
 
 [25]
-Underfull \hbox (badness 2452) in paragraph at lines 1230--1235
+
+[26]
+Underfull \hbox (badness 2452) in paragraph at lines 1234--1239
 []\T1/lmr/m/n/12 Behm, T. (2018). \T1/lmr/m/it/12 SWE-IV-16: Skala zur er-fas-sung der in-for-ma-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1230--1235
+Underfull \hbox (badness 10000) in paragraph at lines 1234--1239
 \T1/lmr/m/it/12 tionsver-hal-tens-be-zo-ge-nen selb-st-wirk-samkeit-ser-wartung [ver-fahrens-
  []
 
 
-Underfull \hbox (badness 1377) in paragraph at lines 1230--1235
+Underfull \hbox (badness 1377) in paragraph at lines 1234--1239
 \T1/lmr/m/it/12 doku-men-ta-tion, frage-bo-gen deutsche und en-glis-che ver-sion (SES-IB-
  []
 
 
-
-[26]
-Underfull \hbox (badness 3271) in paragraph at lines 1256--1260
+Underfull \hbox (badness 3271) in paragraph at lines 1260--1264
 \T1/lmr/m/n/12 tive model of in-for-ma-tion prob-lem solv-ing while us-ing in-ter-net.
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 1256--1260
+Underfull \hbox (badness 1360) in paragraph at lines 1260--1264
 \T1/lmr/m/it/12 Com-put-ers & Ed-u-ca-tion\T1/lmr/m/n/12 , \T1/lmr/m/it/12 53\T1/lmr/m/n/12 (4), 1207--1217. https://doi.org/[]$https :
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 1270--1274
+Underfull \hbox (badness 1436) in paragraph at lines 1274--1278
 []\T1/lmr/m/n/12 Bundesargentur für Ar-beit. (2024). \T1/lmr/m/it/12 Ar-beit-slosen-zahl in deutsch-land
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 1270--1274
+Underfull \hbox (badness 1365) in paragraph at lines 1274--1278
 \T1/lmr/m/it/12 im jahres-durch-schnitt von 2005 bis 2024\T1/lmr/m/n/12 . []$https : / / de . statista . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1274
+Underfull \hbox (badness 10000) in paragraph at lines 1274--1278
 \T1/lmr/m/n/12 statistik / daten / studie / 1223 / umfrage / arbeitslosenzahl -[] in -[] deutschland -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1274
+Underfull \hbox (badness 10000) in paragraph at lines 1274--1278
 \T1/lmr/m/n/12 jahresdurchschnittswerte / # : ~ : text = Im % 20Monat % 20Juni % 202024 %
  []
 
@@ -586,7 +589,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1552--1556
+Underfull \hbox (badness 10000) in paragraph at lines 1556--1560
 \T1/lmr/m/n/12 com / statistik / daten / studie / 1084446 / umfrage / durchschnittsalter -[] der -[]
  []
 
@@ -596,27 +599,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 1564--1569
+Underfull \hbox (badness 10000) in paragraph at lines 1568--1573
 []$\T1/lmr/m/n/12 https : / / de . statista . com / statistik / daten / studie / 221 / umfrage / anzahl -[] der -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1571--1574
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1578
 \T1/lmr/m/n/12 Gesellschaft -[] Umwelt / Bevoelkerung / Bevoelkerungsstand / Tabellen /
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 1576--1579
+Underfull \hbox (badness 1117) in paragraph at lines 1580--1583
 \T1/lmr/m/it/12 geschlecht 1970 bis 2023 in deutsch-land. []$\T1/lmr/m/n/12 https : / / www . destatis . de /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1576--1579
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1583
 \T1/lmr/m/n/12 DE / Themen / Gesellschaft -[] Umwelt / Bevoelkerung / Bevoelkerungsstand /
  []
 
 
-Overfull \hbox (17.11543pt too wide) in paragraph at lines 1576--1579
+Overfull \hbox (17.11543pt too wide) in paragraph at lines 1580--1583
 \T1/lmr/m/n/12 Tabellen / deutsche -[] nichtdeutsche -[] bevoelkerung -[] nach -[] geschlecht -[] deutschland$[]. 
  []
 
@@ -640,10 +643,10 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  89i,6n,93p,734b,521s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri12.pfb>
-Output written on ma.pdf (32 pages, 792422 bytes).
+Output written on ma.pdf (32 pages, 792566 bytes).
 PDF statistics:
- 717 PDF objects out of 1000 (max. 8388607)
- 656 compressed objects within 7 object streams
+ 719 PDF objects out of 1000 (max. 8388607)
+ 658 compressed objects within 7 object streams
  144 named destinations out of 1000 (max. 500000)
  304 words of extra memory for PDF output out of 10000 (max. 10000000)
 

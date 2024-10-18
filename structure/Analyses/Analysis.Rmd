@@ -1556,26 +1556,26 @@ print(t_test_results)
 ```{r}
 
 df_result<- data.frame(
-  F1F2 = df_test$F1F6,
-  F1F5 = df_test$F1F8,
-  F1F6 = df_test$F1F11,
-  F1F11 = df_test$F1F14,
-  F2F1 = df_test$F2F2,
+  F1F6 = df_test$F1F6,
+  F1F8 = df_test$F1F8,
+  F1F11 = df_test$F1F11,
+  F1F14 = df_test$F1F14,
+  F2F2 = df_test$F2F2,
   F2F6 = df_test$F2F6,
-  F2F13 = df_test$F2F15,
-  F2F16 = df_test$F2F20,
-  F3F5 = df_test$F3F2,
-  F3F6 = df_test$F3F4,
-  F3F7 = df_test$F3F6,
+  F2F15 = df_test$F2F15,
+  F2F20 = df_test$F2F20,
+  F3F2 = df_test$F3F2,
+  F3F4 = df_test$F3F4,
+  F3F6 = df_test$F3F6,
   F3F9 = df_test$F3F9,
-  F4F3 = df_test$F4F1,
-  F4F6 = df_test$F4F3,
-  F4F7 = df_test$F4F6,
+  F4F1 = df_test$F4F1,
+  F4F3 = df_test$F4F3,
+  F4F6 = df_test$F4F6,
   F4F8 = df_test$F4F8,
-  F5F1 = df_test$F5F3,
-  F5F6 = df_test$F5F4,
+  F5F3 = df_test$F5F3,
+  F5F4 = df_test$F5F4,
   F5F8 = df_test$F5F8,
-  F5F9 = df_test$F5F18
+  F5F18 = df_test$F5F18
 )
 ```
 ## Convergent Measures
@@ -2112,7 +2112,13 @@ cat("SD of F5F18: ", sd_F5F18, "\n")
 
 ```
 
+## correlation of residuals
 ```{r}
+# Inspect residuals
+resid_cor <- residuals(fit_cfa_model_m, type = "cor")  # Correlation residuals
+resid_cov <- residuals(fit_cfa_model_m, type = "raw")  # Covariance residuals (raw)
+print(resid_cov)
+print(resid_cor)
 
 ```
 
@@ -2121,6 +2127,8 @@ cat("SD of F5F18: ", sd_F5F18, "\n")
 ```
 
 ```{r}
+
+
 
 ```
 
