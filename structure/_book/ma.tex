@@ -100,17 +100,25 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-\usepackage{booktabs}
-\usepackage{libertine}
-\usepackage{libertinust1math}
-\usepackage{sourcecodepro}
-\usepackage{emptypage}
+\usepackage{booktabs}    % For table formatting
+\usepackage{libertine}   % Font package (you can keep this as it is)
+\usepackage{libertinust1math}  % Font package for math symbols (you can keep this as it is)
+\usepackage{sourcecodepro}  % For source code font (you can keep this as it is)
+\usepackage{emptypage}   % To remove the page numbers from empty pages (you can keep this as it is)
+\usepackage{graphicx}    % For resizing tables to fit the text width
+\usepackage{caption}     % For customizing caption alignment
+\usepackage{longtable}   % Optional: Use for long tables spanning multiple pages
+
+% Customize table settings
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\floatpagefraction}{0.75}
-%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
-%% change fontsize of output
+
+% Resize tables to fit the text width and left-align captions
+\captionsetup{justification=raggedright, singlelinecheck=false}
+
+% Optional: Change the font size for verbatim output
 \let\oldverbatim\verbatim
 \let\endoldverbatim\endverbatim
 \renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}
@@ -135,7 +143,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2024-10-18}
+\date{2024-11-25}
 
 \begin{document}
 \maketitle
@@ -150,9 +158,9 @@
 \section*{Abstract}\label{abstract}
 \addcontentsline{toc}{section}{Abstract}
 
-The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly clear. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (\citeproc{ref-Cui2023}{Cui et al., 2023}). In addition, only a few explicitly refer to the general population (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Cui2023}{Cui et al., 2023}). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
-Our aim is therefore to derive a holistic definition based on these approaches and to develop a questionnaire for self-perception of one's own data literacy. To this end, the decisive factors for the construct from previous definitions and operationalizations in various disciplines are brought together. Cognitive interviews are conducted iteratively to create and refine the items. The items are then selected using algorithm-based item selection. The facets of data literacy are comprehensively tested for factorial, discriminant, convergent and congruent incremental validity in order to promote a differentiated understanding of the construct. Construct and criterion validity are tested using correlations and hierarchical regression analyses, while cross-validation checks the robustness of the instrument.
-Based on a cross-sectional online questionnaire study, we found XXX
+The increasing relevance of competent and critical handling of data in society not only makes it possible to record this competence, but also makes self-perception with regard to this competence increasingly important. Previous approaches consider this competence primarily against the specific background of individual target groups, jobs or roles (\citeproc{ref-Cui2023}{Cui et al., 2023}). In addition, only a few explicitly refer to the general population (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Cui2023}{Cui et al., 2023}). In view of the various theoretical approaches, there is a need for a uniform definition of data literacy in order to create comparability.
+My aim is therefore to derive a holistic definition based on these approaches and to develop a questionnaire for self-perception of one's own data literacy. To this end, the decisive factors for the construct from previous definitions and operationalizations in various disciplines are brought together. Cognitive interviews are conducted iteratively to create and refine the items. The items are then selected using algorithm-based item selection. The facets of data literacy are comprehensively tested for factorial, discriminant, convergent and congruent incremental validity in order to promote a differentiated understanding of the construct. Construct and criterion validity are tested using correlations and hierarchical regression analyses, while cross-validation checks the robustness of the instrument.
+Based on a cross-sectional online questionnaire study, I found XXX
 The self-assessment questionnaire promotes a holistic assessment of competence and its perception for further research, for example by comparing self-assessment and actual performance.
 \emph{Keywords: Data Literacy, Questionnaire Development, Algorithm-Based Item Selection, Genetic Algorithm}
 
@@ -166,15 +174,15 @@ I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.
 \section{Background}\label{background}
 
 In a world characterized by information overload and rapid technological advancements (\citeproc{ref-Koltay2017}{Koltay, 2017}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-Roetzel2019}{Roetzel, 2019}), the relevance of data literacy for today's society becomes evident. Data literacy serves as a potent tool in navigating the complex data-driven environment (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; e.g.: \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-risdale2015}{Ridsdale et al., 2015}) and individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions (e.g. \citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}).
-The exploration of citizens' interaction with media and the cultivation of their agency has traditionally started around concepts such as written literacy, media literacy, information literacy, and digital literacy {[}QUELLE{]}. In more recent discussions, data literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Thus, data literacy is a competency that is becoming increasingly important to everyone. Research has acknowledged this in recent years, as more and more research is being done in that direction (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). This study aims to complement the current research, with a self rating questionnaire for assessing data literacy among citizens.
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally started around concepts such as written literacy and information literacy (e.g. \citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}; \citeproc{ref-brown2002}{Brown \& Krumholz, 2002}). Information literacy, as defined by the American Library Association in 1989, encompasses the skills required to locate, evaluate, and effectively use information (\citeproc{ref-brown2002}{Brown \& Krumholz, 2002}). This foundational understanding of information literacy has evolved through various frameworks and models, emphasizing its importance in educational settings and lifelong learning (\citeproc{ref-tomar2023}{Tomar, 2023}). In more recent discussions, data literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Thus, data literacy is a competency that is becoming increasingly important to everyone. Research has acknowledged this in recent years, as more and more research is being done in that direction (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). This study aims to complement the current research, with a self rating questionnaire for assessing data literacy among citizens.
 
 Data literacy involves the ability to effectively collect, manage, evaluate, and apply data in a critical manner (\citeproc{ref-risdale2015}{Ridsdale et al., 2015}). According to Wolff et al. (\citeproc{ref-wolff2016}{2016}), it means being able to ask and answer everyday questions using both small and large datasets while considering ethical aspects. This includes skills such as selecting, cleaning, analyzing, visualizing, criticizing, and interpreting data, as well as communicating insights from data and using data for various purposes. Frank (\citeproc{ref-frank2016}{2016}) distinguishes between cognitive skills, like data collection and analysis, and social skills, which involve trusting data while maintaining skepticism. Calzada Prado \& Marzal (\citeproc{ref-prado2013}{2013}) outline five dimensions of data literacy: understanding data, acquiring data, interpreting and evaluating data, managing data, and using data. Understanding data includes knowing their types, roles, and significance, while acquiring data involves evaluating and selecting sources. Interpreting and evaluating data encompass understanding different presentation methods and data interpretation. Managing data includes storage, management, and reuse. Using data involves preparation, analysis, communication, and ethical considerations (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}).
-This small comparison already highlights one prominent feature of data literacy - It is a heterogeneous concept (\citeproc{ref-Chen2024}{Chen et al., 2024}). Every subject or profession seems to hold their own definition or framework of data literacy (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). While that most certainly is good for assessing specific skills (e.g.~in an Recruitment test), it limits the generalisability and comparability of data literacy across individuals with different background. It furthermore limits the accuracy of communication about the topic as two people with different background might hold different definitions on data literacy. In the study from Cui et al. (\citeproc{ref-Cui2023}{2023}) it also becomes apparent, that one group seems to be underrepresented in the research on data literacy: citizens.
-Despite being the largest demographic group, citizens are often overlooked in favor of specific professions such as researchers, librarians, students, or educators (\citeproc{ref-Cui2023}{Cui et al., 2023}). Citizens in this case mean people of the general public, that hold no special role or profession, related to data handling or aspects related to data literacy (\citeproc{ref-wolff2016}{Wolff et al., 2016}). This trend raises questions about the emphasis on certain aspects of data literacy, many of which tend to align more closely with professional roles than with the needs of laypeople (\citeproc{ref-schuxfcller2020}{Schüller, 2020}).
+This small comparison already highlights one prominent feature of data literacy - It is a heterogeneous concept (\citeproc{ref-Chen2024}{Chen et al., 2024}). Every subject or profession seems to hold their own definition or framework of data literacy (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). While that most certainly is good for assessing specific skills (e.g.~in an Recruitment test), it limits the generalisability and comparability of data literacy across individuals with different background. It furthermore limits the accuracy of communication about the topic as two people with different background might hold different definitions on data literacy. In the study from Cui et al. (\citeproc{ref-Cui2023}{2023}) it also becomes apparent, that one group seems to be less focused on in the research on data literacy: citizens or the broader public. Citizens in this case mean people of the general public, that hold no special role or profession, related to data handling or aspects related to data literacy (\citeproc{ref-wolff2016}{Wolff et al., 2016}).
+Despite being the largest demographic group, citizens are often overlooked in favor of specific professions such as researchers, librarians, students, or educators (\citeproc{ref-Cui2023}{Cui et al., 2023}). This trend raises questions about the emphasis on certain aspects of data literacy, many of which tend to align more closely with professional roles than with the needs of laypeople (\citeproc{ref-schuxfcller2020}{Schüller, 2020}).
 In their Framework Schüller (\citeproc{ref-schuxfcller2020}{2020}) highlight the different roles in their data literacy framework: Some of the facets or skills regard ``data-consumption'', whereas the most are skills ``data-producers'' would have. This is also reflected when taking a look into related concepts. The definition proposed by Wolff et al. (\citeproc{ref-wolff2016}{2016}) suggests that data literacy shares some common competencies with statistical and information literacies.\\
 Information literacy, often studied in library sciences, overlaps with data literacy in terms of accessing, critically evaluating, and using data sources (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; \citeproc{ref-shields2005}{Shields, 2005}). Wolff et al. (\citeproc{ref-wolff2016}{2016}) also emphasize the importance of the data inquiry process, starting from identifying problems, designing studies, acquiring data, conducting analysis, to drawing data-based conclusions. In comparison, Gould (\citeproc{ref-gould2017}{2017}) argued that data literacy is essentially the same as statistical literacy but with additional competencies needed due to the increasing importance of data. These added competencies include understanding who collects the data, how and why data is collected, and understanding data privacy and ownership (\citeproc{ref-gould2017}{Gould, 2017}).
 
-Additionally, when discussing data literacy, it's essential to understand the distinctions between the terms data and information and their relationship to one another. The concepts of data and information are foundational in various fields, yet their precise definitions and relationships are often subject to interpretation (e.g. \citeproc{ref-Koltay2017}{Koltay, 2017}; \citeproc{ref-Schneider2013}{R. Schneider, 2013}). While data can be viewed as the raw material (\citeproc{ref-shannon1948}{Shannon, 1948}) from which information is derived (\citeproc{ref-bates2005}{Bates, 2005}), it's the reduction of entropy through organization and interpretation that gives rise to meaningful information (\citeproc{ref-brillouin1953}{Brillouin, 1953}; \citeproc{ref-jaynes1957}{Jaynes, 1957}). Thus, rather than viewing data as synonymous with entropy or information, it is more accurate to consider information as emerging from the structured representation of data.
+Additionally, when discussing data literacy, it is essential to understand the distinctions between the terms data and information and their relationship to one another. The concepts of data and information are foundational in various fields, yet their precise definitions and relationships are often subject to interpretation (e.g. \citeproc{ref-Koltay2017}{Koltay, 2017}; \citeproc{ref-Schneider2013}{R. Schneider, 2013}). While data can be viewed as the raw material (\citeproc{ref-shannon1948}{Shannon, 1948}) from which information is derived (\citeproc{ref-bates2005}{Bates, 2005}), it is the reduction of entropy through organization and interpretation that gives rise to meaningful information (\citeproc{ref-brillouin1953}{Brillouin, 1953}; \citeproc{ref-jaynes1957}{Jaynes, 1957}). Thus, rather than viewing data as synonymous with entropy or information, it is more accurate to consider information as emerging from the structured representation of data.
 
 It is structured representation of data, that also according to the framework of (\citeproc{ref-schuxfcller2020}{Schüller, 2020}), citizens are primarily concerned with: Citizens holding roles where they mainly consume data or information. Consequently, they may encounter difficulties with tasks or items related to producing facets such as providing or exploiting data. This imbalance could potentially undermine the fairness of tests and questionnaires designed to assess data literacy, particularly, if these assessments prioritize competencies closer to data and statistical literacy over those closer to information literacy.
 
@@ -182,9 +190,6 @@ It is structured representation of data, that also according to the framework of
 
 Because data literacy is such a heterogeneous construct, it is very prone to construct proliferation. This, for example, becomes evident, when looking into the literature review from Cui et al. (\citeproc{ref-Cui2023}{2023}). In their study they found over fourteen different definitions of data literacy, incorporating different sets of 75 competencies. Furthermore very few of those definitions are targeted at citizens, and none of the questionnaires they report target citizens.
 Thus, our objective was to formulate a definition of data literacy, based on the current literature, that works for citizens. For the conceptual integration, I used the review of Cui et al. (\citeproc{ref-Cui2023}{2023}) and assessed what competencies were incorporated in most of the definitions and would therefore be considered central to the construct. This included counting the same competencies as well as checking what competencies might be named differently, but are considered the same substantively. Furthermore, data literacy encompasses certain characteristics and behaviors from similar constructs. Examples for those convergent constructs are \emph{critical thinking}, \emph{media competency}, \emph{technology competency}, \emph{statistical literacy} as well as \emph{information literacy} (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). As those constructs share substantive parts, differing in size regarding the respective definition of the constructs, it is to be expected that all of them show moderate to strong positive correlations.
-
-\subparagraph{Table}\label{table}
-
 Concluding, data literacy can be defined as ``the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data, information and their sources'' (\citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-risdale2015}{Ridsdale et al., 2015}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
 
 \begin{figure}
@@ -193,10 +198,10 @@ Concluding, data literacy can be defined as ``the ability to collect, manage, ev
 
 }
 
-\caption{Illustration of the Model data literacy.  }\label{fig:model1}
+\caption{\footnotesize{A Five factor measurement model for perceived data literacy. This figure displays the measurement model of the perceived data literacy questionaire. The model incorporates inter-factor correlations to account for shared variance between dimensions. The abbreviations q1 up to q20 represent the items. The abbreviations e1 up tp e20 represent the respective measurement errors. The latent factors are abbreviated as well Comprehension (Compr.), Evaluation (Eval), Integration (Int.), Communication (Comm.) and Statistics (Stat.).}}\label{fig:model1}
 \end{figure}
 
-Condensing the incorporated constructs as describes, I arrived at a structure of five factors (Comprehension, Evaluation, Integration, Communication \& Statistics)(vgl. figure 1), that are very prominent in most definitions in the literature (\citeproc{ref-Cui2023}{Cui et al., 2023}). In line with Schüller (\citeproc{ref-schuxfcller2020}{2020}), I further divided them into ``consumer'' facets (Comprehension, Evaluation \& Integration), which are relevant for nearly every person in society, from citizens up, as well as ``producer'' facets (Communication \& Statistics), which are mainly relevant for people, actively working with data. The ``consumer'' factors are closely related to media literacy, focusing on skills related to critically analyzing and interpreting various media formats for understanding and engaging with media content (vgl. figure 2).
+Condensing the incorporated constructs as describes, I arrived at a structure of five factors (Comprehension, Evaluation, Integration, Communication \& Statistics) (cf.~Figure 1), that are very prominent in most definitions in the literature (\citeproc{ref-Cui2023}{Cui et al., 2023}). In line with Schüller (\citeproc{ref-schuxfcller2020}{2020}), I further divided them into ``consumer'' facets (Comprehension, Evaluation \& Integration), which are relevant for nearly every person in society, from citizens up, as well as ``producer'' facets (Communication \& Statistics), which are mainly relevant for people, actively working with data. The ``consumer'' factors are closely related to media literacy, focusing on skills related to critically analyzing and interpreting various media formats for understanding and engaging with media content (cf.~Figure 2).
 
 \begin{figure}
 
@@ -204,35 +209,45 @@ Condensing the incorporated constructs as describes, I arrived at a structure of
 
 }
 
-\caption{Illustration of the nomological net of data literacy.  }\label{fig:nomnet}
+\caption{\footnotesize{This figure illustrates the nomological network for self-perceived data literacy. In the bottom is the measurement model of self-perceived data literacy. The nomological network is operationalized through convergent measures, including dimensions such as Statistical Literacy, Information Literacy, Media Competency, and Critical Thinking, as indicated by $++$ to denote strong alignment with the construct. The figure further contextualizes Data Literacy in relation to overlapping or adjacent constructs, such as Need for Cognition, Openness, and Conscientiousness, marked with $+$ to signify partial conceptual overlap. Dashed lines represent theoretical or empirical associations between Data Literacy and these related constructs.}}\label{fig:nomnet}
 \end{figure}
 
-The factor ``Comprehension'' encompasses behaviors and skills associated with critical thinking (\citeproc{ref-payan2022}{Payan Carreira et al., 2022}; \citeproc{ref-rear2019}{Rear, 2019}), such as identifying weaknesses in one's reasoning or actively shaping discourse and public dissemination of information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of information across different formats, enabling them to draw accurate conclusions and insights {[}QUELLE{]}.
-It includes elements of information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, similar to assessing the quality of information sources (Evaluation \& Integration)(\citeproc{ref-Webber2017}{Webber \& Johnston, 2017}). Both statistical and information literacy involve using data and information to make informed decisions (\citeproc{ref-Gal2002}{Gal, 2002}; \citeproc{ref-Webber2017}{Webber \& Johnston, 2017}).
-Therefore, the ``Evaluation'' factor involves skills related to critically evaluating information sources and discerning between facts and opinions (\citeproc{ref-frank2016}{Frank, 2016}; e.g. \citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-QUELLE}{\textbf{QUELLE?}}). It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate awareness of potential biases or vested interests in information sources {[}QUELLE{]}.\\
-Data literacy often emphasizes integrating data-driven insights into one's opinions and values, which influence decision-making processes, without focusing on the decision making (\citeproc{ref-wolff2016}{Wolff et al., 2016}). Thereby it aligns with the goals of statistical and information literacy (vgl. figure 2).
-The ``Integration'' factor relates to the ability and motivation to integrate data-driven insights into one's worldview and values {[}QUELLE{]}. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals scoring high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data {[}QUELLE{]}.\\
-The ``Communication'' factor revolves around the often referenced skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions (e.g. \citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; \citeproc{ref-wolff2016}{Wolff et al., 2016}; \citeproc{ref-QUELLE}{\textbf{QUELLE?}}).
-It requires translating complex data into clear formats, ensuring comprehension by varied audiences. Individuals scoring high in this factor hold the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; \citeproc{ref-wolff2016}{Wolff et al., 2016}; \citeproc{ref-QUELLE}{\textbf{QUELLE?}}).
+The factor ``Comprehension'' encompasses behaviors and skills associated with critical thinking (\citeproc{ref-payan2022}{Payan Carreira et al., 2022}; \citeproc{ref-rear2019}{Rear, 2019}), such as identifying weaknesses in one's reasoning or actively shaping discourse and public dissemination of information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of information across different formats, enabling them to draw accurate conclusions and insights (\citeproc{ref-carlson2014}{Carlson et al., 2014}; \citeproc{ref-vahey2006}{Vahey et al., 2006}; e.g. \citeproc{ref-wolff2016}{Wolff et al., 2016}).
+It includes elements of information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, similar to assessing the quality of information sources (Evaluation \& Integration) (\citeproc{ref-Webber2017}{Webber \& Johnston, 2017}). Both statistical and information literacy involve using data and information to make informed decisions (\citeproc{ref-callingham2006}{Callingham, 2006}; \citeproc{ref-Gal2002}{Gal, 2002}; \citeproc{ref-Webber2017}{Webber \& Johnston, 2017}).
+Therefore, the ``Evaluation'' factor involves skills related to critically evaluating information sources and discerning between facts and opinions (\citeproc{ref-callingham2006}{Callingham, 2006}; \citeproc{ref-frank2016}{Frank, 2016}; \citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}). It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate awareness of potential biases or vested interests in information sources (\citeproc{ref-callingham2006}{Callingham, 2006}; \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}; e.g. \citeproc{ref-lusiyana2020}{Lusiyana et al., 2020}).\\
+Data literacy often emphasizes integrating data-driven insights into one's opinions and values, which influence decision-making processes, without focusing on the decision making (\citeproc{ref-callingham2006}{Callingham, 2006}; \citeproc{ref-wolff2016}{Wolff et al., 2016}). Thereby it aligns with the goals of statistical and information literacy (cf.~Figure 2).
+The ``Integration'' factor relates to the ability and motivation to integrate data-driven insights into one's worldview and values (\citeproc{ref-callingham2006}{Callingham, 2006}; \citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-wolff2016}{Wolff et al., 2016}). It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals scoring high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data (e.g. \citeproc{ref-Carmi2020}{Carmi et al., 2020}).\\
+The ``Communication'' factor revolves around the often referenced skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; e.g. \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
+It requires translating complex data into clear formats, ensuring comprehension by varied audiences. Individuals scoring high in this factor hold the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; e.g. \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
 
 Our definition incorporates statistical literacy (\citeproc{ref-Gal2002}{Gal, 2002}) by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Statistics).
-The ``Statistics'' factor covers skills related to managing and analyzing data effectively {[}QUELLE{]}. It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies {[}QUELLE{]}. Additionally, it includes conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations. Individuals scoring high on this factor exhibit competence in statistical methods, enabling them to effectively analyze data and interpret findings {[}QUELLE{]}. In contrast to our definition of the ``Statistics'' factor, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing (\citeproc{ref-Gal2002}{Gal, 2002}). Our definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While information literacy involves assessing the quality of information sources, our definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) and is more specific to data literacy.\\
+The ``Statistics'' factor covers skills related to managing and analyzing data effectively (\citeproc{ref-gould2017}{Gould, 2017}; e.g. \citeproc{ref-risdale2015}{Ridsdale et al., 2015}). It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies (\citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). Individuals scoring high on this factor exhibit competence in conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations (\citeproc{ref-deahl2014}{Deahl, 2014}; e.g. \citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). In contrast to our definition of the ``Statistics'' factor, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing (\citeproc{ref-Gal2002}{Gal, 2002}; \citeproc{ref-gould2017}{Gould, 2017}). Our definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While information literacy involves assessing the quality of information sources, our definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) and is more specific to data literacy.\\
 The factors ``Evaluation'' and ``Statistics'' encompass behaviors and skills related to technology competency, including navigating and critically evaluating online sources and platforms, using information and communication technology, and utilizing statistical software. Data literacy involves proficiency in using technology, but specifically focuses on understanding and working with data. Technology competency encompasses a broader set of digital skills that extend beyond those relevant for data literacy.
 
-\subsection{Discrimminant Constructs}\label{discrimminant-constructs}
+\subsection{Discriminant Constructs}\label{discriminant-constructs}
 
-The name data literacy suggests that one is talking of some form of capability, skill or ability. In fact, data literacy can be seen as more on the side of competences or proficiencies. The distinction lies in the fact, that many behaviors, incorporated in data literacy go beyond the mere question of whether a person is ``able to do it''. It includes the question of one's motivation to do it. This stands in opposition to a former trend, where such literacies were understood cognitively {[}QUELLEN{]}, thus concerning the mere cognitive predisposition of a person. When talking about data literacy as a competency, the emphasis lies on the possibility to do or not do something, assuming that one has the ability to do it. Thus data literacy incorporates several abilities but also certain personal predispositions or convictions {[}QUELLE{]}.
+The name data literacy suggests that one is talking of some form of capability, skill or ability.
+Ability refers to an individual's potential or aptitude, encompassing innate or developed capacities across domains such as linguistic, mathematical, or motor abilities (\citeproc{ref-dorsch_ability}{Dorsch - Lexikon der Psychologie, n.d.a}).
+Knowledge, by contrast, is the cognitive representation or mental model of information, objects, and relationships. It forms the informational basis for interaction with and interpretation of the environment, encompassing all stored and retrievable data within an individual's mental framework (\citeproc{ref-dorsch_wissen}{Dorsch - Lexikon der Psychologie, n.d.d}).
+Skill describes the application of learned and task-specific activities, often categorized into motor, cognitive, or social domains. Unlike abilities, skills imply mastery achieved through practice and are typically assessed based on performance quality (\citeproc{ref-dorsch_fertigkeit}{Dorsch - Lexikon der Psychologie, n.d.b}).
+A proficiency however integrates abilities and skills but expands further to include motivational, temperamental, and situational factors. It reflects the capacity to adapt and perform tasks effectively under varying conditions, making it a comprehensive measure of practical competence and adaptive success (\citeproc{ref-dorsch_koennen}{Dorsch - Lexikon der Psychologie, n.d.c}).
+In fact, data literacy can be seen as more on the side of competences or proficiencies, because many behaviors, incorporated in data literacy go beyond the mere question of whether a person is ``able to do it''. It includes the question of one's motivation to do it.
+
+Research has shown that motivational theories have evolved from broad mechanistic views to more nuanced understandings that incorporate social-cognitive aspects of motivation, highlighting the interplay between personality traits and learning outcomes (\citeproc{ref-dweck1988}{Dweck \& Leggett, 1988}; \citeproc{ref-mischel1973}{Mischel, 1973}; \citeproc{ref-ross2005}{Ross et al., 2005}). This evolution reflects a broader trend in psychology where the understanding of learning is increasingly contextualized within the individual learner's psychological profile, including their personality characteristics (\citeproc{ref-elander2004}{Elander, 2004}; \citeproc{ref-komarraju2011}{Komarraju et al., 2011}; \citeproc{ref-mischel1973}{Mischel, 1973}).
+Moreover, the constructivist approach to learning, which gained prominence in the late 20th century, further emphasized the importance of personality in educational contexts. Constructivist theories advocate for learning as a socially mediated process, where personality traits such as openness to experience and conscientiousness can significantly influence how learners engage with content and interact with peers (\citeproc{ref-komarraju2011}{Komarraju et al., 2011}).
+
+The role of motivation, influenced by personality traits, is particularly relevant in the context of competencies such as data literacy. Data literacy requires not only cognitive skills but also the motivation to engage with data, interpret it, and apply it effectively (\citeproc{ref-keshavarz2021}{Keshavarz, 2021}). Research indicates that individuals with high levels of conscientiousness and openness are more likely to pursue learning opportunities related to data literacy, as these traits correlate with intrinsic motivation and a proactive approach to learning (e.g. \citeproc{ref-keshavarz2021}{Keshavarz, 2021}; \citeproc{ref-mahmood2021}{Mahmood et al., 2021}; \citeproc{ref-saleh2018}{Saleh et al., 2018}). For example, students who exhibit high conscientiousness tend to set specific learning goals and persist in their efforts to achieve them, which is essential for mastering complex skills like data analysis (\citeproc{ref-komarraju2009}{Komarraju et al., 2009}; \citeproc{ref-saleh2018}{Saleh et al., 2018}).
 
 \subsubsection{Need for Cognition}\label{need-for-cognition}
 
-The personality trait known as \emph{Need for Cognition} (NFC) originated in social psychology during the 1940s and 1950s. The concept of NFC, representing an inclination for joyful thinking, is evident in the works of Maslow (\citeproc{ref-maslow1943}{1943}), Murphy (\citeproc{ref-murphy1947}{1947}), Asch (\citeproc{ref-asch1952}{1952}), and Sarnoff \& Katz (\citeproc{ref-sarnoff1954}{1954}). However, the conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations (\citeproc{ref-cohen1955}{Cohen et al., 1955}). They defined NFC as ``a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world'' (\citeproc{ref-cohen1955}{Cohen et al., 1955, p. 291}). The concept captures individual variations in the engagement and enjoyment of thinking tasks (\citeproc{ref-bless1994}{Bless et al., 1994}). As data literacy incorporates several cognitive aspects as well as the motivation to understand data and information one gets presented with, it is expected to correlate positively with one's need for cognition. As need for cognition is more trait like and data literacy is more a competency and therefore less stable, it should not correlate too highly positive, i.e.~correlation should be small (vgl. figure 2).
+The personality trait known as \emph{Need for Cognition} (NFC) originated in social psychology during the 1940s and 1950s. The concept of NFC, representing an inclination for joyful thinking, is evident in the works of Maslow (\citeproc{ref-maslow1943}{1943}), Murphy (\citeproc{ref-murphy1947}{1947}), Asch (\citeproc{ref-asch1952}{1952}), and Sarnoff \& Katz (\citeproc{ref-sarnoff1954}{1954}). However, the conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations (\citeproc{ref-cohen1955}{Cohen et al., 1955}). They defined NFC as ``a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world'' (\citeproc{ref-cohen1955}{Cohen et al., 1955, p. 291}). The concept captures individual variations in the engagement and enjoyment of thinking tasks (\citeproc{ref-bless1994}{Bless et al., 1994}). As data literacy incorporates several cognitive aspects as well as the motivation to understand data and information one gets presented with, it is expected to correlate positively with one's need for cognition. As need for cognition is more trait like and data literacy is more a competency and therefore less stable, it should not correlate too highly positive, i.e.~correlation should be small (cf.~Figure 2).
 
 \subsubsection{Opennes to new experiences}\label{opennes-to-new-experiences}
 
-\emph{Openness to new experiences} reflects a broad appreciation for art, emotion, adventure, unconventional ideas, imagination, curiosity, and diverse experiences. Individuals high in openness tend to be intellectually curious, receptive to emotions, appreciative of beauty, and eager to explore new possibilities (\citeproc{ref-john2008}{John et al., 2008}). They are often more creative and emotionally attuned compared to those low in openness. However, they may also be perceived as unpredictable and prone to engaging in risky behaviors, including drug use (\citeproc{ref-john2008}{John et al., 2008}). High openness is associated with seeking intense and euphoric experiences as a means of self-actualization. In contrast, individuals low in openness tend to seek fulfillment through perseverance and are characterized as pragmatic and sometimes viewed as dogmatic or closed-minded. The interpretation and contextualization of the openness factor remain debated, partly due to a lack of biological evidence supporting this trait. Unlike other personality traits, openness has not shown consistent associations with specific brain regions in neuroimaging studies (\citeproc{ref-deyoung2010}{DeYoung et al., 2010}). As already mentioned, data literacy can be thought of as a competency, thus incorporating the individual motivation, leading to a certain behavior. Therefore, openness to new experiences is expected to correlate positively with data literacy. As openness to new experiences is more trait like and data literacy is not, the correlation is expected to be small (vgl. figure 2).
+\emph{Openness to new experiences} reflects a broad appreciation for art, emotion, adventure, unconventional ideas, imagination, curiosity, and diverse experiences. Individuals high in openness tend to be intellectually curious, receptive to emotions, appreciative of beauty, and eager to explore new possibilities (\citeproc{ref-john2008}{John et al., 2008}). They are often more creative and emotionally attuned compared to those low in openness. However, they may also be perceived as unpredictable and prone to engaging in risky behaviors, including drug use (\citeproc{ref-john2008}{John et al., 2008}). High openness is associated with seeking intense and euphoric experiences as a means of self-actualization. In contrast, individuals low in openness tend to seek fulfillment through perseverance and are characterized as pragmatic and sometimes viewed as dogmatic or closed-minded. The interpretation and contextualization of the openness factor remain debated, partly due to a lack of biological evidence supporting this trait. Unlike other personality traits, openness has not shown consistent associations with specific brain regions in neuroimaging studies (\citeproc{ref-deyoung2010}{DeYoung et al., 2010}). As already mentioned, data literacy can be thought of as a competency, thus incorporating the individual motivation, leading to a certain behavior. Therefore, openness to new experiences is expected to correlate positively with data literacy. As openness to new experiences is more trait like and data literacy is not, the correlation is expected to be small (cf.~Figure 2).
 \#\#\# Conscientiousness
 \emph{Conscientiousness} refers to an individual's propensity for self-discipline, dutifulness, and striving for achievement in alignment with external standards or expectations. It encompasses levels of impulse control, regulation, and goal-directed behavior Toegel \& Barsoux (\citeproc{ref-toegel2012}{2012}). High conscientiousness is characterized by persistence and focus, often perceived as stubbornness, whereas low conscientiousness is linked to flexibility and spontaneity, potentially manifesting as carelessness and unreliability (\citeproc{ref-toegel2012}{Toegel \& Barsoux, 2012}). Individuals with high conscientiousness tend to prefer planned actions over spontaneous ones (\citeproc{ref-costa1992}{Costa \& McCrae, 1992}; \citeproc{ref-john2008}{John et al., 2008}).\\
-The cognitive aspects of data literacy as well as the motivation to understand data and information speaks to the conscientiousness of people as well. As being critical and at times detail oriented (e.g.~in interpreting results, or spotting inconsistencies in presented information or while examining the credibility of sources) is also integral to data literacy, data literacy and conscientiousness are expected to correlate positively. As conscientiousness also trait opposing to data literacy, they should not correlate to highly positive, i.e.~correlation should be small (vgl. figure 2).
+The cognitive aspects of data literacy as well as the motivation to understand data and information speaks to the conscientiousness of people as well. As being critical and at times detail oriented (e.g.~in interpreting results, or spotting inconsistencies in presented information or while examining the credibility of sources) is also integral to data literacy, data literacy and conscientiousness are expected to correlate positively. As conscientiousness also trait opposing to data literacy, they should not correlate to highly positive, i.e.~correlation should be small (cf.~Figure 2).
 
 \subsection{Aim of the Study}\label{aim-of-the-study}
 
@@ -242,10 +257,11 @@ The aim was to derive a comprehensive definition of data literacy based on exist
 
 \emph{H1: The test-data will support the suggested latent factor structure and the proposed measurement model.}\\
 \emph{H2: The latent factor structure of the initial analysis will be supported by a different sample.}\\
-\emph{H3: A moderate to high positive correlation with the SWE-IV-16 (\citeproc{ref-behm2018}{Behm, 2018}) is expected.}\\
-\emph{H4: A moderate positive correlation with the the ICT-SC25 (\citeproc{ref-schauffel2021}{Schauffel, 2021}) is expected.}\\
-\emph{H5: A small positive correlation with the NFC-K (\citeproc{ref-beiuxdfert2015}{Beißert, 2015}) is expected.}\\
-\emph{H6: A small positive correlation with the the BFI-10 (\citeproc{ref-rammstedt2014}{K. Rammstedt B., 2014}) is expected.}
+\emph{H3: A moderate to high positive correlation with information behavior related self-efficacy (SWE-IV-16) (\citeproc{ref-behm2018}{Behm, 2018}) is expected.}\\
+\emph{H4: A moderate positive correlation with self-perceived competence in using information and communication technology (ICT-SC25) (\citeproc{ref-schauffel2021}{Schauffel, 2021}) is expected.}\\
+\emph{H5: A small positive correlation with need for cognition (NFC-K) (\citeproc{ref-beiuxdfert2015}{Beißert, 2015}) is expected.}\\
+\emph{H6: A small positive correlation with openness to new experiences (BFI-10) (\citeproc{ref-rammstedt2014}{K. Rammstedt B., 2014}) is expected.}\\
+\emph{H7: A small positive correlation with conscientiousness (BFI-10) (\citeproc{ref-rammstedt2014}{K. Rammstedt B., 2014}) is expected.}
 
 \section{Methods}\label{methods}
 
@@ -306,8 +322,7 @@ option.
 
 \subsubsection{Measuring Information Literacy}\label{measuring-information-literacy}
 
-The SWE-IV-16 (\citeproc{ref-behm2018}{Behm, 2018}) (McDonalds \(\omega\) = .91; Cronbachs \(\alpha\) =.91) assesses the self-efficacy beliefs
-of adolescents and adults in their ability to engage in information behaviour. This
+The SWE-IV-16 (\citeproc{ref-behm2018}{Behm, 2018}) (McDonalds \(\omega\) = .91; Cronbachs \(\alpha\) =.91) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
 (\citeproc{ref-brandgruwel2009}{Brand-Gruwel et al., 2009}). In our study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed
@@ -359,7 +374,7 @@ the mean value is calculated for each dimension from both the recoded and non-re
 
 \subsection{Data Quality}\label{data-quality}
 
-Careless or inattentive response patterns were analyzed by the ATC items. Furthermore, the data was checked for outliers. Because of the planned random missings in the data, those missings were imputed using full information maximum likelihood (FIML), via `stuart's' (\citeproc{ref-schultze2022}{Schultze, 2022}) access to `lavaan' (\citeproc{ref-rosseel2012}{Rosseel, 2012}). For model estimation, FIML was used as well to handle the missing data.
+Careless or inattentive response patterns were assessed using attention-check items. Additionally, the data was visually inspected for outliers through boxplots. Missing data, due to planned random omissions, was imputed using Full Information Maximum Likelihood (FIML) via `stuart's' access to `lavaan' (\citeproc{ref-rosseel2012}{Rosseel, 2012}; \citeproc{ref-schultze2022}{Schultze, 2022}). FIML was also applied during model estimation to handle missing values. Aside from the planned random missings in the data literacy questions, there were non-planned missings due to incomplete questionnaire submissions. These non-planned missings were not imputed. For those participants who did not finish the questionnaire, data from their data literacy-related responses were still used in the training sample, as list-wise deletion would have resulted in too few data points for proper algorithm functioning.
 
 \subsection{Main Analyses}\label{main-analyses}
 
@@ -397,11 +412,8 @@ Because the complexity of the model, as well as the several objectives of the in
 
 \subsection{Model Fit and Measurement Invariance}\label{model-fit-and-measurement-invariance}
 
-Of all explored conditions and respective models, the following model is to be highlighted. An overview over all models and their model fit can be found in the supplementary material.
+Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
 With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit (according to \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with data treated as metric and ML as estimator: Satorra-Bentler-\(X^{2}\) (df = 414, N = 373) = 582.582, p \textless{} 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90\%-CIRMSEA {[}.036; .054{]}.
-Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in figure X.
-All factor loadings including standard errors can be found in the Supplementary Material.
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = 389, N = 373) = 659.746, p \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) = .00 , \(\Delta\text{SRMR}\) = .00, \(\Delta\text{RMSEA}\) = .001.
 
 \begin{figure}
 
@@ -412,26 +424,108 @@ Cross-validation of the MG-CFA with the test-data indicated that the assumption 
 \caption{Measurement Model of Model 5.  }\label{fig:model3}
 \end{figure}
 
+Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in Figure 3.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = 389, N = 373) = 659.746, p \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) = .00 , \(\Delta\text{SRMR}\) = .00, \(\Delta\text{RMSEA}\) = .001 (cf.~Table 1)
+
+\begin{table}[htpb]
+\caption{Fit Indices for Model and Results of MG-CFA testing}
+
+\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\begin{tabular}{cccccccc}
+\hline
+Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA & $\Delta$ SRMR \\
+\hline
+ Model 1 & Configural  &  .92 & .041 & .086 & - & - & -\\
+  & Metric   &  .92 & .039 & .087 & .002 & .002 & .001\\
+  & Scalar   & .92 & .038 & .087 & - & .001 & - \\
+  & Residual & .91 & .041 & .092 & \textbf{.015} & .003 & .005\\
+ 
+\hline
+\end{tabular}
+}
+
+\vspace{10pt}  % Adds space between table and note (adjust as needed)
+\small\textit{Note}. The table shows the essential fit indices of the model created with 'stuart', alongside their change in terms of Invariance testing, per invariance level. All Indices shown were estimated with ML as estimator.
+\end{table}
+
+The model of the final set of items shows McDonald's \(\omega\) total = .92. The composite values McDonald's \(\omega\) total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and Statistics = .68.
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
-The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both saples show several residuals to be correlated.
+The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both samples show several residuals to be correlated.
+
+\begin{table}[htpb]
+\caption{Latent Factor correlations training sample}
+
+\resizebox{\textwidth}{!}{  
+\begin{tabular}{lccccc}
+\hline
+  & Comprehention & Evaluation & Integration & Communication & Statistics \\
+\hline
+Comprehension & 1.000 & & & & \\
+Evaluation    & 0.672 & 1.000 & & & \\
+Integration   & 0.596 & 0.715 & 1.000 & & \\
+Communication & 0.735 & 0.720 & 0.604 & 1.000 & \\
+Statistics    & 0.782 & 0.649 & 0.700 & \textbf{0.971} & 1.000 \\
+\hline
+\end{tabular}
+}
+
+\vspace{10pt}  % Adjust space between table and note
+\small\textit{Note}. The table shows the correlations between the latent factors for the training sample.
+\end{table}
 
 \subsection{Latent Correlations}\label{latent-correlations}
 
-To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in table X. The correlation of .97 between \emph{Communication} and \emph{Statistics} is to be highlighted. The correlations for the test sample in table X. In the test sample the correlation of .84 between \emph{Communication} and \emph{Statistics} is to be highlighted as well, alongside the correlation of .92 between \emph{Comprehension} and \emph{Integration}, as well as the correlation of .87 between \emph{Evaluation} and \emph{Integration}.
+To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between \emph{Communication} and \emph{Statistics} is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between \emph{Communication} and \emph{Statistics} is to be highlighted as well, alongside the correlation of .92 between \emph{Comprehension} and \emph{Integration}, as well as the correlation of .87 between \emph{Evaluation} and \emph{Integration}.
 
-For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication \& Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( \(\tau\) =.47, \(\tau\) =.46, \(\tau\) =.40, \(\tau\) =.48, \(\tau\) =.39 ; all p \textless{} .01). The factors of data literacy showed small to moderate correlations with the NFC-K (\(\tau\) =.22, \(\tau\) =.24, \(\tau\) =.30, \(\tau\) =.37, \(\tau\) =.42; all p \textless{} .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 (\(\tau\) =.31, \(\tau\) =.17, \(\tau\) =.23, \(\tau\) =.43, \(\tau\) =.32; all p \textless{} .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10(\(\tau\) = -.15, p \textless{} .05; \(\tau\) = -.18, p \textless{} .01; \(\tau\) = -.26, p \textless{} .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10(\(\tau\) = .13, p \textless{} .05; \(\tau\) = .25, p \textless{} .01; \(\tau\) = .16, p \textless{} .05; \(\tau\) = .17, p \textless{} .01). The latent correlations with respective confidence intervals are also displayed in table 3.
+\begin{table}[htpb]
+\caption{Latent Factor correlations test sample}
 
-\subsection{Reliability}\label{reliability}
+\resizebox{\textwidth}{!}{  
+\begin{tabular}{lccccc}
+\hline
+ & Comprehention & Evaluation & Integration & Communication & Statistics \\
+\hline
+Comprehension & 1.000 & & & & \\
+Evaluation    & 0.627 & 1.000 & & & \\
+Integration   & \textbf{0.918} & \textbf{0.870} & 1.000 & & \\
+Communication & 0.760 & 0.432 & 0.799 & 1.000 & \\
+Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
+\hline
+\end{tabular}
+}
 
-The model of the final set of items shows McDonald's \(\omega\) total = .92. The composite values McDonald's \(\omega\) total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and Statistics = .68.
+\vspace{10pt}  % Adjust space between table and note
+\small\textit{Note}. The table shows the correlations between the latent factors for the test sample.
+\end{table}
+
+For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication \& Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( \(\tau\) =.47, \(\tau\) =.46, \(\tau\) =.40, \(\tau\) =.48, \(\tau\) =.39 ; all p \textless{} .01). The factors of data literacy showed small to moderate correlations with the NFC-K (\(\tau\) =.22, \(\tau\) =.24, \(\tau\) =.30, \(\tau\) =.37, \(\tau\) =.42; all p \textless{} .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 (\(\tau\) =.31, \(\tau\) =.17, \(\tau\) =.23, \(\tau\) =.43, \(\tau\) =.32; all p \textless{} .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10(\(\tau\) = -.15, p \textless{} .05; \(\tau\) = -.18, p \textless{} .01; \(\tau\) = -.26, p \textless{} .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10(\(\tau\) = .13, p \textless{} .05; \(\tau\) = .25, p \textless{} .01; \(\tau\) = .16, p \textless{} .05; \(\tau\) = .17, p \textless{} .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
+
+\subsection{Control Variables}\label{control-variables}
+
+The analysis of control variables, including gender, educational level, aspired degree of current studies, and occupation classification, revealed that most items did not exhibit statistically significant effects. Furthermore, singularity issues limited the estimation of several control variables, particularly within the Degree and Occupation categories, which reduced the interpretability of the results.
+For item F2F15 in Education5 (A-levels), the coefficient is -3.00 (p = 0.03), which is statistically significant at the 0.05 level. This suggests that individuals with A-levels as their highest educational level score, on average, 3.00 points lower on item F2F15 compared to the reference group, which consisted of individuals with higher educational levels.
+Education5 (A-levels) also shows a statistically significant positive effect on F4F3, with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
+Education also demonstrates influences on F4F8, with Education5 (A-levels), Education7 (degree from a university of applied sciences), and Education8 (university degree) showing statistically significant positive effects. Specifically, Education5 (A-levels) indicates an increase of 2.82 points (p = 0.02), Education7 (degree from a university of applied sciences) shows an increase of 7.46 points (p = 0.00), and Education8 (university degree) suggests an increase of 7.04 points (p = 0.00). All of these p-values are below the 0.05 significance threshold, indicating statistically significant effects.
+For the Degree variable, Degree2 (currently pursuing a Masters degree) shows a significant negative effect on F4F8, with a coefficient of -3.20 and a p-value of 0.05, suggesting a decrease of 3.20 points. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect with an increase of 2.60 points and a p-value of 0.03, both statistically significant.
+For Age22, there is a statistically significant effect on F5F8, with a coefficient of -3.00 (p \textless{} 0.05). This indicates that individuals aged 22 report, on average, 3.00 points lower on F5F8 compared to the reference group.
+Among the Degree variables for F5F8, Degree3 (currently pursuing a state examination) demonstrates a statistically significant increase of 3.00 points, with a p-value of 0.05, indicating a positive effect. However, Degree2 (currently pursuing a Masters degree) and Degree4 (currently pursuing a doctorate) encounter singularity issues and could not be estimated.
 
 \section{Discussion}\label{discussion}
 
-This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via `stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.\\
-The final model showed acceptable fit (XXX), according to the combinational rule for RMSEA and SRMR of Hu \& Bentler (\citeproc{ref-hu1999}{1999}). But not according to the rules that are most commonly used not to the combinational rule, that resulted in the least sum of type 1 and type 2 error rates (\citeproc{ref-hu1999}{Hu \& Bentler, 1999}).
-Comparison of the training sample and the test sample on the chosen model, measurement invariance analyses indicated
+This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via `stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.
+The model demonstrating the best overall fit was selected based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items. The model exhibited an acceptable fit, with indices suggesting good model quality (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96, TLI = 0.96), according to the combinational rule for RMSEA and SRMR of Hu \& Bentler (\citeproc{ref-hu1999}{1999}). The factor loadings ranged from 0.09 to 0.82 across the five factors, and the model's total McDonald's \(\omega\) was 0.92, indicating reliable internal consistency.
+Comparison of the training sample and the test sample regarding measurement invariance suggests that scalar invariance holds (vgl. table X).
+In practical terms, when scalar invariance holds, the factor loadings, intercepts, and measurement scales acan be considered equivalent across groups. This allows for meaningful comparisons of latent means between groups rather than being due to measurement bias or differences in how the construct is understood or measured across groups.
+The lack of residual invariance suggests that the residuals (unexplained variance in the indicators) are not equivalent across groups. This implies that there are group-specific differences in how much of the variance in the observed variables remains unexplained by the latent factors. In practical terms, this lack of residual invariance complicates the interpretation of differences between groups. While the factors themselves may be measured similarly (if scalar invariance holds), the amount of unexplained variability in the responses differs across groups, indicating potential unmodeled differences in how the groups respond to certain items.
+As a result, any observed differences in the latent factors could be influenced by differing error variances across groups, making it challenging to draw definitive conclusions about true group differences. Thus, while latent means can be compared (under scalar invariance), the comparisons may be confounded by measurement error that varies across groups.
 
-\subsection{Summarising the results}\label{summarising-the-results}
+Further investigation of residuals revealed correlated residuals, indicating potential specification errors, both in the training and test samples. The latent correlations among factors were generally strong, especially between Communication and Statistics (0.97 in the training sample and 0.84 in the test sample). Additionally, the data literacy factors showed moderate to high correlations with external measures, including the SWE-IV-16, NFC-K, and ICT-SC25. The data literacy factors also exhibited small to moderate correlations with personality traits, such as negative correlations with openness and positive correlations with conscientiousness.
+
+Control variable analysis revealed that educational level had significant effects on certain items. Specifically, individuals with A-levels scored lower on F2F15. This indicates, that people whose highest educational level is the A-levels, report to less often check for an authors qualification, before trusting information from that author.
+However, individuals with A-levels scored higher on F4F3, indicating, that people whose highest educational level is the A-levels, more often indicate confidence in being able to present data in graphics in a way that they are understandable for different target groups.
+Meanwhile higher educational levels were associated with increased scores on F4F8. Indicating, that additionally to people having their A-levels, people holding a degree from a applied university, or a university, show an even greater increase in F4F8. Thus, with higher educational levels, people more often report being able to use programs to create graphics for presenting results.
+
+Age and degree type (e.g., pursuing a master's degree or state examination) also had significant effects on specific items, though several control variables could not be estimated due to singularity issues.
 
 Everything worked - what do I need to report?
 First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g.~Jackson et al., 2009). To have a clear structure, answer the following questions:
@@ -443,6 +537,122 @@ How stable is the final variant?
 How was the final variant further validated (e.g.~crossvalidate, k-fold)?
 
 The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures \#a similar, yet distinct concept\#.
+
+\subsection{Controlling}\label{controlling}
+
+While there is a difference between males and females, with males scoring higher on F1F6, this difference is not statistically significant (p = 0.308). Therefore, we cannot conclude that gender has a meaningful impact on F1F6. Age does not seem to have a significant effect on F1F6, as the p-values for all age categories are well above 0.05. Education does not appear to have a significant effect on F1F6. The lack of statistical significance across different education categories suggests that education level is not a meaningful predictor for this item. Degree and Occupation do not appear to have a significant effect on F1F6 either, based on the provided p-values and estimates.
+
+Based on the regression results, there is no evidence to support that age is a significant factor influencing the F1F8 scores. The p-values suggest that the effect of age is not meaningful in this context.
+The lack of statistical significance (p = 0.667) indicates that gender does not have a meaningful impact on the Likert item F1F8. Although there is a small difference in the scores (males scoring higher), this difference is not statistically significant, suggesting no strong evidence for gender influencing the item.
+The education variable does not appear to significantly influence the F1F8 item, with all p-values being greater than 0.05. The education levels may not play a critical role in determining the scores for this particular item.
+Both Degree and Occupation do not appear to significantly affect F1F8 either due to issues with missing data or the absence of significant coefficients. The lack of significant p-values and the presence of NA for most categories suggest that these variables have little impact on the Likert item.
+
+The coefficient indicates a small difference in scores between males and females, with males scoring slightly higher. However, the lack of statistical significance (p = 0.6349) means that we cannot confidently say that gender has a meaningful impact on F1F11.
+Overall, Age does not appear to have a significant effect on F1F11, as the p-values are all greater than 0.05. This suggests that age does not have a strong or consistent influence on F1F11. Education does not appear to have a significant effect on F1F11, as all the p-values are well above 0.05, suggesting no reliable impact of education on this item.
+Degree2 shows indicates that individuals in this category tend to score 3.5 points lower on F1F11. But the p-value is not considered statistically significant (p \textgreater{} 0.05).
+Occupation does not show any significant effects on F1F11, with all p-values above 0.05, meaning occupation categories do not have a statistically meaningful relationship with F1F11.
+
+The effect of gender on F1F14 is not statistically significant, as the p-value exceeds the 0.05 threshold.
+There is no statistically significant effect of education on F1F14. All education levels show p-values greater than 0.05.
+Degree2 does not show a statistically significant effect on F1F14, as the p-value is greater than 0.05.
+None of the occupation categories show a statistically significant effect on F1F14, as all p-values are greater than 0.05.
+
+The effect of gender on F2F2 is not statistically significant, as the p-value exceeds the 0.05 threshold.
+None of the age categories have a statistically significant effect on F2F2, as all the p-values are greater than 0.05.
+There is no statistically significant effect of education on F2F2. All education levels show p-values greater than 0.05.
+Degree3 does not show a statistically significant effect on F2F2, as the p-value is greater than 0.05.
+None of the occupation categories show a statistically significant effect on F2F2, as all p-values are greater than 0.05.
+
+The effect of gender on F2F6 is not statistically significant, as the p-value exceeds the 0.05 threshold.
+None of the age categories have a statistically significant effect on F2F6, as all the p-values are greater than 0.05.
+There is no statistically significant effect of education on F2F6, as the p-value is greater than 0.05.
+Neither Degree2 nor Degree3 show a statistically significant effect on F2F6, as both p-values are greater than 0.05.
+None of the occupation categories show a statistically significant effect on F2F6, as all p-values are greater than 0.05.
+
+The effect of gender on F2F15 is not statistically significant.
+No age categories are statistically significant at the 0.05 threshold.
+Education5 (Abitur als höchster Bildungsabschluss) is statistically significant with a p-value of 0.0303, indicating a negative effect on F2F15.
+This indicates, that people whose highest educational level is the ``Abitur'', report to less often check for an authors qualification, before trusting informations from that author.
+There is no statistically significant effect of degree on F2F15.
+None of the occupation categories show statistically significant effects on F2F15.
+
+The effect of gender on F2F20 is not statistically significant.
+None of the age categories show statistical significance at the 0.05 level.
+Education variables do not show statistically significant effects on F2F20.
+There is no statistically significant effect of degree on F2F20.
+None of the occupation categories show statistically significant effects on F2F20.
+
+No valid statistical results can be derived from this model for F3F2 due to singularities in the data. This suggests that there is perfect collinearity or a lack of variation in the predictor variables.
+This indicated that the item F3F2 is problematic and should maybe be exchanged or reformulated.
+
+Gender does not have a statistically significant effect on F3F4.
+None of the age variables have a statistically significant effect on F3F4.
+None of the education variables have a statistically significant effect on F3F4.
+No statistically significant effect of degree on F3F4.
+None of the occupation categories show statistically significant effects on F3F4.
+
+None of the age variables show a statistically significant effect on F3F6.
+Gender does not have a statistically significant effect on F3F6.
+None of the education variables have a statistically significant effect on F3F6.
+No statistically significant effect of degree on F3F6.
+None of the occupation categories show statistically significant effects on F3F6.
+
+None of the age variables show a statistically significant effect on F3F9.
+Gender does not have a statistically significant effect on F3F9.
+None of the education variables show a statistically significant effect on F3F9.
+No significant effect of degree on F3F9 can be determined.
+None of the occupation categories exhibit statistically significant effects on F3F9.
+
+Gender does not have a statistically significant effect on F4F1.
+None of the age variables have a statistically significant effect on F4F1.
+None of the education variables show a statistically significant effect on F4F1.
+None of the degree variables exhibit a statistically significant effect on F4F1.
+None of the occupation variables show statistically significant effects on F4F1.
+
+Gender does not have a statistically significant effect on F4F3.
+None of the age variables have statistically significant effects on F4F3.
+Only Education5 (abitur) has a statistically significant positive effect on F4F3.
+None of the degree variables have statistically significant effects on F4F3.
+None of the occupation variables have statistically significant effects on F4F3.
+
+Gender does not have a statistically significant effect on F4F6.
+None of the age variables exhibit statistically significant effects on F4F6, though Age29 shows a marginally significant negative effect.
+None of the education variables exhibit statistically significant effects on F4F6.
+None of the degree variables have statistically significant effects on F4F6.
+None of the occupation variables exhibit statistically significant effects on F4F6.
+
+None of the age variables exhibit statistically significant effects on F4F8.
+Gender does not have a statistically significant effect on F4F8.
+Education5, Education7, and Education8 have statistically significant positive effects on F4F8.
+Degree2 has a significant negative effect, and Degree3 has a significant positive effect on F4F8.
+None of the occupation variables exhibit statistically significant effects on F4F8.
+
+None of the age variables exhibit statistically significant effects on F5F3.
+Gender does not have a statistically significant effect on F5F3.
+None of the education variables exhibit statistically significant effects on F5F3.
+None of the degree variables exhibit statistically significant effects on F5F3.
+None of the occupation variables exhibit statistically significant effects on F5F3.
+
+Gender does not have a statistically significant effect on F5F4.
+None of the age variables exhibit statistically significant effects on F5F4.
+None of the education variables exhibit statistically significant effects on F5F4.
+None of the degree variables exhibit statistically significant effects on F5F4.
+None of the occupation variables exhibit statistically significant effects on F5F4.
+
+Gender does not have a statistically significant effect on F5F8.
+Age22 has a statistically significant negative effect on F5F8.
+This indicates that individuals aged 22 experience a decrease of 3.000 points in F5F8 compared to the reference age group.
+None of the education variables exhibit statistically significant effects on F5F8.
+Degree3 has a significant positive effect on F5F8. Individuals with Degree3 experience a 3.000-point increase in F5F8 compared to the reference degree group.
+While Degree3 shows a significant positive association with F5F8, this finding should be interpreted cautiously because the analysis excludes other degree categories due to singularities. Without these categories, the effect of Degree3 might reflect unmeasured contributions from the missing variables.
+None of the occupations variables have statistically significant effects.
+
+none of the age variables exhibit statistically significant effects on F5F18.
+Gender does not have a statistically significant effect on F5F18.
+None of the education variables have a statistically significant effect on F5F18.
+Only Degree2 is analyzed due to singularity in the other categories. However, it does not have a statistically significant effect on F5F18.
+Degree level does not appear to be a significant predictor of F5F18 in this case.
+None of the occupation variables have a statistically significant effect on F5F18. Occupation does not appear to be a reliable predictor of F5F18 in this model, and singularity issues further complicate the interpretation.
 
 \subsection{What does it all mean / ``Why?''}\label{what-does-it-all-mean-why}
 
@@ -551,6 +761,9 @@ Brandmaier, A. M., \& Peikert, A. (2024). Automated reproducibility testing in r
 \bibitem[\citeproctext]{ref-brillouin1953}
 Brillouin, L. (1953). Negentropy principle of information. \emph{Journal of Applied Physics}, \emph{24}(9), 1152--1163.
 
+\bibitem[\citeproctext]{ref-brown2002}
+Brown, C., \& Krumholz, L. R. (2002). Integrating information literacy into the science curriculum. \emph{College \&Amp; Research Libraries}, \emph{63}, 111--123. \url{https://doi.org/10.5860/crl.63.2.111}
+
 \bibitem[\citeproctext]{ref-BfA2024}
 Bundesargentur für Arbeit. (2024). \emph{Arbeitslosenzahl in deutschland im jahresdurchschnitt von 2005 bis 2024}. \url{https://de.statista.com/statistik/daten/studie/1223/umfrage/arbeitslosenzahl-in-deutschland-jahresdurchschnittswerte/\#:~:text=Im\%20Monat\%20Juni\%202024\%20waren,um\%20rund\%20178.800\%20Personen\%20höher}; Statista.
 
@@ -560,8 +773,14 @@ Buss, D., \& Craik, K. (1983). The act frequency approach to personality. \emph{
 \bibitem[\citeproctext]{ref-cacioppo1982}
 Cacioppo, J. T., \& Petty, R. E. (1982). The need for cognition. \emph{Journal of Personality and Social Psychology}, \emph{42}(1), 116--131. \url{https://doi.org/10.1037/0022-3514.42.1.116}
 
+\bibitem[\citeproctext]{ref-callingham2006}
+Callingham, R. (2006). Assessing statistical literacy: A question of interpretation? \emph{International Conference on Teaching Statistics (ICOTS7)}.
+
 \bibitem[\citeproctext]{ref-prado2013}
 Calzada Prado, J., \& Marzal, M. Á. (2013). Incorporating data literacy into information literacy programs: Core competencies and contents. \emph{Libri}, \emph{63}(2), 123--134. \url{https://doi.org/10.1515/libri-2013-0010}
+
+\bibitem[\citeproctext]{ref-carlson2014}
+Carlson, J., Fosmire, M., Miller, C. C., \& Nelson, M. S. (2014). Determining data information literacy needs. In J. Carlson \& M. Johnston (Eds.), \emph{Data information literacy: Librarians, data, and the education of a new generation of researchers}. Purdue University Press.
 
 \bibitem[\citeproctext]{ref-Carmi2020}
 Carmi, E., Yates, S. J., Lockley, E., \& Pawluczuk, A. (2020). Data citizenship: Rethinking data literacy in the age of disinformation, misinformation, and malinformation. \emph{Internet Policy Review}, \emph{9}(2). \url{https://doi.org/10.14763/2020.2.1481}
@@ -581,8 +800,29 @@ Costa, P. T., \& McCrae, R. R. (1992). The five-factor model of personality and 
 \bibitem[\citeproctext]{ref-Cui2023}
 Cui, Y., Chen, F., Lutsyk, A., Leighton, J., \& Cutumisu, M. (2023). Data literacy assessments: A systematic literature review. \emph{Assessment in Education: Principles, Policy \& Practice}, \emph{30}, 1--21. \url{https://doi.org/10.1080/0969594X.2023.2182737}
 
+\bibitem[\citeproctext]{ref-deahl2014}
+Deahl, E. (2014). \emph{Better the data you know: Developing youth data literacy in schools and informal learning environments} {[}M.S. Thesis{]}. Massachusetts Institute of Technology.
+
 \bibitem[\citeproctext]{ref-deyoung2010}
 DeYoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., \& Gray, J. R. (2010). Testing predictions from personality neuroscience: Brain structure and the big five. \emph{Psychological Science}, \emph{21}(6), 820--828. \url{https://doi.org/10.1177/0956797610370159}
+
+\bibitem[\citeproctext]{ref-dorsch_ability}
+Dorsch - Lexikon der Psychologie. (n.d.an.d.). \emph{Ability}. Hogrefe Verlag. \url{https://dorsch.hogrefe.com/stichwort/ability}
+
+\bibitem[\citeproctext]{ref-dorsch_fertigkeit}
+Dorsch - Lexikon der Psychologie. (n.d.bn.d.). \emph{Fertigkeit}. Hogrefe Verlag. \url{https://dorsch.hogrefe.com/stichwort/fertigkeit}
+
+\bibitem[\citeproctext]{ref-dorsch_koennen}
+Dorsch - Lexikon der Psychologie. (n.d.cn.d.). \emph{Können}. Hogrefe Verlag. \url{https://dorsch.hogrefe.com/stichwort/koennen?utm_campaign=ebdu.fcbbx.c5d.gebaavd.ebefdu.&utm_content=ebefdu.Xaafa&utm_medium=xfljbee&utm_source=fyvcebel}
+
+\bibitem[\citeproctext]{ref-dorsch_wissen}
+Dorsch - Lexikon der Psychologie. (n.d.dn.d.). \emph{Wissen}. Hogrefe Verlag. \url{https://dorsch.hogrefe.com/stichwort/wissen}
+
+\bibitem[\citeproctext]{ref-dweck1988}
+Dweck, C., \& Leggett, E. L. (1988). A social-cognitive approach to motivation and personality. \emph{Psychological Review}, \emph{95}, 256--273. \url{https://doi.org/10.1037/0033-295X.95.2.256}
+
+\bibitem[\citeproctext]{ref-elander2004}
+Elander, J. (2004). Student assessment from a psychological perspective. \emph{Psychology Learning \& Teaching}, \emph{3}(2), 114--121. \url{https://doi.org/10.2304/plat.2003.3.2.114}
 
 \bibitem[\citeproctext]{ref-fowler1995}
 Fowler, Jr., Floyd J. (1995). \emph{Improving survey questions: Design and evaluation}. Sage Publications, Inc.
@@ -617,8 +857,20 @@ Kass, R. A., \& Tinsley, H. E. A. (1979). Factor analysis. \emph{Journal of Leis
 \bibitem[\citeproctext]{ref-kerber2022}
 Kerber, A., Schultze, M., Müller, S., Rühling, R. M., Wright, A. G. C., Spitzer, C., Krueger, R. F., Knaevelsrud, C., \& Zimmermann, J. (2022). Development of a short and ICD-11 compatible measure for DSM-5 maladaptive personality traits using ant colony optimization algorithms. \emph{Assessment}, \emph{29}(3), 467--487. \url{https://doi.org/10.1177/1073191120971848}
 
+\bibitem[\citeproctext]{ref-keshavarz2021}
+Keshavarz, H. (2021). \emph{Personality factors and knowledge sharing behavior in information services: The mediating role of information literacy competencies}. \url{https://doi.org/10.1108/VJIKMS-05-2020-0095}
+
 \bibitem[\citeproctext]{ref-Koltay2017}
 Koltay, T. (2017). Information overload in a data-intensive world. In A. J. Schuster (Ed.), \emph{Understanding information: From the big bang to big data} (pp. 197--217). Springer International Publishing. \url{https://doi.org/10.1007/978-3-319-59090-5_10}
+
+\bibitem[\citeproctext]{ref-komarraju2009}
+Komarraju, M., Karau, S. J., \& Schmeck, R. R. (2009). Role of the big five personality traits in predicting college students' academic motivation and achievement. \emph{Learning and Individual Differences}, \emph{19}(1), 47--52. https://doi.org/\url{https://doi.org/10.1016/j.lindif.2008.07.001}
+
+\bibitem[\citeproctext]{ref-komarraju2011}
+Komarraju, M., Karau, S. J., Schmeck, R. R., \& Avdic, A. (2011). The big five personality traits, learning styles, and academic achievement. \emph{Personality and Individual Differences}, \emph{51}(4), 472--477. https://doi.org/\url{https://doi.org/10.1016/j.paid.2011.04.019}
+
+\bibitem[\citeproctext]{ref-kouts-klemm2019}
+Kõuts-Klemm, R. (2019). Data literacy among journalists: A skills-assessment based approach. \emph{Central European Journal of Communication}, \emph{12}(24), 299--315. \url{https://doi.org/10.19195/1899-5101.12.3(24).2}
 
 \bibitem[\citeproctext]{ref-Leighton2021}
 Leighton, J. P., Cui, Y., \& Cutumisu, M. (2021). Key information processes for thinking critically in data-rich environments. \emph{Frontiers in Education}, \emph{6}. \url{https://doi.org/10.3389/feduc.2021.561847}
@@ -626,8 +878,17 @@ Leighton, J. P., Cui, Y., \& Cutumisu, M. (2021). Key information processes for 
 \bibitem[\citeproctext]{ref-leite2008}
 Leite, W. L., Huang, I.-C., \& Marcoulides, G. A. (2008). Item selection for the development of short forms of scales using an ant colony optimization algorithm. \emph{Multivariate Behavioral Research}, \emph{43}, 411--431. \url{https://doi.org/10.1080/00273170802285743}
 
+\bibitem[\citeproctext]{ref-lusiyana2020}
+Lusiyana, A., Festiyed, F., \& Yulkifli, Y. (2020). Measuring the physics students' data literacy skill in the era of industry 4.0 by using mirecal learning model. \emph{International Journal of Scientific and Technology Research}, \emph{9}(1), 1203--1205.
+
+\bibitem[\citeproctext]{ref-mahmood2021}
+Mahmood, M., Frolova, Y., \& Gupta, B. (2021). The HEXACO, academic motivation and learning approaches: Evidence from a central asian country. \emph{Education + Training}, \emph{63}(6), 920--938. \url{https://doi.org/10.1108/ET-11-2019-0257}
+
 \bibitem[\citeproctext]{ref-maslow1943}
 Maslow, A. H. (1943). A theory of human motivation. \emph{Psychological Review}, \emph{50}(4), 370--396. \url{https://doi.org/10.1037/h0054346}
+
+\bibitem[\citeproctext]{ref-mischel1973}
+Mischel, W. (1973). Toward a cognitive social learning reconceptualization of personality. \emph{Psychological Review}, \emph{80 4}, 252--283. \url{https://doi.org/10.1037/H0035002}
 
 \bibitem[\citeproctext]{ref-moshagen2024}
 Moshagen, M., \& Bader, M. (2024). semPower: General power analysis for structural equation models. \emph{Behavior Research Methods}, \emph{56}, 2901--2922. \url{https://doi.org/10.3758/s13428-023-02254-7}
@@ -665,8 +926,14 @@ Ridsdale, C., Rothwell, J., Smit, M., Bliemel, M., Irvine, D., Kelley, D., Matwi
 \bibitem[\citeproctext]{ref-Roetzel2019}
 Roetzel, P. G. (2019). Information overload in the information age: A review of the literature from business administration, business psychology, and related disciplines with a bibliometric approach and framework development. \emph{Business Research}, \emph{12}(2), 479--522. \url{https://doi.org/10.1007/s40685-018-0069-z}
 
+\bibitem[\citeproctext]{ref-ross2005}
+Ross, M. E., Blackburn, M., \& Forbes, S. (2005). Reliability generalization of the patterns of adaptive learning survey goal orientation scales. \emph{Educational and Psychological Measurement}, \emph{65}(3), 451--464. \url{https://doi.org/10.1177/0013164404272496}
+
 \bibitem[\citeproctext]{ref-rosseel2012}
 Rosseel, Y. (2012). {lavaan}: An {R} package for structural equation modeling. \emph{Journal of Statistical Software}, \emph{48}(2), 1--36. \url{https://doi.org/10.18637/jss.v048.i02}
+
+\bibitem[\citeproctext]{ref-saleh2018}
+Saleh, S., Ashari, Z. M., \& Kosnin, A. M. (2018). Personality traits and intrinsic motivation on academic performance. \emph{International Journal of Engineering \& Technology}, \emph{7}(4.28), 317--322. \url{https://doi.org/10.14419/ijet.v7i4.28.22607}
 
 \bibitem[\citeproctext]{ref-sandy2014}
 Sandy, C. J., Gosling, S. D., \& Koelkebeck, T. (2014). Psychometric comparison of automated versus rational methods of scale abbreviation: An illustration using a brief measure of values. \emph{Journal of Individual Differences}, \emph{35}, 221--235. \url{https://doi.org/10.1027/1614-0001/a000144}
@@ -722,8 +989,17 @@ Statistisches Bundesamt. (2024c). \emph{Bevölkerung nach nationalität und gesc
 \bibitem[\citeproctext]{ref-toegel2012}
 Toegel, G., \& Barsoux, J.-L. (2012). How to become a better leader. \emph{MIT Sloan Management Review}, \emph{53}, 51--60.
 
+\bibitem[\citeproctext]{ref-tomar2023}
+Tomar, M. (2023). Assessing information literacy programs in academic libraries: A comprehensive review. \emph{International Journal of Information Studies}, \emph{15}, 108--118. \url{https://doi.org/10.6025/ijis/2023/15/4/108-118}
+
+\bibitem[\citeproctext]{ref-vahey2006}
+Vahey, P., Yarnall, L., Patton, C., Zalles, D., \& Swan, K. (2006). Mathematizing middle school: Results from a cross-disciplinary study of data literacy. \emph{Annual Meeting of the American Educational Research Association}.
+
 \bibitem[\citeproctext]{ref-Webber2017}
 Webber, S. A., \& Johnston, B. (2017). Information literacy: Conceptions, context and the formation of a discipline. \emph{Journal of Information Literacy}, \emph{11}. \url{https://doi.org/10.11645/11.1.2205}
+
+\bibitem[\citeproctext]{ref-williams2014}
+Williams, S., Deahl, E., Rubel, L., \& Lim, V. (2014). City digits: Local lotto: Developing youth data literacy by investigating the lottery. \emph{Journal of Digital Media Literacy}.
 
 \bibitem[\citeproctext]{ref-wolff2016}
 Wolff, A., Gooch, D., Montaner, J. J. C., Rashid, U., \& Kortuem, G. (2016). Creating an understanding of data literacy for a data-driven society. \emph{The Journal of Community Informatics}, \emph{12}(3), 9--26. \url{https://doi.org/10.15353/joci.v12i3.3275}
