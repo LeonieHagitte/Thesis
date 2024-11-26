@@ -5,24 +5,96 @@ output:
 ---
 # Results
 ## Model Fit and Measurement Invariance
-Of all explored conditions and respective models, the following model is to be highlighted. An overview over all models and their model fit can be found in the supplementary material.
+Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
 With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit [according to @hu1999] with data treated as metric and ML as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
-Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in figure X.
-All factor loadings including standard errors can be found in the Supplementary Material. 
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ = .00 , $\Delta\text{SRMR}$ = .00, $\Delta\text{RMSEA}$ = .001. 
-
 ```{r model3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of Model 5.  ", out.width="100%", fig.align="center"}
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
 ```
+Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in Figure 3.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ = .00 , $\Delta\text{SRMR}$ = .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 1)
 
+\begin{table}[htpb]
+\caption{Fit Indices for Model and Results of MG-CFA testing}
+
+\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\begin{tabular}{cccccccc}
+\hline
+Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA & $\Delta$ SRMR \\
+\hline
+ Model 1 & Configural  &  .92 & .041 & .086 & - & - & -\\
+  & Metric   &  .92 & .039 & .087 & .002 & .002 & .001\\
+  & Scalar   & .92 & .038 & .087 & - & .001 & - \\
+  & Residual & .91 & .041 & .092 & \textbf{.015} & .003 & .005\\
+ 
+\hline
+\end{tabular}
+}
+
+\vspace{10pt}  % Adds space between table and note (adjust as needed)
+\small\textit{Note}. The table shows the essential fit indices of the model created with 'stuart', alongside their change in terms of Invariance testing, per invariance level. All Indices shown were estimated with ML as estimator.
+\end{table}
+
+The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
-The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both saples show several residuals to be correlated.
+The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both samples show several residuals to be correlated.
+
+\begin{table}[htpb]
+\caption{Latent Factor correlations training sample}
+
+\resizebox{\textwidth}{!}{  
+\begin{tabular}{lccccc}
+\hline
+  & Comprehention & Evaluation & Integration & Communication & Statistics \\
+\hline
+Comprehension & 1.000 & & & & \\
+Evaluation    & 0.672 & 1.000 & & & \\
+Integration   & 0.596 & 0.715 & 1.000 & & \\
+Communication & 0.735 & 0.720 & 0.604 & 1.000 & \\
+Statistics    & 0.782 & 0.649 & 0.700 & \textbf{0.971} & 1.000 \\
+\hline
+\end{tabular}
+}
+
+\vspace{10pt}  % Adjust space between table and note
+\small\textit{Note}. The table shows the correlations between the latent factors for the training sample.
+\end{table}
+
 
 ## Latent Correlations 
-To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in table X. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in table X. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. 
+To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. 
 
-For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all p < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10($\tau$ = -.15, p < .05; $\tau$ = -.18, p < .01; $\tau$ = -.26, p < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10($\tau$ = .13, p < .05; $\tau$ = .25, p < .01; $\tau$ = .16, p < .05; $\tau$ = .17, p < .01). The latent correlations with respective confidence intervals are also displayed in table 3.
+\begin{table}[htpb]
+\caption{Latent Factor correlations test sample}
 
-## Reliability
-The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
+\resizebox{\textwidth}{!}{  
+\begin{tabular}{lccccc}
+\hline
+ & Comprehention & Evaluation & Integration & Communication & Statistics \\
+\hline
+Comprehension & 1.000 & & & & \\
+Evaluation    & 0.627 & 1.000 & & & \\
+Integration   & \textbf{0.918} & \textbf{0.870} & 1.000 & & \\
+Communication & 0.760 & 0.432 & 0.799 & 1.000 & \\
+Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
+\hline
+\end{tabular}
+}
+
+\vspace{10pt}  % Adjust space between table and note
+\small\textit{Note}. The table shows the correlations between the latent factors for the test sample.
+\end{table}
+
+
+For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all p < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10($\tau$ = -.15, p < .05; $\tau$ = -.18, p < .01; $\tau$ = -.26, p < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10($\tau$ = .13, p < .05; $\tau$ = .25, p < .01; $\tau$ = .16, p < .05; $\tau$ = .17, p < .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
+
+## Control Variables
+The analysis of control variables, including gender, educational level, aspired degree of current studies, and occupation classification, revealed that most items did not exhibit statistically significant effects. Furthermore, singularity issues limited the estimation of several control variables, particularly within the Degree and Occupation categories, which reduced the interpretability of the results.
+For item F2F15 in Education5 (A-levels), the coefficient is -3.00 (p = 0.03), which is statistically significant at the 0.05 level. This suggests that individuals with A-levels as their highest educational level score, on average, 3.00 points lower on item F2F15 compared to the reference group, which consisted of individuals with higher educational levels.
+Education5 (A-levels) also shows a statistically significant positive effect on F4F3, with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
+Education also demonstrates influences on F4F8, with Education5 (A-levels), Education7 (degree from a university of applied sciences), and Education8 (university degree) showing statistically significant positive effects. Specifically, Education5 (A-levels) indicates an increase of 2.82 points (p = 0.02), Education7 (degree from a university of applied sciences) shows an increase of 7.46 points (p = 0.00), and Education8 (university degree) suggests an increase of 7.04 points (p = 0.00). All of these p-values are below the 0.05 significance threshold, indicating statistically significant effects.
+For the Degree variable, Degree2 (currently pursuing a Masters degree) shows a significant negative effect on F4F8, with a coefficient of -3.20 and a p-value of 0.05, suggesting a decrease of 3.20 points. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect with an increase of 2.60 points and a p-value of 0.03, both statistically significant.
+For Age22, there is a statistically significant effect on F5F8, with a coefficient of -3.00 (p < 0.05). This indicates that individuals aged 22 report, on average, 3.00 points lower on F5F8 compared to the reference group.
+Among the Degree variables for F5F8, Degree3 (currently pursuing a state examination) demonstrates a statistically significant increase of 3.00 points, with a p-value of 0.05, indicating a positive effect. However, Degree2 (currently pursuing a Masters degree) and Degree4 (currently pursuing a doctorate) encounter singularity issues and could not be estimated.
+
+
 

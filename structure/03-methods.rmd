@@ -50,8 +50,7 @@ disagree", 4 = "somewhat agree", 5 = "strongly agree”) with a “don’t know�
 option.
 
 ### Measuring Information Literacy
-The SWE-IV-16 [@behm2018] (McDonalds $\omega$ = .91; Cronbachs $\alpha$ =.91) assesses the self-efficacy beliefs
-of adolescents and adults in their ability to engage in information behaviour. This
+The SWE-IV-16 [@behm2018] (McDonalds $\omega$ = .91; Cronbachs $\alpha$ =.91) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
 [@brandgruwel2009]. In our study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed

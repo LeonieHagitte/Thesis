@@ -1,14 +1,22 @@
-\usepackage{booktabs}
-\usepackage{libertine}
-\usepackage{libertinust1math}
-\usepackage{sourcecodepro}
-\usepackage{emptypage}
+\usepackage{booktabs}    % For table formatting
+\usepackage{libertine}   % Font package (you can keep this as it is)
+\usepackage{libertinust1math}  % Font package for math symbols (you can keep this as it is)
+\usepackage{sourcecodepro}  % For source code font (you can keep this as it is)
+\usepackage{emptypage}   % To remove the page numbers from empty pages (you can keep this as it is)
+\usepackage{graphicx}    % For resizing tables to fit the text width
+\usepackage{caption}     % For customizing caption alignment
+\usepackage{longtable}   % Optional: Use for long tables spanning multiple pages
+
+% Customize table settings
 \renewcommand{\textfraction}{0.05}
 \renewcommand{\topfraction}{0.8}
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\floatpagefraction}{0.75}
-%\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\footnotesize}
-%% change fontsize of output
+
+% Resize tables to fit the text width and left-align captions
+\captionsetup{justification=raggedright, singlelinecheck=false}
+
+% Optional: Change the font size for verbatim output
 \let\oldverbatim\verbatim
 \let\endoldverbatim\endverbatim
 \renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}

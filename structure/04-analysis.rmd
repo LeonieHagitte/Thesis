@@ -1,7 +1,7 @@
 # Analysis
 
 ## Data Quality 
-Careless or inattentive response patterns were analyzed by the ATC items. Furthermore, the data was checked for outliers. Because of the planned random missings in the data, those missings were imputed using full information maximum likelihood (FIML), via 'stuart's' [@schultze2022] access to 'lavaan' [@rosseel2012]. For model estimation, FIML was used as well to handle the missing data. 
+Careless or inattentive response patterns were assessed using attention-check items. Additionally, the data was visually inspected for outliers through boxplots. Missing data, due to planned random omissions, was imputed using Full Information Maximum Likelihood (FIML) via 'stuart's' access to 'lavaan' [@schultze2022; @rosseel2012]. FIML was also applied during model estimation to handle missing values. Aside from the planned random missings in the data literacy questions, there were non-planned missings due to incomplete questionnaire submissions. These non-planned missings were not imputed. For those participants who did not finish the questionnaire, data from their data literacy-related responses were still used in the training sample, as list-wise deletion would have resulted in too few data points for proper algorithm functioning.
 
 ## Main Analyses
 Algorithm based item selection was done via the R package ‘stuart’[@schultze2022] and the CFA via the R package ‘lavaan’[@rosseel2012]. Inference criteria: Model fit will be assessed using established criteria (e.g.: @hu1999). Comprising of Chi square significance testing as well as a combination of several fit indices, i.e.,RMSEA < 0.05, SRMR < 0.07, CFI > 0.95. Model-specific cutoff values will be considered as well, using the ‘ezCutoffs’ package[@schmalbach2019]

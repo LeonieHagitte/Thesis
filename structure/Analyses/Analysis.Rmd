@@ -1553,7 +1553,7 @@ print(t_test_results)
 #####################################################
 #####################################################
 #####################################################
-```{r}
+```{reproducibleR}
 
 df_result<- data.frame(
   F1F6 = df_test$F1F6,
@@ -1579,7 +1579,7 @@ df_result<- data.frame(
 )
 ```
 ## Convergent Measures
-```{r}
+```{reproducibleR}
 SWE <- df_test %>%
   dplyr::select(starts_with("SWE")) %>%
   mutate_all(as.numeric)
@@ -1602,7 +1602,7 @@ B5_con <- df_test %>%
 ```
 
 ## Inverting negatively keyed items
-```{r}
+```{reproducibleR}
 # Recoding for B5_con and B5_openness
 B5_con$B5.G1. <- 6 - B5_con$B5.G1.
 B5_openness$B5.O2. <- 6 - B5_openness$B5.O2.
@@ -1617,7 +1617,7 @@ SWE$SWE16s2.SWE14. <- 6 - SWE$SWE16s2.SWE14.
 ```
 
 ## Calculating meanscores
-```{r}
+```{reproducibleR}
 # Calculate row means for each row and add as a new column
 B5_con <- B5_con %>%
   rowwise() %>%
@@ -1650,7 +1650,7 @@ SWE <- SWE %>%
 
 ```
 
-```{r}
+```{reproducibleR}
 # Combine the row means into a single data frame
 all_means <- data.frame(
   B5con_Row_Means = B5_con$B5con_Row_Means,
@@ -1942,7 +1942,7 @@ print(heatmap_final3)
 ```
 
 ## Reliability
-```{r}
+```{reproducibleR}
 omega(B5_con[1:2],1)
 omega(B5_openness[1:2],1)
 omega(NFC[1:4],1)
@@ -1955,7 +1955,7 @@ omega(df_result,5)
 
 ## Item Difficulty
 
-```{r}
+```{reproducibleR}
 library(car)
 
 # Set up graphics to have 1 row and 4 columns for histograms
@@ -1969,7 +1969,7 @@ hist(df_mi$F1F14, ylab='Häufigkeit', xlab='Item 4', main='Histogramm')
 ```
 
 
-```{r}
+```{reproducibleR}
 par(mfrow=c(1,4))
   
 #Evaluation
@@ -1979,7 +1979,7 @@ hist(df_mi$F2F15, ylab='Häufigkeit', xlab='Item 7', main='Histogramm')
 hist(df_mi$F2F20, ylab='Häufigkeit', xlab='Item 8', main='Histogramm')
 ```
 
-```{r}
+```{reproducibleR}
 par(mfrow=c(1,4))
 #Integration 
 hist(df_mi$F3F2, ylab='Häufigkeit', xlab='Item 9', main='Histogramm')
@@ -1988,7 +1988,7 @@ hist(df_mi$F3F6, ylab='Häufigkeit', xlab='Item 11', main='Histogramm')
 hist(df_mi$F3F9, ylab='Häufigkeit', xlab='Item 12', main='Histogramm')
 ```
 
-```{r}
+```{reproducibleR}
 par(mfrow=c(1,4))
 #Communication
   
@@ -1998,7 +1998,7 @@ hist(df_mi$F4F6, ylab='Häufigkeit', xlab='Item 15', main='Histogramm')
 hist(df_mi$F4F8, ylab='Häufigkeit', xlab='Item 16', main='Histogramm')
 ```
 
-```{r}
+```{reproducibleR}
 par(mfrow=c(1,4))
 #Statistics
 hist(df_mi$F5F3, ylab='Häufigkeit', xlab='Item 17', main='Histogramm')
@@ -2007,7 +2007,7 @@ hist(df_mi$F5F8, ylab='Häufigkeit', xlab='Item 19', main='Histogramm')
 hist(df_mi$F5F18, ylab='Häufigkeit', xlab='Item 20', main='Histogramm')
 ```
 
-```{r}
+```{reproducibleR}
 library(car)
 
 # Create a boxplot for the columns in df_mi
@@ -2015,7 +2015,7 @@ car::Boxplot(df_mi, ylab='Frequency', xlab='Items', main='Boxplot', col='darkgre
 
 ```
 
-```{r}
+```{reproducibleR}
 # Means
 mean_F1F6 <- mean(df_mi$F1F6, na.rm = TRUE)
 mean_F1F8 <- mean(df_mi$F1F8, na.rm = TRUE)
@@ -2062,7 +2062,7 @@ sd_F5F18 <- sd(df_mi$F5F18, na.rm = TRUE)
 
 ```
 
-```{r}
+```{reproducibleR}
 # Print means
 cat("Means of items:\n")
 cat("Mean of F1F6: ", mean_F1F6, "\n")
@@ -2113,7 +2113,7 @@ cat("SD of F5F18: ", sd_F5F18, "\n")
 ```
 
 ## correlation of residuals
-```{r}
+```{reproducibleR}
 # Inspect residuals
 resid_cor <- residuals(fit_cfa_model_m, type = "cor")  # Correlation residuals
 resid_cov <- residuals(fit_cfa_model_m, type = "raw")  # Covariance residuals (raw)
@@ -2122,12 +2122,69 @@ print(resid_cor)
 
 ```
 
-```{r}
+## Controlling for Age potential Confounders
+
+```{reproducibleR}
+# Define the column names you want to select
+selected_columns <- c("id", "F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20", 
+                      "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8", 
+                      "F5F3", "F5F4", "F5F8", "F5F18", "Gender", "Age", "Education", "study", 
+                      "Degree", "Occupation")
+
+# Select the specific columns and columns starting with certain prefixes
+control_df <- df_test %>%
+  select(all_of(selected_columns), 
+         starts_with("SWE"),
+         starts_with("NFC"),
+         starts_with("ICT"),
+         starts_with("B5.o"),
+         starts_with("B5.G"))%>%
+  mutate_all(as.numeric)
+
+# View the resulting control_df
+print(control_df)
+ 
 
 ```
 
-```{r}
+```{reproducibleR}
+# Define the columns you want to select
+dl_control <- c("id", "F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20", 
+                "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8", 
+                "F5F3", "F5F4", "F5F8", "F5F18", "Gender", "Age", "Education", "study", 
+                "Degree", "Occupation")
 
+# Select the desired columns from df_test and store in dl_control
+dl_control_df <- df_test %>%
+  select(all_of(dl_control))
+
+# View the resulting dl_control_df
+print(dl_control_df)
+
+
+```
+
+```{reproducibleR}
+# List of items
+likert_items <- c("F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20", 
+                  "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8", 
+                  "F5F3", "F5F4", "F5F8", "F5F18")
+
+# Define demographic variables
+demographics <- c("Age", "Gender", "Education", "Degree", "Occupation")
+
+# For each Likert item, a regression controlling for demographics
+for (item in likert_items) {
+  # Dynamically create the formula for the regression model
+  formula <- as.formula(paste(item, "~ Age + Gender + Education + Degree + Occupation"))
+  
+  # Run the linear regression model
+  model <- lm(formula, data = dl_control_df)
+  
+  # Print summary of the model for each Likert item
+  print(paste("Results for", item))
+  print(summary(model))
+}
 
 
 ```
