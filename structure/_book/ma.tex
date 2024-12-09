@@ -107,7 +107,10 @@
 \usepackage{emptypage}   % To remove the page numbers from empty pages (you can keep this as it is)
 \usepackage{graphicx}    % For resizing tables to fit the text width
 \usepackage{caption}     % For customizing caption alignment
-\usepackage{longtable}   % Optional: Use for long tables spanning multiple pages
+\usepackage{longtable}   % For long tables spanning multiple pages
+\usepackage{pdflscape}   % For landscape pages
+\usepackage{rotating}    % For rotating tables (sideways tables)
+\usepackage{geometry}    % For page layout customization
 
 % Customize table settings
 \renewcommand{\textfraction}{0.05}
@@ -143,7 +146,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2024-11-25}
+\date{2024-12-09}
 
 \begin{document}
 \maketitle
@@ -173,8 +176,8 @@ I want to thank my advisers, Prof.~Martin Schultze, Prof.~Timo Lorenz, and Prof.
 
 \section{Background}\label{background}
 
-In a world characterized by information overload and rapid technological advancements (\citeproc{ref-Koltay2017}{Koltay, 2017}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-Roetzel2019}{Roetzel, 2019}), the relevance of data literacy for today's society becomes evident. Data literacy serves as a potent tool in navigating the complex data-driven environment (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; e.g.: \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-risdale2015}{Ridsdale et al., 2015}) and individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions (e.g. \citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}).
-The exploration of citizens' interaction with media and the cultivation of their agency has traditionally started around concepts such as written literacy and information literacy (e.g. \citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}; \citeproc{ref-brown2002}{Brown \& Krumholz, 2002}). Information literacy, as defined by the American Library Association in 1989, encompasses the skills required to locate, evaluate, and effectively use information (\citeproc{ref-brown2002}{Brown \& Krumholz, 2002}). This foundational understanding of information literacy has evolved through various frameworks and models, emphasizing its importance in educational settings and lifelong learning (\citeproc{ref-tomar2023}{Tomar, 2023}). In more recent discussions, data literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Thus, data literacy is a competency that is becoming increasingly important to everyone. Research has acknowledged this in recent years, as more and more research is being done in that direction (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). This study aims to complement the current research, with a self rating questionnaire for assessing data literacy among citizens.
+In a world characterized by information overload and rapid technological advancements (\citeproc{ref-Koltay2017}{Koltay, 2017}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-Roetzel2019}{Roetzel, 2019}), the relevance of data literacy for today's society becomes evident. Data literacy serves as a potent tool in navigating the complex data-driven environment (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}; \citeproc{ref-risdale2015}{Ridsdale et al., 2015}) and individuals equipped with strong data literacy skills can discern patterns, critically evaluate information, and make informed decisions (e.g. \citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}).
+The exploration of citizens' interaction with media and the cultivation of their agency has traditionally started around concepts such as written literacy and information literacy (e.g. \citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}; \citeproc{ref-brown2002}{C. Brown \& L. R., 2002}). Information literacy, as defined by the American Library Association in 1989, encompasses the skills required to locate, evaluate, and effectively use information (\citeproc{ref-brown2002}{C. Brown \& L. R., 2002}). This foundational understanding of information literacy has evolved through various frameworks and models, emphasizing its importance in educational settings and lifelong learning (\citeproc{ref-tomar2023}{Tomar, 2023}). In more recent discussions, data literacy has been approaching relevance among discussed competencies regarding what is necessary for agency in the current society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Deficiency in data literacy not only exposes individuals to various risks and harms on personal, social, physical, and financial levels but also constrains their capacity to actively engage as informed citizens within an evolving, data-driven society (\citeproc{ref-Carmi2020}{Carmi et al., 2020}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). Thus, data literacy is a competency that is becoming increasingly important to everyone. Research has acknowledged this in recent years, as more and more research is being done in that direction (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). This study aims to complement the current research, with a self rating questionnaire for assessing data literacy among citizens.
 
 Data literacy involves the ability to effectively collect, manage, evaluate, and apply data in a critical manner (\citeproc{ref-risdale2015}{Ridsdale et al., 2015}). According to Wolff et al. (\citeproc{ref-wolff2016}{2016}), it means being able to ask and answer everyday questions using both small and large datasets while considering ethical aspects. This includes skills such as selecting, cleaning, analyzing, visualizing, criticizing, and interpreting data, as well as communicating insights from data and using data for various purposes. Frank (\citeproc{ref-frank2016}{2016}) distinguishes between cognitive skills, like data collection and analysis, and social skills, which involve trusting data while maintaining skepticism. Calzada Prado \& Marzal (\citeproc{ref-prado2013}{2013}) outline five dimensions of data literacy: understanding data, acquiring data, interpreting and evaluating data, managing data, and using data. Understanding data includes knowing their types, roles, and significance, while acquiring data involves evaluating and selecting sources. Interpreting and evaluating data encompass understanding different presentation methods and data interpretation. Managing data includes storage, management, and reuse. Using data involves preparation, analysis, communication, and ethical considerations (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}).
 This small comparison already highlights one prominent feature of data literacy - It is a heterogeneous concept (\citeproc{ref-Chen2024}{Chen et al., 2024}). Every subject or profession seems to hold their own definition or framework of data literacy (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}). While that most certainly is good for assessing specific skills (e.g.~in an Recruitment test), it limits the generalisability and comparability of data literacy across individuals with different background. It furthermore limits the accuracy of communication about the topic as two people with different background might hold different definitions on data literacy. In the study from Cui et al. (\citeproc{ref-Cui2023}{2023}) it also becomes apparent, that one group seems to be less focused on in the research on data literacy: citizens or the broader public. Citizens in this case mean people of the general public, that hold no special role or profession, related to data handling or aspects related to data literacy (\citeproc{ref-wolff2016}{Wolff et al., 2016}).
@@ -189,12 +192,12 @@ It is structured representation of data, that also according to the framework of
 \subsection{Conceptual Integration and Delineation from other concepts}\label{conceptual-integration-and-delineation-from-other-concepts}
 
 Because data literacy is such a heterogeneous construct, it is very prone to construct proliferation. This, for example, becomes evident, when looking into the literature review from Cui et al. (\citeproc{ref-Cui2023}{2023}). In their study they found over fourteen different definitions of data literacy, incorporating different sets of 75 competencies. Furthermore very few of those definitions are targeted at citizens, and none of the questionnaires they report target citizens.
-Thus, our objective was to formulate a definition of data literacy, based on the current literature, that works for citizens. For the conceptual integration, I used the review of Cui et al. (\citeproc{ref-Cui2023}{2023}) and assessed what competencies were incorporated in most of the definitions and would therefore be considered central to the construct. This included counting the same competencies as well as checking what competencies might be named differently, but are considered the same substantively. Furthermore, data literacy encompasses certain characteristics and behaviors from similar constructs. Examples for those convergent constructs are \emph{critical thinking}, \emph{media competency}, \emph{technology competency}, \emph{statistical literacy} as well as \emph{information literacy} (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). As those constructs share substantive parts, differing in size regarding the respective definition of the constructs, it is to be expected that all of them show moderate to strong positive correlations.
+Thus, my objective was to formulate a definition of data literacy, based on the current literature, that works for citizens. For the conceptual integration, I used the review of Cui et al. (\citeproc{ref-Cui2023}{2023}) and assessed what competencies were incorporated in most of the definitions and would therefore be considered central to the construct. This included counting the same competencies as well as checking what competencies might be named differently, but are considered the same substantively. Furthermore, data literacy encompasses certain characteristics and behaviors from similar constructs. Examples for those convergent constructs are \emph{critical thinking}, \emph{media competency}, \emph{technology competency}, \emph{statistical literacy} as well as \emph{information literacy} (\citeproc{ref-Chen2024}{Chen et al., 2024}; \citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-Leighton2021}{Leighton et al., 2021}). As those constructs share substantive parts, differing in size regarding the respective definition of the constructs, it is to be expected that all of them show moderate to strong positive correlations.
 Concluding, data literacy can be defined as ``the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data, information and their sources'' (\citeproc{ref-Cui2023}{Cui et al., 2023}; \citeproc{ref-risdale2015}{Ridsdale et al., 2015}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{images/Models_MA} 
+{\centering \includegraphics[width=\textwidth]{images/Models_MA} 
 
 }
 
@@ -205,7 +208,7 @@ Condensing the incorporated constructs as describes, I arrived at a structure of
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{images/DL_NomNet} 
+{\centering \includegraphics[width=\textwidth]{images/DL_NomNet} 
 
 }
 
@@ -220,8 +223,8 @@ The ``Integration'' factor relates to the ability and motivation to integrate da
 The ``Communication'' factor revolves around the often referenced skill to effectively communicate and present data through various means, including visual formats, verbal explanations, and written descriptions (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; e.g. \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
 It requires translating complex data into clear formats, ensuring comprehension by varied audiences. Individuals scoring high in this factor hold the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats (\citeproc{ref-prado2013}{Calzada Prado \& Marzal, 2013}; e.g. \citeproc{ref-kouts-klemm2019}{Kõuts-Klemm, 2019}; \citeproc{ref-wolff2016}{Wolff et al., 2016}).
 
-Our definition incorporates statistical literacy (\citeproc{ref-Gal2002}{Gal, 2002}) by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Statistics).
-The ``Statistics'' factor covers skills related to managing and analyzing data effectively (\citeproc{ref-gould2017}{Gould, 2017}; e.g. \citeproc{ref-risdale2015}{Ridsdale et al., 2015}). It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies (\citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). Individuals scoring high on this factor exhibit competence in conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations (\citeproc{ref-deahl2014}{Deahl, 2014}; e.g. \citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). In contrast to our definition of the ``Statistics'' factor, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing (\citeproc{ref-Gal2002}{Gal, 2002}; \citeproc{ref-gould2017}{Gould, 2017}). Our definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While information literacy involves assessing the quality of information sources, our definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) and is more specific to data literacy.\\
+My definition incorporates statistical literacy (\citeproc{ref-Gal2002}{Gal, 2002}) by emphasizing data interpretation, analysis, and understanding different types of data representations, such as graphs and tables (Statistics).
+The ``Statistics'' factor covers skills related to managing and analyzing data effectively (\citeproc{ref-gould2017}{Gould, 2017}; e.g. \citeproc{ref-risdale2015}{Ridsdale et al., 2015}). It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies (\citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). Individuals scoring high on this factor exhibit competence in conducting interviews or surveys for data collection, performing basic statistical analysis and recognizing trends in graphical representations (\citeproc{ref-deahl2014}{Deahl, 2014}; e.g. \citeproc{ref-gould2017}{Gould, 2017}; \citeproc{ref-williams2014}{Williams et al., 2014}). In contrast to my definition of the ``Statistics'' factor, statistical literacy often focuses more narrowly on statistical concepts and methods, such as probability, sampling, and hypothesis testing (\citeproc{ref-Gal2002}{Gal, 2002}; \citeproc{ref-gould2017}{Gould, 2017}). My definition encompasses a broader range of skills beyond statistical concepts, such as data visualization, software usage, and understanding data collection methods. While information literacy involves assessing the quality of information sources, my definition places a particular emphasis on assessing data quality, considering factors like sample size, biases, and data context. This aspect extends beyond traditional information literacy (\citeproc{ref-ACRL2000}{Association of College \& Research Libraries, 2000}) and is more specific to data literacy.\\
 The factors ``Evaluation'' and ``Statistics'' encompass behaviors and skills related to technology competency, including navigating and critically evaluating online sources and platforms, using information and communication technology, and utilizing statistical software. Data literacy involves proficiency in using technology, but specifically focuses on understanding and working with data. Technology competency encompasses a broader set of digital skills that extend beyond those relevant for data literacy.
 
 \subsection{Discriminant Constructs}\label{discriminant-constructs}
@@ -229,7 +232,7 @@ The factors ``Evaluation'' and ``Statistics'' encompass behaviors and skills rel
 The name data literacy suggests that one is talking of some form of capability, skill or ability.
 Ability refers to an individual's potential or aptitude, encompassing innate or developed capacities across domains such as linguistic, mathematical, or motor abilities (\citeproc{ref-dorsch_ability}{Dorsch - Lexikon der Psychologie, n.d.a}).
 Knowledge, by contrast, is the cognitive representation or mental model of information, objects, and relationships. It forms the informational basis for interaction with and interpretation of the environment, encompassing all stored and retrievable data within an individual's mental framework (\citeproc{ref-dorsch_wissen}{Dorsch - Lexikon der Psychologie, n.d.d}).
-Skill describes the application of learned and task-specific activities, often categorized into motor, cognitive, or social domains. Unlike abilities, skills imply mastery achieved through practice and are typically assessed based on performance quality (\citeproc{ref-dorsch_fertigkeit}{Dorsch - Lexikon der Psychologie, n.d.b}).
+Skill describes the application of learned and task-specific activities, often categorized into motor, cognitive, or social domains. Unlike abilities, skills imply mastery achieved through practice and are typically assessed based on performance quality (\citeproc{ref-dorsch_fertigkeit}{Dorsch - Lexikon der Psychologie, n.d.b}; \citeproc{ref-green1998}{Green, 1998}).
 A proficiency however integrates abilities and skills but expands further to include motivational, temperamental, and situational factors. It reflects the capacity to adapt and perform tasks effectively under varying conditions, making it a comprehensive measure of practical competence and adaptive success (\citeproc{ref-dorsch_koennen}{Dorsch - Lexikon der Psychologie, n.d.c}).
 In fact, data literacy can be seen as more on the side of competences or proficiencies, because many behaviors, incorporated in data literacy go beyond the mere question of whether a person is ``able to do it''. It includes the question of one's motivation to do it.
 
@@ -255,7 +258,7 @@ The aim was to derive a comprehensive definition of data literacy based on exist
 
 ``Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?''
 
-\emph{H1: The test-data will support the suggested latent factor structure and the proposed measurement model.}\\
+\emph{H1: The training-data will support the suggested latent factor structure and the proposed measurement model.}\\
 \emph{H2: The latent factor structure of the initial analysis will be supported by a different sample.}\\
 \emph{H3: A moderate to high positive correlation with information behavior related self-efficacy (SWE-IV-16) (\citeproc{ref-behm2018}{Behm, 2018}) is expected.}\\
 \emph{H4: A moderate positive correlation with self-perceived competence in using information and communication technology (ICT-SC25) (\citeproc{ref-schauffel2021}{Schauffel, 2021}) is expected.}\\
@@ -285,7 +288,7 @@ Ten cognitive interviews were held to refine those potential items and to confir
 The cognitive interviews comprised the think-aloud-technique as well as probing, to get an understanding of how the items are understood, what comes to mind when reading the items and whether the items really ask for relevant behaviors (\citeproc{ref-fowler1995}{Fowler, 1995}). Furthermore, that way unclear formulations or difficult wordings could be resolved.
 The interviews were administered iteratively to refine the items consecutively.
 In the interviews it became apparent, that especially the degree to which people can relate to the factors four and five differed heavily. This was expected, since those producer factors are also considered to play a lesser role in the every day live of citizens. It also turned out that some words like ``data'', ``source'' or ``information'' are understood differently regarding the personal background sometimes.
-The age of the interviewed persons ranged from 21 to 66. Three of the interviewed persons were men, the other seven were women. The occupations included, for example, students, construction managers, and nurses working in intensive care units. After the cognitive interviews of the 118 potential items, 71 were left. A list of all 71 items can be seen in table X.
+The age of the interviewed persons ranged from 21 to 66. Three of the interviewed persons were men, the other seven were women. The occupations included, for example, students, construction managers, and nurses working in intensive care units. After the cognitive interviews of the 118 potential items, 71 were left.
 
 \subsection{Sample}\label{sample}
 
@@ -324,7 +327,7 @@ option.
 
 The SWE-IV-16 (\citeproc{ref-behm2018}{Behm, 2018}) (McDonalds \(\omega\) = .91; Cronbachs \(\alpha\) =.91) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
-(\citeproc{ref-brandgruwel2009}{Brand-Gruwel et al., 2009}). In our study this construct is used as a proxy for information literacy.
+(\citeproc{ref-brandgruwel2009}{Brand-Gruwel et al., 2009}). In this study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed
 abilities in searching for and evaluating information, as well as managing
 information searches effectively. Each statement begins with ``When I search for
@@ -374,7 +377,7 @@ the mean value is calculated for each dimension from both the recoded and non-re
 
 \subsection{Data Quality}\label{data-quality}
 
-Careless or inattentive response patterns were assessed using attention-check items. Additionally, the data was visually inspected for outliers through boxplots. Missing data, due to planned random omissions, was imputed using Full Information Maximum Likelihood (FIML) via `stuart's' access to `lavaan' (\citeproc{ref-rosseel2012}{Rosseel, 2012}; \citeproc{ref-schultze2022}{Schultze, 2022}). FIML was also applied during model estimation to handle missing values. Aside from the planned random missings in the data literacy questions, there were non-planned missings due to incomplete questionnaire submissions. These non-planned missings were not imputed. For those participants who did not finish the questionnaire, data from their data literacy-related responses were still used in the training sample, as list-wise deletion would have resulted in too few data points for proper algorithm functioning.
+Careless or inattentive response patterns were assessed using attention-check items. Additionally, the data was visually inspected for outliers through boxplots. The data showed several outliers, that were left in the dataset, however. The outliers appear consistently across multiple items, which might suggest a systematic bias, where a subset of respondents consistently answers in the lower categories. This could be due to respondents finding the items too difficult or not engaging with the material in a meaningful way. Missing data, due to planned random omissions, was imputed using Full Information Maximum Likelihood (FIML) via `stuart's' access to `lavaan' (\citeproc{ref-rosseel2012}{Rosseel, 2012}; \citeproc{ref-schultze2022}{Schultze, 2022}). FIML was also applied during model estimation to handle missing values. Aside from the planned random missings in the data literacy questions, there were non-planned missings due to incomplete questionnaire submissions. These non-planned missings were not imputed. For those participants who did not finish the questionnaire, data from their data literacy-related responses were still used in the training sample, as list-wise deletion would have resulted in too few data points for proper algorithm functioning.
 
 \subsection{Main Analyses}\label{main-analyses}
 
@@ -410,27 +413,77 @@ Because the complexity of the model, as well as the several objectives of the in
 
 \section{Results}\label{results}
 
+The descriptive analysis of the selected items showed several results to be highlighted. The item \emph{F1F11} (``Ich kenne unterschiedliche Arten von Grafiken'') had a high average score (M = 4.48, SD = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, \emph{F3F9} (``Ich kann neue Informationen in meinen Wissensstand integrieren'') also demonstrated a strong ceiling effect with a mean of 4.32 (SD = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
+Furthermore, several items exhibited high variability in responses. The item \emph{F4F1} (``Ich kann Ergebnisse in Streudiagrammen darstellen'') had the lowest mean (M = 2.88) but also the highest standard deviation (SD = 1.45), indicating substantial differences in respondents' perceived abilities to use scatterplots. Other items with notable variability included \emph{F4F3} (``Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind,'' M = 3.45, SD = 1.23), \emph{F5F3} (``Ich bin in der Lage, einfache Datenbanken zu verwalten,'' M = 3.44, SD = 1.31), and \emph{F5F4} (``Ich kann Datensätze mit einfachen statistischen Methoden analysieren,'' M = 3.28, SD = 1.26), reflecting diverse self-assessments of these specific skills.
+Additionally, item \emph{F2F2} (``Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle''), had a relatively high average (M = 4.04) as well as variability (SD = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, \emph{F2F6} (``Ich kenne Merkmale zur Bewertung von Datenqualität,'' M = 3.19, SD = 1.13) and \emph{F5F18} (``Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen,'' M = 3.74, SD = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. The final set of items as well as their mean and standard deviation can be seen in Table 1.
+
+\begin{table}[htpb]
+\caption{The selected item pool}
+\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\footnotesize
+\begin{tabular}{lp{10cm}cc}
+Tag & Item & Mean & SD\\
+\hline
+F1F6 & Bei der Auswertung von Grafiken bin ich in der Lage, Widersprüche zu erkennen. & 3.74 & .83\\
+F1F8 & Ich erkenne, ob die Interpretationen Anderer zu den vorliegenden Daten passen. & 3.66 & .97\\
+F1F11 & Ich kenne unterschiedliche Arten von Grafiken. & 4.48 & .75 \\
+F1F14 & Ich kann die zentrale These eines wissenschaftlichen Textes erkennen. & 3.92 & .88\\
+F2F2 & Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle. & 4.04 & 1.04\\
+F2F6 & Ich kenne Merkmale zur Bewertung von Datenqualität. & 3.19 & 1.13\\
+F2F15 & Ich überprüfe die Qualifikation von Autor*innen, bevor ich mich auf die Informationen verlasse. & 3.18 & .94\\
+F2F20 & Ich erkenne, wenn Daten schlechte Qualität haben. & 3.25 & .97\\
+F3F2 & Ich beschäftige mich mit Informationen, die meine Ansichten in Frage stellen. & 3.57 & .80\\
+F3F4 & Ich kann schnell und ohne Schwierigkeiten Informationen in Datenbanken finden. & 3.38 & .92\\
+F3F6 & Ich bevorzuge datengestützte Informationen, wenn ich mir eine Meinung bilde. & 3.75 & 1.09\\
+F3F9 & Ich kann neue Informationen in meinen Wissensstand integrieren. & 4.32 & .64\\
+F4F1 & Ich kann Ergebnisse in Streudiagrammen darstellen. & 2.88 & 1.45\\
+F4F3 & Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind. & 3.45 & 1.23\\
+F4F6 & Ich kann aus verschiedenen Darstellungsformen, die am besten geeignete auswählen. & 3.54 & 1.01\\
+F4F8 & Ich kann mit Programmen Grafiken erstellen, um Ergebnisse zu präsentieren. & 3.73 & 1.17\\
+F5F3 & Ich bin in der Lage, einfache Datenbanken zu verwalten. & 3.44 & 1.31\\
+F5F4 & Ich kann Datensätze mit einfachen statistischen Methoden analysieren. & 3.28 & 1.26\\
+F5F8 & Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich daraus Erkenntnisse gewinnen. & 3.47 & 1.08\\
+F5F18 & Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen. & 3.74 & 1.13\\
+
+\hline
+\end{tabular}
+}
+\vspace{10pt}
+\small\textit{Note}. The items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming.
+\end{table}
+
 \subsection{Model Fit and Measurement Invariance}\label{model-fit-and-measurement-invariance}
 
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit (according to \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with data treated as metric and ML as estimator: Satorra-Bentler-\(X^{2}\) (df = 414, N = 373) = 582.582, p \textless{} 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90\%-CIRMSEA {[}.036; .054{]}.
+With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit (according to \citeproc{ref-hu1999}{Hu \& Bentler, 1999}) with data treated as metric and ML as estimator: Satorra-Bentler-\(X^{2}\) (df = 414, N = 373) = 582.582, p \textless{} 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90\%-CIRMSEA {[}.036; .054{]}.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{images/Model5} 
+{\centering \includegraphics[width=\textwidth]{images/Model5} 
 
 }
 
-\caption{Measurement Model of Model 5.  }\label{fig:model3}
+\caption{Measurement Model of the configural MGCFA Model in the training sample .}\label{fig:figure3}
 \end{figure}
 
-Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in Figure 3.
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = 389, N = 373) = 659.746, p \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) = .00 , \(\Delta\text{SRMR}\) = .00, \(\Delta\text{RMSEA}\) = .001 (cf.~Table 1)
+For the configural model of the training sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .58 to .77. For the factor Evaluation loadings ranged from .35 to .74. For the factor Integration loadings ranged from .46 to .78. For the factor Communication loadings ranged from .56 to .75. For the factor Statistics loadings ranged from .60 to .74. The complete model is also displayed in Figure 3.
+
+\begin{figure}
+
+{\centering \includegraphics[width=\textwidth]{images/Model6} 
+
+}
+
+\caption{Measurement Model of the configural MGCFA Model in the test sample .}\label{fig:figure4}
+\end{figure}
+
+For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(df = 389, N = 373) = 659.746, p \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) = .00 , \(\Delta\text{SRMR}\) = .00, \(\Delta\text{RMSEA}\) = .001 (cf.~Table 2)
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MG-CFA testing}
 
-\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\resizebox{\textwidth}{!}{  
 \begin{tabular}{cccccccc}
 \hline
 Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA & $\Delta$ SRMR \\
@@ -444,13 +497,13 @@ Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA &
 \end{tabular}
 }
 
-\vspace{10pt}  % Adds space between table and note (adjust as needed)
+\vspace{10pt}
 \small\textit{Note}. The table shows the essential fit indices of the model created with 'stuart', alongside their change in terms of Invariance testing, per invariance level. All Indices shown were estimated with ML as estimator.
 \end{table}
 
 The model of the final set of items shows McDonald's \(\omega\) total = .92. The composite values McDonald's \(\omega\) total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and Statistics = .68.
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
-The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both samples show several residuals to be correlated.
+The correlated residuals from the training sample can be seen in the supporting material. The correlated residuals from the testing sample can be seen in the supporting material. Both samples show several residuals to be correlated.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations training sample}
@@ -500,11 +553,49 @@ Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
 
 For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication \& Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( \(\tau\) =.47, \(\tau\) =.46, \(\tau\) =.40, \(\tau\) =.48, \(\tau\) =.39 ; all p \textless{} .01). The factors of data literacy showed small to moderate correlations with the NFC-K (\(\tau\) =.22, \(\tau\) =.24, \(\tau\) =.30, \(\tau\) =.37, \(\tau\) =.42; all p \textless{} .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 (\(\tau\) =.31, \(\tau\) =.17, \(\tau\) =.23, \(\tau\) =.43, \(\tau\) =.32; all p \textless{} .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10(\(\tau\) = -.15, p \textless{} .05; \(\tau\) = -.18, p \textless{} .01; \(\tau\) = -.26, p \textless{} .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10(\(\tau\) = .13, p \textless{} .05; \(\tau\) = .25, p \textless{} .01; \(\tau\) = .16, p \textless{} .05; \(\tau\) = .17, p \textless{} .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
 
+\begin{table}[htbp]
+\centering
+\rotatebox{90}{%
+\begin{minipage}{\textheight} % Ensures caption is properly associated with the rotated content
+\caption{Means with standard deviations, and correlations with confidence intervals}
+\centering
+\begin{tabular}{lccccccccccc}
+\hline
+\textbf{Var} & \textbf{M} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\hline
+1. Con. & 3.68 & & & & & & & & & \\
+   & [0.76] & & & & & & & & & \\
+2. Open & 2.18 & -0.09 & & & & & & & & \\
+   & [0.87] & [-0.21, 0.04] & & & & & & & & \\
+3. Nfc & 4.89 & 0.16* & -0.06 & & & & & & & \\
+   & [1.07] & [0.04, 0.28] & [-0.19, 0.06] & & & & & & & \\
+4. Ict & 4.03 & 0.03 & -0.04 & 0.18** & & & & & & \\
+   & [0.72] & [-0.10, 0.16] & [-0.16, 0.09] & [0.06, 0.30] & & & & & & \\
+5. Swe & 3.66 & 0.38** & -0.24** & 0.30** & 0.34** & & & & & \\
+   & [0.53] & [0.26, 0.48] & [-0.36, -0.12] & [0.19, 0.41] & [0.23, 0.45] & & & & & \\
+6. Comp. & -0.03 & 0.13* & -0.15* & 0.22** & 0.31** & 0.47** & & & & \\
+   & [0.85] & [0.01, 0.26] & [-0.28, -0.03] & [0.10, 0.34] & [0.19, 0.43] & [0.37, 0.56] & & & & \\
+7. Eval. & -0.00 & 0.25** & -0.18** & 0.24** & 0.17** & 0.46** & 0.32** & & & \\
+   & [0.54] & [0.12, 0.36] & [-0.30, -0.05] & [0.12, 0.36] & [0.04, 0.29] & [0.35, 0.55] & [0.20, 0.43] & & & \\
+8. Int. & -0.01 & 0.05 & -0.26** & 0.30** & 0.23** & 0.40** & 0.28** & 0.26** & \\
+   & [0.54] & [-0.07, 0.18] & [-0.37, -0.14] & [0.18, 0.41] & [0.11, 0.35] & [0.28, 0.50] & [0.16, 0.40] & [0.13, 0.37] & \\
+9. Comm. & 0.01 & 0.16* & -0.10 & 0.37** & 0.43** & 0.48** & 0.52** & 0.27** & 0.34** \\
+   & [0.92] & [0.04, 0.28] & [-0.23, 0.02] & [0.26, 0.48] & [0.33, 0.53] & [0.37, 0.57] & [0.42, 0.61] & [0.15, 0.38] & [0.22, 0.45] \\
+10. Stat. & 0.03 & 0.17** & -0.04 & 0.42** & 0.32** & 0.39** & 0.40** & 0.18** & 0.61** \\
+   & [1.00] & [0.04, 0.29] & [-0.17, 0.09] & [0.30, 0.52] & [0.20, 0.43] & [0.27, 0.49] & [0.29, 0.51] & [0.05, 0.30] & [0.53, 0.69] \\
+\hline
+\end{tabular}
+\par % Ensures separation of the table and note
+\small\textit{Note}. The table displays values of Kendalls tau. M and SD are used to represent mean and standard deviation, respectively. Values in square brackets beneath the M show the respective standard deviation. The other values in square brackets indicate the 95\% confidence interval for each correlation. The confidence interval is a plausible range of population correlations that could have caused the sample correlation (Cumming, 2014). * indicates $p < .05$. ** indicates $p < .01$.
+\end{minipage}%
+}
+\end{table}
+
 \subsection{Control Variables}\label{control-variables}
 
 The analysis of control variables, including gender, educational level, aspired degree of current studies, and occupation classification, revealed that most items did not exhibit statistically significant effects. Furthermore, singularity issues limited the estimation of several control variables, particularly within the Degree and Occupation categories, which reduced the interpretability of the results.
 For item F2F15 in Education5 (A-levels), the coefficient is -3.00 (p = 0.03), which is statistically significant at the 0.05 level. This suggests that individuals with A-levels as their highest educational level score, on average, 3.00 points lower on item F2F15 compared to the reference group, which consisted of individuals with higher educational levels.
-Education5 (A-levels) also shows a statistically significant positive effect on F4F3, with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
+Education5 (A-levels) also shows a statistically significant positive effect on F4F3(``Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind.''), with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
 Education also demonstrates influences on F4F8, with Education5 (A-levels), Education7 (degree from a university of applied sciences), and Education8 (university degree) showing statistically significant positive effects. Specifically, Education5 (A-levels) indicates an increase of 2.82 points (p = 0.02), Education7 (degree from a university of applied sciences) shows an increase of 7.46 points (p = 0.00), and Education8 (university degree) suggests an increase of 7.04 points (p = 0.00). All of these p-values are below the 0.05 significance threshold, indicating statistically significant effects.
 For the Degree variable, Degree2 (currently pursuing a Masters degree) shows a significant negative effect on F4F8, with a coefficient of -3.20 and a p-value of 0.05, suggesting a decrease of 3.20 points. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect with an increase of 2.60 points and a p-value of 0.03, both statistically significant.
 For Age22, there is a statistically significant effect on F5F8, with a coefficient of -3.00 (p \textless{} 0.05). This indicates that individuals aged 22 report, on average, 3.00 points lower on F5F8 compared to the reference group.
@@ -512,160 +603,41 @@ Among the Degree variables for F5F8, Degree3 (currently pursuing a state examina
 
 \section{Discussion}\label{discussion}
 
-This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via `stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.
-The model demonstrating the best overall fit was selected based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items. The model exhibited an acceptable fit, with indices suggesting good model quality (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96, TLI = 0.96), according to the combinational rule for RMSEA and SRMR of Hu \& Bentler (\citeproc{ref-hu1999}{1999}). The factor loadings ranged from 0.09 to 0.82 across the five factors, and the model's total McDonald's \(\omega\) was 0.92, indicating reliable internal consistency.
-Comparison of the training sample and the test sample regarding measurement invariance suggests that scalar invariance holds (vgl. table X).
-In practical terms, when scalar invariance holds, the factor loadings, intercepts, and measurement scales acan be considered equivalent across groups. This allows for meaningful comparisons of latent means between groups rather than being due to measurement bias or differences in how the construct is understood or measured across groups.
-The lack of residual invariance suggests that the residuals (unexplained variance in the indicators) are not equivalent across groups. This implies that there are group-specific differences in how much of the variance in the observed variables remains unexplained by the latent factors. In practical terms, this lack of residual invariance complicates the interpretation of differences between groups. While the factors themselves may be measured similarly (if scalar invariance holds), the amount of unexplained variability in the responses differs across groups, indicating potential unmodeled differences in how the groups respond to certain items.
-As a result, any observed differences in the latent factors could be influenced by differing error variances across groups, making it challenging to draw definitive conclusions about true group differences. Thus, while latent means can be compared (under scalar invariance), the comparisons may be confounded by measurement error that varies across groups.
+This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via the genetic algorithm as well as a 3-fold crossvalidation in `stuart', that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net.
+The model demonstrating the best overall fit was selected based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items and respective measurement errors. The model also included inter-factor correlations between all latent factors.
 
-Further investigation of residuals revealed correlated residuals, indicating potential specification errors, both in the training and test samples. The latent correlations among factors were generally strong, especially between Communication and Statistics (0.97 in the training sample and 0.84 in the test sample). Additionally, the data literacy factors showed moderate to high correlations with external measures, including the SWE-IV-16, NFC-K, and ICT-SC25. The data literacy factors also exhibited small to moderate correlations with personality traits, such as negative correlations with openness and positive correlations with conscientiousness.
+Construct validity was evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs.
 
-Control variable analysis revealed that educational level had significant effects on certain items. Specifically, individuals with A-levels scored lower on F2F15. This indicates, that people whose highest educational level is the A-levels, report to less often check for an authors qualification, before trusting information from that author.
-However, individuals with A-levels scored higher on F4F3, indicating, that people whose highest educational level is the A-levels, more often indicate confidence in being able to present data in graphics in a way that they are understandable for different target groups.
-Meanwhile higher educational levels were associated with increased scores on F4F8. Indicating, that additionally to people having their A-levels, people holding a degree from a applied university, or a university, show an even greater increase in F4F8. Thus, with higher educational levels, people more often report being able to use programs to create graphics for presenting results.
+Although the RMSEA was a bit low, the model exhibited an acceptable to good fit, with indices suggesting good model fit (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96, TLI = 0.96), according to Hu \& Bentler (\citeproc{ref-hu1999}{1999}).
+According to the `ezCutoffs' function from the `ezCutoffs' package (\citeproc{ref-schmalbach2019}{Schmalbach et al., 2019}) suggests the following cutoffs: scaled CFI: .986; scaled RMSEA: .022 and SRMR: .041. So according to those simulated cutoffs from the `ezCutoffs' package, the model exhibits non-acceptable fit. Since the simulation cutoffs tend to be more rigorous than those from the literature, it is not surprising, that the model doesn't show good fit, compared to the simulated cutoffs.
+The factor loadings ranged from 0.50 to 0.81 across the five factors (cf.~Figure 3), and the models total McDonald's \(\omega\) was 0.92, indicating reliable internal consistency.
+Regarding the first hypothesis (H1) it can be concluded, that the algorithm was able to find a solution, exhibiting good model fit in the training sample, for the suggested measurement model.
+For further validation of the model was tested for measurement invariance, against the test-sample. The comparison of the training sample and the test sample regarding measurement invariance suggests that invariance levels up to scalar invariance hold (cf.~Table 2).
+This conclusion is drawn based on the fit indices remaining within the acceptable range proposed by F. F. Chen (\citeproc{ref-chen2007}{2007}). However, given that fit indices are regarded more as rough guidelines than as precise or universally applicable cut-off values, an additional perspective were considered. Specifically, the differences between the (robust) confirmatory fit indices were examined to ensure they remained below 0.01, as recommended by Cheung \& Rensvold (\citeproc{ref-cheung2002}{2002}).
+In practical terms, when scalar invariance holds, the factor loadings, intercepts, and measurement scales can be considered equivalent across groups. This allows for meaningful comparisons of latent means between groups rather than being due to measurement bias or differences in how the construct is understood or measured across groups (\citeproc{ref-cheung2002}{Cheung \& Rensvold, 2002}; \citeproc{ref-riordan1994}{Riordan \& Vandenberg, 1994}).
+The lack of residual invariance suggests that the residuals (unexplained variance in the indicators) are not equivalent across groups. This implies that there are group-specific differences in how much of the variance in the observed variables remains unexplained by the latent factors. In practical terms, this lack of residual invariance complicates the interpretation of differences between groups. While the factors themselves may be measured similarly (because scalar invariance holds), the amount of unexplained variability in the responses differs across groups, indicating potential unmodeled differences in how the groups respond to certain items.
+As a result, any observed differences in the latent factors could be influenced by differing error variances across groups, making it challenging to draw definitive conclusions about true group differences. Thus, while latent means can be compared, the comparisons may be confounded by measurement error that varies across groups.
+Regarding the second hypothesis (H2) it can be concluded that the latent factor structure of the initial analysis was supported by the test-sample. However, as discussed with some limitations to the invariance, thus still to be improved on.
 
-Age and degree type (e.g., pursuing a master's degree or state examination) also had significant effects on specific items, though several control variables could not be estimated due to singularity issues.
+Further investigation of residuals revealed several correlated residuals, indicating potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample).
+This could indicate redundancy among the factors, that needs to be looked at in terms of items and factor specification.
 
-Everything worked - what do I need to report?
-First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g.~Jackson et al., 2009). To have a clear structure, answer the following questions:
-How large was the original item pool and how was it created?
-What is the structure of the scale?
-Which algorithm was used ?
-Which objective function was used?
-How stable is the final variant?
-How was the final variant further validated (e.g.~crossvalidate, k-fold)?
+The moderate to high correlations between the newly created scale and the SWE-IV-16, NFC-K and the general items of the ICT-SC25 indicate the data literacy scale measures a similar, yet distinct concept. This is in line with the expectations (H3, H4 \& H5). Furthermore, the results in line with H3 and H4 suggest that the latent factors measured by the items are indeed on the side of a perceived competency, rather than a personal character trait.
+The high correlation of the data literacy scale with the NFC-K, although more on the trait side, could likely be due to the proximity to content of both scales. It seems intuitive, that people who enjoy having everything understood down to the smallest detail, also show behaviors related to examination of data and information.
+The data literacy factors exhibited small to moderate correlations with personality traits, a negative correlations with openness and positive correlations with conscientiousness. This is in line with my expectations regarding conscientiousness (H7), but not in line with the expectations regarding openness to new experiences. Because data literacy is conceptually on the side of proficiencies, incorporating ones motivation to actually show the related behaviors, it was expected to correlate slightly positive with openness to new experiences. However, the opposite was true for the samples in this study. Consequently, this could mean that the items selected are on the ability or skill side rather than the proficiency side, minimizing the proportion of motivation that is measured.
+It could also be because the items and the sample do not match. Since motivation could be directly linked to people's expertise {[}QUELLE{]}, it could be that the participants do not show the motivation asked about because for them this falls into a behavioral area that is less linked to motivation and is shown more routinely.
 
-The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures \#a similar, yet distinct concept\#.
-
-\subsection{Controlling}\label{controlling}
-
-While there is a difference between males and females, with males scoring higher on F1F6, this difference is not statistically significant (p = 0.308). Therefore, we cannot conclude that gender has a meaningful impact on F1F6. Age does not seem to have a significant effect on F1F6, as the p-values for all age categories are well above 0.05. Education does not appear to have a significant effect on F1F6. The lack of statistical significance across different education categories suggests that education level is not a meaningful predictor for this item. Degree and Occupation do not appear to have a significant effect on F1F6 either, based on the provided p-values and estimates.
-
-Based on the regression results, there is no evidence to support that age is a significant factor influencing the F1F8 scores. The p-values suggest that the effect of age is not meaningful in this context.
-The lack of statistical significance (p = 0.667) indicates that gender does not have a meaningful impact on the Likert item F1F8. Although there is a small difference in the scores (males scoring higher), this difference is not statistically significant, suggesting no strong evidence for gender influencing the item.
-The education variable does not appear to significantly influence the F1F8 item, with all p-values being greater than 0.05. The education levels may not play a critical role in determining the scores for this particular item.
-Both Degree and Occupation do not appear to significantly affect F1F8 either due to issues with missing data or the absence of significant coefficients. The lack of significant p-values and the presence of NA for most categories suggest that these variables have little impact on the Likert item.
-
-The coefficient indicates a small difference in scores between males and females, with males scoring slightly higher. However, the lack of statistical significance (p = 0.6349) means that we cannot confidently say that gender has a meaningful impact on F1F11.
-Overall, Age does not appear to have a significant effect on F1F11, as the p-values are all greater than 0.05. This suggests that age does not have a strong or consistent influence on F1F11. Education does not appear to have a significant effect on F1F11, as all the p-values are well above 0.05, suggesting no reliable impact of education on this item.
-Degree2 shows indicates that individuals in this category tend to score 3.5 points lower on F1F11. But the p-value is not considered statistically significant (p \textgreater{} 0.05).
-Occupation does not show any significant effects on F1F11, with all p-values above 0.05, meaning occupation categories do not have a statistically meaningful relationship with F1F11.
-
-The effect of gender on F1F14 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-There is no statistically significant effect of education on F1F14. All education levels show p-values greater than 0.05.
-Degree2 does not show a statistically significant effect on F1F14, as the p-value is greater than 0.05.
-None of the occupation categories show a statistically significant effect on F1F14, as all p-values are greater than 0.05.
-
-The effect of gender on F2F2 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-None of the age categories have a statistically significant effect on F2F2, as all the p-values are greater than 0.05.
-There is no statistically significant effect of education on F2F2. All education levels show p-values greater than 0.05.
-Degree3 does not show a statistically significant effect on F2F2, as the p-value is greater than 0.05.
-None of the occupation categories show a statistically significant effect on F2F2, as all p-values are greater than 0.05.
-
-The effect of gender on F2F6 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-None of the age categories have a statistically significant effect on F2F6, as all the p-values are greater than 0.05.
-There is no statistically significant effect of education on F2F6, as the p-value is greater than 0.05.
-Neither Degree2 nor Degree3 show a statistically significant effect on F2F6, as both p-values are greater than 0.05.
-None of the occupation categories show a statistically significant effect on F2F6, as all p-values are greater than 0.05.
-
-The effect of gender on F2F15 is not statistically significant.
-No age categories are statistically significant at the 0.05 threshold.
-Education5 (Abitur als höchster Bildungsabschluss) is statistically significant with a p-value of 0.0303, indicating a negative effect on F2F15.
-This indicates, that people whose highest educational level is the ``Abitur'', report to less often check for an authors qualification, before trusting informations from that author.
-There is no statistically significant effect of degree on F2F15.
-None of the occupation categories show statistically significant effects on F2F15.
-
-The effect of gender on F2F20 is not statistically significant.
-None of the age categories show statistical significance at the 0.05 level.
-Education variables do not show statistically significant effects on F2F20.
-There is no statistically significant effect of degree on F2F20.
-None of the occupation categories show statistically significant effects on F2F20.
-
-No valid statistical results can be derived from this model for F3F2 due to singularities in the data. This suggests that there is perfect collinearity or a lack of variation in the predictor variables.
-This indicated that the item F3F2 is problematic and should maybe be exchanged or reformulated.
-
-Gender does not have a statistically significant effect on F3F4.
-None of the age variables have a statistically significant effect on F3F4.
-None of the education variables have a statistically significant effect on F3F4.
-No statistically significant effect of degree on F3F4.
-None of the occupation categories show statistically significant effects on F3F4.
-
-None of the age variables show a statistically significant effect on F3F6.
-Gender does not have a statistically significant effect on F3F6.
-None of the education variables have a statistically significant effect on F3F6.
-No statistically significant effect of degree on F3F6.
-None of the occupation categories show statistically significant effects on F3F6.
-
-None of the age variables show a statistically significant effect on F3F9.
-Gender does not have a statistically significant effect on F3F9.
-None of the education variables show a statistically significant effect on F3F9.
-No significant effect of degree on F3F9 can be determined.
-None of the occupation categories exhibit statistically significant effects on F3F9.
-
-Gender does not have a statistically significant effect on F4F1.
-None of the age variables have a statistically significant effect on F4F1.
-None of the education variables show a statistically significant effect on F4F1.
-None of the degree variables exhibit a statistically significant effect on F4F1.
-None of the occupation variables show statistically significant effects on F4F1.
-
-Gender does not have a statistically significant effect on F4F3.
-None of the age variables have statistically significant effects on F4F3.
-Only Education5 (abitur) has a statistically significant positive effect on F4F3.
-None of the degree variables have statistically significant effects on F4F3.
-None of the occupation variables have statistically significant effects on F4F3.
-
-Gender does not have a statistically significant effect on F4F6.
-None of the age variables exhibit statistically significant effects on F4F6, though Age29 shows a marginally significant negative effect.
-None of the education variables exhibit statistically significant effects on F4F6.
-None of the degree variables have statistically significant effects on F4F6.
-None of the occupation variables exhibit statistically significant effects on F4F6.
-
-None of the age variables exhibit statistically significant effects on F4F8.
-Gender does not have a statistically significant effect on F4F8.
-Education5, Education7, and Education8 have statistically significant positive effects on F4F8.
-Degree2 has a significant negative effect, and Degree3 has a significant positive effect on F4F8.
-None of the occupation variables exhibit statistically significant effects on F4F8.
-
-None of the age variables exhibit statistically significant effects on F5F3.
-Gender does not have a statistically significant effect on F5F3.
-None of the education variables exhibit statistically significant effects on F5F3.
-None of the degree variables exhibit statistically significant effects on F5F3.
-None of the occupation variables exhibit statistically significant effects on F5F3.
-
-Gender does not have a statistically significant effect on F5F4.
-None of the age variables exhibit statistically significant effects on F5F4.
-None of the education variables exhibit statistically significant effects on F5F4.
-None of the degree variables exhibit statistically significant effects on F5F4.
-None of the occupation variables exhibit statistically significant effects on F5F4.
-
-Gender does not have a statistically significant effect on F5F8.
-Age22 has a statistically significant negative effect on F5F8.
-This indicates that individuals aged 22 experience a decrease of 3.000 points in F5F8 compared to the reference age group.
-None of the education variables exhibit statistically significant effects on F5F8.
-Degree3 has a significant positive effect on F5F8. Individuals with Degree3 experience a 3.000-point increase in F5F8 compared to the reference degree group.
-While Degree3 shows a significant positive association with F5F8, this finding should be interpreted cautiously because the analysis excludes other degree categories due to singularities. Without these categories, the effect of Degree3 might reflect unmeasured contributions from the missing variables.
-None of the occupations variables have statistically significant effects.
-
-none of the age variables exhibit statistically significant effects on F5F18.
-Gender does not have a statistically significant effect on F5F18.
-None of the education variables have a statistically significant effect on F5F18.
-Only Degree2 is analyzed due to singularity in the other categories. However, it does not have a statistically significant effect on F5F18.
-Degree level does not appear to be a significant predictor of F5F18 in this case.
-None of the occupation variables have a statistically significant effect on F5F18. Occupation does not appear to be a reliable predictor of F5F18 in this model, and singularity issues further complicate the interpretation.
+Control variable analysis revealed that educational level, pursuing different degrees as well as age had statistically significant effects on certain items.
+The significant negative effect of Education 5 (A-levels) on F2F15 (``Ich überprüfe die Qualifikation von Autor*innen, bevor ich mich auf die Informationen verlasse.'') indicates that individuals whose highest educational level is A-levels are less likely to check an author's qualifications before trusting their information. This may reflect insufficient emphasis on critical evaluation skills at this educational stage, which are often introduced or reinforced in tertiary education. This finding highlights a potential area for curriculum enhancement to foster critical appraisal skills earlier in educational trajectories. Some Schools in Germany already started to change their curricula towards a stronger emphasis on media competency {[}QUELLE{]}.
+The analysis of F3F2 (``Ich beschäftige mich mit Informationen, die meine Ansichten in Frage stellen.'') was inconclusive, possibly due to singularities in the data, which suggest collinearity or insufficient variability in the predictor variables. This limitation underscores the potential inadequacy of the item F3F2 for robust statistical modeling. Refining or reformulating this item may improve its validity in future studies.
+In contrast, Education5 (A-levels) exhibited a significant positive effect on F4F3 (``Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind.''), indicating that individuals at this educational level are confident in their ability to present data graphically for different target groups. This result may be attributed to the emphasis on basic communication and visualization skills within A-level curricula.
+The findings for F4F8 (``Ich kann mit Programmen Grafiken erstellen, um Ergebnisse zu präsentieren.'') demonstrate a progressive influence of educational attainment on self-reported proficiency with programs for creating data visualizations. While Education5 (A-levels) is associated with a 2.82-point increase, higher educational levels, such as Education7 (degree from a university of applied sciences) and Education8 (university degree), yield greater effects, with increases of 7.46 and 7.04 points, respectively. These findings suggest that higher education fosters advanced technical competencies, likely reflecting greater exposure to specialized training and tools. Interestingly, Degree2 (currently pursuing a Master's degree) shows a significant negative effect on F4F8 (-3.20 points). This finding could stem from transitional challenges or varying curricula during graduate studies. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect (+2.60 points), suggesting that this pathway may emphasize or require such skills.
+For F5F8 (``Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich daraus Erkenntnisse gewinnen.''), Age22 shows a significant negative effect (-3.00 points), indicating that individuals aged 22 report lower scores compared to the reference age group. This could reflect developmental or contextual factors specific to this age group, such as reduced confidence or limited experience in the domain assessed by F5F8. While no significant educational variables were identified for F5F8, Degree3 (pursuing state examination) demonstrates a significant positive effect (+3.00 points). However, caution is warranted in interpreting this result due to the exclusion of other degree categories, potentially leading to biased estimates.
 
 \subsection{What does it all mean / ``Why?''}\label{what-does-it-all-mean-why}
 
 \begin{itemize}
 \tightlist
-\item
-  Start with the research question
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Maybe then towards the hypotheses
-  \end{itemize}
 \item
   connecting findings to the related theories
 \item
@@ -679,15 +651,7 @@ None of the occupation variables have a statistically significant effect on F5F1
 \begin{itemize}
 \tightlist
 \item
-  model fit
-\item
-  ceiling effects
-\item
-  melted answer categories
-\item
-  content validity
-\item
-  reliability!
+  Which objective function was used?
 \item
   DIF?
 \item
@@ -695,33 +659,51 @@ None of the occupation variables have a statistically significant effect on F5F1
 \item
   attempts to control for limitating factors
 \item
-  dont include to general/ broad critiques, but special one for my own study
+  don't include to general/ broad critiques, but special one for my own study
 \end{itemize}
 
 The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as \emph{``Gesundheit, Soziales, Lehre und Erziehung''}, \emph{``Buchhaltung, Recht und Verwaltung''}, \emph{``Kaufmännische Dienstleistungen, Vertrieb, Tourismus''} and especially \emph{``Naturwissenschaft, Geografie und Informatik''}. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
 
-The item pool for the questionnaire was specifically trained on this non-representative sample, which may affect its validity. The heterogeneous nature of the construct complicates global instrument development and understanding across all participants. The measure was designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction to be improved in future studies. Also, as data literacy is a heterogeneous construct, the questionnaire could incorporate more aspects to better reflect its full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
+The item pool for the questionnaire was specifically trained on this non-representative sample, which will likely affect its validity. Because it could result in the creation and measurement of a latent construct, that is specific or unique even to this particular sample.
+Ideally one would use this approach with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized.
+
+The visual analysis of the items boxplots showed several outlier in the data. Those were left in the sample for further investigation, since based on the clustering in the high categories (4 and 5), it could be mean that the items were too easy for most respondents. This high concentration of responses at the upper end of the scale could indicate that the items did not adequately discriminate across a range of respondent abilities, resulting in those ceiling effects. The outliers in the low categories (0, 1, or 2) are the minority and are less likely to influence the overall conclusions. However, they do signal that a small subset of participants found the items unclear or disagreed with them and could hint at a systematic influence of some kind.
+The measure was designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction to be improved in future studies.
+
+Also, as data literacy is a heterogeneous construct, this complicates global instrument development and understanding across all participants. Ideally the questionnaire would incorporate a broader content to better reflect the constructs full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
+
+These issues regarding the misfit of items and sample, as well as the heterogeneity of the construct further result in limitations regarding the reliability of the instrument. Although the total McDonald's \(\omega\) would indicate good reliability, the question of reliability stretches beyond a single measure for internal consistency. The reliability of a measure must be considered in the context of its target audience. The key question is: reliable for whom? It is essential to determine which sample the measure is based on and what population it makes claims about. And as highlighted above, the validity and generalizability of the measure depend heavily on how well the sample reflects the characteristics of the intended audience.
+
+When talking about the characteristics and demographics of the sample, the randomization of data literacy items among respondents introduced certain limitations as well. The primary limitation lies in the unequal demographic distribution across items. For example, while the overall sample may have an average age of 40 years, this demographic balance may not hold for each individual item. This issue extends to other demographic variables as well, resulting in the diversity of the sample not being consistently reflected in the responses to individual items. Consequently, the selected items would require further testing on a diverse sample to evaluate how demographic variability influences responses. The limited demographic balance in the items also results in limited control for confounding variables in those demographic variables. It furthermore limits the informative value of comparisons regarding the demographic variables among the items.
 
 Additionally, the training and testing data sets differed in size, which could influence measurement invariance testing (\citeproc{ref-chen2007}{F. F. Chen, 2007}). While the sample sizes were appropriate, they were at the lower threshold of the prior power analysis (\citeproc{ref-hu1999}{Hu \& Bentler, 1999}; e.g., \citeproc{ref-kass1979}{Kass \& Tinsley, 1979}), suggesting that larger samples might have been better. Lastly, although the questionnaire showed good model fit, it should be noted that algorithm-based item selection is a heuristic approach, rather than deterministic, and may not always yield the optimal solution(\citeproc{ref-blum2003}{Blum \& Roli, 2003}; \citeproc{ref-schultze2017}{Schultze, 2017}).
+In this specific study the results of the algorithm based selection via the genetic algorithm in `stuart' appeared to be unstable across different runs. I tried to account for that via the k-folding and multiple iterations of the selection, but when the process of the data imputation was changed, between mice and from mice to FIML, different items were selected, indicating unstable selections. This could potentially be accounted for, by using the bruteforce implementation in `stuart'. But it also can be a hint at a model misspecification, because of which the algorithm finds multiple local minima.
+
+Aside of the instability, especially when trying the imputation via the `mice' package and prospective mean matching, the models yielded rather bad fit measures, when using the initially planned objective function (with the aim of optimising for model fit (RMSEA, SRMR, CFI), reliability (McDonald's \(\omega\)), and variability in the difficulty of items (via the nu or tau matrix).
+Which is why it was deviated from the initially planned objective function, in favor of model fit criteria only (RMSEA, SRMR \& CFI). Thus, the final objective function, that was used, did not incorporate terms to optimize for reliability McDonald's \(\omega\) nor variability in the difficulty of items.
+Furthermore WLSMV could not be used, although being the appropriate estimator for rating scales, because of the ceiling effects in the items and the sparely used lower answer categories. I tried to account for that by collapsing the respective answer categories, but this resulted seemingly in an introduction of better fit to the model. Because of that, I decided to use MLR as estimator and were therefore able to use FIML as imputation method, implemented in `lavaan'.
+Ideally future studies, with a sample without ceiling effects, would use WLSMV as estimator, since modified weighted least square estimators for ordered-categorical indicators (MWLS\textsubscript{C}) provide accurate estimates of the model parameters given a stable weight matrix (\citeproc{ref-wirth2007}{Wirth \& Edwards, 2007}) and furthermore, WLSMV is a robust estimator which does not assume normally distributed variables and provides the best option for modelling categorical or ordered data (\citeproc{ref-brown2006}{T. A. Brown, 2006}).
+
+\begin{itemize}
+\tightlist
+\item
+  residuals correlate
+\end{itemize}
 
 \subsection{Future directions}\label{future-directions}
-
-Future research should explore adaptive testing using Item Response Theory (IRT). IRT provides a method to tailor item difficulty to respondents' ability levels in real-time, enhancing assessment efficiency and precision. This reduces the number of items required while maintaining high measurement accuracy. Implementing IRT is particularly advantageous for heterogeneous constructs like data literacy, as it ensures each participant is evaluated with items suited to their skill level. One of the significant challenges in applying IRT is the assumption of unidimensionality, where items are presumed to measure a single underlying trait. Data literacy, however, is a multi-faceted construct, and future studies should investigate the dimensionality of the scale rigorously.
-An alternative to IRT-based adaptive testing is the use of Classification and Regression Trees (CART). CART is a tree-based method that splits data into subsets based on binary decisions, optimizing for predictive accuracy. This approach could simplify adaptive testing by using binary splits to classify respondents into different levels of data literacy. The Gini index can be employed within CART to identify the optimal cutoff points for these splits, ensuring that each branch of the tree maximally distinguishes between different levels of data literacy competence.
-
-Construct validity is evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs
 
 \begin{itemize}
 \tightlist
 \item
   what to optimize the scale for?
 \item
-  dynamic fit indices
+  qualitative item creation should have been more extensive - maybe seperate study
 \item
-  residuals correlates
-\item
-  is NOT optimized for model fit criteria and composite reliability (RMSEA, SRMR, CFI \& McDonalds \(\omega\)) as well as variability in the difficulty of items.
+  revisiting the model and specification, could open the possibility to include variability in item difficulty in the objective function, via the nu matrix, or the
 \end{itemize}
+
+Future research should explore adaptive testing using Item Response Theory (IRT). IRT provides a method to tailor item difficulty to respondents' ability levels in real-time, enhancing assessment efficiency and precision. This reduces the number of items required while maintaining high measurement accuracy. Implementing IRT is particularly advantageous for heterogeneous constructs like data literacy, as it ensures each participant is evaluated with items suited to their skill level. One of the significant challenges in applying IRT is the assumption of unidimensionality, where items are presumed to measure a single underlying trait. Data literacy, however, is a multi-faceted construct, and future studies should investigate the dimensionality of the scale rigorously.
+An alternative to IRT-based adaptive testing is the use of Classification and Regression Trees (CART). CART is a tree-based method that splits data into subsets based on binary decisions, optimizing for predictive accuracy. This approach could simplify adaptive testing by using binary splits to classify respondents into different levels of data literacy. The Gini index can be employed within CART to identify the optimal cutoff points for these splits, ensuring that each branch of the tree maximally distinguishes between different levels of data literacy competence.
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
@@ -762,7 +744,10 @@ Brandmaier, A. M., \& Peikert, A. (2024). Automated reproducibility testing in r
 Brillouin, L. (1953). Negentropy principle of information. \emph{Journal of Applied Physics}, \emph{24}(9), 1152--1163.
 
 \bibitem[\citeproctext]{ref-brown2002}
-Brown, C., \& Krumholz, L. R. (2002). Integrating information literacy into the science curriculum. \emph{College \&Amp; Research Libraries}, \emph{63}, 111--123. \url{https://doi.org/10.5860/crl.63.2.111}
+Brown, C., \& L. R., K. (2002). Integrating information literacy into the science curriculum. \emph{College \&Amp; Research Libraries}, \emph{63}, 111--123. \url{https://doi.org/10.5860/crl.63.2.111}
+
+\bibitem[\citeproctext]{ref-brown2006}
+Brown, T. A. (2006). \emph{Confirmatory factor analysis for applied research}. Guilford Press.
 
 \bibitem[\citeproctext]{ref-BfA2024}
 Bundesargentur für Arbeit. (2024). \emph{Arbeitslosenzahl in deutschland im jahresdurchschnitt von 2005 bis 2024}. \url{https://de.statista.com/statistik/daten/studie/1223/umfrage/arbeitslosenzahl-in-deutschland-jahresdurchschnittswerte/\#:~:text=Im\%20Monat\%20Juni\%202024\%20waren,um\%20rund\%20178.800\%20Personen\%20höher}; Statista.
@@ -790,6 +775,9 @@ Chen, F. F. (2007). Sensitivity of goodness of fit indexes to lack of measuremen
 
 \bibitem[\citeproctext]{ref-Chen2024}
 Chen, Cui, Y., Lutsyk-King, A., Gao, Y., Liu, X., Cutumisu, M., \& Leighton, J. P. (2024). Validating a novel digital performance-based assessment of data literacy: Psychometric and eye-tracking analyses. \emph{Education and Information Technologies}, \emph{29}(8), 9417--9444. \url{https://doi.org/10.1007/s10639-023-12177-7}
+
+\bibitem[\citeproctext]{ref-cheung2002}
+Cheung, G. W., \& Rensvold, R. B. (2002). Evaluating goodness-of-fit indexes for testing measurement invariance. \emph{Structural Equation Modeling: A Multidisciplinary Journal}, \emph{9}(2), 233--255. \url{https://doi.org/10.1207/S15328007SEM0902/_5}
 
 \bibitem[\citeproctext]{ref-cohen1955}
 Cohen, A. R., Stotland, E., \& Wolfe, D. M. (1955). An experimental investigation of need for cognition. \emph{The Journal of Abnormal and Social Psychology}, \emph{51}(2), 291--294. \url{https://doi.org/10.1037/h0042761}
@@ -838,6 +826,9 @@ Galán, S. F., Mengshoel, O. J., \& Pinter, R. (2013). A novel mating approach f
 
 \bibitem[\citeproctext]{ref-gould2017}
 Gould, R. (2017). Data literacy is statistical literacy. \emph{Statistics Education Research Journal}, \emph{16}(1), 22--25. \url{https://doi.org/10.52041/serj.v16i1.209}
+
+\bibitem[\citeproctext]{ref-green1998}
+Green, F. (1998). \emph{The value of skills} (Department of Economics Discussion Paper No. 9819). University of Kent, Department of Economics.
 
 \bibitem[\citeproctext]{ref-holland1992}
 Holland, J. H. (1992). \emph{{Adaptation in Natural and Artificial Systems: An Introductory Analysis with Applications to Biology, Control, and Artificial Intelligence}}. The MIT Press. \url{https://doi.org/10.7551/mitpress/1090.001.0001}
@@ -923,6 +914,9 @@ Remmert, N., Schmidt, K. M. B., Mussel, P., Hagel, M. L., \& Eid, M. (2022). The
 \bibitem[\citeproctext]{ref-risdale2015}
 Ridsdale, C., Rothwell, J., Smit, M., Bliemel, M., Irvine, D., Kelley, D., Matwin, S., Wuetherick, B., \& Ali-Hassan, H. (2015). \emph{Strategies and best practices for data literacy education knowledge synthesis report}. \url{https://doi.org/10.13140/RG.2.1.1922.5044}
 
+\bibitem[\citeproctext]{ref-riordan1994}
+Riordan, C. M., \& Vandenberg, R. J. (1994). A central question in cross-cultural research: Do employees of different cultures interpret work-related measures in an equivalent manner? \emph{Journal of Management}, \emph{20}(3), 643--671. \url{https://doi.org/10.1177/014920639402000307}
+
 \bibitem[\citeproctext]{ref-Roetzel2019}
 Roetzel, P. G. (2019). Information overload in the information age: A review of the literature from business administration, business psychology, and related disciplines with a bibliometric approach and framework development. \emph{Business Research}, \emph{12}(2), 479--522. \url{https://doi.org/10.1007/s40685-018-0069-z}
 
@@ -945,7 +939,7 @@ Sarnoff, I., \& Katz, D. (1954). The motivational bases of attitude change. \emp
 Schauffel, S., N. (2021). ICT self-concept scale (ICT-SC25). \emph{Zusammenstellung Sozialwissenschaftlicher Items Und Skalen (ZIS)}. \url{https://doi.org/10.6102/zis308_exz}
 
 \bibitem[\citeproctext]{ref-schmalbach2019}
-Schmalbach, B., Irmer, J. P., \& Schultze, M. (2019). \emph{ezCutoffs: Fit measure cutoffs in SEM}.
+Schmalbach, B., Irmer, J. P., \& Schultze, M. (2019). \emph{Fit measure cutoffs in SEM}. \url{https://doi.org/10.1080/10705519909540118}
 
 \bibitem[\citeproctext]{ref-schneider2024}
 Schneider, J., Striebing, C., Hochfeld, K., \& Lorenz, T. (2024). Establishing circularity: Development and validation of the circular work value scale (CWVS). \emph{Frontiers in Psychology}, \emph{15}. \url{https://doi.org/10.3389/fpsyg.2024.1296282}
@@ -1000,6 +994,9 @@ Webber, S. A., \& Johnston, B. (2017). Information literacy: Conceptions, contex
 
 \bibitem[\citeproctext]{ref-williams2014}
 Williams, S., Deahl, E., Rubel, L., \& Lim, V. (2014). City digits: Local lotto: Developing youth data literacy by investigating the lottery. \emph{Journal of Digital Media Literacy}.
+
+\bibitem[\citeproctext]{ref-wirth2007}
+Wirth, R. J., \& Edwards, M. C. (2007). Item factor analysis: Current approaches and future directions. \emph{Psychological Methods}, \emph{12}(1), 58--79. \url{https://doi.org/10.1037/1082-989X.12.1.58}
 
 \bibitem[\citeproctext]{ref-wolff2016}
 Wolff, A., Gooch, D., Montaner, J. J. C., Rashid, U., \& Kortuem, G. (2016). Creating an understanding of data literacy for a data-driven society. \emph{The Journal of Community Informatics}, \emph{12}(3), 9--26. \url{https://doi.org/10.15353/joci.v12i3.3275}
