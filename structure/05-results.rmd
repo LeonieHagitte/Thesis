@@ -4,19 +4,63 @@ output:
   html_document: default
 ---
 # Results
+The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (M = 4.48, SD = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (SD = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
+Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (M = 2.88) but also the highest standard deviation (SD = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," M = 3.45, SD = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," M = 3.44, SD = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," M = 3.28, SD = 1.26), reflecting diverse self-assessments of these specific skills.
+Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (M = 4.04) as well as variability (SD = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," M = 3.19, SD = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," M = 3.74, SD = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. The final set of items as well as their mean and standard deviation can be seen in Table 1.
+
+\begin{table}[htpb]
+\caption{The selected item pool}
+\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\footnotesize
+\begin{tabular}{lp{10cm}cc}
+Tag & Item & Mean & SD\\
+\hline
+F1F6 & Bei der Auswertung von Grafiken bin ich in der Lage, Widersprüche zu erkennen. & 3.74 & .83\\
+F1F8 & Ich erkenne, ob die Interpretationen Anderer zu den vorliegenden Daten passen. & 3.66 & .97\\
+F1F11 & Ich kenne unterschiedliche Arten von Grafiken. & 4.48 & .75 \\
+F1F14 & Ich kann die zentrale These eines wissenschaftlichen Textes erkennen. & 3.92 & .88\\
+F2F2 & Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle. & 4.04 & 1.04\\
+F2F6 & Ich kenne Merkmale zur Bewertung von Datenqualität. & 3.19 & 1.13\\
+F2F15 & Ich überprüfe die Qualifikation von Autor*innen, bevor ich mich auf die Informationen verlasse. & 3.18 & .94\\
+F2F20 & Ich erkenne, wenn Daten schlechte Qualität haben. & 3.25 & .97\\
+F3F2 & Ich beschäftige mich mit Informationen, die meine Ansichten in Frage stellen. & 3.57 & .80\\
+F3F4 & Ich kann schnell und ohne Schwierigkeiten Informationen in Datenbanken finden. & 3.38 & .92\\
+F3F6 & Ich bevorzuge datengestützte Informationen, wenn ich mir eine Meinung bilde. & 3.75 & 1.09\\
+F3F9 & Ich kann neue Informationen in meinen Wissensstand integrieren. & 4.32 & .64\\
+F4F1 & Ich kann Ergebnisse in Streudiagrammen darstellen. & 2.88 & 1.45\\
+F4F3 & Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind. & 3.45 & 1.23\\
+F4F6 & Ich kann aus verschiedenen Darstellungsformen, die am besten geeignete auswählen. & 3.54 & 1.01\\
+F4F8 & Ich kann mit Programmen Grafiken erstellen, um Ergebnisse zu präsentieren. & 3.73 & 1.17\\
+F5F3 & Ich bin in der Lage, einfache Datenbanken zu verwalten. & 3.44 & 1.31\\
+F5F4 & Ich kann Datensätze mit einfachen statistischen Methoden analysieren. & 3.28 & 1.26\\
+F5F8 & Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich daraus Erkenntnisse gewinnen. & 3.47 & 1.08\\
+F5F18 & Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen. & 3.74 & 1.13\\
+
+\hline
+\end{tabular}
+}
+\vspace{10pt}
+\small\textit{Note}. The items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming.
+\end{table}
+
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure X). The solution exhibits good model fit [according to @hu1999] with data treated as metric and ML as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
-```{r model3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of Model 5.  ", out.width="100%", fig.align="center"}
+With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and ML as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
+```{r figure3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the training sample .", out.width="\\textwidth", fig.align="center"}
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
 ```
-Standardized loadings of the factor Comprehension ranged from .09 to .65. For the factor Evaluation loadings ranged from .44 to .64. For the factor Integration loadings ranged from .35 to .72. For the factor Communication loadings ranged from .75 to .82. For the factor Statistics loadings ranged from .41 to .68. The complete model is also displayed in Figure 3.
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ = .00 , $\Delta\text{SRMR}$ = .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 1)
+For the configural model of the training sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .58 to .77. For the factor Evaluation loadings ranged from .35 to .74. For the factor Integration loadings ranged from .46 to .78. For the factor Communication loadings ranged from .56 to .75. For the factor Statistics loadings ranged from .60 to .74. The complete model is also displayed in Figure 3.
+
+```{r figure4, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the test sample .", out.width="\\textwidth", fig.align="center"}
+knitr::include_graphics("images/Model6.png", auto_pdf = TRUE)
+```
+For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(df = 389, N = 373) = 659.746, p < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ = .00 , $\Delta\text{SRMR}$ = .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2)
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MG-CFA testing}
 
-\resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
+\resizebox{\textwidth}{!}{  
 \begin{tabular}{cccccccc}
 \hline
 Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA & $\Delta$ SRMR \\
@@ -30,13 +74,13 @@ Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA &
 \end{tabular}
 }
 
-\vspace{10pt}  % Adds space between table and note (adjust as needed)
+\vspace{10pt}
 \small\textit{Note}. The table shows the essential fit indices of the model created with 'stuart', alongside their change in terms of Invariance testing, per invariance level. All Indices shown were estimated with ML as estimator.
 \end{table}
 
 The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
-The table X shows the correlated residuals from the training sample. The table X shows the correlated residuals from the testing sample. Both samples show several residuals to be correlated.
+The correlated residuals from the training sample can be seen in the supporting material. The correlated residuals from the testing sample can be seen in the supporting material. Both samples show several residuals to be correlated.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations training sample}
@@ -87,14 +131,51 @@ Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
 
 For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all p < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10($\tau$ = -.15, p < .05; $\tau$ = -.18, p < .01; $\tau$ = -.26, p < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10($\tau$ = .13, p < .05; $\tau$ = .25, p < .01; $\tau$ = .16, p < .05; $\tau$ = .17, p < .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
 
+\begin{table}[htbp]
+\centering
+\rotatebox{90}{%
+\begin{minipage}{\textheight} % Ensures caption is properly associated with the rotated content
+\caption{Means with standard deviations, and correlations with confidence intervals}
+\centering
+\begin{tabular}{lccccccccccc}
+\hline
+\textbf{Var} & \textbf{M} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\hline
+1. Con. & 3.68 & & & & & & & & & \\
+   & [0.76] & & & & & & & & & \\
+2. Open & 2.18 & -0.09 & & & & & & & & \\
+   & [0.87] & [-0.21, 0.04] & & & & & & & & \\
+3. Nfc & 4.89 & 0.16* & -0.06 & & & & & & & \\
+   & [1.07] & [0.04, 0.28] & [-0.19, 0.06] & & & & & & & \\
+4. Ict & 4.03 & 0.03 & -0.04 & 0.18** & & & & & & \\
+   & [0.72] & [-0.10, 0.16] & [-0.16, 0.09] & [0.06, 0.30] & & & & & & \\
+5. Swe & 3.66 & 0.38** & -0.24** & 0.30** & 0.34** & & & & & \\
+   & [0.53] & [0.26, 0.48] & [-0.36, -0.12] & [0.19, 0.41] & [0.23, 0.45] & & & & & \\
+6. Comp. & -0.03 & 0.13* & -0.15* & 0.22** & 0.31** & 0.47** & & & & \\
+   & [0.85] & [0.01, 0.26] & [-0.28, -0.03] & [0.10, 0.34] & [0.19, 0.43] & [0.37, 0.56] & & & & \\
+7. Eval. & -0.00 & 0.25** & -0.18** & 0.24** & 0.17** & 0.46** & 0.32** & & & \\
+   & [0.54] & [0.12, 0.36] & [-0.30, -0.05] & [0.12, 0.36] & [0.04, 0.29] & [0.35, 0.55] & [0.20, 0.43] & & & \\
+8. Int. & -0.01 & 0.05 & -0.26** & 0.30** & 0.23** & 0.40** & 0.28** & 0.26** & \\
+   & [0.54] & [-0.07, 0.18] & [-0.37, -0.14] & [0.18, 0.41] & [0.11, 0.35] & [0.28, 0.50] & [0.16, 0.40] & [0.13, 0.37] & \\
+9. Comm. & 0.01 & 0.16* & -0.10 & 0.37** & 0.43** & 0.48** & 0.52** & 0.27** & 0.34** \\
+   & [0.92] & [0.04, 0.28] & [-0.23, 0.02] & [0.26, 0.48] & [0.33, 0.53] & [0.37, 0.57] & [0.42, 0.61] & [0.15, 0.38] & [0.22, 0.45] \\
+10. Stat. & 0.03 & 0.17** & -0.04 & 0.42** & 0.32** & 0.39** & 0.40** & 0.18** & 0.61** \\
+   & [1.00] & [0.04, 0.29] & [-0.17, 0.09] & [0.30, 0.52] & [0.20, 0.43] & [0.27, 0.49] & [0.29, 0.51] & [0.05, 0.30] & [0.53, 0.69] \\
+\hline
+\end{tabular}
+\par % Ensures separation of the table and note
+\small\textit{Note}. The table displays values of Kendalls tau. M and SD are used to represent mean and standard deviation, respectively. Values in square brackets beneath the M show the respective standard deviation. The other values in square brackets indicate the 95\% confidence interval for each correlation. The confidence interval is a plausible range of population correlations that could have caused the sample correlation (Cumming, 2014). * indicates $p < .05$. ** indicates $p < .01$.
+\end{minipage}%
+}
+\end{table}
+
+
 ## Control Variables
 The analysis of control variables, including gender, educational level, aspired degree of current studies, and occupation classification, revealed that most items did not exhibit statistically significant effects. Furthermore, singularity issues limited the estimation of several control variables, particularly within the Degree and Occupation categories, which reduced the interpretability of the results.
 For item F2F15 in Education5 (A-levels), the coefficient is -3.00 (p = 0.03), which is statistically significant at the 0.05 level. This suggests that individuals with A-levels as their highest educational level score, on average, 3.00 points lower on item F2F15 compared to the reference group, which consisted of individuals with higher educational levels.
-Education5 (A-levels) also shows a statistically significant positive effect on F4F3, with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
+Education5 (A-levels) also shows a statistically significant positive effect on F4F3("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind."), with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
 Education also demonstrates influences on F4F8, with Education5 (A-levels), Education7 (degree from a university of applied sciences), and Education8 (university degree) showing statistically significant positive effects. Specifically, Education5 (A-levels) indicates an increase of 2.82 points (p = 0.02), Education7 (degree from a university of applied sciences) shows an increase of 7.46 points (p = 0.00), and Education8 (university degree) suggests an increase of 7.04 points (p = 0.00). All of these p-values are below the 0.05 significance threshold, indicating statistically significant effects.
 For the Degree variable, Degree2 (currently pursuing a Masters degree) shows a significant negative effect on F4F8, with a coefficient of -3.20 and a p-value of 0.05, suggesting a decrease of 3.20 points. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect with an increase of 2.60 points and a p-value of 0.03, both statistically significant.
 For Age22, there is a statistically significant effect on F5F8, with a coefficient of -3.00 (p < 0.05). This indicates that individuals aged 22 report, on average, 3.00 points lower on F5F8 compared to the reference group.
 Among the Degree variables for F5F8, Degree3 (currently pursuing a state examination) demonstrates a statistically significant increase of 3.00 points, with a p-value of 0.05, indicating a positive effect. However, Degree2 (currently pursuing a Masters degree) and Degree4 (currently pursuing a doctorate) encounter singularity issues and could not be estimated.
-
-
 

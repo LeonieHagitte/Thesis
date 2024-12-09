@@ -99,7 +99,7 @@ names(df)[names(df) == "ICT.ATC3."] <- "ATC3"
 ```
 
 ## Attention checks
-```{r}
+```{reproducibleR}
 # Calculate the number of wrong answers for each person
 
 df$wrong_answers <- 0
@@ -123,8 +123,8 @@ num_failed_more_than_two <- sum(df$wrong_answers > 2, na.rm = TRUE)
 num_failed_more_than_two
 ```
 
-## Filter for stubborn people 
-```{r}
+## Filter for non-compliant people 
+```{reproducibleR}
 # Find the ID of the person who wrote the specific comment in the "Comments" column
 person_id <- df$id[df$Comments == "Bei der ersten Kontrollfrage (für die Qualitätssicherheit) dachte ich, es wäre eine Fangfrage & habe NICHT das gedrückt, was ich sollte… ansonsten habe ich alles nach bestem Wissen und Gewissen ausgefüllt ????????????"]
 
@@ -183,7 +183,7 @@ matching_ids #id= 760
 
 ```
 
-```{r}
+```{reproducibleR}
 # Define the IDs to exclude
 ids_to_exclude <- c(46, 92, 283, 512, 588, 599, 613, 663, 668, 713,796)
 
@@ -195,7 +195,7 @@ df2 <- df[!df$id %in% ids_to_exclude, ]
 head(df2)
 ```
 
-```{r}
+```{reproducibleR}
 # Convert 'lastpage' to numeric
 df2$lastpage <- as.numeric(df2$lastpage)
 
@@ -217,7 +217,7 @@ if("lastpage" %in% names(df3)) {
 
 ```
 
-```{r, echo=FALSE}
+```{reproducibleR, echo=FALSE}
 # Recode columns 9 to 109 as numeric
 df3[, 9:109] <- lapply(df3[, 9:109], as.numeric)
 
@@ -225,7 +225,7 @@ df3[, 9:109] <- lapply(df3[, 9:109], as.numeric)
 str(df3[, 9:109])
 ```
 
-```{r, echo=FALSE}
+```{reproducibleR, echo=FALSE}
 # Subset df3 to include only columns up to column 119
 df3 <- df3[, 1:119]
 
@@ -239,8 +239,9 @@ df3 <- df3[, -c(2, 4, 5, 6, 7, 8)]
 df3 <- df3[, !(names(df3) %in% c("ATC1", "ATC2"))]
 
 ```
+
 ## kann raus? df99
-```{r}
+```{reproducibleR}
 df99 <- data.frame(df2)
 # Convert 'lastpage' to numeric
 df99$lastpage <- as.numeric(df2$lastpage)
@@ -263,7 +264,7 @@ if("lastpage" %in% names(df99)) {
 
 ```
 
-```{r, echo=FALSE}
+```{reproducibleR, echo=FALSE}
 # Recode columns 9 to 109 as numeric
 df99[, 9:109] <- lapply(df99[, 9:109], as.numeric)
 
@@ -271,7 +272,7 @@ df99[, 9:109] <- lapply(df99[, 9:109], as.numeric)
 str(df99[, 9:109])
 ```
 
-```{r, echo=FALSE}
+```{reproducibleR, echo=FALSE}
 # Subset df3 to include only columns up to column 119
 df99 <- df99[, 1:119]
 
@@ -287,13 +288,13 @@ df99 <- df99[, !(names(df99) %in% c("ATC1", "ATC2"))]
 ```
 
 ## NAs FIMLn
-```{r}
+```{reproducibleR}
 df_dl <- df3[, 3:71]
 #df_dl99 <- df99[, 3:71]
 
 ```
 
-```{r}
+```{reproducibleR}
 library(dplyr)
 
 # Calculate the number of columns
@@ -307,7 +308,6 @@ filtered_df_dl <- df_dl %>%
 ```{r}
 # Create boxplots for all variables in df_dl
 boxplot(df_dl, main = "Boxplot for Outlier Detection", col = "lightblue", las = 2, outline = TRUE)
-
 
 ```
 ## Outliers, but keep ceiling effects in mind
@@ -410,7 +410,7 @@ demographics <- df3[, 102:111]
 ```
 
 ## Sample
-```{r}
+```{reproducibleR}
 # gender (2 = male, female = 1, 3 = divers)
 round(prop.table(table(demographics$Gender))*100, 1)
 
@@ -1191,14 +1191,14 @@ Time Required: 32662.03 seconds
 
 Crossvalidation Results with STRICT Invariance:
 
-Average Jaccard Similarity: Comprehension: 0.159, Evaluation: 0.095, Integration: 0.206, Communication: 0.556, Statistics: 0.111
+Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.095, Integration: 0.270, Communication: 0.422, Statistics: 0.095
 
-Constructed Subtests: (k = 3)
-Comprehension: F1F5 F1F6 F1F8 F1F10
-Evaluation: F2F1 F2F3 F2F14 F2F20
-Integration: F3F2 F3F4 F3F7 F3F9
-Communication: F4F1 F4F3 F4F6 F4F7
-Statistics: F5F4 F5F6 F5F8 F5F14
+Constructed Subtests: (k = 1)
+Comprehension: F1F4 F1F6 F1F8 F1F10
+Evaluation: F2F9 F2F12 F2F14 F2F16
+Integration: F3F3 F3F4 F3F6 F3F9
+Communication: F4F3 F4F4 F4F7 F4F8
+Statistics: F5F3 F5F6 F5F8 F5F18
 
 ### Kfold-Crossvalidation with multiple iterations
 ```{r}
@@ -1300,12 +1300,6 @@ Statistics: F5F3 F5F4 F5F8 F5F18
 
 ### Validation via MG-CFA for MI
 ```{r}
-# Measurement model
-#Comprehension =~ F1F2 + F1F5 + F1F6 + F1F14 
-#Evaluation =~ F2F6 + F2F10 + F2F12 + F2F13 
-#Integration =~ F3F2 + F3F6 + F3F7 + F3F9 
-#Communication =~ F4F1 + F4F6 + F4F7 + F4F8 
-#Statistics =~ F5F1 + F5F6 + F5F7 + F5F18
 set.seed(2028)
 library(lavaan)
 
@@ -1430,15 +1424,13 @@ plot(out)
 
 ## Check correlated residuals
 ```{r}
-
 # Check modification indices
 modificationIndices(fit_cfa_model_m, sort = TRUE)
 
 ```
 
 ## Haywood cases
-```{r}
-
+```{reproducibleR}
 # Get predicted values
 predicted_values <- predict(fit_cfa_model_m)
 
@@ -1449,8 +1441,7 @@ extreme_values <- predicted_values[which(predicted_values > quantile(predicted_v
 print(extreme_values)
 ```
 
-```{r}
-
+```{reproducibleR}
 # Get standardized residuals
 residuals_standardized <- residuals(fit_cfa_model_m, type = "standardized")
 
@@ -1489,7 +1480,7 @@ print(extreme_residuals_low)
 
 ```
 
-```{r}
+```{reproducibleR}
 library(ggplot2)
 residuals_df <- data.frame(residuals = residuals_vector)
 ggplot(residuals_df, aes(x = residuals)) +
@@ -1501,7 +1492,7 @@ ggplot(residuals_df, aes(x = residuals)) +
 ```
 
 ## Factor Scores / Bartlett Scores
-```{r}
+```{reproducibleR}
 set.seed(2028)
 
 # Calculate factor scores using the fitted model
@@ -1529,7 +1520,7 @@ print(general_factor_scores)
 ```
 
 ### Perform t-tests to compare factor scores between groups
-```{r}
+```{reproducibleR}
 # Compute means of factor scores by group
 mean_factor_scores <- aggregate(. ~ split, data = factor_scores_combined, FUN = mean)
 
@@ -1550,9 +1541,6 @@ print(t_test_results)
 ```
 
 
-#####################################################
-#####################################################
-#####################################################
 ```{reproducibleR}
 
 df_result<- data.frame(
@@ -1665,7 +1653,7 @@ all_cor <- bind_cols(all_means_reset, factor_scores_split2)
 ```
 
 ## Normality test - B5 Conscientiousness
-```{r}
+```{reproducibleR}
 # Exclude the third column (Mean) for normality checks
 raw_data <- B5_con[, -3]  # This excludes the third column
 
@@ -1698,7 +1686,7 @@ check_normality(raw_data) #nonnormal
 ```
 
 ## Normality openness
-```{r}
+```{reproducibleR}
 library(e1071)
 # Exclude the third column (Mean) for normality checks
 raw_data <- B5_openness[, -3]  # This excludes the third column
@@ -1731,7 +1719,7 @@ check_normality <- function(data) {
 check_normality(raw_data) # nonnormal
 ```
 
-```{r}
+```{reproducibleR}
 # Exclude the third column (Mean) for normality checks
 raw_data <- SWE[, -17]  # This excludes the third column
 
@@ -1763,7 +1751,7 @@ check_normality <- function(data) {
 check_normality(raw_data) #nonnormal
 ```
 
-```{r}
+```{reproducibleR}
 # Exclude the third column (Mean) for normality checks
 raw_data <- ICT[, -6]  # This excludes the third column
 
@@ -1795,7 +1783,7 @@ check_normality <- function(data) {
 check_normality(raw_data) #nonnormal
 ```
 
-```{r}
+```{reproducibleR}
 # Exclude the third column (Mean) for normality checks
 raw_data <- NFC[, -5]  # This excludes the third column
 
@@ -1827,7 +1815,7 @@ check_normality <- function(data) {
 check_normality(raw_data)
 ```
 
-```{r}
+```{reproducibleR}
 # Exclude the third column (Mean) for normality checks
 raw_data <- df_result  # This excludes the third column
 
@@ -1860,14 +1848,14 @@ check_normality(raw_data)
 ```
 
 ## Correlations - nonnormal
-```{r}
+```{reproducibleR}
 library(apaTables)
 cortable<-cor(all_cor, use = "pairwise" ,method = "kendall")
 
 apa.cor.table(all_cor, filename = "cortable.rtf")
 ```
 
-```{r}
+```{reproducibleR}
 library(dplyr)
 library(reshape2)  # for melt function
 library(ggplot2)
@@ -2117,13 +2105,12 @@ cat("SD of F5F18: ", sd_F5F18, "\n")
 # Inspect residuals
 resid_cor <- residuals(fit_cfa_model_m, type = "cor")  # Correlation residuals
 resid_cov <- residuals(fit_cfa_model_m, type = "raw")  # Covariance residuals (raw)
-print(resid_cov)
-print(resid_cor)
+print(resid_cov)#needs to be printed in console
+print(resid_cor)#needs to be printed in console
 
 ```
 
 ## Controlling for Age potential Confounders
-
 ```{reproducibleR}
 # Define the column names you want to select
 selected_columns <- c("id", "F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20", 
@@ -2186,7 +2173,6 @@ for (item in likert_items) {
   print(summary(model))
 }
 
-
 ```
 
 ```{r}
@@ -2209,7 +2195,7 @@ STUFF THAT I TRIED THAT DIDNT WORK OR I DIDNT USE IN THE END
 ####################################################################
 
 ## using mice to impute the missing data
-```{r, echo=FALSE}
+```{reproducibleR, echo=FALSE}
 set.seed(2025)
 imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
 imputed_training_data_c <- complete(imputed_training_data, 1)
@@ -2219,13 +2205,13 @@ imputed_test_data_c <- complete(imputed_test_data, 1)
 ```
 
 ### making it seperate files
-```{r}
+```{reproducibleR}
 write.csv2(imputed_training_data_c, "imputed_training_data_c.csv")
 write.csv2(df_train, "df_train.csv")
 ```
 
 # Finding Thresholds of Items to merge in order to ose ordered data in the item selection and crossvalidation
-```{r}
+```{reproducibleR}
 # Count values for each variable in imputed_training_data_c
 value_counts <- imputed_training_data_c %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%

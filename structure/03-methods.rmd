@@ -19,7 +19,7 @@ Ten cognitive interviews were held to refine those potential items and to confir
 The cognitive interviews comprised the think-aloud-technique as well as probing, to get an understanding of how the items are understood, what comes to mind when reading the items and whether the items really ask for relevant behaviors [@fowler1995]. Furthermore, that way unclear formulations or difficult wordings could be resolved.
 The interviews were administered iteratively to refine the items consecutively. 
 In the interviews it became apparent, that especially the degree to which people can relate to the factors four and five differed heavily. This was expected, since those producer factors are also considered to play a lesser role in the every day live of citizens. It also turned out that some words like "data", "source" or "information" are understood differently regarding the personal background sometimes. 
-The age of the interviewed persons ranged from 21 to 66. Three of the interviewed persons were men, the other seven were women. The occupations included, for example, students, construction managers, and nurses working in intensive care units. After the cognitive interviews of the 118 potential items, 71 were left. A list of all 71 items can be seen in table X.
+The age of the interviewed persons ranged from 21 to 66. Three of the interviewed persons were men, the other seven were women. The occupations included, for example, students, construction managers, and nurses working in intensive care units. After the cognitive interviews of the 118 potential items, 71 were left.
 
 ## Sample  
 The participants are recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail). Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. We conducted a-priori power analysis to determine the necessary sample size for the structural equation modelling. We used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. The power analysis gave an analytical estimate for *N*=645, and a simulated estimate *N*=613, for the respective measurement model. In the literature sample sizes of *N*=500 up to *N*=1000 could be found [@algner2022; @remmert2022; @schneider2024]. So the optimal sample size, we are aiming at, lies somewhere between those numbers.
@@ -52,7 +52,7 @@ option.
 ### Measuring Information Literacy
 The SWE-IV-16 [@behm2018] (McDonalds $\omega$ = .91; Cronbachs $\alpha$ =.91) assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behaviour. This
 questionnaire measures the process model of information-related problem-solving
-[@brandgruwel2009]. In our study this construct is used as a proxy for information literacy.
+[@brandgruwel2009]. In this study this construct is used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed
 abilities in searching for and evaluating information, as well as managing
 information searches effectively. Each statement begins with "When I search for

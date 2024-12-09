@@ -1,188 +1,82 @@
 # Discussion
-This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via 'stuart' that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net. 
-The model demonstrating the best overall fit was selected based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items. The model exhibited an acceptable fit, with indices suggesting good model quality (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96, TLI = 0.96), according to the combinational rule for RMSEA and SRMR of @hu1999. The factor loadings ranged from 0.09 to 0.82 across the five factors, and the model’s total McDonald’s $\omega$ was 0.92, indicating reliable internal consistency. 
-Comparison of the training sample and the test sample regarding measurement invariance suggests that scalar invariance holds (vgl. table X).
-In practical terms, when scalar invariance holds, the factor loadings, intercepts, and measurement scales acan be considered equivalent across groups. This allows for meaningful comparisons of latent means between groups rather than being due to measurement bias or differences in how the construct is understood or measured across groups.
-The lack of residual invariance suggests that the residuals (unexplained variance in the indicators) are not equivalent across groups. This implies that there are group-specific differences in how much of the variance in the observed variables remains unexplained by the latent factors. In practical terms, this lack of residual invariance complicates the interpretation of differences between groups. While the factors themselves may be measured similarly (if scalar invariance holds), the amount of unexplained variability in the responses differs across groups, indicating potential unmodeled differences in how the groups respond to certain items.
-As a result, any observed differences in the latent factors could be influenced by differing error variances across groups, making it challenging to draw definitive conclusions about true group differences. Thus, while latent means can be compared (under scalar invariance), the comparisons may be confounded by measurement error that varies across groups.
 
-Further investigation of residuals revealed correlated residuals, indicating potential specification errors, both in the training and test samples. The latent correlations among factors were generally strong, especially between Communication and Statistics (0.97 in the training sample and 0.84 in the test sample). Additionally, the data literacy factors showed moderate to high correlations with external measures, including the SWE-IV-16, NFC-K, and ICT-SC25. The data literacy factors also exhibited small to moderate correlations with personality traits, such as negative correlations with openness and positive correlations with conscientiousness.
+This study meant to examine whether a pool 20 items out of the initial item pool of 71 items, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution via the genetic algorithm as well as a 3-fold crossvalidation in 'stuart', that yields good model fit as well as reliability and that shows measurement invariance with a random split-sample. Additionally, latent correlations were to be examined to locate the construct in the nomological net. 
+The model demonstrating the best overall fit was selected based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items and respective measurement errors. The model also included inter-factor correlations between all latent factors.
 
-Control variable analysis revealed that educational level had significant effects on certain items. Specifically, individuals with A-levels scored lower on F2F15. This indicates, that people whose highest educational level is the A-levels, report to less often check for an authors qualification, before trusting information from that author. 
-However, individuals with A-levels scored higher on F4F3, indicating, that people whose highest educational level is the A-levels, more often indicate confidence in being able to present data in graphics in a way that they are understandable for different target groups. 
-Meanwhile higher educational levels were associated with increased scores on F4F8. Indicating, that additionally to people having their A-levels, people holding a degree from a applied university, or a university, show an even greater increase in F4F8. Thus, with higher educational levels, people more often report being able to use programs to create graphics for presenting results.
+Construct validity was evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs.
 
-Age and degree type (e.g., pursuing a master's degree or state examination) also had significant effects on specific items, though several control variables could not be estimated due to singularity issues.
+Although the RMSEA was a bit low, the model exhibited an acceptable to good fit, with indices suggesting good model fit (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96, TLI = 0.96), according to @hu1999.
+According to the 'ezCutoffs' function from the 'ezCutoffs' package [@schmalbach2019] suggests the following cutoffs: scaled CFI: .986; scaled RMSEA: .022 and SRMR: .041. So according to those simulated cutoffs from the 'ezCutoffs' package, the model exhibits non-acceptable fit. Since the simulation cutoffs tend to be more rigorous than those from the literature, it is not surprising, that the model doesn't show good fit, compared to the simulated cutoffs.
+The factor loadings ranged from 0.50 to 0.81 across the five factors (cf. Figure 3), and the models total McDonald’s $\omega$ was 0.92, indicating reliable internal consistency.
+Regarding the first hypothesis (H1) it can be concluded, that the algorithm was able to find a solution, exhibiting good model fit in the training sample, for the suggested measurement model.
+For further validation of the model was tested for measurement invariance, against the test-sample. The comparison of the training sample and the test sample regarding measurement invariance suggests that invariance levels up to scalar invariance hold (cf. Table 2).
+This conclusion is drawn based on the fit indices remaining within the acceptable range proposed by @chen2007. However, given that fit indices are regarded more as rough guidelines than as precise or universally applicable cut-off values, an additional perspective were considered. Specifically, the differences between the (robust) confirmatory fit indices were examined to ensure they remained below 0.01, as recommended by @cheung2002.
+In practical terms, when scalar invariance holds, the factor loadings, intercepts, and measurement scales can be considered equivalent across groups. This allows for meaningful comparisons of latent means between groups rather than being due to measurement bias or differences in how the construct is understood or measured across groups [@cheung2002; @riordan1994].
+The lack of residual invariance suggests that the residuals (unexplained variance in the indicators) are not equivalent across groups. This implies that there are group-specific differences in how much of the variance in the observed variables remains unexplained by the latent factors. In practical terms, this lack of residual invariance complicates the interpretation of differences between groups. While the factors themselves may be measured similarly (because scalar invariance holds), the amount of unexplained variability in the responses differs across groups, indicating potential unmodeled differences in how the groups respond to certain items.
+As a result, any observed differences in the latent factors could be influenced by differing error variances across groups, making it challenging to draw definitive conclusions about true group differences. Thus, while latent means can be compared, the comparisons may be confounded by measurement error that varies across groups.
+Regarding the second hypothesis (H2) it can be concluded that the latent factor structure of the initial analysis was supported by the test-sample. However, as discussed with some limitations to the invariance, thus still to be improved on.
 
+Further investigation of residuals revealed several correlated residuals, indicating potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample). 
+This could indicate redundancy among the factors, that needs to be looked at in terms of items and factor specification.
 
+The moderate to high correlations between the newly created scale and the SWE-IV-16, NFC-K and the general items of the ICT-SC25 indicate the data literacy scale measures a similar, yet distinct concept. This is in line with the expectations (H3, H4 & H5). Furthermore, the results in line with H3 and H4 suggest that the latent factors measured by the items are indeed on the side of a perceived competency, rather than a personal character trait. 
+The high correlation of the data literacy scale with the NFC-K, although more on the trait side, could likely be due to the proximity to content of both scales. It seems intuitive, that people who enjoy having everything understood down to the smallest detail, also show behaviors related to examination of data and information.
+The data literacy factors exhibited small to moderate correlations with personality traits, a negative correlations with openness and positive correlations with conscientiousness. This is in line with my expectations regarding conscientiousness (H7), but not in line with the expectations regarding openness to new experiences. Because data literacy is conceptually on the side of proficiencies, incorporating ones motivation to actually show the related behaviors, it was expected to correlate slightly positive with openness to new experiences. However, the opposite was true for the samples in this study. Consequently, this could mean that the items selected are on the ability or skill side rather than the proficiency side, minimizing the proportion of motivation that is measured. 
+It could also be because the items and the sample do not match. Since motivation could be directly linked to people's expertise [QUELLE], it could be that the participants do not show the motivation asked about because for them this falls into a behavioral area that is less linked to motivation and is shown more routinely.
 
-Everything worked - what do I need to report?
-First, report on the three core decisions and how the solution was created, whether it is stable, and how it was validated. The final variant is then reported exactly like a CFA (e.g. Jackson et al., 2009). To have a clear structure, answer the following questions:
-How large was the original item pool and how was it created?
-What is the structure of the scale?
-Which algorithm was used ?
-Which objective function was used?
-How stable is the final variant?
-How was the final variant further validated (e.g. crossvalidate, k-fold)?
-
-The xxx correlations (r = , p ) between the newly created scale and the SWE-IV-16, NFC-K, the general items of the ICT-SC25 and openness and conscientiousness of the BFI-10,respectively, indicate the data literacy scale measures #a similar, yet distinct concept#.
-
-
-## Controlling 
-
-While there is a difference between males and females, with males scoring higher on F1F6, this difference is not statistically significant (p = 0.308). Therefore, we cannot conclude that gender has a meaningful impact on F1F6. Age does not seem to have a significant effect on F1F6, as the p-values for all age categories are well above 0.05. Education does not appear to have a significant effect on F1F6. The lack of statistical significance across different education categories suggests that education level is not a meaningful predictor for this item. Degree and Occupation do not appear to have a significant effect on F1F6 either, based on the provided p-values and estimates.
-
-Based on the regression results, there is no evidence to support that age is a significant factor influencing the F1F8 scores. The p-values suggest that the effect of age is not meaningful in this context.
-The lack of statistical significance (p = 0.667) indicates that gender does not have a meaningful impact on the Likert item F1F8. Although there is a small difference in the scores (males scoring higher), this difference is not statistically significant, suggesting no strong evidence for gender influencing the item.
-The education variable does not appear to significantly influence the F1F8 item, with all p-values being greater than 0.05. The education levels may not play a critical role in determining the scores for this particular item.
-Both Degree and Occupation do not appear to significantly affect F1F8 either due to issues with missing data or the absence of significant coefficients. The lack of significant p-values and the presence of NA for most categories suggest that these variables have little impact on the Likert item.
-
-The coefficient indicates a small difference in scores between males and females, with males scoring slightly higher. However, the lack of statistical significance (p = 0.6349) means that we cannot confidently say that gender has a meaningful impact on F1F11.
-Overall, Age does not appear to have a significant effect on F1F11, as the p-values are all greater than 0.05. This suggests that age does not have a strong or consistent influence on F1F11. Education does not appear to have a significant effect on F1F11, as all the p-values are well above 0.05, suggesting no reliable impact of education on this item.
-Degree2 shows indicates that individuals in this category tend to score 3.5 points lower on F1F11. But the p-value is not considered statistically significant (p > 0.05).
-Occupation does not show any significant effects on F1F11, with all p-values above 0.05, meaning occupation categories do not have a statistically meaningful relationship with F1F11.
-
-The effect of gender on F1F14 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-There is no statistically significant effect of education on F1F14. All education levels show p-values greater than 0.05.
-Degree2 does not show a statistically significant effect on F1F14, as the p-value is greater than 0.05.
-None of the occupation categories show a statistically significant effect on F1F14, as all p-values are greater than 0.05.
-
-The effect of gender on F2F2 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-None of the age categories have a statistically significant effect on F2F2, as all the p-values are greater than 0.05.
-There is no statistically significant effect of education on F2F2. All education levels show p-values greater than 0.05.
-Degree3 does not show a statistically significant effect on F2F2, as the p-value is greater than 0.05.
-None of the occupation categories show a statistically significant effect on F2F2, as all p-values are greater than 0.05.
-
-The effect of gender on F2F6 is not statistically significant, as the p-value exceeds the 0.05 threshold.
-None of the age categories have a statistically significant effect on F2F6, as all the p-values are greater than 0.05.
-There is no statistically significant effect of education on F2F6, as the p-value is greater than 0.05.
-Neither Degree2 nor Degree3 show a statistically significant effect on F2F6, as both p-values are greater than 0.05.
-None of the occupation categories show a statistically significant effect on F2F6, as all p-values are greater than 0.05.
-
-The effect of gender on F2F15 is not statistically significant.
-No age categories are statistically significant at the 0.05 threshold.
-Education5 (Abitur als höchster Bildungsabschluss) is statistically significant with a p-value of 0.0303, indicating a negative effect on F2F15.
-This indicates, that people whose highest educational level is the "Abitur", report to less often check for an authors qualification, before trusting informations from that author. 
-There is no statistically significant effect of degree on F2F15.
-None of the occupation categories show statistically significant effects on F2F15.
-
-The effect of gender on F2F20 is not statistically significant.
-None of the age categories show statistical significance at the 0.05 level.
-Education variables do not show statistically significant effects on F2F20.
-There is no statistically significant effect of degree on F2F20.
-None of the occupation categories show statistically significant effects on F2F20.
-
-No valid statistical results can be derived from this model for F3F2 due to singularities in the data. This suggests that there is perfect collinearity or a lack of variation in the predictor variables.
-This indicated that the item F3F2 is problematic and should maybe be exchanged or reformulated.
-
-Gender does not have a statistically significant effect on F3F4.
-None of the age variables have a statistically significant effect on F3F4.
-None of the education variables have a statistically significant effect on F3F4.
-No statistically significant effect of degree on F3F4.
-None of the occupation categories show statistically significant effects on F3F4.
-
-None of the age variables show a statistically significant effect on F3F6.
-Gender does not have a statistically significant effect on F3F6.
-None of the education variables have a statistically significant effect on F3F6.
-No statistically significant effect of degree on F3F6.
-None of the occupation categories show statistically significant effects on F3F6.
-
-None of the age variables show a statistically significant effect on F3F9.
-Gender does not have a statistically significant effect on F3F9.
-None of the education variables show a statistically significant effect on F3F9.
-No significant effect of degree on F3F9 can be determined.
-None of the occupation categories exhibit statistically significant effects on F3F9.
-
-Gender does not have a statistically significant effect on F4F1.
-None of the age variables have a statistically significant effect on F4F1.
-None of the education variables show a statistically significant effect on F4F1.
-None of the degree variables exhibit a statistically significant effect on F4F1.
-None of the occupation variables show statistically significant effects on F4F1.
-
-Gender does not have a statistically significant effect on F4F3.
-None of the age variables have statistically significant effects on F4F3.
-Only Education5 (abitur) has a statistically significant positive effect on F4F3.
-None of the degree variables have statistically significant effects on F4F3.
-None of the occupation variables have statistically significant effects on F4F3.
-
-Gender does not have a statistically significant effect on F4F6.
-None of the age variables exhibit statistically significant effects on F4F6, though Age29 shows a marginally significant negative effect.
-None of the education variables exhibit statistically significant effects on F4F6.
-None of the degree variables have statistically significant effects on F4F6.
-None of the occupation variables exhibit statistically significant effects on F4F6.
-
-None of the age variables exhibit statistically significant effects on F4F8.
-Gender does not have a statistically significant effect on F4F8.
-Education5, Education7, and Education8 have statistically significant positive effects on F4F8.
-Degree2 has a significant negative effect, and Degree3 has a significant positive effect on F4F8.
-None of the occupation variables exhibit statistically significant effects on F4F8.
-
-None of the age variables exhibit statistically significant effects on F5F3.
-Gender does not have a statistically significant effect on F5F3.
-None of the education variables exhibit statistically significant effects on F5F3.
-None of the degree variables exhibit statistically significant effects on F5F3.
-None of the occupation variables exhibit statistically significant effects on F5F3.
-
-Gender does not have a statistically significant effect on F5F4.
-None of the age variables exhibit statistically significant effects on F5F4.
-None of the education variables exhibit statistically significant effects on F5F4.
-None of the degree variables exhibit statistically significant effects on F5F4.
-None of the occupation variables exhibit statistically significant effects on F5F4.
-
-Gender does not have a statistically significant effect on F5F8.
-Age22 has a statistically significant negative effect on F5F8.
-This indicates that individuals aged 22 experience a decrease of 3.000 points in F5F8 compared to the reference age group.
-None of the education variables exhibit statistically significant effects on F5F8.
-Degree3 has a significant positive effect on F5F8. Individuals with Degree3 experience a 3.000-point increase in F5F8 compared to the reference degree group.
-While Degree3 shows a significant positive association with F5F8, this finding should be interpreted cautiously because the analysis excludes other degree categories due to singularities. Without these categories, the effect of Degree3 might reflect unmeasured contributions from the missing variables.
-None of the occupations variables have statistically significant effects.
-
-none of the age variables exhibit statistically significant effects on F5F18. 
-Gender does not have a statistically significant effect on F5F18.
-None of the education variables have a statistically significant effect on F5F18. 
-Only Degree2 is analyzed due to singularity in the other categories. However, it does not have a statistically significant effect on F5F18.
-Degree level does not appear to be a significant predictor of F5F18 in this case.
-None of the occupation variables have a statistically significant effect on F5F18. Occupation does not appear to be a reliable predictor of F5F18 in this model, and singularity issues further complicate the interpretation.
-
-
-
-
+Control variable analysis revealed that educational level, pursuing different degrees as well as age had statistically significant effects on certain items. 
+The significant negative effect of Education 5 (A-levels) on F2F15 ("Ich überprüfe die Qualifikation von Autor*innen, bevor ich mich auf die Informationen verlasse.") indicates that individuals whose highest educational level is A-levels are less likely to check an author’s qualifications before trusting their information. This may reflect insufficient emphasis on critical evaluation skills at this educational stage, which are often introduced or reinforced in tertiary education. This finding highlights a potential area for curriculum enhancement to foster critical appraisal skills earlier in educational trajectories. Some Schools in Germany already started to change their curricula towards a stronger emphasis on media competency [QUELLE]. 
+The analysis of F3F2 ("Ich beschäftige mich mit Informationen, die meine Ansichten in Frage stellen.") was inconclusive, possibly due to singularities in the data, which suggest collinearity or insufficient variability in the predictor variables. This limitation underscores the potential inadequacy of the item F3F2 for robust statistical modeling. Refining or reformulating this item may improve its validity in future studies.
+In contrast, Education5 (A-levels) exhibited a significant positive effect on F4F3 ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind."), indicating that individuals at this educational level are confident in their ability to present data graphically for different target groups. This result may be attributed to the emphasis on basic communication and visualization skills within A-level curricula.
+The findings for F4F8 ("Ich kann mit Programmen Grafiken erstellen, um Ergebnisse zu präsentieren.") demonstrate a progressive influence of educational attainment on self-reported proficiency with programs for creating data visualizations. While Education5 (A-levels) is associated with a 2.82-point increase, higher educational levels, such as Education7 (degree from a university of applied sciences) and Education8 (university degree), yield greater effects, with increases of 7.46 and 7.04 points, respectively. These findings suggest that higher education fosters advanced technical competencies, likely reflecting greater exposure to specialized training and tools. Interestingly, Degree2 (currently pursuing a Master’s degree) shows a significant negative effect on F4F8 (-3.20 points). This finding could stem from transitional challenges or varying curricula during graduate studies. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect (+2.60 points), suggesting that this pathway may emphasize or require such skills.
+For F5F8 ("Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich daraus Erkenntnisse gewinnen."), Age22 shows a significant negative effect (-3.00 points), indicating that individuals aged 22 report lower scores compared to the reference age group. This could reflect developmental or contextual factors specific to this age group, such as reduced confidence or limited experience in the domain assessed by F5F8. While no significant educational variables were identified for F5F8, Degree3 (pursuing state examination) demonstrates a significant positive effect (+3.00 points). However, caution is warranted in interpreting this result due to the exclusion of other degree categories, potentially leading to biased estimates.
 
 ## What does it all mean / "Why?"
 
-- Start with the research question
-  - Maybe then towards the hypotheses
 - connecting findings to the related theories
 - very related/ current literature first, than broader is possible
 - When discussing the why - be careful, because you didnt test that
 
 ## Limitations
-- model fit
-- ceiling effects
-- melted answer categories
-- content validity
-- reliability!
+
+- Which objective function was used?
 - DIF?
 - psych science - authors guide to generelizability
 - attempts to control for limitating factors
-- dont include to general/ broad critiques, but special one for my own study
+- don't include to general/ broad critiques, but special one for my own study
 
 The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as *"Gesundheit, Soziales, Lehre und Erziehung"*, *"Buchhaltung, Recht und Verwaltung"*, *"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"* and especially *"Naturwissenschaft, Geografie und Informatik"*. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
 
-The item pool for the questionnaire was specifically trained on this non-representative sample, which may affect its validity. The heterogeneous nature of the construct complicates global instrument development and understanding across all participants. The measure was designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction to be improved in future studies. Also, as data literacy is a heterogeneous construct, the questionnaire could incorporate more aspects to better reflect its full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony.
+The item pool for the questionnaire was specifically trained on this non-representative sample, which will likely affect its validity. Because it could result in the creation and measurement of a latent construct, that is specific or unique even to this particular sample.
+Ideally one would use this approach with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized. 
+
+The visual analysis of the items boxplots showed several outlier in the data. Those were left in the sample for further investigation, since based on the clustering in the high categories (4 and 5), it could be mean that the items were too easy for most respondents. This high concentration of responses at the upper end of the scale could indicate that the items did not adequately discriminate across a range of respondent abilities, resulting in those ceiling effects. The outliers in the low categories (0, 1, or 2) are the minority and are less likely to influence the overall conclusions. However, they do signal that a small subset of participants found the items unclear or disagreed with them and could hint at a systematic influence of some kind.
+The measure was designed for citizens, potentially limiting discrimination at higher item difficulties or among more literate participants, a direction to be improved in future studies. 
+
+Also, as data literacy is a heterogeneous construct, this complicates global instrument development and understanding across all participants. Ideally the questionnaire would incorporate a broader content to better reflect the constructs full scope, thereby increasing content validity. Expanding the questionnaire with additional items could address this need, although it would deviate from the principle of parsimony. 
+
+These issues regarding the misfit of items and sample, as well as the heterogeneity of the construct further result in limitations regarding the reliability of the instrument. Although the total McDonald’s $\omega$ would indicate good reliability, the question of reliability stretches beyond a single measure for internal consistency. The reliability of a measure must be considered in the context of its target audience. The key question is: reliable for whom? It is essential to determine which sample the measure is based on and what population it makes claims about. And as highlighted above, the validity and generalizability of the measure depend heavily on how well the sample reflects the characteristics of the intended audience. 
+
+When talking about the characteristics and demographics of the sample, the randomization of data literacy items among respondents introduced certain limitations as well. The primary limitation lies in the unequal demographic distribution across items. For example, while the overall sample may have an average age of 40 years, this demographic balance may not hold for each individual item. This issue extends to other demographic variables as well, resulting in the diversity of the sample not being consistently reflected in the responses to individual items. Consequently, the selected items would require further testing on a diverse sample to evaluate how demographic variability influences responses. The limited demographic balance in the items also results in limited control for confounding variables in those demographic variables. It furthermore limits the informative value of comparisons regarding the demographic variables among the items.  
 
 Additionally, the training and testing data sets differed in size, which could influence measurement invariance testing [@chen2007]. While the sample sizes were appropriate, they were at the lower threshold of the prior power analysis [e.g., @kass1979; @hu1999], suggesting that larger samples might have been better. Lastly, although the questionnaire showed good model fit, it should be noted that algorithm-based item selection is a heuristic approach, rather than deterministic, and may not always yield the optimal solution[@schultze2017; @blum2003].
+In this specific study the results of the algorithm based selection via the genetic algorithm in 'stuart' appeared to be unstable across different runs. I tried to account for that via the k-folding and multiple iterations of the selection, but when the process of the data imputation was changed, between mice and from mice to FIML, different items were selected, indicating unstable selections. This could potentially be accounted for, by using the bruteforce implementation in 'stuart'. But it also can be a hint at a model misspecification, because of which the algorithm finds multiple local minima.
+
+Aside of the instability, especially when trying the imputation via the 'mice' package and prospective mean matching, the models yielded rather bad fit measures, when using the initially planned objective function (with the aim of optimising for model fit (RMSEA, SRMR, CFI), reliability (McDonald’s $\omega$), and variability in the difficulty of items (via the nu or tau matrix).
+Which is why it was deviated from the initially planned objective function, in favor of model fit criteria only (RMSEA, SRMR & CFI). Thus, the final objective function, that was used, did not incorporate terms to optimize for reliability McDonald’s $\omega$ nor variability in the difficulty of items.
+Furthermore WLSMV could not be used, although being the appropriate estimator for rating scales, because of the ceiling effects in the items and the sparely used lower answer categories. I tried to account for that by collapsing the respective answer categories, but this resulted seemingly in an introduction of better fit to the model. Because of that, I decided to use MLR as estimator and were therefore able to use FIML as imputation method, implemented in 'lavaan'.
+Ideally future studies, with a sample without ceiling effects, would use WLSMV as estimator, since modified weighted least square estimators for ordered-categorical indicators (MWLS\textsubscript{C}) provide accurate estimates of the model parameters given a stable weight matrix [@wirth2007] and furthermore, WLSMV is a robust estimator which does not assume normally distributed variables and provides the best option for modelling categorical or ordered data [@brown2006]. 
+
+######
+
+- residuals correlate
 
 ## Future directions
+
+- what to optimize the scale for?
+- qualitative item creation should have been more extensive - maybe seperate study
+- revisiting the model and specification, could open the possibility to include variability in item difficulty in the objective function, via the nu matrix, or the 
+
 Future research should explore adaptive testing using Item Response Theory (IRT). IRT provides a method to tailor item difficulty to respondents' ability levels in real-time, enhancing assessment efficiency and precision. This reduces the number of items required while maintaining high measurement accuracy. Implementing IRT is particularly advantageous for heterogeneous constructs like data literacy, as it ensures each participant is evaluated with items suited to their skill level. One of the significant challenges in applying IRT is the assumption of unidimensionality, where items are presumed to measure a single underlying trait. Data literacy, however, is a multi-faceted construct, and future studies should investigate the dimensionality of the scale rigorously. 
 An alternative to IRT-based adaptive testing is the use of Classification and Regression Trees (CART). CART is a tree-based method that splits data into subsets based on binary decisions, optimizing for predictive accuracy. This approach could simplify adaptive testing by using binary splits to classify respondents into different levels of data literacy. The Gini index can be employed within CART to identify the optimal cutoff points for these splits, ensuring that each branch of the tree maximally distinguishes between different levels of data literacy competence.
 
-
-########################################
-
-Construct validity is evaluated through confirmatory factor analysis (CFA), using MLR as estimator, as well as correlation analyses with related constructs
-
-- what to optimize the scale for?
-- dynamic fit indices
-- residuals correlates 
-- is NOT optimized for model fit criteria and composite reliability (RMSEA, SRMR, CFI & McDonalds $\omega$) as well as variability in the difficulty of items.
