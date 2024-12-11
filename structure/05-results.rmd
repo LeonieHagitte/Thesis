@@ -5,7 +5,7 @@ output:
 ---
 # Results
 The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (M = 4.48, SD = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (SD = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
-Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (M = 2.88) but also the highest standard deviation (SD = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," M = 3.45, SD = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," M = 3.44, SD = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," M = 3.28, SD = 1.26), reflecting diverse self-assessments of these specific skills.
+Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (M = 2.88) but also the highest standard deviation (SD = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots, or in their understanding of the item. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," M = 3.45, SD = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," M = 3.44, SD = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," M = 3.28, SD = 1.26), reflecting diverse self-assessments of these specific skills.
 Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (M = 4.04) as well as variability (SD = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," M = 3.19, SD = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," M = 3.74, SD = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. The final set of items as well as their mean and standard deviation can be seen in Table 1.
 
 \begin{table}[htpb]
@@ -15,37 +15,37 @@ Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beur
 \begin{tabular}{lp{10cm}cc}
 Tag & Item & Mean & SD\\
 \hline
-F1F6 & Bei der Auswertung von Grafiken bin ich in der Lage, Widersprüche zu erkennen. & 3.74 & .83\\
-F1F8 & Ich erkenne, ob die Interpretationen Anderer zu den vorliegenden Daten passen. & 3.66 & .97\\
-F1F11 & Ich kenne unterschiedliche Arten von Grafiken. & 4.48 & .75 \\
-F1F14 & Ich kann die zentrale These eines wissenschaftlichen Textes erkennen. & 3.92 & .88\\
-F2F2 & Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle. & 4.04 & 1.04\\
-F2F6 & Ich kenne Merkmale zur Bewertung von Datenqualität. & 3.19 & 1.13\\
-F2F15 & Ich überprüfe die Qualifikation von Autor*innen, bevor ich mich auf die Informationen verlasse. & 3.18 & .94\\
-F2F20 & Ich erkenne, wenn Daten schlechte Qualität haben. & 3.25 & .97\\
-F3F2 & Ich beschäftige mich mit Informationen, die meine Ansichten in Frage stellen. & 3.57 & .80\\
-F3F4 & Ich kann schnell und ohne Schwierigkeiten Informationen in Datenbanken finden. & 3.38 & .92\\
-F3F6 & Ich bevorzuge datengestützte Informationen, wenn ich mir eine Meinung bilde. & 3.75 & 1.09\\
-F3F9 & Ich kann neue Informationen in meinen Wissensstand integrieren. & 4.32 & .64\\
-F4F1 & Ich kann Ergebnisse in Streudiagrammen darstellen. & 2.88 & 1.45\\
-F4F3 & Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind. & 3.45 & 1.23\\
-F4F6 & Ich kann aus verschiedenen Darstellungsformen, die am besten geeignete auswählen. & 3.54 & 1.01\\
-F4F8 & Ich kann mit Programmen Grafiken erstellen, um Ergebnisse zu präsentieren. & 3.73 & 1.17\\
-F5F3 & Ich bin in der Lage, einfache Datenbanken zu verwalten. & 3.44 & 1.31\\
-F5F4 & Ich kann Datensätze mit einfachen statistischen Methoden analysieren. & 3.28 & 1.26\\
-F5F8 & Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich daraus Erkenntnisse gewinnen. & 3.47 & 1.08\\
-F5F18 & Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen. & 3.74 & 1.13\\
+F1F6 & When evaluating graphics, I am able to recognize contradictions. & 3.74 & .83\\
+F1F8 & I recognize whether the interpretations of others fit the available data. & 3.66 & .97\\
+F1F11 & I know different kinds of graphics. & 4.48 & .75 \\
+F1F14 & I can recognize the central thesis of a scientific text. & 3.92 & .88\\
+F2F2 & When I assess the credibility of information, I consider the reputation of the source. & 4.04 & 1.04\\
+F2F6 & I know features for evaluating data quality. & 3.19 & 1.13\\
+F2F15 & I check the qualifications of authors before relying on the information. & 3.18 & .94\\
+F2F20 & I can tell when data is of poor quality. & 3.25 & .97\\
+F3F2 & I deal with information that challenges my views. & 3.57 & .80\\
+F3F4 & I can find information in databases quickly and easily. & 3.38 & .92\\
+F3F6 & I prefer data-based information when forming an opinion. & 3.75 & 1.09\\
+F3F9 & I can integrate new information into my knowledge base. & 4.32 & .64\\
+F4F1 & I can present results in scatter plots. & 2.88 & 1.45\\
+F4F3 & I can present data in graphics in such a way that they are understandable for different target groups. & 3.45 & 1.23\\
+F4F6 & I can choose the most suitable form of presentation. & 3.54 & 1.01\\
+F4F8 & I can use programs to create graphics to present results. & 3.73 & 1.17\\
+F5F3 & I am able to administer simple databases. & 3.44 & 1.31\\
+F5F4 & I can analyze data sets using simple statistical methods. & 3.28 & 1.26\\
+F5F8 & When I am confronted with extensive data sets, I can gain insights from them. & 3.47 & 1.08\\
+F5F18 & When I analyze data, I pay attention to a systematic approach. & 3.74 & 1.13\\
 
 \hline
 \end{tabular}
 }
 \vspace{10pt}
-\small\textit{Note}. The items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming.
+\small\textit{Note}. Translated items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming. The First part of the tag is always indicative of the factor (F1 = Comprehension, F2 = Evaluation, F3 = Integration, F4 = Communication & F5 = Statistics). For every item the mean with the respective standard deviation (SD) is displayed.
 \end{table}
 
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function, only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and ML as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. 
+With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (df = 414, N = 373) = 582.582, p < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. Those fit indices indicate a good model fit, according to @hu1999. 
 ```{r figure3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the training sample .", out.width="\\textwidth", fig.align="center"}
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
 ```
