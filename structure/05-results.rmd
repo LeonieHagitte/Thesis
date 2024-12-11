@@ -6,7 +6,7 @@ output:
 # Results
 The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (M = 4.48, SD = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (SD = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
 Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (M = 2.88) but also the highest standard deviation (SD = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots, or in their understanding of the item. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," M = 3.45, SD = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," M = 3.44, SD = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," M = 3.28, SD = 1.26), reflecting diverse self-assessments of these specific skills.
-Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (M = 4.04) as well as variability (SD = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," M = 3.19, SD = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," M = 3.74, SD = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. The final set of items as well as their mean and standard deviation can be seen in Table 1.
+Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (M = 4.04) as well as variability (SD = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," M = 3.19, SD = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," M = 3.74, SD = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the supplementary material.
 
 \begin{table}[htpb]
 \caption{The selected item pool}
@@ -40,7 +40,7 @@ F5F18 & When I analyze data, I pay attention to a systematic approach. & 3.74 & 
 \end{tabular}
 }
 \vspace{10pt}
-\small\textit{Note}. Translated items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming. The First part of the tag is always indicative of the factor (F1 = Comprehension, F2 = Evaluation, F3 = Integration, F4 = Communication & F5 = Statistics). For every item the mean with the respective standard deviation (SD) is displayed.
+\small\textit{Note}. Translated items sorted by latent factor, selected by the algorithm. The tag refers to the name, the item had in the programming. The First part of the tag is always indicative of the factor (F1 = Comprehension, F2 = Evaluation, F3 = Integration, F4 = Communication and F5 = Statistics). For every item the mean with the respective standard deviation (SD) is displayed.
 \end{table}
 
 ## Model Fit and Measurement Invariance
@@ -104,8 +104,8 @@ Statistics    & 0.782 & 0.649 & 0.700 & \textbf{0.971} & 1.000 \\
 \end{table}
 
 
-## Latent Correlations 
-To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. 
+## Multicollinearity 
+To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. Especially the correlations, that exceed .90 suggest multicollinearity in the data.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations test sample}
@@ -128,7 +128,7 @@ Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
 \small\textit{Note}. The table shows the correlations between the latent factors for the test sample.
 \end{table}
 
-
+## Criterion Validity  
 For the latent correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all p < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all p < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all p < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10($\tau$ = -.15, p < .05; $\tau$ = -.18, p < .01; $\tau$ = -.26, p < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10($\tau$ = .13, p < .05; $\tau$ = .25, p < .01; $\tau$ = .16, p < .05; $\tau$ = .17, p < .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
 
 \begin{table}[htbp]
@@ -169,13 +169,8 @@ For the latent correlations, Kendall's rank correlation coefficient - Kendalls t
 }
 \end{table}
 
-
-## Control Variables
-The analysis of control variables, including gender, educational level, aspired degree of current studies, and occupation classification, revealed that most items did not exhibit statistically significant effects. Furthermore, singularity issues limited the estimation of several control variables, particularly within the Degree and Occupation categories, which reduced the interpretability of the results.
-For item F2F15 in Education5 (A-levels), the coefficient is -3.00 (p = 0.03), which is statistically significant at the 0.05 level. This suggests that individuals with A-levels as their highest educational level score, on average, 3.00 points lower on item F2F15 compared to the reference group, which consisted of individuals with higher educational levels.
-Education5 (A-levels) also shows a statistically significant positive effect on F4F3("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind."), with a coefficient of 3.91 and a p-value of 0.04. This indicates that individuals with A-levels as their highest educational level score, on average, 3.91 points higher than the reference group, which again consisted of individuals with higher educational levels for this item.
-Education also demonstrates influences on F4F8, with Education5 (A-levels), Education7 (degree from a university of applied sciences), and Education8 (university degree) showing statistically significant positive effects. Specifically, Education5 (A-levels) indicates an increase of 2.82 points (p = 0.02), Education7 (degree from a university of applied sciences) shows an increase of 7.46 points (p = 0.00), and Education8 (university degree) suggests an increase of 7.04 points (p = 0.00). All of these p-values are below the 0.05 significance threshold, indicating statistically significant effects.
-For the Degree variable, Degree2 (currently pursuing a Masters degree) shows a significant negative effect on F4F8, with a coefficient of -3.20 and a p-value of 0.05, suggesting a decrease of 3.20 points. Conversely, Degree3 (currently pursuing a state examination) demonstrates a positive effect with an increase of 2.60 points and a p-value of 0.03, both statistically significant.
-For Age22, there is a statistically significant effect on F5F8, with a coefficient of -3.00 (p < 0.05). This indicates that individuals aged 22 report, on average, 3.00 points lower on F5F8 compared to the reference group.
-Among the Degree variables for F5F8, Degree3 (currently pursuing a state examination) demonstrates a statistically significant increase of 3.00 points, with a p-value of 0.05, indicating a positive effect. However, Degree2 (currently pursuing a Masters degree) and Degree4 (currently pursuing a doctorate) encounter singularity issues and could not be estimated.
-
+## Control Variables  
+The analysis of control variables (gender, educational level, aspired degree, and occupation classification) revealed that most items showed no statistically significant effects. Singularity issues, particularly in degree and occupation categories, further limited the interpretability of some results.  
+For 'Education 5' (A-levels), a significant negative effect was found on F2F15 (b = -3.00, p = 0.03), indicating an average score 3.00 points lower than individuals with higher educational levels. Conversely, A-levels had a positive effect on F4F3 (b = 3.91, p = 0.04). Education also influenced F4F8, where A-levels (b = 2.82, p = 0.02), 'Education 7' (degree from a university of applied sciences) (b = 7.46, p = 0.00), and 'Education 8' (university degree) (b = 7.04, p = 0.00) also showed significant positive effects.  
+For the Degree variable, 'Degree 2' (Masters) showed a significant negative effect on F4F8 ($b$ = -3.20, $p$ = 0.05), while 'Degree 3' (state examination) had a positive effect ($b$ = 2.60, $p$ = 0.03). On F5F8, pursuing a state examination showed a positive effect ($b$ = 3.00, $p$ = 0.05), while pursuing a Master and 'Degree 4' (doctorate) encountered singularity issues and could not be estimated.  
+Finally, for 'Age 22', a significant negative effect was found on F5F8 ($b$ = -3.00, $p$ < 0.05), indicating individuals aged 22 scored, on average, 3.00 points lower than the reference groups.
