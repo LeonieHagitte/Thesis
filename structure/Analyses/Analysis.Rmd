@@ -2176,6 +2176,16 @@ for (item in likert_items) {
 ```
 
 ```{r}
+library(ggplot2)
+
+ggplot(demographics, aes(x = Education)) +
+  geom_bar(aes(y = ..count..), fill = "skyblue", color = "black") +
+  geom_text(aes(y = ..count.., label = scales::percent(..count../sum(..count..))),
+            stat = "count", vjust = -0.5) +
+  labs(title = "Distribution of Education Levels",
+       x = "Education Levels",
+       y = "Count") +
+  theme_minimal()
 
 
 ```
