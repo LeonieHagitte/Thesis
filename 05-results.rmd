@@ -134,7 +134,7 @@ For the correlations, Kendall's rank correlation coefficient - Kendalls tau was 
 
 \begin{table}[htbp]
 \centering
-\rotatebox{90}{%
+\rotatebox{90}{ %
 \begin{minipage}{\textheight} % Ensures caption is properly associated with the rotated content
 \caption{Means with standard deviations, and correlations with confidence intervals}
 \centering
