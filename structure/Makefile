@@ -27,9 +27,12 @@ RUN2 = $(QRUN2)
 	# wget -O $@ https://github.com/LeonieHagitte/Thesis/raw/main/structure/Images/xxx.pdf
 clean:
 	Rscript -e 'bookdown::clean_book(TRUE)'
+#publish:
+#	make all DOCKER=TRUE \
+#	&& ./publish.sh
 publish:
-	make all DOCKER=TRUE \
-	&& ./publish.sh
+	Rscript -e 'bookdown::render_book("_output.yml", output_format = "all")'
+	./publish.sh
 apa7.csl:
 	wget -O $@ https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 # images/rmarkdown.svg: images/rmarkdown.pdf
