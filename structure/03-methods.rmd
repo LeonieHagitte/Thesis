@@ -38,6 +38,7 @@ managing R package dependencies and providing a clear documentation of the R
 package environment. This combination ensures that the analysis can be easily
 reproduced and shared with others in a reliable and transparent manner.
 The study, including all associated code, has been made openly available on GitHub as part of the commitment to open science. The repository can be accessed at https://github.com/LeonieHagitte/Thesis.
+The whole text is also hosted at git hub pages https://leoniehagitte.github.io/Thesis/.
 It is to be mentioned, that the 'repro' package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software get re installed. Furthermore we used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, one can see the results for the respective chunks, as to whether they are reproducible or not.
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 

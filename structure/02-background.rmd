@@ -23,17 +23,107 @@ Because data literacy is such a heterogeneous construct, it is very prone to con
 Thus, the objective of this study was to formulate a definition of data literacy, based on the current literature, that works for citizens. For the conceptual integration, I used the review of @Cui2023 and assessed what competencies were incorporated in most of the definitions and would therefore be considered central to the construct. This included counting the same competencies as well as checking what competencies might be named differently, but are considered the same substantively. Furthermore, data literacy encompasses certain characteristics and behaviors from similar constructs. Examples for those convergent constructs are *critical thinking*, *media competency*, *technology competency*, *statistical literacy* as well as *information literacy* [@Chen2024; @Leighton2021; @Cui2023]. As those constructs share substantive parts, differing in size regarding the respective definition of the constructs, it is to be expected that all of them show moderate to strong positive correlations.
 Concluding, data literacy can be defined as "the ability to collect, manage, evaluate, and apply data effectively. It involves asking and answering real-world questions from datasets while considering ethical use. Core skills include selecting, cleaning, analyzing, visualizing, presenting, critiquing, and interpreting data, information and their sources" [@Cui2023; @wolff2016; @risdale2015].
 
-Most definitions in the literature discern about five facets of general data literacy [Cui et al., 2023], which can be further categorized into three *consumer* and two *producer* facets (Schüller, 2020). Trying to describe the associated behaviors, I labeled these five facets as Comprehension, Evaluation, Integration, Communication, and Statistics. The *consumer* facets—Comprehension, Evaluation, and Integration—are broadly relevant to nearly everyone in society, including the general public. In contrast, the *producer* facets—Communication and Statistics—are primarily significant for individuals actively working with data. The *consumer* facets are closely aligned with media literacy, emphasizing critical analysis and interpretation of various media formats to support understanding and engagement with media content (cf. Figure 2).    
+Most definitions in the literature discern about five facets of general data literacy [Cui et al., 2023], which can be further categorized into three *consumer* and two *producer* facets (Schüller, 2020). Trying to describe the associated behaviors, I labeled these five facets as Comprehension, Evaluation, Integration, Communication, and Statistics. The *consumer* facets—Comprehension, Evaluation, and Integration—are broadly relevant to nearly everyone in society, including the general public. In contrast, the *producer* facets—Communication and Statistics—are primarily significant for individuals actively working with data. The *consumer* facets are closely aligned with media literacy, emphasizing critical analysis and interpretation of various media formats to support understanding and engagement with media content (cf. Table 1).    
 
-```{r nomnet, eval = TRUE, echo = FALSE, fig.cap="\\footnotesize{This figure illustrates the nomological network for self-perceived data literacy. In the bottom is the measurement model of self-perceived data literacy. The nomological network is operationalized through convergent measures, including dimensions such as Statistical Literacy, Information Literacy, Media Competency, and Critical Thinking, as indicated by $++$ to denote strong alignment with the construct. The figure further contextualizes Data Literacy in relation to overlapping or adjacent constructs, such as Need for Cognition, Openness, and Conscientiousness, marked with $+$ to signify partial conceptual overlap. Dashed lines represent theoretical or empirical associations between Data Literacy and these related constructs.}",out.width="\\textwidth", fig.align="center"}
-knitr::include_graphics("images/DL_NomNet.png", auto_pdf = TRUE)
-```
+\begin{table}[!htbp]
+\centering
+\caption{The Nomological Network of the Construct and its Facets}
+\scriptsize
+\begin{tabular}{|p{0.15\textwidth}|p{0.30\textwidth}|p{0.25\textwidth}|p{0.21\textwidth}|}
+\hline
+\textbf{} & \textbf{Description} & \textbf{Convergent Constructs} & \textbf{Adjacent Constructs} \\
+\hline
+\textbf{Data Literacy} & The ability to collect, manage, evaluate, and apply data effectively. & Statistical Literacy +++
+
+Information Literacy +++
+
+Media Competency ++
+
+Critical Thinking ++
+& Need for Cognition +
+
+Openness +
+
+Conscientiousness + \\
+\hline
+\textbf{Comprehension} & Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of information across different formats, enabling them to draw accurate conclusions and insights & Statistical Literacy ++
+
+Information Literacy +++
+
+Media Competency ++
+
+Critical Thinking +++
+& Need for Cognition: +
+
+Openness +
+
+Conscientiousness +\\
+\hline
+\textbf{Evaluation} & Represents the ability to evaluate the credibility and reliability of information by considering the reputation of the source, the context in which it is presented, and potential biases or vested interests. Individuals high in this factor demonstrate a heightened awareness of these elements. & Statistical Literacy ++
+
+Information Literacy +++
+
+Media Competency +++
+
+Critical Thinking +
+& Need for Cognition: ++ 
+
+Openness +
+
+Conscientiousness +\\
+\hline
+\textbf{Integration} & Reflects the ability to seek a comprehensive understanding of diverse topics by engaging with multiple perspectives and integrating data-driven insights. Individuals high in this factor are open to adapting their opinions based on new evidence, prioritize evidence-based information, and strive to align their values with reliable data. & Statistical Literacy ++
+
+Information Literacy ++
+
+Media Competency ++
+
+Critical Thinking +++ 
+& Need for Cognition: ++ 
+
+Openness ++
+
+Conscientiousness +\\
+\hline
+\textbf{Communication} & Individuals scoring high in this factor hold the ability to translate data into simple visualizations, present findings confidently, and articulate complex information effectively in written and visual as well as verbal formats. & Statistical Literacy +++
+
+Information Literacy ++
+
+Media Competency +++
+
+Critical Thinking ++
+& Need for Cognition: +
+
+Openness +
+
+Conscientiousness +\\
+\hline
+\textbf{Statistics} & It involves proficiency in organizing and analyzing data using software tools, conducting statistical analyses, and understanding research methodologies. & Statistical Literacy +++
+
+Information Literacy ++
+
+Media Competency ++
+
+Critical Thinking +
+& Need for Cognition: ++ 
+
+Openness +
+
+Conscientiousness ++\\
+\hline
+\end{tabular}
+\begin{flushleft}
+\vspace{10pt}
+\footnotesize\textit{Note}. The table illustrates the nomological network of Data Literacy and its facets. Each facet is described in terms of its primary function, along with convergent constructs and adjacent constructs. The constructs are displayed alongside their expected correlation with the data literacy factors (+++ = strong positive, ++ = moderate positive, + = weak positive).    
+\end{flushleft}
+
+\end{table}
 
 ### Consumer factors  
 The factor *Comprehension* encompasses behaviors and skills associated with critical thinking [@rear2019; @payan2022], such as identifying weaknesses in one's reasoning or actively shaping discourse and public dissemination of information. It involves the ability to comprehend various forms of data presentation, detect inconsistencies, interpret data comprehensively, and identify logical fallacies. Individuals with high scores on this factor demonstrate a strong aptitude for processing and making sense of information across different formats, enabling them to draw accurate conclusions and insights [e.g. @wolff2016; @vahey2006; @carlson2014].
 It includes elements of information literacy [@ACRL2000] by focusing on evaluating the credibility of data sources, considering factors like reputation and biases, similar to assessing the quality of information sources (Evaluation & Integration) [@Webber2017]. Both statistical and information literacy involve using data and information to make informed decisions [@Webber2017; @Gal2002; @callingham2006].
 Therefore, the *Evaluation* factor involves skills related to critically evaluating information sources and discerning between facts and opinions [@gould2017; @frank2016; @callingham2006; @kouts-klemm2019]. It encompasses the ability to assess the credibility and reliability of information, considering factors such as the reputation of the source and the context in which the information was presented. Individuals scoring high on this factor demonstrate awareness of potential biases or vested interests in information sources [e.g. @lusiyana2020; @kouts-klemm2019; @callingham2006].  
-Data literacy often emphasizes integrating data-driven insights into one's opinions and values, which influence decision-making processes, without focusing on the decision making [@wolff2016; @callingham2006]. Thereby it aligns with the goals of statistical and information literacy (cf. Figure 2).
+Data literacy often emphasizes integrating data-driven insights into one's opinions and values, which influence decision-making processes, without focusing on the decision making [@wolff2016; @callingham2006]. Thereby it aligns with the goals of statistical and information literacy (cf. Table 1).
 The *Integration* factor relates to the ability and motivation to integrate data-driven insights into one's worldview and values [@Carmi2020; @wolff2016; @callingham2006]. It involves actively seeking comprehensive understanding of various topics, engaging with diverse perspectives, and consciously incorporating data-driven insights. Individuals scoring high in this factor adapt their opinions based on new data, prefer evidence-based information, and ensure their values align with reliable data. They engage with information and perspectives that challenge their existing views, showing a willingness to reassess their opinions and positions based on new data [e.g. @Carmi2020]. 
 
 ### Producer factors  
@@ -58,14 +148,14 @@ Moreover, the constructivist approach to learning, which gained prominence in th
 The role of motivation, influenced by personality traits, is particularly relevant in the context of competencies such as data literacy. Data literacy requires not only cognitive skills but also the motivation to engage with data, interpret it, and apply it effectively [@keshavarz2021]. Research indicates that individuals with high levels of conscientiousness and openness are more likely to pursue learning opportunities related to data literacy, as these traits correlate with intrinsic motivation and a proactive approach to learning [e.g. @keshavarz2021; @mahmood2021; @saleh2018]. For example, students who exhibit high conscientiousness tend to set specific learning goals and persist in their efforts to achieve them, which is essential for mastering complex skills like data analysis [@komarraju2009; @saleh2018].
 
 ### Need for Cognition    
-The personality trait known as *Need for Cognition* (NFC) originated in social psychology during the 1940s and 1950s. The concept of NFC, representing an inclination for joyful thinking, is evident in the works of @maslow1943, @murphy1947, @asch1952, and @sarnoff1954. However, the conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations [@cohen1955]. They defined NFC as "a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world" [@cohen1955, p. 291]. The concept captures individual variations in the engagement and enjoyment of thinking tasks [@bless1994]. As data literacy incorporates several cognitive aspects as well as the motivation to understand data and information one gets presented with, it is expected to correlate positively with one's need for cognition. As need for cognition is more trait like and data literacy is more a competency and therefore less stable, it should not correlate too highly positive, i.e. correlation should be small (cf. Figure 2). 
+The personality trait known as *Need for Cognition* (NFC) originated in social psychology during the 1940s and 1950s. The concept of NFC, representing an inclination for joyful thinking, is evident in the works of @maslow1943, @murphy1947, @asch1952, and @sarnoff1954. However, the conceptualization of NFC underwent refinement in the mid-1950s through experimental investigations [@cohen1955]. They defined NFC as "a need to structure relevant situations in meaningful, integrated ways. It is a need to understand and make reasonable the experiential world" [@cohen1955, p. 291]. The concept captures individual variations in the engagement and enjoyment of thinking tasks [@bless1994]. As data literacy incorporates several cognitive aspects as well as the motivation to understand data and information one gets presented with, it is expected to correlate positively with one's need for cognition. As need for cognition is more trait like and data literacy is more a competency and therefore less stable, it should not correlate too highly positive, i.e. correlation should be small (cf. Table 1). 
 
 ### Opennes to new experiences
-*Openness to new experiences* reflects a broad appreciation for art, emotion, adventure, unconventional ideas, imagination, curiosity, and diverse experiences. Individuals high in openness tend to be intellectually curious, receptive to emotions, appreciative of beauty, and eager to explore new possibilities [@john2008]. They are often more creative and emotionally attuned compared to those low in openness. However, they may also be perceived as unpredictable and prone to engaging in risky behaviors, including drug use [@john2008]. High openness is associated with seeking intense and euphoric experiences as a means of self-actualization. In contrast, individuals low in openness tend to seek fulfillment through perseverance and are characterized as pragmatic and sometimes viewed as dogmatic or closed-minded. The interpretation and contextualization of the openness factor remain debated, partly due to a lack of biological evidence supporting this trait. Unlike other personality traits, openness has not shown consistent associations with specific brain regions in neuroimaging studies [@deyoung2010]. As already mentioned, data literacy can be thought of as a competency, thus incorporating the individual motivation, leading to a certain behavior. Therefore, openness to new experiences is expected to correlate positively with data literacy. As openness to new experiences is more trait like and data literacy is not, the correlation is expected to be small (cf. Figure 2). 
+*Openness to new experiences* reflects a broad appreciation for art, emotion, adventure, unconventional ideas, imagination, curiosity, and diverse experiences. Individuals high in openness tend to be intellectually curious, receptive to emotions, appreciative of beauty, and eager to explore new possibilities [@john2008]. They are often more creative and emotionally attuned compared to those low in openness. However, they may also be perceived as unpredictable and prone to engaging in risky behaviors, including drug use [@john2008]. High openness is associated with seeking intense and euphoric experiences as a means of self-actualization. In contrast, individuals low in openness tend to seek fulfillment through perseverance and are characterized as pragmatic and sometimes viewed as dogmatic or closed-minded. The interpretation and contextualization of the openness factor remain debated, partly due to a lack of biological evidence supporting this trait. Unlike other personality traits, openness has not shown consistent associations with specific brain regions in neuroimaging studies [@deyoung2010]. As already mentioned, data literacy can be thought of as a competency, thus incorporating the individual motivation, leading to a certain behavior. Therefore, openness to new experiences is expected to correlate positively with data literacy. As openness to new experiences is more trait like and data literacy is not, the correlation is expected to be small (cf. Table 1). 
 
 ### Conscientiousness  
 *Conscientiousness* refers to an individual's propensity for self-discipline, dutifulness, and striving for achievement in alignment with external standards or expectations. It encompasses levels of impulse control, regulation, and goal-directed behavior [@john2008, @toegel2012; @costa1992]. High conscientiousness is characterized by persistence and focus, often perceived as stubbornness, whereas low conscientiousness is linked to flexibility and spontaneity, potentially manifesting as carelessness and unreliability [@toegel2012]. Individuals with high conscientiousness tend to prefer planned actions over spontaneous ones [@costa1992; @john2008].  
-The cognitive aspects of data literacy as well as the motivation to understand data and information speaks to the conscientiousness of people as well. As being critical and at times detail oriented (e.g. in interpreting results, or spotting inconsistencies in presented information or while examining the credibility of sources) is also integral to data literacy, data literacy and conscientiousness are expected to correlate positively. As conscientiousness also trait opposing to data literacy, they should not correlate to highly positive, i.e. correlation should be small (cf. Figure 2). 
+The cognitive aspects of data literacy as well as the motivation to understand data and information speaks to the conscientiousness of people as well. As being critical and at times detail oriented (e.g. in interpreting results, or spotting inconsistencies in presented information or while examining the credibility of sources) is also integral to data literacy, data literacy and conscientiousness are expected to correlate positively. As conscientiousness also trait opposing to data literacy, they should not correlate to highly positive, i.e. correlation should be small (cf. Table 1). 
 
 ## Aim of the Study    
 The aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-rated data literacy with citizens being the target population. An emphasis lies on measuring the three consumer factors of the construct (Comprehension, Evaluation & Integration). Thus the research question of this study is: 
