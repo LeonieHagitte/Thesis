@@ -2,12 +2,15 @@
 title: "Development of a German Instrument for Self-Rated Data Literacy"
 author: "Leonie Hagitte"
 date: "`r Sys.Date()`"
-output: pdf_document
+output:
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"   # Ensure the path to your preamble.tex file is correct
 site: bookdown::bookdown_site
 documentclass: article
 bibliography:
-- packages.bib
-- literature.bib
+  - packages.bib
+  - literature.bib
 csl: apa7.csl
 link-citations: true
 description: ''
@@ -18,14 +21,15 @@ papersize: a4
 classoption: twoside
 repro:
   packages:
-  - devtools
-  - here
-  - aaronpeikert/repro@adb5fa56
-  - bookdown
-  - usethis
-  - gert
+    - devtools
+    - here
+    - aaronpeikert/repro@adb5fa56
+    - bookdown
+    - usethis
+    - gert
 subtitle: "An Algorithm-based Approach to Scale Development"
 ---
+
 \newpage\null\thispagestyle{empty}\newpage
 
 ```{r, include=FALSE}

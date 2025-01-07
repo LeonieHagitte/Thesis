@@ -16,10 +16,20 @@
 \renewcommand{\bottomfraction}{0.8}
 \renewcommand{\floatpagefraction}{0.75}
 
-% Resize tables to fit the text width and left-align captions
-\captionsetup{justification=raggedright, singlelinecheck=false}
+% Resize tables to fit the text width and left-align captions, make them bold
+\captionsetup{justification=raggedright, singlelinecheck=false,labelfont=bf}
 
 % Optional: Change the font size for verbatim output
 \let\oldverbatim\verbatim
 \let\endoldverbatim\endverbatim
 \renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}
+
+\usepackage{pdfpages}
+
+% titlesec does not play nice with RMarkdown, so hack:
+
+\let\paragraph\oldparagraph
+\let\subparagraph\oldsubparagraph
+%\usepackage[sc, compact, raggedright]{titlesec}
+
+

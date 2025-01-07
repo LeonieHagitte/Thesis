@@ -6,3 +6,4 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'repro', 'here', 'usethis', 'gert', 'credentials'
 ), 'packages.bib')
 ```
+

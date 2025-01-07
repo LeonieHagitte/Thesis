@@ -901,6 +901,87 @@ heatmap_final2 <- heatmap2 +
 print(heatmap_final2)
 print(heatmap2)
 ```
+```{r}
+# Load required libraries
+library(dplyr)
+library(reshape2)  # for melt function
+library(ggplot2)
+library(psych)     # for corr.test function
+
+# Assuming your data frame is df_dl
+# Ensure all variables are numeric
+df_dl <- df_dl %>%
+  mutate(across(everything(), as.numeric))
+
+# Select the specified variables for correlation analysis
+selected_vars2 <- df_dl %>%
+  select(F1F6, F1F8, F1F11, F1F14,
+         F2F2, F2F6, F2F15, F2F20,
+         F3F2, F3F4, F3F6, F3F9,
+         F4F1, F4F3, F4F6, F4F8,
+         F5F3, F5F4, F5F8, F5F18)
+
+# Calculate correlations
+correlation_matrix2 <- round(cor(selected_vars2, use = "pairwise.complete.obs"), 2)
+
+# Function to keep only the upper triangle of the matrix
+upper_triangle2 <- function(mat) {
+  mat[lower.tri(mat)] <- NA
+  return(mat)
+}
+
+# Keep only the upper triangle
+correlation_upper2 <- upper_triangle2(correlation_matrix2)
+
+# Reshape the data for heatmap plotting
+melted_data2 <- melt(correlation_upper2, na.rm = TRUE)
+
+# Plot the heatmap
+heatmap3 <- ggplot(data = melted_data2, aes(Var2, Var1, fill = value)) +
+  ggtitle("Correlations - Selected Variables") +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(
+    low = "blue", high = "red", mid = "white",
+    midpoint = 0, limit = c(-1, 1), space = "Lab",
+    name = "Pearson\nCorrelations"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, vjust = 1, size = 8, hjust = 1),
+    axis.text.y = element_text(size = 8),
+    plot.title = element_text(size = 12),
+    legend.position = "right",
+    legend.title = element_text(size = 8)
+  ) +
+  coord_fixed()
+
+# Add correlation coefficients as text annotations
+heatmap_final3 <- heatmap3 + 
+  geom_text(aes(Var2, Var1, label = value), color = "black", size = 2.5) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_blank(),
+    axis.ticks = element_blank(),
+    legend.justification = c(1, 0),
+    legend.position = c(0.6, 0.7),
+    legend.direction = "horizontal"
+  ) +
+  guides(
+    fill = guide_colorbar(
+      barwidth = 7, barheight = 1,
+      title.position = "top", title.hjust = 0.3
+    )
+  )
+
+# Print or view the final heatmap
+print(heatmap_final3)
+print(heatmap3)
+
+```
+
 
 ```{r}
 # Load necessary libraries
@@ -1341,6 +1422,7 @@ summary(fit_cfa_model_m, fit.measures = TRUE, standardized = TRUE)
 
 inspect(fit_cfa_model_m, 'fit')
 ```
+
 ## Multicollinearity
 ```{r}
 cov_matrix <- lavInspect(fit_cfa_model_m, "cov.lv")
@@ -1435,32 +1517,28 @@ modificationIndices(fit_cfa_model_m, sort = TRUE)
 predicted_values <- predict(fit_cfa_model_m)
 
 # Check for extreme values (Haywood cases)
-extreme_values <- predicted_values[which(predicted_values > quantile(predicted_values, 0.95) | 
-                                         predicted_values < quantile(predicted_values, 0.05))]
+# Flatten and combine the matrices into a single numeric vector
+predicted_values_combined <- unlist(lapply(predicted_values, as.numeric))
+
+# Check for extreme values
+extreme_values <- predicted_values_combined[which(
+  predicted_values_combined > quantile(predicted_values_combined, 0.95) | 
+  predicted_values_combined < quantile(predicted_values_combined, 0.05)
+)]
 
 print(extreme_values)
+
 ```
 
 ```{reproducibleR}
 # Get standardized residuals
 residuals_standardized <- residuals(fit_cfa_model_m, type = "standardized")
 
-# Convert residuals to a vector if necessary
-if (is.data.frame(residuals_standardized)) {
-  residuals_vector <- unlist(residuals_standardized)
-} else if (is.list(residuals_standardized)) {
-  residuals_vector <- do.call(c, residuals_standardized)
-} else {
-  residuals_vector <- residuals_standardized
-}
-
-# Extract the covariance matrix (standardized residuals)
+# Extract covariance residuals and flatten them into a vector
 residuals_matrix <- residuals_standardized$cov
-
-# Convert the matrix to a numeric vector
 residuals_vector <- as.numeric(residuals_matrix)
 
-# Remove NA values if any
+# Remove NA values
 residuals_vector <- na.omit(residuals_vector)
 
 # Calculate absolute values and quantiles
@@ -1469,18 +1547,17 @@ quantile_95 <- quantile(absolute_residuals, 0.95)
 
 # Find extreme residuals
 extreme_residuals <- residuals_vector[absolute_residuals > quantile_95]
-
 print(extreme_residuals)
 
-# Optional: Examine residuals at different quantiles
-quantile_05 <- quantile(absolute_residuals, 0.05)
-extreme_residuals_low <- residuals_vector[absolute_residuals < quantile_05]
+# Optional: Lower the threshold or examine additional quantiles
+quantile_90 <- quantile(absolute_residuals, 0.90)
+extreme_residuals_90 <- residuals_vector[absolute_residuals > quantile_90]
+print(extreme_residuals_90)
 
-print(extreme_residuals_low)
 
 ```
 
-```{reproducibleR}
+```{r}
 library(ggplot2)
 residuals_df <- data.frame(residuals = residuals_vector)
 ggplot(residuals_df, aes(x = residuals)) +
@@ -2191,7 +2268,68 @@ ggplot(demographics, aes(x = Education)) +
 ```
 
 ```{r}
+# Extract standardized residuals
+residuals_standardized <- residuals(fit_cfa_model_m, type = "standardized")
 
+# Extract the first residual covariance matrix (standardized residuals)
+residuals_matrix <- residuals_standardized[[1]]$cov
+
+# Convert the residuals matrix to a data frame
+residuals_df <- as.data.frame(residuals_matrix)
+
+# Assuming the column names are now correctly aligned
+selected_variables <- c("F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20",
+                        "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8",
+                        "F5F3", "F5F4", "F5F8", "F5F18")
+
+# Check if selected variables match the available names
+available_variables <- colnames(residuals_df)
+
+# Filter selected variables based on availability in the residuals matrix
+selected_variables <- selected_variables[selected_variables %in% available_variables]
+
+# Subset the residuals for the selected variables
+selected_residuals <- residuals_df %>%
+  select(all_of(selected_variables))
+
+# Calculate the correlation matrix for the selected variables
+residuals_corr_matrix_selected <- cor(selected_residuals, use = "pairwise.complete.obs")
+
+# Print the correlation matrix
+print(residuals_corr_matrix_selected)
+
+```
+
+```{r}
+# Extract standardized residuals
+residuals_standardized <- residuals(fit_cfa_model_m, type = "standardized")
+
+# Extract the first residual covariance matrix (standardized residuals)
+residuals_matrix <- residuals_standardized[[2]]$cov
+
+# Convert the residuals matrix to a data frame
+residuals_df <- as.data.frame(residuals_matrix)
+
+# Assuming the column names are now correctly aligned
+selected_variables <- c("F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20",
+                        "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8",
+                        "F5F3", "F5F4", "F5F8", "F5F18")
+
+# Check if selected variables match the available names
+available_variables <- colnames(residuals_df)
+
+# Filter selected variables based on availability in the residuals matrix
+selected_variables <- selected_variables[selected_variables %in% available_variables]
+
+# Subset the residuals for the selected variables
+selected_residuals <- residuals_df %>%
+  select(all_of(selected_variables))
+
+# Calculate the correlation matrix for the selected variables
+residuals_corr_matrix_selected <- cor(selected_residuals, use = "pairwise.complete.obs")
+
+# Print the correlation matrix
+print(residuals_corr_matrix_selected)
 
 ```
 
