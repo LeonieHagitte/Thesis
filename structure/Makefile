@@ -36,7 +36,5 @@ publish:
 apa7.csl:
 	wget -O $@ https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 # images/rmarkdown.svg: images/rmarkdown.pdf
-	# $(RUN1) inkscape --export-plain-svg=$@ $< $(RUN2)
-# images/idealized-workflow.pdf: images/idealized-workflow.svg
-	# $(RUN1) inkscape --export-area-drawing --export-pdf=$@ $< $(RUN2)
+
 	
