@@ -25,11 +25,11 @@ Although there does not seem to be a gerenal direction for change, some factor l
 
 Across the versions of this models it is seen, that the CFI decreases the most and the RMSEA suffers the least.
 As the CFI is comparing the tested models against a base-line model it could be that the strong decrease in this index reflects the divergence of the model respective to the differing sample and thus indicate overfitting.
-Furthermore, some items showed to correlate [VERWEIS ANHANG], as well as having high residual correlations [VERWEIS ANHANG] (shared variance not explained by the latent factor), therefore the model fit deteriorates and reduces the CFI.
+Furthermore, some items showed to correlate [VERWEIS ANHANG], as well as having high residual correlations [VERWEIS ANHANG] (shared variance not explained by the latent factor), therefore the model fit could deteriorates and reduces the CFI.
 The SRMR shows mediocre fit, but gets worse in the MGCFA and progressively with increasing the invariance levels. This could in part be due to the fact, that the SRMR makes no correction for parsimony, thus gets better the more paths a model contains. As we increase invariance and constrain paths to equality, it could make sense for the SRMR to increase. 
 The RMSEA in turn accounts for some complexity of the model and also performs better in this case as the SRMR.
 
-Further investigation of residuals revealed several correlated residuals, indicating potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample). 
+Those correlated residuals, also indicate potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample) (cf. Tables 4 & 5). 
 This could indicate redundancy among the factors, that needs to be looked at in terms of items and factor specification.
 
 ## Construct Validity
