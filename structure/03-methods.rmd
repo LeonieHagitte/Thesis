@@ -1,7 +1,7 @@
 # Methods
 
 ## Item Creation  
-Prior to the item creation, a review of the literature was done. Since the goal was to create a self-report questionnaire, the indicators of the latent constructs were decided to be subjective indicators, or Q-data [@buehner2021]. Furthermore it was set that the target group for the questionnaire are German speaking citizens. There were no clear restrictions regarding age or education, other than the participants being of legal age and that the questionnaire should not be directed at professionals in terms of data literacy, or highly educated people.
+Prior to the item creation, a review of the literature was done. Since the goal was to create a self-report questionnaire, the indicators of the latent constructs were decided to be subjective indicators, or *Q-data* [@buehner2021]. Furthermore it was set that the target group for the questionnaire are German speaking citizens. There were no clear restrictions regarding age or education, other than the participants being of legal age and that the questionnaire should not be directed at professionals in terms of data literacy, or highly educated people.
 
 The item creation itself was oriented towards the Act-Frequency-Approach [@buss1983], thus the prototype approach. 
 I started with thinking of frequent, relevant behaviors, convictions or believes reflecting the factors of data literacy, hence being prototypical of those latent factors.
