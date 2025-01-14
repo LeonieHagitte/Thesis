@@ -46,7 +46,8 @@ The tag refers to the name, the item had in the programming. The First part of t
 
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. Those fit indices indicate a good model fit, according to @hu1999. 
+With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054].
+
 ```{r figure3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the training sample .", out.width="\\textwidth", fig.align="center"}
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
 ```
@@ -56,7 +57,7 @@ For the configural model of the training sample in the MGCFA, standardized loadi
 knitr::include_graphics("images/Model6.png", auto_pdf = TRUE)
 ```
 For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 389) = 659.746, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ = .00 , $\Delta\text{SRMR}$ = .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2)
+Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 389) = 659.746, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ < .00 , $\Delta\text{SRMR}$ < .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2).
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MG-CFA testing}
@@ -89,7 +90,7 @@ The correlated residuals from the training sample can be seen in the supporting 
 \resizebox{\textwidth}{!}{  
 \begin{tabular}{lccccc}
 \hline
-  & Comprehention & Evaluation & Integration & Communication & Statistics \\
+& 1 & 2 & 3 & 4 & 5 \\
 \hline
 Comprehension & 1.000 & & & & \\
 Evaluation    & 0.672 & 1.000 & & & \\
@@ -106,7 +107,7 @@ Statistics    & 0.782 & 0.649 & 0.700 & \textbf{0.971} & 1.000 \\
 
 
 ## Multicollinearity 
-To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between *Communication* and *Statistics* is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between *Communication* and *Statistics* is to be highlighted as well, alongside the correlation of .92 between *Comprehension* and *Integration*, as well as the correlation of .87 between *Evaluation* and *Integration*. Especially the correlations, that exceed .90 suggest multicollinearity in the data.
+To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between Communication and Statistics is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between Communication and Statistics is to be highlighted as well, alongside the correlation of .92 between Comprehension and Integration, as well as the correlation of .87 between Evaluation and Integration. Especially the correlations, that exceed .90 suggest multicollinearity in the data.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations test sample}
@@ -114,7 +115,7 @@ To furthermore investigate the model, the covariances of the latent factors were
 \resizebox{\textwidth}{!}{  
 \begin{tabular}{lccccc}
 \hline
- & Comprehention & Evaluation & Integration & Communication & Statistics \\
+ & 1 & 2 & 3 & 4 & 5 \\
 \hline
 Comprehension & 1.000 & & & & \\
 Evaluation    & 0.627 & 1.000 & & & \\
@@ -130,7 +131,7 @@ Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
 \end{table}
 
 ## Criterion Validity  
-For the correlations, Kendall's rank correlation coefficient - Kendalls tau was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all $p$ < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all $p$ < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all $p$ < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10 ($\tau$ = -.15, $p$ < .05; $\tau$ = -.18, $p$ < .01; $\tau$ = -.26, $p$ < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10 ($\tau$ = .13, $p$ < .05; $\tau$ = .25, $p$ < .01; $\tau$ = .16, $p$ < .05; $\tau$ = .17, $p$ < .01). The latent correlations with respective confidence intervals are also displayed in Table X in the supporting materials.
+For the correlations, Kendall's rank correlation coefficient ($\tau$) was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all $p$ < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all $p$ < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all $p$ < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10 ($\tau$ = -.15, $p$ < .05; $\tau$ = -.18, $p$ < .01; $\tau$ = -.26, $p$ < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10 ($\tau$ = .13, $p$ < .05; $\tau$ = .25, $p$ < .01; $\tau$ = .16, $p$ < .05; $\tau$ = .17, $p$ < .01). The latent correlations with respective confidence intervals are also displayed in table 6.
 
 \begin{table}[htbp]
 \centering
@@ -173,5 +174,5 @@ For the correlations, Kendall's rank correlation coefficient - Kendalls tau was 
 ## Control Variables  
 The analysis of control variables (gender, educational level, aspired degree, and occupation classification) revealed that most items showed no statistically significant effects. Singularity issues, particularly in degree and occupation categories, further limited the interpretability of some results.  
 For 'Education 5' (A-levels), a significant negative effect was found on F2F15 ($b$ = -3.00, $p$ = 0.03), indicating an average score 3.0 points lower than individuals with higher educational levels. Conversely, A-levels had a positive effect on F4F3 ($b$ = 3.91, $p$ = 0.04). Education also influenced F4F8, where A-levels ($b$ = 2.82, $p$ = 0.02), 'Education 7' (degree from a university of applied sciences) ($b$ = 7.46, $p$ = 0.00), and 'Education 8' (university degree) ($b$ = 7.04, $p$ = 0.00) also showed significant positive effects.  
-For the Degree variable, 'Degree 2' (Masters) showed a significant negative effect on F4F8 ($b$ = -3.20, $p$ = 0.05), while 'Degree 3' (state examination) had a positive effect ($b$ = 2.60, $p$ = 0.03). On F5F8, pursuing a state examination showed a positive effect ($b$ = 3.00, $p$ = 0.05), while pursuing a Master and 'Degree 4' (doctorate) encountered singularity issues and could not be estimated.  
+'Degree 2' (Masters) showed a significant negative effect on F4F8 ($b$ = -3.20, $p$ = 0.05), while 'Degree 3' (state examination) had a positive effect ($b$ = 2.60, $p$ = 0.03). On F5F8, pursuing a state examination showed a positive effect ($b$ = 3.00, $p$ = 0.05), while pursuing a Master and 'Degree 4' (doctorate) encountered singularity issues and could not be estimated.  
 Finally, for 'Age 22', a significant negative effect was found on F5F8 ($b$ = -3.00, $p$ < 0.05), indicating individuals aged 22 scored, on average, 3.00 points lower than the reference groups.
