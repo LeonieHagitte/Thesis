@@ -8,7 +8,7 @@ Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beur
 \resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
 \footnotesize
 \begin{tabular}{lp{10cm}cc}
-Tag & Item & Mean & SD\\
+Tag & Item & Mean & *SD*\\
 \hline
 F1F6 & When evaluating graphics, I am able to recognize contradictions. & 3.74 & .83\\
 F1F8 & I recognize whether the interpretations of others fit the available data. & 3.66 & .97\\
@@ -41,7 +41,7 @@ The tag refers to the name, the item had in the programming. The First part of t
 
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, TLI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054].
+With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054].
 
 ```{r figure3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the training sample .", out.width="\\textwidth", fig.align="center"}
 knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
@@ -136,7 +136,7 @@ For the correlations, Kendall's rank correlation coefficient ($\tau$) was estima
 \centering
 \begin{tabular}{lccccccccccc}
 \hline
-\textbf{Var} & \textbf{M} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\textbf{Var} & \textbf{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
 \hline
 1. Con. & 3.68 & & & & & & & & & \\
    & [0.76] & & & & & & & & & \\
