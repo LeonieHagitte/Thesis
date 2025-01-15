@@ -75,7 +75,7 @@ Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA &
 \small\textit{Note}. The table shows the essential fit indices of the model created with 'stuart', alongside their change in terms of Invariance testing, per invariance level. All Indices shown were estimated with ML as estimator.
 \end{table}
 
-The model of the final set of items shows McDonald’s $\omega$ total = .92. The composite values McDonald’s $\omega$ total of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
+The model of the final set of items shows McDonald’s $\omega$\textsubscript{total} = .92. The composite values McDonald’s $\omega$\textsubscript{total} of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
 The correlated residuals from the training sample can be seen in the supporting material. The correlated residuals from the testing sample can be seen in the supporting material. Both samples show several residuals to be correlated.
 
