@@ -56,8 +56,8 @@ Cross-validation of the MG-CFA with the test-data indicated that the assumption 
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MG-CFA testing}
-
-\resizebox{\textwidth}{!}{  
+\resizebox{\textwidth}{!}{
+\small
 \begin{tabular}{cccccccc}
 \hline
 Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA & $\Delta$ SRMR \\
@@ -85,7 +85,7 @@ The correlated residuals from the training sample can be seen in the supporting 
 \resizebox{\textwidth}{!}{  
 \begin{tabular}{lccccc}
 \hline
-& 1 & 2 & 3 & 4 & 5 \\
+& Comprehension & Evaluation & Integration & Communication & Statistics \\
 \hline
 Comprehension & 1.000 & & & & \\
 Evaluation    & 0.672 & 1.000 & & & \\
@@ -107,10 +107,10 @@ To furthermore investigate the model, the covariances of the latent factors were
 \begin{table}[htpb]
 \caption{Latent Factor correlations test sample}
 
-\resizebox{\textwidth}{!}{  
+\resizebox{\textwidth}{!}{ 
 \begin{tabular}{lccccc}
 \hline
- & 1 & 2 & 3 & 4 & 5 \\
+& Comprehension & Evaluation & Integration & Communication & Statistics \\
 \hline
 Comprehension & 1.000 & & & & \\
 Evaluation    & 0.627 & 1.000 & & & \\
@@ -133,7 +133,7 @@ For the correlations, Kendall's rank correlation coefficient ($\tau$) was estima
 \rotatebox{90}{ %
 \begin{minipage}{\textheight} % Ensures caption is properly associated with the rotated content
 \caption{Means with standard deviations, and correlations with confidence intervals}
-\centering
+\small
 \begin{tabular}{lccccccccccc}
 \hline
 \textbf{Var} & \textbf{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
