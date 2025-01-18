@@ -984,7 +984,7 @@ print(heatmap3)
 ```{r}
 library(apaTables)
 correlation_matrix2 <- round(cor(selected_vars2, use = "pairwise.complete.obs"), 2)
-apa.cor.table(correlation_matrix2)
+apa.cor.table(correlation_matrix2,filename = "itemscortable.rtf")
 
 ```
 
