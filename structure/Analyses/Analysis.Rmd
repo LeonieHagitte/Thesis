@@ -901,6 +901,7 @@ heatmap_final2 <- heatmap2 +
 print(heatmap_final2)
 print(heatmap2)
 ```
+
 ```{r}
 # Load required libraries
 library(dplyr)
@@ -908,7 +909,6 @@ library(reshape2)  # for melt function
 library(ggplot2)
 library(psych)     # for corr.test function
 
-# Assuming your data frame is df_dl
 # Ensure all variables are numeric
 df_dl <- df_dl %>%
   mutate(across(everything(), as.numeric))
@@ -981,7 +981,12 @@ print(heatmap_final3)
 print(heatmap3)
 
 ```
+```{r}
+library(apaTables)
+correlation_matrix2 <- round(cor(selected_vars2, use = "pairwise.complete.obs"), 2)
+apa.cor.table(correlation_matrix2)
 
+```
 
 ```{r}
 # Load necessary libraries

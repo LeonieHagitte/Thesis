@@ -117,3 +117,40 @@ F5F18    & 0.312 & 0.225 & 0.078 & -0.384 & 0.119 & 0.132 & -0.284 & 0.281 & -0.
 \end{minipage}%
 }
 \end{table}
+
+
+
+\begin{table}[htbp]
+\centering
+\rotatebox{90}{ %
+\begin{minipage}{\textheight} % Ensures caption is properly associated with the rotated content
+\caption{Means with standard deviations, and correlations with confidence intervals}
+\small
+\begin{tabular}{lcccccccc}
+\hline
+\textbf{Var} & \textit{M} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\hline
+1. F1F6  & 0.36 & & & & & & & \\
+       & [0.18] & & & & & & & \\
+2. F1F8  & 0.31 & 0.60** & & & & & & \\
+       & [0.20] & [0.21, 0.82] & & & & & & \\
+3. F1F11 & 0.35 & 0.41 & 0.42 & & & & & \\
+       & [0.18] & [-0.03, 0.72] & [-0.03, 0.73] & & & & & \\
+4. F1F14 & 0.34 & 0.30 & 0.25 & 0.24 & & & & \\
+       & [0.19] & [-0.16, 0.66] & [-0.21, 0.63] & [-0.22, 0.62] & & & & \\
+5. F2F2  & 0.20 & -0.27 & -0.25 & -0.25 & -0.03 & & & \\
+       & [0.21] & [-0.64, 0.20] & [-0.62, 0.22] & [-0.62, 0.22] & [-0.46, 0.42] & & & \\
+6. F2F6  & 0.34 & -0.07 & -0.01 & 0.00 & -0.05 & -0.16 & & \\
+       & [0.18] & [-0.50, 0.38] & [-0.45, 0.43] & [-0.44, 0.44] & [-0.48, 0.40] & [-0.56, 0.30] & & \\
+7. F2F15 & 0.24 & -0.16 & -0.02 & -0.11 & -0.42 & 0.09 & 0.27 & \\
+       & [0.19] & [-0.56, 0.30] & [-0.46, 0.43] & [-0.53, 0.35] & [-0.73, 0.03] & [-0.37, 0.51] & [-0.20, 0.63] & & \\
+8. F2F20 & 0.37 & -0.01 & 0.13 & 0.06 & 0.08 & -0.01 & 0.60** & 0.10 \\
+       & [0.17] & [-0.45, 0.44] & [-0.34, 0.54] & [-0.39, 0.49] & [-0.38, 0.50] & [-0.45, 0.43] & [0.21, 0.82] & [-0.36, 0.52] \\
+\hline
+\end{tabular}
+\par % Ensures separation of the table and note
+
+\small Note. The table displays the lower half of the correlation matrix of the items from the whole sample. M and SD are used to represent mean and standard deviation, respectively. Values in square brackets indicate the 95% confidence interval. The confidence interval is a plausible range of population correlations that could have caused the sample correlation (Cumming, 2014). * indicates p < .05. ** indicates p < .01.
+\end{minipage}%
+}
+\end{table}
