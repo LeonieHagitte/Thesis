@@ -1,14 +1,14 @@
 # Results
 The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (*M* = 4.48, *SD* = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (*SD* = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
 Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (*M* = 2.88) but also the highest standard deviation (*SD* = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots, or in their understanding of the item. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," *M* = 3.45, *SD* = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," *M* = 3.44, *SD* = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," *M* = 3.28, *SD* = 1.26), reflecting diverse self-assessments of these specific skills.
-Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (*M* = 4.04) as well as variability (*SD* = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," *M* = 3.19, *SD* = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," *M* = 3.74, *SD* = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the supplementary material.
+Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (*M* = 4.04) as well as variability (*SD* = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," *M* = 3.19, *SD* = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," *M* = 3.74, *SD* = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the Appendix (cf. Table A1).
 
 \begin{table}[htpb]
 \caption{The selected item pool}
 \resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
 \footnotesize
 \begin{tabular}{lp{10cm}cc}
-Tag & Item & Mean & *SD*\\
+Tag & Item & Mean & \textit{SD}\\
 \hline
 F1F6 & When evaluating graphics, I am able to recognize contradictions. & 3.74 & .83\\
 F1F8 & I recognize whether the interpretations of others fit the available data. & 3.66 & .97\\
@@ -136,7 +136,7 @@ For the correlations, Kendall's rank correlation coefficient ($\tau$) was estima
 \small
 \begin{tabular}{lccccccccccc}
 \hline
-\textbf{Var} & \textbf{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\textbf{Var} & \textit{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
 \hline
 1. Con. & 3.68 & & & & & & & & & \\
    & [0.76] & & & & & & & & & \\

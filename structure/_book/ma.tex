@@ -111,6 +111,7 @@
 \usepackage{pdflscape}   % For landscape pages
 \usepackage{rotating}    % For rotating tables (sideways tables)
 \usepackage{geometry}    % For page layout customization
+\usepackage{sectsty}      % To modify section styling
 
 % Customize table settings
 \renewcommand{\textfraction}{0.05}
@@ -135,6 +136,12 @@
 %\usepackage[sc, compact, raggedright]{titlesec}
 
 
+\setlength{\parindent}{0.5in}
+\setlength{\parskip}{0pt}
+\usepackage{sectsty}
+\sectionfont{\centering\bfseries\LARGE}
+\subsectionfont{\bfseries\large}
+\subsubsectionfont{\bfseries\itshape\large}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -156,7 +163,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2025-01-18}
+\date{2025-01-19}
 
 \begin{document}
 \maketitle
@@ -346,9 +353,9 @@ The cognitive aspects of data literacy as well as the motivation to understand d
 
 The aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-rated data literacy with citizens being the target population. Thus the research question of this study is:
 
-``Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?''
+\noindent ``Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?''
 
-\emph{H1: The training-data will support the suggested latent factor structure and the proposed measurement model.}\\
+\noindent \textit{H1: The training-data will support the suggested latent factor structure and the proposed measurement model.}\\
 \emph{H2: The latent factor structure of the initial analysis will be supported by a different sample.}\\
 \emph{H3: A moderate to high positive correlation with information behavior related self-efficacy (SWE-IV-16) (\citeproc{ref-behm2018}{Behm, 2018}) is expected.}\\
 \emph{H4: A moderate positive correlation with self-perceived competence in using information and communication technology (ICT-SC25) (\citeproc{ref-schauffel2021}{Schauffel et al., 2021}) is expected.}\\
@@ -520,14 +527,14 @@ To check for possible external influences of the demographic variables (age; gen
 
 The descriptive analysis of the selected items showed several results to be highlighted. The item \emph{F1F11} (``Ich kenne unterschiedliche Arten von Grafiken'') had a high average score (\emph{M} = 4.48, \emph{SD} = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, \emph{F3F9} (``Ich kann neue Informationen in meinen Wissensstand integrieren'') also demonstrated a strong ceiling effect with a mean of 4.32 (\emph{SD} = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
 Furthermore, several items exhibited high variability in responses. The item \emph{F4F1} (``Ich kann Ergebnisse in Streudiagrammen darstellen'') had the lowest mean (\emph{M} = 2.88) but also the highest standard deviation (\emph{SD} = 1.45), indicating substantial differences in respondents' perceived abilities to use scatterplots, or in their understanding of the item. Other items with notable variability included \emph{F4F3} (``Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind,'' \emph{M} = 3.45, \emph{SD} = 1.23), \emph{F5F3} (``Ich bin in der Lage, einfache Datenbanken zu verwalten,'' \emph{M} = 3.44, \emph{SD} = 1.31), and \emph{F5F4} (``Ich kann Datensätze mit einfachen statistischen Methoden analysieren,'' \emph{M} = 3.28, \emph{SD} = 1.26), reflecting diverse self-assessments of these specific skills.
-Additionally, item \emph{F2F2} (``Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle''), had a relatively high average (\emph{M} = 4.04) as well as variability (\emph{SD} = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, \emph{F2F6} (``Ich kenne Merkmale zur Bewertung von Datenqualität,'' \emph{M} = 3.19, \emph{SD} = 1.13) and \emph{F5F18} (``Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen,'' \emph{M} = 3.74, \emph{SD} = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the supplementary material.
+Additionally, item \emph{F2F2} (``Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle''), had a relatively high average (\emph{M} = 4.04) as well as variability (\emph{SD} = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, \emph{F2F6} (``Ich kenne Merkmale zur Bewertung von Datenqualität,'' \emph{M} = 3.19, \emph{SD} = 1.13) and \emph{F5F18} (``Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen,'' \emph{M} = 3.74, \emph{SD} = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the Appendix (cf.~Table A1).
 
 \begin{table}[htpb]
 \caption{The selected item pool}
 \resizebox{\textwidth}{!}{  % Resize the table content to fit the text width
 \footnotesize
 \begin{tabular}{lp{10cm}cc}
-Tag & Item & Mean & *SD*\\
+Tag & Item & Mean & \textit{SD}\\
 \hline
 F1F6 & When evaluating graphics, I am able to recognize contradictions. & 3.74 & .83\\
 F1F8 & I recognize whether the interpretations of others fit the available data. & 3.66 & .97\\
@@ -669,7 +676,7 @@ For the correlations, Kendall's rank correlation coefficient (\(\tau\)) was esti
 \small
 \begin{tabular}{lccccccccccc}
 \hline
-\textbf{Var} & \textbf{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\textbf{Var} & \textit{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
 \hline
 1. Con. & 3.68 & & & & & & & & & \\
    & [0.76] & & & & & & & & & \\
@@ -744,10 +751,9 @@ The same applies to the latent correlations between the factors, which could be 
 
 Across the versions of this model, the CFI decreases the most and the RMSEA suffers the least.
 As the CFI is comparing the tested models against a base-line model, it could be that the strong decrease in this index reflects the divergence of the model respective to the differing sample and thus indicates overfitting.
-Furthermore, some items correlated {[}VERWEIS ANHANG{]}, as well as having high residual correlations {[}VERWEIS ANHANG{]} (shared variance not explained by the latent factor), therefore the model fit could deteriorates and reduces the CFI.
+Furthermore, some items correlated (cf.~Appendix Table A4), as well as having high residual correlations (cf.~Appendix Tables A2 \& A3) (shared variance not explained by the latent factor), therefore the model fit could deteriorates and reduces the CFI.
 The SRMR showed mediocre fit, but got worse in the MGCFA and progressively with increasing the invariance levels. This could in part be due to the fact, that the SRMR makes no correction for parsimony, thus gets better the more paths a model contains.
 As invariance is increased and paths are constrained to equality, it could make sense for the SRMR to increase.
-{[}SCHULTZE EID QUELLE?{]}
 The RMSEA in turn accounts for some complexity of the model, and also performs better in this case as the SRMR.
 
 Those correlated residuals, also indicate potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample) (cf.~Tables 4 \& 5).
@@ -792,7 +798,7 @@ For F5F8 (``Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich
 The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as \emph{``Gesundheit, Soziales, Lehre und Erziehung''}, \emph{``Buchhaltung, Recht und Verwaltung''}, \emph{``Kaufmännische Dienstleistungen, Vertrieb, Tourismus''} and especially \emph{``Naturwissenschaft, Geografie und Informatik''}. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
 
 The item pool for the questionnaire was specifically trained on this non-representative sample, which will likely affect its validity. Because it could result in the creation and measurement of a latent construct, that is specific or unique even to this particular sample.
-Ideally, this approach would have beenn used with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized.
+Ideally, this approach would have been used with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized.
 
 The visual analysis of the items boxplots showed several outlier in the data. Those were left in the sample for further investigation, since based on the clustering in the high categories (4 and 5), it could mean that the items were too easy for most respondents (in the sense that most respondents agreed with the items). This high concentration of responses at the upper end of the scale could indicate that the items did not adequately discriminate across a range of respondent abilities, resulting in those ceiling effects. The outliers in the low categories (0, 1, or 2) are the minority and are less likely to influence the overall conclusions. However, they do signal that a small subset of participants found the items unclear or disagreed with them and could hint at a systematic influence.
 The measure was designed for citizens, potentially limiting discrimination at higher item difficulties, among more literate participants, a direction to be improved in future studies.

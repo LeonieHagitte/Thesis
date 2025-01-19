@@ -34,10 +34,9 @@ The same applies to the latent correlations between the factors, which could be 
 
 Across the versions of this model, the CFI decreases the most and the RMSEA suffers the least.
 As the CFI is comparing the tested models against a base-line model, it could be that the strong decrease in this index reflects the divergence of the model respective to the differing sample and thus indicates overfitting.
-Furthermore, some items correlated [VERWEIS ANHANG], as well as having high residual correlations [VERWEIS ANHANG] (shared variance not explained by the latent factor), therefore the model fit could deteriorates and reduces the CFI.
+Furthermore, some items correlated (cf. Appendix Table A4), as well as having high residual correlations (cf. Appendix Tables A2 & A3) (shared variance not explained by the latent factor), therefore the model fit could deteriorates and reduces the CFI.
 The SRMR showed mediocre fit, but got worse in the MGCFA and progressively with increasing the invariance levels. This could in part be due to the fact, that the SRMR makes no correction for parsimony, thus gets better the more paths a model contains. 
 As invariance is increased and paths are constrained to equality, it could make sense for the SRMR to increase. 
-[SCHULTZE EID QUELLE?]
 The RMSEA in turn accounts for some complexity of the model, and also performs better in this case as the SRMR.
 
 Those correlated residuals, also indicate potential specification errors, both in the training and test samples. Furthermore, the latent correlations among factors were overall strong, especially between Communication and Statistics (0.91 in the training sample and 0.84 in the test sample) (cf. Tables 4 & 5). 
@@ -80,7 +79,7 @@ For F5F8 ("Wenn ich mit umfangreichen Datensätzen konfrontiert werde, kann ich 
 The results of this study should be interpreted with several limitations in mind. The sample deviates from the general population in multiple demographic variables, potentially compromising its representativeness and generalizability. Occupational distribution among participants shows clustering in fields such as *"Gesundheit, Soziales, Lehre und Erziehung"*, *"Buchhaltung, Recht und Verwaltung"*, *"Kaufmännische Dienstleistungen, Vertrieb, Tourismus"* and especially *"Naturwissenschaft, Geografie und Informatik"*. This indicates a selection bias, likely due to recruitment methods (who is reached) and implicitly favoring individuals more interested in data literacy.
 
 The item pool for the questionnaire was specifically trained on this non-representative sample, which will likely affect its validity. Because it could result in the creation and measurement of a latent construct, that is specific or unique even to this particular sample.
-Ideally, this approach would have beenn used with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized. 
+Ideally, this approach would have been used with a sample, representative of the general public or citizens. That way the results would be more valid and could more likely be generalized. 
 
 The visual analysis of the items boxplots showed several outlier in the data. Those were left in the sample for further investigation, since based on the clustering in the high categories (4 and 5), it could mean that the items were too easy for most respondents (in the sense that most respondents agreed with the items). This high concentration of responses at the upper end of the scale could indicate that the items did not adequately discriminate across a range of respondent abilities, resulting in those ceiling effects. The outliers in the low categories (0, 1, or 2) are the minority and are less likely to influence the overall conclusions. However, they do signal that a small subset of participants found the items unclear or disagreed with them and could hint at a systematic influence.
 The measure was designed for citizens, potentially limiting discrimination at higher item difficulties, among more literate participants, a direction to be improved in future studies. 

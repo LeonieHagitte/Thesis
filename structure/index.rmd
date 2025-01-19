@@ -5,7 +5,15 @@ date: "`r Sys.Date()`"
 output:
   pdf_document:
     includes:
-      in_header: "preamble.tex"   # Ensure the path to your preamble.tex file is correct
+      in_header: "preamble.tex" 
+header-includes:
+ header-includes:
+  - \setlength{\parindent}{0.5in}  # Indent the first line by 0.5 inches
+  - \setlength{\parskip}{0pt}      # Disable space between paragraphs
+  - \usepackage{sectsty}            # Use the sectsty package
+  - \sectionfont{\centering\bfseries\LARGE}  # Center and bold level 1 headers
+  - \subsectionfont{\bfseries\large}        # Bold and large for level 2 headers
+  - \subsubsectionfont{\bfseries\itshape\large}  # Bold and italic for level 3 headers
 site: bookdown::bookdown_site
 documentclass: article
 bibliography:

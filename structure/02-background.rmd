@@ -154,9 +154,9 @@ The cognitive aspects of data literacy as well as the motivation to understand d
 ## Aim of the Study    
 The aim was to derive a comprehensive definition of data literacy based on existing approaches and to develop a questionnaire for self-rated data literacy with citizens being the target population. Thus the research question of this study is: 
 
-"Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?"
+\noindent "Does the proposed set of items effectively capture the latent factor structure of self-rated data literacy, and can the created scale be considered a reliable and valid measure of this construct?"
 
-*H1: The training-data will support the suggested latent factor structure and the proposed measurement model.*  
+\noindent \textit{H1: The training-data will support the suggested latent factor structure and the proposed measurement model.}  
 *H2: The latent factor structure of the initial analysis will be supported by a different sample.*  
 *H3: A moderate to high positive correlation with information behavior related self-efficacy (SWE-IV-16) [@behm2018] is expected.*  
 *H4: A moderate positive correlation with self-perceived competence in using information and communication technology (ICT-SC25) [@schauffel2021] is expected.*  

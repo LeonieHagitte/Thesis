@@ -1562,17 +1562,6 @@ print(extreme_residuals_90)
 
 ```
 
-```{r}
-library(ggplot2)
-residuals_df <- data.frame(residuals = residuals_vector)
-ggplot(residuals_df, aes(x = residuals)) +
-  geom_histogram(bins = 30) +
-  ggtitle("Histogram of Residuals") +
-  xlab("Residuals") +
-  ylab("Frequency")
-
-```
-
 ## Factor Scores / Bartlett Scores
 ```{reproducibleR}
 set.seed(2028)
@@ -2024,7 +2013,6 @@ omega(df_result,5)
 
 
 ## Item Difficulty
-
 ```{reproducibleR}
 library(car)
 
@@ -2299,7 +2287,9 @@ selected_residuals <- residuals_df %>%
 
 # Calculate the correlation matrix for the selected variables
 residuals_corr_matrix_selected <- cor(selected_residuals, use = "pairwise.complete.obs")
-
+residuals_corr_matrix_df <- as.data.frame(residuals_corr_matrix_selected)
+apa.cor.table(residuals_corr_matrix_df, filename="cortableRes1")
+apa.cor.table(residuals_matrix, filename="cortableRes1")
 # Print the correlation matrix
 print(residuals_corr_matrix_selected)
 
@@ -2332,7 +2322,8 @@ selected_residuals <- residuals_df %>%
 
 # Calculate the correlation matrix for the selected variables
 residuals_corr_matrix_selected <- cor(selected_residuals, use = "pairwise.complete.obs")
-
+apa.cor.table(residuals_corr_matrix_df, filename="cortableRes2")
+apa.cor.table(residuals_matrix, filename="cortableRes2")
 # Print the correlation matrix
 print(residuals_corr_matrix_selected)
 
