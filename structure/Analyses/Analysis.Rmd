@@ -2339,7 +2339,7 @@ STUFF THAT I TRIED THAT DIDNT WORK OR I DIDNT USE IN THE END
 ####################################################################
 
 ## using mice to impute the missing data
-```{reproducibleR, echo=FALSE}
+```{r, echo=FALSE}
 set.seed(2025)
 imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
 imputed_training_data_c <- complete(imputed_training_data, 1)
@@ -2348,14 +2348,16 @@ imputed_test_data <- mice(df_test_dl, m=5, method='pmm', maxit=50)
 imputed_test_data_c <- complete(imputed_test_data, 1)
 ```
 
+The following merging of answer categries and threshhold seeking is based on a run of the mice imputation process, that wasnt seeded properly, as it is now. So the results will most likely not be reproduced, but different values will occur, resulting in the following code not working precisely. 
+
 ### making it seperate files
-```{reproducibleR}
+```{r}
 write.csv2(imputed_training_data_c, "imputed_training_data_c.csv")
 write.csv2(df_train, "df_train.csv")
 ```
 
 # Finding Thresholds of Items to merge in order to ose ordered data in the item selection and crossvalidation
-```{reproducibleR}
+```{r}
 # Count values for each variable in imputed_training_data_c
 value_counts <- imputed_training_data_c %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
@@ -2796,6 +2798,8 @@ ords_mi <- bind_rows(ords1, ords2)
 
 ```
 
+# Up until here - regarding the reproducibility comment
+
 ## Objective-Function
 ```{r}
 library(stuart)
@@ -2899,6 +2903,7 @@ my.sa.table <- sens.tables(my.sa)
 print(my.sa.table)
 
 ```
+
 ```{r}
 lvcor <- corr_matrix_group1 
 

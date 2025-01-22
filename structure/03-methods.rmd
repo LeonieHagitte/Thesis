@@ -5,25 +5,25 @@ Prior to the item creation, a review of the literature was done. Since the goal 
 
 The item creation itself was oriented towards the Act-Frequency-Approach [@buss1983], thus the prototype approach. 
 I started with thinking of frequent, relevant behaviors, convictions or believes reflecting the factors of data literacy, hence being prototypical of those latent factors.
-For the *Comprehension* factor that could be recognizing whether the interpretations of others fit the available data, or recognizing when one is presented with contradictory information or understand the information a graphic contains, when data is presented as a graphic.
-Regarding the *Evaluation* factor that could be for assessing the credibility of information, to consider the reputation of the source. As well as being aware that publishers' own interests can influence the published information or to check information by comparing several sources with each other.
+For the *Comprehension* factor that could be recognizing whether the interpretations of others fit the available data, or recognizing when one is presented with contradictory information or understand the information a graphic contains, when data is presented visually.
+Regarding the *Evaluation* factor that could be assessing the credibility of information, or consider the reputation of the source. As well as being aware that publishers' own interests can influence the published information or to check information by comparing several sources with each other.
 The *Integration* factor could be represented by dealing with information that challenges ones views or consciously incorporating data-based findings into ones opinion-forming process. Additionally it could also manifest itself in changing ones mind if new data calls it into question.
-For the *Communication* factor, that could be represented by feeling confident in presenting data in visual formats in a way that is understandable for different target groups. But also to feel confident in expressing ones point of view in discussions or being able to summarize the most important information from data sets.
-As for the *Statistics* factor, this could be represented by knowing how to distinguish between causality and correlation or having analyzed data sets using simple statistical methods. It could also mean to know how to prevent systematic errors in data collection.
+For the *Communication* factor, that could be represented by feeling confident in presenting data in visual formats in a way that can be understood by different target groups. But also to feel confident in expressing ones point of view in discussions or being able to summarize the most important information from data sets.
+As for the *Statistics* factor, this could be represented by knowing how to distinguish between causality and correlation or analyzing data sets using simple statistical methods.
 
 That way, over 100 potential items have been created, that were then refined in terms of wording, structure but content as well. 
 I avoided inversely worded items, and decided to not ask for specific examples, because those might enhance the difficulty of the respective items, depending on the personal background of the person answering the question. 
 Additionally, I made sure that items were only ever asking for one behavior, conviction or opinion at once. 
 Overall I tried to formulate the items as easy and understandable as possible. 
 Ten cognitive interviews were held to refine those potential items, and to confirm the prototypicality of the behaviors etc. asked in the items. 
-The cognitive interviews comprised the think-aloud-technique as well as probing, to get an understanding of how the items are understood, what comes to mind when reading the items and whether the items really ask for relevant behaviors [@fowler1995]. Furthermore, that way unclear formulations or difficult wordings could be resolved.
+The cognitive interviews comprised the think-aloud technique as well as probing, to get an understanding of how the items are perceived, what comes to mind when reading the items and whether the items really ask for relevant behaviors [@fowler1995]. Furthermore, that way unclear formulations or difficult wordings could be resolved.
 The interviews were administered iteratively to refine the items consecutively. 
-In the interviews it became apparent, that especially the degree to which people can relate to the factors four and five differed heavily. This was expected, since those producer factors are also considered to play a lesser role in the every day live of citizens. It also turned out that some words like *data*, *source* or *information* are understood differently regarding the personal background. 
+In the interviews it became apparent, that especially the degree to which people can relate to the factors four and five differed heavily. This was expected, since those producer factors are considered to play a lesser role in the every day live of citizens. It also turned out that some words like *data*, *source* or *information* are understood differently regarding the personal background. 
 The ages of the interview participants ranged from 21 to 66 years. Among the ten participants, three were men and seven were women. Their professional backgrounds included diverse occupations: students, an employee at a sports facility, a music teacher, an IT professional, a civil servant, a construction manager, and two nurses (one working in an intensive care unit and the other in an operating unit). Additionally, two of the participants were retired.
 After the cognitive interviews of the 118 potential items, 71 remained.
 
 ## Sample  
-The participants were recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. Instagram, LinkedIn, Whatsapp, Telegram and via e-mail). Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. An a-priori power analysis was conducted to determine the necessary sample size for the structural equation modelling. I used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. 
+The participants were recruited through a combination of personal and professional networks, along with outreach on several online social media platforms (e.g. *Instagram*, *LinkedIn*, *Whatsapp*, *Telegram* and via e-mail). Conducted in German, the participation in the study was entirely voluntary, with no external incentives provided. An a-priori power analysis was conducted to determine the necessary sample size for the structural equation modelling. I used the ‘semPower’ package in R [@moshagen2024] and also took a look into studies with similar goals and methods. 
 The power analysis gave an analytical estimate of *N* = 645, and a simulated estimate *N* = 613, for the respective measurement model. 
 In the literature sample sizes of *N* = 500 up to *N* = 1000 could be found [@algner2022; @remmert2022; @schneider2024]. 
 Accordingly, the target sample size for this study was selected to fall within this range, to balance practical feasibility with theoretical recommendations.
@@ -37,7 +37,7 @@ Regarding education, 31.9% of the participants reported a university degree as t
 Among participants who reported being employed, 64.88% indicated full-time employment. 
 Specifically, 51.75% of women and 77.73% of men reported full-time employment at the time (65.15%; men: 42.40%, women: 22.75%).
 In contrast, 35.12% of all employed participants reported working part-time.
-At the time of the survey, 48.25% of women and 22.27% of men reported working part-time (28.22%; Men = 6.16%; Women = 22.06%).
+At the time of the survey, 48.25% of women and 22.27% of men reported working part-time (28.22%;men = 6.16%; women = 22.06%).
 Additionally, 13.52% of all participants indicated that they were not employed at the time (6.63%).
 The study encompassed every sector within the occupational classification at least once. 25.2% of the participants indicated that they were students at the time of the survey (3.39%).
 
@@ -47,16 +47,16 @@ managing R package dependencies and providing a clear documentation of the R
 package environment. This combination ensures that the analysis can be easily
 reproduced and shared with others in a reliable and transparent manner.
 The study, including all associated code, has been made openly available on GitHub as part of the commitment to open science. The repository can be accessed at https://github.com/LeonieHagitte/Thesis.
-The whole text is also hosted at git hub pages https://leoniehagitte.github.io/Thesis/.
-It is to be mentioned, that the 'repro' package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software get re installed. Furthermore I used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, the user can see the results for the respective chunks, as to whether they are reproducible or not.
+The whole text is also hosted on GitHub-pages https://leoniehagitte.github.io/Thesis/.
+It is to be mentioned, that the 'repro' package from @Peikert2021 has slightly changed in its functionality, namely that it does not ensure any longer, that old versions of the used software get re-installed. Furthermore I used the 'reproducibleRchunks' package from @brandmaier2024. This package enables the verification of computational results in R for reproducibility, ensuring that the same script with the same data produces identical results across different computers or at different times. When knitting the respective document, the user can see the results for the respective chunks, as to whether they are reproducible or not.
 The study was preregistered at Zenodo (DOI:10.5281/zenodo.11196495).
 
 ## Procedure
-A cross-sectional online survey was used to examine a sample from the general population. Participants completed the self-perceived data literacy items alongside demographic questions and additional validation measures. Survey questions of each measurement were randomized for each participant to minimize order effects and response biases. All items, except for the feedback item, were given as a forced choice question, to reduce missing data. Due to the potential for missing responses caused by the length of the questionnaire, such as attention declines or reduced motivation, I addressed this issue by shortening the assessment. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire were randomly selected for each participant. That way each participant only answered half of the formulated items, the other half were planned missings. I treated the first 25 participants like a pilot, to check for potential problems in the survey (like length, spelling mistakes that have been overlooked etc.).
+A cross-sectional online survey was used to examine a sample from the general population. Participants completed the self-perceived data literacy items alongside demographic questions and additional validation measures. Survey questions of each measurement were randomized for each participant to minimize order effects and response biases. All items, except for the feedback item, were given as a forced choice question, to reduce missing data. Due to the potential for missing responses caused by the length of the questionnaire, such as attention declines or reduced motivation, I addressed this issue by shortening the assessment. To shorten the overall length of the assessment the questions in each factor of the data literacy questionnaire were randomly selected for each participant. That way each participant only answered half of the formulated items, the other half were planned missings. I treated the first 25 participants as a pilot, to check for potential problems in the survey (like length, spelling mistakes that have been overlooked etc.).
 
 ## Instruments  
 ### Measuring Data Literacy
-Regarding data literacy the participants were asked to answer 71 items.
+Regarding data literacy 71 items were created.
 Each participant should answer 38 items of the 71 which were randomly selected.
 To answer the items, respondents indicated their agreement on a five-point rating
 scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly agree") with a "don’t know" option.
@@ -64,24 +64,23 @@ scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor 
 ### Measuring Information Literacy
 The SWE-IV-16 [@behm2018] assesses the self-efficacy beliefs of adolescents and adults in their ability to engage in information behavior. 
 This questionnaire measures the process model of information-related problem-solving
-[@brandgruwel2009]. In this study this construct was used as a proxy for information literacy.
+[@brandgruwel2009]. In the present study this construct was used as a proxy for information literacy.
 It consists of 16 statements addressing self-assessed abilities in searching for and evaluating information, as well as managing
 information searches effectively. 
 Each statement begins with "When I search for information on a topic or a specific question..." and respondents indicate their
-agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly agree"). The total scale value is computed as the arithmetic mean of the items, which may be inverted if necessary.
+agreement on a five-point Likert scale (1 = "strongly disagree", 2 = "somewhat disagree", 3 = "neither agree nor disagree", 4 = "somewhat agree", 5 = "strongly agree"). The total scale value is computed as the arithmetic mean of the items.
 In this study, McDonalds $\omega$ was .91. For comparative reasons it is mentioned that Cronbachs $\alpha$ was .91 as well.
 
 ### Measuring Need for Cognition
 The NFC-K [@beißert2015] is a scale used to assess NFC through four items, which represent two facets: *engagement* and *joy*. 
 The NFC-K is measured with a seven-point rating scale, ranging from 1 = "strongly disagree" to 7 = "strongly agree", with a "neither" option in the middle. 
-The German version of the scale is adapted from the original English scale by @cacioppo1982 and translated by @bless1994. To determine an individual's NFC score, a mean value (scale value) is computed from the four raw score points of the responses. 
+The German version of the scale was adapted from the original English scale by @cacioppo1982 and translated by @bless1994. To determine an individual's NFC score, a mean value (scale value) is computed from the four raw score points of the responses. 
 The resulting mean values range between 1 and 7.
 In the current study McDonalds $\omega$ was .62 and Cronbachs $\alpha$ was .60.
 
 ### Measuring Technology Competency
-To assess self-perceived competence in using information and communication technology (ICT), the five general items of the ICT-SC25 [@schauffel2021] were used. 
-The ICT-SC25 is a scale consisting of 25 items designed to assess self-perceived competence in using information and communication
-technology. 
+To assess self-perceived competence in using ICT, the five general items of the ICT-SC25 [@schauffel2021] were used. 
+The ICT-SC25 is a scale consisting of 25 items designed to assess self-perceived competence in using ICT. 
 It is available in both German (ICT-SC25g) and English (ICT-SC25e). 
 The scale measures general and domain-specific ICT competence, including communication, processing and storing, content generation, safe application, and problem-solving skills. 
 Items are measured using a six-point fully-labeled rating scale ranging from 1 = "strongly disagree" to 6 = "strongly agree". 

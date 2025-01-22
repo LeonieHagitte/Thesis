@@ -1,5 +1,5 @@
 # Results
-The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (*M* = 4.48, *SD* = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (*SD* = 0.64), suggesting that integrating new information is a skill, respondents deemed well-developed.
+The descriptive analysis of the selected items showed several results to be highlighted. The item *F1F11* ("Ich kenne unterschiedliche Arten von Grafiken") had a high average score (*M* = 4.48, *SD* = 0.75), indicating that respondents rated their knowledge of different types of graphs very positively. Similarly, *F3F9* ("Ich kann neue Informationen in meinen Wissensstand integrieren") also demonstrated a strong ceiling effect with a mean of 4.32 (*SD* = 0.64), suggesting that integrating new information is a skill respondents deemed well-developed.
 Furthermore, several items exhibited high variability in responses. The item *F4F1* ("Ich kann Ergebnisse in Streudiagrammen darstellen") had the lowest mean (*M* = 2.88) but also the highest standard deviation (*SD* = 1.45), indicating substantial differences in respondents’ perceived abilities to use scatterplots, or in their understanding of the item. Other items with notable variability included *F4F3* ("Ich kann Daten in Grafiken so präsentieren, dass sie für verschiedene Zielgruppen verständlich sind," *M* = 3.45, *SD* = 1.23), *F5F3* ("Ich bin in der Lage, einfache Datenbanken zu verwalten," *M* = 3.44, *SD* = 1.31), and *F5F4* ("Ich kann Datensätze mit einfachen statistischen Methoden analysieren," *M* = 3.28, *SD* = 1.26), reflecting diverse self-assessments of these specific skills.
 Additionally, item *F2F2* ("Wenn Ich die Glaubwürdigkeit von Informationen beurteile, berücksichtige ich den Ruf der Quelle"), had a relatively high average (*M* = 4.04) as well as variability (*SD* = 1.04), suggesting differing abilities to evaluate source credibility. Similarly, *F2F6* ("Ich kenne Merkmale zur Bewertung von Datenqualität," *M* = 3.19, *SD* = 1.13) and *F5F18* ("Wenn ich Daten analysiere, achte ich auf ein systematisches Vorgehen," *M* = 3.74, *SD* = 1.13) showed considerable variation, highlighting mixed levels of competency in assessing data quality and conducting systematic analyses. Table 1 presents the translation of the final set of items along with their means and standard deviations. The original German versions of the items are available in the Appendix (cf. Table A1).
 
@@ -36,26 +36,51 @@ F5F18 & When I analyze data, I pay attention to a systematic approach. & 3.74 & 
 
 \vspace{10pt}
 \small\textit{Note}. Translated items sorted by latent factor, selected by the algorithm. 
-The tag refers to the name, the item had in the programming. The First part of the tag is always indicative of the factor (F1 = Comprehension, F2 = Evaluation, F3 = Integration, F4 = Communication and F5 = Statistics). For every item the mean with the respective standard deviation (*SD*) is displayed.
+The tag refers to the name the item had in the programming. The First part of the tag is always indicative of the factor (F1 = Comprehension, F2 = Evaluation, F3 = Integration, F4 = Communication and F5 = Statistics). For every item the mean with the respective standard deviation (*SD*) is displayed.
 \end{table}
 
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
 With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit [according to @hu1999] with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054].
 
-```{r figure3, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the training sample .", out.width="\\textwidth", fig.align="center"}
-knitr::include_graphics("images/Model5.png", auto_pdf = TRUE)
+```{r figure1, eval = TRUE, echo = FALSE, results = "asis", fig.cap="Measurement Model of the configural MGCFA Model in the training sample."}
+cat("
+\\vspace{0.3cm}
+\\begin{figure}
+    \\centering
+    \\caption{Measurement Model of the MGCFA Model in the training sample.}
+    \\makebox[\\textwidth][c]{%
+        \\includegraphics[width=1.2\\textwidth]{images/Model5.png}
+    }
+    \\small 
+    \\textit{Note.} \\raggedright This figure displays the configural measurement model of the data literacy items within the training sample, showing standardized factor loadings and latent covariances. The abbreviations q1 up to q20 represent the items, the abbreviations e1 up to e20 their respective residuals. The abbreviations, Comprehension (Comp.), Evaluation (Eval.), Integration (Int.), Communication (Comm.), and Statistics (Stat.) indicate which is the respective latent factor.
+\\end{figure}
+\\vspace{0.3cm}
+")
 ```
 For the configural model of the training sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .58 to .77. For the factor Evaluation loadings ranged from .35 to .74. For the factor Integration loadings ranged from .46 to .78. For the factor Communication loadings ranged from .56 to .75. For the factor Statistics loadings ranged from .60 to .74. The complete model is also displayed in Figure 3.
 
-```{r figure4, eval = TRUE, echo = FALSE, fig.cap="Measurement Model of the configural MGCFA Model in the test sample .", out.width="\\textwidth", fig.align="center"}
-knitr::include_graphics("images/Model6.png", auto_pdf = TRUE)
+```{r figure2, eval = TRUE, echo = FALSE, results = "asis", fig.cap="Measurement Model of the configural MGCFA Model in the test sample."}
+cat("
+\\vspace{0.3cm}
+\\begin{figure}
+    \\centering
+    \\caption{Measurement Model of the MGCFA Model in the test sample.} 
+    \\makebox[\\textwidth][c]{%
+        \\includegraphics[width=1.2\\textwidth]{images/Model6.png}
+    }
+    \\small
+    \\textit{Note.} \\raggedright This figure displays the configural measurement model of the data literacy items within the test sample, showing standardized factor loadings and latent covariances. The abbreviations q1 up to q20 represent the items, the abbreviations e1 up to e20 their respective residuals. The abbreviations, Comprehension (Comp.), Evaluation (Eval.), Integration (Int.), Communication (Comm.), and Statistics (Stat.) indicate which is the respective latent factor.
+\\end{figure}
+\\vspace{0.3cm}
+")
+
 ```
 For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
-Cross-validation of the MG-CFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 389) = 659.746, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ < .00 , $\Delta\text{SRMR}$ < .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2).
+Cross-validation of the MGCFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 389) = 659.746, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ < .00 , $\Delta\text{SRMR}$ < .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2).
 
 \begin{table}[htpb]
-\caption{Fit Indices for Model and Results of MG-CFA testing}
+\caption{Fit Indices for Model and Results of MGCFA testing}
 \resizebox{\textwidth}{!}{
 \small
 \begin{tabular}{cccccccc}
@@ -77,7 +102,8 @@ Model &  Invariance level & CFI & RMSEA & SRMR & $\Delta$ CFI & $\Delta$ RMSEA &
 
 The model of the final set of items shows McDonald’s $\omega$\textsubscript{total} = .92. The composite values McDonald’s $\omega$\textsubscript{total} of the factors are Comprehension = .76, Evaluation = .65, Integration = .67, Communication = .81 and  Statistics = .68. 
 While overall fit indices (e.g., RMSEA, CFI) suggest a good fit, an analysis of correlated residual was done to reveal possible specification errors.
-The correlated residuals from the training sample can be seen in the supporting material. The correlated residuals from the testing sample can be seen in the supporting material. Both samples show several residuals to be correlated.
+The correlated residuals from the training sample as well as from the testing sample, can be seen in the appendix (cf. Table A2 & Table A3). 
+Both samples show several residuals to be correlated.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations training sample}
@@ -102,7 +128,7 @@ Statistics    & 0.782 & 0.649 & 0.700 & \textbf{0.971} & 1.000 \\
 
 
 ## Multicollinearity 
-To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between Communication and Statistics is to be highlighted. The correlations for the test sample in Table 3. In the test sample the correlation of .84 between Communication and Statistics is to be highlighted as well, alongside the correlation of .92 between Comprehension and Integration, as well as the correlation of .87 between Evaluation and Integration. Especially the correlations, that exceed .90 suggest multicollinearity in the data.
+To furthermore investigate the model, the covariances of the latent factors were examined. The factor correlations for the training sample are displayed in Table 2. The correlation of .97 between Communication and Statistics is to be highlighted. The correlations for the test sample are displayed in Table 3. In the test sample the correlation of .84 between Communication and Statistics is to be highlighted, alongside the correlation of .92 between Comprehension and Integration, as well as the correlation of .87 between Evaluation and Integration. Especially the correlations, that exceed .90 suggest multicollinearity in the data.
 
 \begin{table}[htpb]
 \caption{Latent Factor correlations test sample}
@@ -126,7 +152,7 @@ Statistics    & 0.707 & 0.361 & 0.694 & \textbf{0.837} & 1.000 \\
 \end{table}
 
 ## Criterion Validity  
-For the correlations, Kendall's rank correlation coefficient ($\tau$) was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all $p$ < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all $p$ < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all $p$ < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10 ($\tau$ = -.15, $p$ < .05; $\tau$ = -.18, $p$ < .01; $\tau$ = -.26, $p$ < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up tp moderate with conscientiousness of the BFI-10 ($\tau$ = .13, $p$ < .05; $\tau$ = .25, $p$ < .01; $\tau$ = .16, $p$ < .05; $\tau$ = .17, $p$ < .01). The latent correlations with respective confidence intervals are also displayed in table 6.
+For the correlations, Kendall's rank correlation coefficient ($\tau$) was estimated, because the data was not normally distributed. The factors (Comprehension, Evaluation, Integration, Communication & Statistics) of the data literacy scale correlated moderately to highly with the SWE-IV-16 ( $\tau$ =.47, $\tau$ =.46, $\tau$ =.40, $\tau$ =.48, $\tau$ =.39 ; all $p$ < .01). The factors of data literacy showed small to moderate correlations with the NFC-K ($\tau$ =.22, $\tau$ =.24, $\tau$ =.30, $\tau$ =.37, $\tau$ =.42; all $p$ < .01). The factors of the data literacy scale showed moderate correlations with the general items of the ICT-SC25 ($\tau$ =.31, $\tau$ =.17, $\tau$ =.23, $\tau$ =.43, $\tau$ =.32; all $p$ < .01). The factors Comprehension, Evaluation and Integration correlated slightly negative with the openness of the BFI-10 ($\tau$ = -.15, $p$ < .05; $\tau$ = -.18, $p$ < .01; $\tau$ = -.26, $p$ < .01). Openness did not correlate statistically significant with the other factors. The factors Comprehension, Evaluation, Communication and Statistics correlated slightly up to moderate with conscientiousness of the BFI-10 ($\tau$ = .13, $p$ < .05; $\tau$ = .25, $p$ < .01; $\tau$ = .16, $p$ < .05; $\tau$ = .17, $p$ < .01). The latent correlations with respective confidence intervals are also displayed in table 6.
 
 \begin{table}[htbp]
 \centering
@@ -136,7 +162,7 @@ For the correlations, Kendall's rank correlation coefficient ($\tau$) was estima
 \small
 \begin{tabular}{lccccccccccc}
 \hline
-\textbf{Var} & \textit{*M*} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
+\textbf{Var} & \textit{M} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} \\
 \hline
 1. Con. & 3.68 & & & & & & & & & \\
    & [0.76] & & & & & & & & & \\
@@ -161,7 +187,7 @@ For the correlations, Kendall's rank correlation coefficient ($\tau$) was estima
 \hline
 \end{tabular}
 \par % Ensures separation of the table and note
-\small\textit{Note}. The table displays values of Kendalls tau. *M* and *SD* are used to represent mean and standard deviation, respectively. Values in square brackets beneath the M show the respective standard deviation. The other values in square brackets indicate the 95\% confidence interval for each correlation. The confidence interval is a plausible range of population correlations that could have caused the sample correlation (Cumming, 2014). * indicates $p < .05$. ** indicates $p < .01$.
+\small\textit{Note}. The table displays values of Kendalls tau. \textit{M} and \textit{SD} are used to represent mean and standard deviation, respectively. Values in square brackets beneath the M show the respective standard deviation. The other values in square brackets indicate the 95\% confidence interval for each correlation. The confidence interval is a plausible range of population correlations that could have caused the sample correlation (Cumming, 2014). * indicates $p < .05$. ** indicates $p < .01$.
 \end{minipage}%
 }
 \end{table}
