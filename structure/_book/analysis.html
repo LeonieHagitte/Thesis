@@ -23,7 +23,7 @@
 <meta name="author" content="Leonie Hagitte" />
 
 
-<meta name="date" content="2025-01-22" />
+<meta name="date" content="2025-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -166,6 +166,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.4" data-path="discussion.html"><a href="discussion.html#control-variables-1"><i class="fa fa-check"></i><b>5.4</b> Control Variables</a></li>
 <li class="chapter" data-level="5.5" data-path="discussion.html"><a href="discussion.html#limitations"><i class="fa fa-check"></i><b>5.5</b> Limitations</a></li>
 <li class="chapter" data-level="5.6" data-path="discussion.html"><a href="discussion.html#future-directions"><i class="fa fa-check"></i><b>5.6</b> Future directions</a></li>
+<li class="chapter" data-level="5.7" data-path="discussion.html"><a href="discussion.html#conclusion"><i class="fa fa-check"></i><b>5.7</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -224,7 +225,7 @@ Validation with the test data is conducted (using an multi-group confirmatory fa
 <p>Because of the complexity of the model, as well as the several objectives of the initially planned objective function, the genetic algorithm had problems converging into a stable solution, let alone a solution with sufficient model fit. Therefore, some objectives were dropped (the composite reliability and the varying item intercepts per factor), in favor of model fit. Different solutions were systematically explored, dependent on the estimator (Maximum likelihood with robust standard errors (MLR) or robust Weighted Least Squares (WLSMV) and the respective data structure (data treated as metric or ordinal data), as well as on the objective function, to lead to the best solution (cf. code in the supplementary Material (“Analysis.Rmd”; starting at line 2340)). Furthermore, the data was checked for multicollinearity because of convergence issues.</p>
 <div id="analysis-of-confounding-variables" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Analysis of Confounding Variables<a href="analysis.html#analysis-of-confounding-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To check for possible external influences of the categorical, demographic variables (age; gender; highest educational level; the pursued degree, if studying &amp; occupation), a dummy-coded multiple linear regression was calculated for every selected item.</p>
+<p>To check for possible external influences of the categorical, demographic variables (age; gender; highest educational level; the pursued degree, if studying &amp; occupation), a dummy-coded multiple linear regression was calculated for every selected item. The reference categories for the categorical demographic variables (e.g., “Gender,” “Education”) are chosen automatically by R. For this analysis the ‘lm()’ function was used.By default, this function uses the first level of a factor variable as the reference category unless otherwise specified.</p>
 
 </div>
 </div>
