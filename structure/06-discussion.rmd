@@ -126,3 +126,10 @@ This study clearly highlights that both the measurement model and the items of t
 A careful and thorough development of items is necessary to address the multi-faceted nature of the construct. This is particularly important for adapting the scale to measure individual skill levels accurately, which could be achieved through methods such as Item Response Theory (IRT). An IRT-based framework could significantly enhance the scale’s precision by allowing for variability in item difficulty, thereby improving the adaptability and accuracy of the measurement. The introduction of adaptive testing, based on IRT principles, could lead to a more efficient scale, requiring fewer items while maintaining or even improving measurement precision.
 
 
+## Conclusion
+
+The present study represents a first step towards addressing the gap in tools for measuring self-rated data literacy among the general public. 
+The final instrument demonstrated acceptable psychometric properties that could be approved upon, including strong internal consistency and promising criterion validity.
+While the results validate the scale's potential utility, challenges remain, particularly concerning multicollinearity among producer facets and limitations in the broader generalizability due to sample-specific characteristics. These issues necessitate further refinement of the scale and the respective measurement model. Replication studies would be necessary to establish its reliability and invariance across diverse populations. Future research should also explore the practical implications of enhancing data literacy in educational and societal frameworks, addressing the critical role of such competencies in an increasingly data-driven world.
+In conclusion, this thesis provides a foundational contribution to the emerging field of data literacy research. It lays a solid groundwork for future studies, emphasizing the need for ongoing refinement and broader validation efforts to fully realize the scale's potential in fostering data-literate societies.
+
