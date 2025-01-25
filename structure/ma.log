@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.22)  22 JAN 2025 13:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.22)  25 JAN 2025 11:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1043,56 +1043,68 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 
 
 [21{/Users/leo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc}]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [22]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1266.
+(Font)              scaled to size 10.95pt on input line 1271.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 1266.
-<images/Model5.png, id=443, 993.7125pt x 328.22626pt>
+(Font)              scaled to size 10.95pt on input line 1271.
+<images/Model5.png, id=442, 993.7125pt x 328.22626pt>
 File: images/Model5.png Graphic file (type png)
 <use images/Model5.png>
-Package pdftex.def Info: images/Model5.png  used on input line 1290.
-(pdftex.def)             Requested size: 471.18439pt x 155.63362pt.
-<images/Model6.png, id=445, 993.7125pt x 328.22626pt>
-File: images/Model6.png Graphic file (type png)
-<use images/Model6.png>
-Package pdftex.def Info: images/Model6.png  used on input line 1310.
+Package pdftex.def Info: images/Model5.png  used on input line 1295.
 (pdftex.def)             Requested size: 471.18439pt x 155.63362pt.
 
 
 [23]
-
-[24 <./images/Model5.png>]
+<images/Model6.png, id=450, 993.7125pt x 328.22626pt>
+File: images/Model6.png Graphic file (type png)
+<use images/Model6.png>
+Package pdftex.def Info: images/Model6.png  used on input line 1315.
+(pdftex.def)             Requested size: 471.18439pt x 155.63362pt.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.95pt on input line 1344.
+(Font)              scaled to size 10.95pt on input line 1349.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-[25 <./images/Model6.png>]
+
+[24]
+
+[25 <./images/Model5.png> <./images/Model6.png>]
 
 [26]
 
-LaTeX Warning: Float too large for page by 3.0pt on input line 1476.
+LaTeX Warning: Float too large for page by 3.0pt on input line 1481.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [27]
 
 [28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [29]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1102,6 +1114,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [30]
 
 [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [32]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1120,21 +1135,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [36]
 
 [37]
-Underfull \hbox (badness 10000) in paragraph at lines 2008--2012
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 2034--2038
 \T1/LinuxLibertineT-TLF/m/n/12 1223 / umfrage / arbeitslosenzahl -[] in -[] deutschland -[] jahresdurchschnittswerte / # :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2008--2012
+Underfull \hbox (badness 10000) in paragraph at lines 2034--2038
 \T1/LinuxLibertineT-TLF/m/n/12 ~ : text = Im % 20Monat % 20Juni % 202024 % 20waren ,[] um % 20rund % 20178 . 800 %
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1150,53 +1162,28 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [41]
-Underfull \hbox (badness 2538) in paragraph at lines 2265--2270
+Underfull \hbox (badness 2538) in paragraph at lines 2291--2296
 \T1/LinuxLibertineT-TLF/m/n/12 Ed-u-ca-tion Lab, Uni-ver-sity of Rhode Is-land; Me-dia Ed-u-ca-tion; Ed-u-ca-
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 2265--2270
+Underfull \hbox (badness 1264) in paragraph at lines 2291--2296
 \T1/LinuxLibertineT-TLF/m/n/12 tional Tech-nol-ogy Lab, Uni-ver-sity of Wuerzburg; Me-dia Lit-er-acy Now.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2265--2270
+Underfull \hbox (badness 10000) in paragraph at lines 2291--2296
 []$\T1/LinuxLibertineT-TLF/m/n/12 https : / / mediaeducationlab . com / sites / default / ^^[les / FINAL % 20REPORT % 2C %
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 2272--2275
+Underfull \hbox (badness 5533) in paragraph at lines 2298--2301
 []\T1/LinuxLibertineT-TLF/m/n/12 Mischel, W. (1973). To-ward a cog-ni-tive so-cial learn-ing recon-cep-tu-al-
  []
 
 
-Underfull \hbox (badness 3407) in paragraph at lines 2272--2275
+Underfull \hbox (badness 3407) in paragraph at lines 2298--2301
 \T1/LinuxLibertineT-TLF/m/n/12 iza-tion of per-son-al-ity. \T1/LinuxLibertineT-TLF/m/it/12 Psy-cho-log-i-cal Re-view\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 80\T1/LinuxLibertineT-TLF/m/n/12 (4), 252--283. []$https :
- []
-
-
-Underfull \hbox (badness 2894) in paragraph at lines 2287--2290
-[]\T1/LinuxLibertineT-TLF/m/n/12 Olaru, G., & Dan-ner, D. (2021). De-vel-op-ing cross-cultural short scales
- []
-
-
-Underfull \hbox (badness 4036) in paragraph at lines 2287--2290
-\T1/LinuxLibertineT-TLF/m/n/12 us-ing ant colony op-ti-miza-tion. \T1/LinuxLibertineT-TLF/m/it/12 As-sess-ment\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 28\T1/LinuxLibertineT-TLF/m/n/12 (1), 199--210. []$https :
- []
-
-
-Underfull \hbox (badness 1038) in paragraph at lines 2305--2309
-[]\T1/LinuxLibertineT-TLF/m/n/12 Payan Car-reira, R., Sacau-Fontenla, A., Re-belo, H., Se-bastião, L., & Pnev-
- []
-
-
-Underfull \hbox (badness 2828) in paragraph at lines 2305--2309
-\T1/LinuxLibertineT-TLF/m/n/12 matikos, D. (2022). De-vel-op-ment and val-i-da-tion of a crit-i-cal think-
- []
-
-
-Underfull \hbox (badness 2020) in paragraph at lines 2305--2309
-\T1/LinuxLibertineT-TLF/m/n/12 ing assessment-scale short form. \T1/LinuxLibertineT-TLF/m/it/12 Ed-u-ca-tion Sci-ences\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 12\T1/LinuxLibertineT-TLF/m/n/12 , 938. []$https :
  []
 
 
@@ -1205,33 +1192,48 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [42]
-Underfull \hbox (badness 2903) in paragraph at lines 2333--2338
+Underfull \hbox (badness 2894) in paragraph at lines 2313--2316
+[]\T1/LinuxLibertineT-TLF/m/n/12 Olaru, G., & Dan-ner, D. (2021). De-vel-op-ing cross-cultural short scales
+ []
+
+
+Underfull \hbox (badness 4036) in paragraph at lines 2313--2316
+\T1/LinuxLibertineT-TLF/m/n/12 us-ing ant colony op-ti-miza-tion. \T1/LinuxLibertineT-TLF/m/it/12 As-sess-ment\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 28\T1/LinuxLibertineT-TLF/m/n/12 (1), 199--210. []$https :
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 2331--2335
+[]\T1/LinuxLibertineT-TLF/m/n/12 Payan Car-reira, R., Sacau-Fontenla, A., Re-belo, H., Se-bastião, L., & Pnev-
+ []
+
+
+Underfull \hbox (badness 2828) in paragraph at lines 2331--2335
+\T1/LinuxLibertineT-TLF/m/n/12 matikos, D. (2022). De-vel-op-ment and val-i-da-tion of a crit-i-cal think-
+ []
+
+
+Underfull \hbox (badness 2020) in paragraph at lines 2331--2335
+\T1/LinuxLibertineT-TLF/m/n/12 ing assessment-scale short form. \T1/LinuxLibertineT-TLF/m/it/12 Ed-u-ca-tion Sci-ences\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 12\T1/LinuxLibertineT-TLF/m/n/12 , 938. []$https :
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 2359--2364
 []\T1/LinuxLibertineT-TLF/m/n/12 Remmert, N., Schmidt, K. M. B., Mus-sel, P., Hagel, M. L., & Eid, M.
  []
 
 
-Underfull \hbox (badness 4144) in paragraph at lines 2333--2338
+Underfull \hbox (badness 4144) in paragraph at lines 2359--2364
 \T1/LinuxLibertineT-TLF/m/n/12 (2022). The berlin miso-pho-nia ques-tion-naire re-vised (BMQ-r): De-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2333--2338
+Underfull \hbox (badness 10000) in paragraph at lines 2359--2364
 \T1/LinuxLibertineT-TLF/m/n/12 vel-op-ment and val-i-da-tion of a symptom-oriented di-ag-nos-ti-cal in-
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 2333--2338
+Underfull \hbox (badness 2189) in paragraph at lines 2359--2364
 \T1/LinuxLibertineT-TLF/m/n/12 stru-ment for the mea-sure-ment of miso-pho-nia. \T1/LinuxLibertineT-TLF/m/it/12 PLOS ONE\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 17\T1/LinuxLibertineT-TLF/m/n/12 , 1--27.
- []
-
-
-Underfull \hbox (badness 5345) in paragraph at lines 2366--2370
-\T1/LinuxLibertineT-TLF/m/n/12 of the pat-terns of adap-tive learn-ing sur-vey goal ori-en-ta-tion scales.
- []
-
-
-Underfull \hbox (badness 7907) in paragraph at lines 2366--2370
-\T1/LinuxLibertineT-TLF/m/it/12 Ed-u-ca-tional and Psy-cho-log-i-cal Mea-sure-ment\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 65\T1/LinuxLibertineT-TLF/m/n/12 (3), 451--464. []$https :
  []
 
 
@@ -1240,58 +1242,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [43]
-Underfull \hbox (badness 1215) in paragraph at lines 2445--2449
-\T1/LinuxLibertineT-TLF/m/it/12 land nach geschlecht von 2011 bis 2022\T1/LinuxLibertineT-TLF/m/n/12 . []$https : / / de . statista . com / statistik /
+Underfull \hbox (badness 5345) in paragraph at lines 2392--2396
+\T1/LinuxLibertineT-TLF/m/n/12 of the pat-terns of adap-tive learn-ing sur-vey goal ori-en-ta-tion scales.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2445--2449
-\T1/LinuxLibertineT-TLF/m/n/12 daten / studie / 1084446 / umfrage / durchschnittsalter -[] der -[] bevoelkerung -[] in -[]
- []
-
-
-Underfull \hbox (badness 2443) in paragraph at lines 2451--2455
-[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2023b). \T1/LinuxLibertineT-TLF/m/it/12 Le-ichter rück-gang: Vol-lzeitbeschäftigte
- []
-
-
-Underfull \hbox (badness 3396) in paragraph at lines 2451--2455
-\T1/LinuxLibertineT-TLF/m/it/12 ar-beit-eten 2022 durch-schnit-tlich 40,0 wochen-stun-den. \T1/LinuxLibertineT-TLF/m/n/12 [Pressemit-teilung
- []
-
-
-Underfull \hbox (badness 1308) in paragraph at lines 2451--2455
-\T1/LinuxLibertineT-TLF/m/n/12 Nr. N047 vom 28. Au-gust 2023]. []$https : / / www . destatis . de / DE / Presse /
- []
-
-
-Underfull \hbox (badness 1024) in paragraph at lines 2457--2462
-[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2024a). \T1/LinuxLibertineT-TLF/m/it/12 An-zahl der studieren-den an hochschulen
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2457--2462
-\T1/LinuxLibertineT-TLF/m/it/12 in deutsch-land in den win-tersemestern von 2002/2003 bis 2023/2024\T1/LinuxLibertineT-TLF/m/n/12 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2457--2462
-[]$\T1/LinuxLibertineT-TLF/m/n/12 https : / / de . statista . com / statistik / daten / studie / 221 / umfrage / anzahl -[] der -[]
- []
-
-
-Underfull \hbox (badness 1102) in paragraph at lines 2464--2467
-[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2024b). \T1/LinuxLibertineT-TLF/m/it/12 Bevölkerung nach dem ge-bi-ets-stand und
- []
-
-
-Underfull \hbox (badness 6252) in paragraph at lines 2464--2467
-\T1/LinuxLibertineT-TLF/m/it/12 durchschnitts-alter 1990 bis 2023. []$\T1/LinuxLibertineT-TLF/m/n/12 https : / / www . destatis . de / DE / Themen /
- []
-
-
-Overfull \hbox (53.63997pt too wide) in paragraph at lines 2464--2467
-\T1/LinuxLibertineT-TLF/m/n/12 Gesellschaft -[] Umwelt / Bevoelkerung / Bevoelkerungsstand / Tabellen / bevoelkerungsstand -[]
+Underfull \hbox (badness 7907) in paragraph at lines 2392--2396
+\T1/LinuxLibertineT-TLF/m/it/12 Ed-u-ca-tional and Psy-cho-log-i-cal Mea-sure-ment\T1/LinuxLibertineT-TLF/m/n/12 , \T1/LinuxLibertineT-TLF/m/it/12 65\T1/LinuxLibertineT-TLF/m/n/12 (3), 451--464. []$https :
  []
 
 
@@ -1300,36 +1257,96 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [44]
-Underfull \hbox (badness 10000) in paragraph at lines 2469--2472
+Underfull \hbox (badness 1215) in paragraph at lines 2471--2475
+\T1/LinuxLibertineT-TLF/m/it/12 land nach geschlecht von 2011 bis 2022\T1/LinuxLibertineT-TLF/m/n/12 . []$https : / / de . statista . com / statistik /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2471--2475
+\T1/LinuxLibertineT-TLF/m/n/12 daten / studie / 1084446 / umfrage / durchschnittsalter -[] der -[] bevoelkerung -[] in -[]
+ []
+
+
+Underfull \hbox (badness 2443) in paragraph at lines 2477--2481
+[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2023b). \T1/LinuxLibertineT-TLF/m/it/12 Le-ichter rück-gang: Vol-lzeitbeschäftigte
+ []
+
+
+Underfull \hbox (badness 3396) in paragraph at lines 2477--2481
+\T1/LinuxLibertineT-TLF/m/it/12 ar-beit-eten 2022 durch-schnit-tlich 40,0 wochen-stun-den. \T1/LinuxLibertineT-TLF/m/n/12 [Pressemit-teilung
+ []
+
+
+Underfull \hbox (badness 1308) in paragraph at lines 2477--2481
+\T1/LinuxLibertineT-TLF/m/n/12 Nr. N047 vom 28. Au-gust 2023]. []$https : / / www . destatis . de / DE / Presse /
+ []
+
+
+Underfull \hbox (badness 1024) in paragraph at lines 2483--2488
+[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2024a). \T1/LinuxLibertineT-TLF/m/it/12 An-zahl der studieren-den an hochschulen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2483--2488
+\T1/LinuxLibertineT-TLF/m/it/12 in deutsch-land in den win-tersemestern von 2002/2003 bis 2023/2024\T1/LinuxLibertineT-TLF/m/n/12 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2483--2488
+[]$\T1/LinuxLibertineT-TLF/m/n/12 https : / / de . statista . com / statistik / daten / studie / 221 / umfrage / anzahl -[] der -[]
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 2490--2493
+[]\T1/LinuxLibertineT-TLF/m/n/12 Statistisches Bun-de-samt. (2024b). \T1/LinuxLibertineT-TLF/m/it/12 Bevölkerung nach dem ge-bi-ets-stand und
+ []
+
+
+Underfull \hbox (badness 6252) in paragraph at lines 2490--2493
+\T1/LinuxLibertineT-TLF/m/it/12 durchschnitts-alter 1990 bis 2023. []$\T1/LinuxLibertineT-TLF/m/n/12 https : / / www . destatis . de / DE / Themen /
+ []
+
+
+Overfull \hbox (53.63997pt too wide) in paragraph at lines 2490--2493
+\T1/LinuxLibertineT-TLF/m/n/12 Gesellschaft -[] Umwelt / Bevoelkerung / Bevoelkerungsstand / Tabellen / bevoelkerungsstand -[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2495--2498
 \T1/LinuxLibertineT-TLF/m/it/12 1970 bis 2023 in deutsch-land. []$\T1/LinuxLibertineT-TLF/m/n/12 https : / / www . destatis . de / DE / Themen /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2469--2472
+Underfull \hbox (badness 10000) in paragraph at lines 2495--2498
 \T1/LinuxLibertineT-TLF/m/n/12 Gesellschaft -[] Umwelt / Bevoelkerung / Bevoelkerungsstand / Tabellen / deutsche -[]
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[45] (./ma.aux)
+
+
+[45]
+
+[46] (./ma.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 1
 L3 programming layer <2024-12-25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 16531 strings out of 475178
- 268535 string characters out of 5765639
- 658582 words of memory out of 5000000
- 39044 multiletter control sequences out of 15000+600000
+ 16535 strings out of 475178
+ 268571 string characters out of 5765639
+ 658617 words of memory out of 5000000
+ 39046 multiletter control sequences out of 15000+600000
  693249 words of font info for 145 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,11n,117p,734b,545s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/libertine/LinLibertineTBI.pfb></Users/leo/Library/TinyTeX/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
-Output written on ma.pdf (45 pages, 872105 bytes).
+Output written on ma.pdf (46 pages, 873394 bytes).
 PDF statistics:
- 953 PDF objects out of 1000 (max. 8388607)
- 882 compressed objects within 9 object streams
- 205 named destinations out of 1000 (max. 500000)
- 371 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 970 PDF objects out of 1000 (max. 8388607)
+ 898 compressed objects within 9 object streams
+ 207 named destinations out of 1000 (max. 500000)
+ 379 words of extra memory for PDF output out of 10000 (max. 10000000)
 
