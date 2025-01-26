@@ -343,12 +343,12 @@ powerMI <- semPower.powerMI(
   comparison = 'configural',
   nullEffect = 'metric',
   nIndicator = c(4, 4, 4, 4, 4), # Corrected to a single vector
-  loadM = list(.5, .6), # Assuming baseline loadings for two groups
-  tau = list(rep(0.0, 20), # Assuming intercepts for 20 indicators in the first group
-             rep(seq(.1, .5, .1), each = 4)), # Assuming intercepts for 20 indicators in the second group, with increments
+  loadM = list(.5, .6), # baseline loadings for two groups
+  tau = list(rep(0.0, 20), # intercepts for 20 indicators in the first group
+             rep(seq(.1, .5, .1), each = 4)), # intercepts for 20 indicators in the second group, with increments
   alpha = .05, 
   power = .80,
-  N = list(.80, .20) # Assuming 80/20 sized groups for split
+  N = list(.80, .20) # 80/20 sized groups for split
 )
 # Show summary
 summary(powerMI)
@@ -618,8 +618,6 @@ print(mean_sd_occupation_by_gender)
 # Load the necessary library
 library(dplyr)
 
-# Assuming demographics is your data frame and it has the relevant columns
-
 # Calculate the mean, SD, and frequencies for age by gender
 table2_descriptive_age <- demographics %>%
   group_by(Gender) %>%
@@ -744,7 +742,7 @@ demographics <- demographics %>%
   ) %>%
   mutate(
     Age = as.numeric(Age),
-    Gender = as.numeric(Gender),  # Assuming Gender is already binary
+    Gender = as.numeric(Gender),
     Education = as.numeric(Education),
     Degree = as.numeric(Degree),
     Worktime = as.numeric(Worktime),
@@ -824,7 +822,6 @@ library(reshape2)  # for melt function
 library(ggplot2)
 library(psych)     # for corr.test function
 
-# Assuming your data frame is df_dl
 # Ensure all variables are numeric
 df_dl <- df_dl %>%
   mutate(across(everything(), as.numeric))
@@ -1275,10 +1272,6 @@ Estimation Software: lavaan
 Models Estimated: 61506 
 Time Required: 32662.03 seconds
 
-Crossvalidation Results with STRICT Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.095, Integration: 0.270, Communication: 0.422, Statistics: 0.095
-
 Constructed Subtests: (k = 1)
 Comprehension: F1F4 F1F6 F1F8 F1F10
 Evaluation: F2F9 F2F12 F2F14 F2F16
@@ -1288,7 +1281,7 @@ Statistics: F5F3 F5F6 F5F8 F5F18
 
 ### Kfold-Crossvalidation with multiple iterations
 ```{r}
-set.seed(2028)
+set.seed(2028) #did yield different results
 # Load the necessary libraries
 library(stuart)
 
@@ -1383,6 +1376,44 @@ Integration: F3F2 F3F4 F3F6 F3F9
 Communication: F4F1 F4F3 F4F6 F4F8
 Statistics: F5F3 F5F4 F5F8 F5F18
 
+```{r}
+cfa_model_m <- '
+# Measurement model
+Comprehension =~ F1F6 + F1F8 + F1F11 + F1F14
+Evaluation =~ F2F2 + F2F6 + F2F15 + F2F20
+Integration =~ F3F2 + F3F4 + F3F6 + F3F9
+Communication =~ F4F1 + F4F3 + F4F6 + F4F8
+Statistics =~ F5F3 + F5F4 + F5F8 + F5F18
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+
+fit_cfa_model_mock <- cfa(cfa_model_m, df_train, 
+                       missing = "fiml", 
+                       estimator = "MLR", 
+                       em.h1.iter.max = 1000)
+
+summary(fit_cfa_model_mock, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_mock, 'fit')
+```
 
 ### Validation via MG-CFA for MI
 ```{r}
@@ -2270,7 +2301,6 @@ residuals_matrix <- residuals_standardized[[1]]$cov
 # Convert the residuals matrix to a data frame
 residuals_df <- as.data.frame(residuals_matrix)
 
-# Assuming the column names are now correctly aligned
 selected_variables <- c("F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20",
                         "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8",
                         "F5F3", "F5F4", "F5F8", "F5F18")
@@ -2305,7 +2335,6 @@ residuals_matrix <- residuals_standardized[[2]]$cov
 # Convert the residuals matrix to a data frame
 residuals_df <- as.data.frame(residuals_matrix)
 
-# Assuming the column names are now correctly aligned
 selected_variables <- c("F1F6", "F1F8", "F1F11", "F1F14", "F2F2", "F2F6", "F2F15", "F2F20",
                         "F3F2", "F3F4", "F3F6", "F3F9", "F4F1", "F4F3", "F4F6", "F4F8",
                         "F5F3", "F5F4", "F5F8", "F5F18")
