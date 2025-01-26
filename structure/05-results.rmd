@@ -41,7 +41,7 @@ The tag refers to the name the item had in the programming. The First part of th
 
 ## Model Fit and Measurement Invariance
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit (according to @hu1999) with data treated as metric and MLR as estimator: Satorra-Bentler-$X^{2}$ (*df* = 414) = 582.582, $p$ < 0.001, CFI = .96, SRMR = .08, RMSEA = .05, 90%-CIRMSEA [.036; .054]. This supports the first hypothesis (H1).
+With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit (according to @hu1999) with data treated as metric and ML as estimator: Satorra-Bentler-$X^{2}$ (*df* = 160) = 212.022, $p$ = 0.004, CFI = .96, SRMR = .07, RMSEA = .03, 90%-CIRMSEA [.017; .040]. This supports the first hypothesis (H1).
 
 ```{r figure1, eval = TRUE, echo = FALSE, results = "asis", fig.cap="Measurement Model of the configural MGCFA Model in the training sample."}
 cat("
@@ -77,7 +77,7 @@ cat("
 
 ```
 For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
-Cross-validation of the MGCFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 389) = 659.746, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ < .00 , $\Delta\text{SRMR}$ < .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2). This indicates support for the second hypothesis (H2).
+Cross-validation of the MGCFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: $X^{2}$(*df* = 320) = 483.429, $p$ < 0.001, CFI = .92, SRMR = .087, RMSEA = .038; $\Delta\text{CFI}$ < .00 , $\Delta\text{SRMR}$ < .00, $\Delta\text{RMSEA}$ = .001 (cf. Table 2). This indicates support for the second hypothesis (H2).
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MGCFA testing}

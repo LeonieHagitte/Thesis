@@ -1275,10 +1275,6 @@ Estimation Software: lavaan
 Models Estimated: 61506 
 Time Required: 32662.03 seconds
 
-Crossvalidation Results with STRICT Invariance:
-
-Average Jaccard Similarity: Comprehension: 0.206, Evaluation: 0.095, Integration: 0.270, Communication: 0.422, Statistics: 0.095
-
 Constructed Subtests: (k = 1)
 Comprehension: F1F4 F1F6 F1F8 F1F10
 Evaluation: F2F9 F2F12 F2F14 F2F16
@@ -1288,7 +1284,7 @@ Statistics: F5F3 F5F6 F5F8 F5F18
 
 ### Kfold-Crossvalidation with multiple iterations
 ```{r}
-set.seed(2028)
+set.seed(2028) #did yield different results
 # Load the necessary libraries
 library(stuart)
 
@@ -1383,6 +1379,44 @@ Integration: F3F2 F3F4 F3F6 F3F9
 Communication: F4F1 F4F3 F4F6 F4F8
 Statistics: F5F3 F5F4 F5F8 F5F18
 
+```{r}
+cfa_model_m <- '
+# Measurement model
+Comprehension =~ F1F6 + F1F8 + F1F11 + F1F14
+Evaluation =~ F2F2 + F2F6 + F2F15 + F2F20
+Integration =~ F3F2 + F3F4 + F3F6 + F3F9
+Communication =~ F4F1 + F4F3 + F4F6 + F4F8
+Statistics =~ F5F3 + F5F4 + F5F8 + F5F18
+
+# Factor variances
+Comprehension ~~ Comprehension
+Evaluation ~~ Evaluation
+Integration ~~ Integration
+Communication ~~ Communication
+Statistics ~~ Statistics
+
+# Factor correlations
+Comprehension ~~ Evaluation
+Comprehension ~~ Integration
+Comprehension ~~ Communication
+Comprehension ~~ Statistics
+Evaluation ~~ Integration
+Evaluation ~~ Communication
+Evaluation ~~ Statistics
+Integration ~~ Communication
+Integration ~~ Statistics
+Communication ~~ Statistics
+'
+
+fit_cfa_model_mock <- cfa(cfa_model_m, df_train, 
+                       missing = "fiml", 
+                       estimator = "MLR", 
+                       em.h1.iter.max = 1000)
+
+summary(fit_cfa_model_mock, fit.measures = TRUE, standardized = TRUE)
+
+inspect(fit_cfa_model_mock, 'fit')
+```
 
 ### Validation via MG-CFA for MI
 ```{r}

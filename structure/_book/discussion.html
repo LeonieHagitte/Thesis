@@ -23,7 +23,7 @@
 <meta name="author" content="Leonie Hagitte" />
 
 
-<meta name="date" content="2025-01-25" />
+<meta name="date" content="2025-01-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -190,10 +190,10 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 5</span> Discussion<a href="discussion.html#discussion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This study meant to examine whether 20 items out of the initial item pool, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution utilizing the genetic algorithm as well as a 3-fold crossvalidation in ‘stuart’, that yields good model fit as well as reliability, and that shows measurement invariance with a random split-sample. Additionally, correlations with other scales and constructs were to be examined to locate the construct within the nomological net.
 The model demonstrating the best overall fit was selected, based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items and respective measurement errors. The model also included inter-factor correlations between all latent factors.
-Construct validity was evaluated through CFA, using MLR as estimator, as well as correlation analyses with related constructs.</p>
+Construct validity was evaluated through CFA, using ML as estimator, as well as correlation analyses with related constructs.</p>
 <div id="model-fit-initial-item-selection" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Model fit Initial Item Selection<a href="discussion.html#model-fit-initial-item-selection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Although the RMSEA was a bit low, the initial model exhibited an acceptable to good fit, with indices suggesting good model fit (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96), according to <span class="citation">Hu &amp; Bentler (<a href="#ref-hu1999">1999</a>)</span>.
+<p>Although the RMSEA was a bit low, the initial model exhibited an acceptable to good fit, with indices suggesting acceptable model fit (CFI = .96, SRMR = .07, RMSEA = .03), according to <span class="citation">Hu &amp; Bentler (<a href="#ref-hu1999">1999</a>)</span>.
 However, recent advancements in scientific methods, such as the “ezCutoffs” package <span class="citation">(<a href="#ref-schmalbach2019">Schmalbach et al., 2019</a>)</span>, propose simulated cutoffs that adapt to specific model characteristics, potentially offering a more rigorous and context-sensitive approach to assessing model fit.
 According to this, the following cutoffs are suggested: scaled CFI: .986; scaled RMSEA: .022 and SRMR: .041.
 Respectively, the model exhibits non-acceptable fit.
@@ -291,7 +291,7 @@ The models yielded rather bad fit measures, when using the initially planned obj
 Therefore, it was changed in favor of model fit criteria exclusively.
 Thus, the final objective function that was used, did not incorporate terms to optimize for reliability McDonald’s <span class="math inline">\(\omega\)</span> nor variability in the difficulty of items.<br />
 Furthermore WLSMV could not be used, although being the appropriate estimator for rating scales, because of the ceiling effects in the items and the scarcely used lower answer categories.
-I tried to account for that by collapsing the respective answer categories, but this seemingly resulted in an introduction of better fit to the model. Because of that, I decided to use MLR as estimator and were therefore able to use FIML as imputation method, implemented in ‘lavaan’.
+I tried to account for that by collapsing the respective answer categories, but this seemingly resulted in an introduction of better fit to the model. Because of that, I decided to use ML as estimator and were therefore able to use FIML as imputation method, implemented in ‘lavaan’.
 Ideally future studies, with a sample without ceiling effects, would use WLSMV as estimator, since modified weighted least square estimators for ordered-categorical indicators (MWLS) provide accurate estimates of the model parameters given a stable weight matrix <span class="citation">(<a href="#ref-wirth2007">Wirth &amp; Edwards, 2007</a>)</span> and furthermore, WLSMV is a robust estimator which does not assume normally distributed variables and provides the best option for modelling categorical or ordered data <span class="citation">(<a href="#ref-brown2006">T. A. Brown, 2006</a>)</span>.</p>
 </div>
 <div id="future-directions" class="section level2 hasAnchor" number="5.6">

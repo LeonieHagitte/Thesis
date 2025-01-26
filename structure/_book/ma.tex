@@ -163,7 +163,7 @@
 \makeatother
 \subtitle{An Algorithm-based Approach to Scale Development}
 \author{Leonie Hagitte}
-\date{2025-01-25}
+\date{2025-01-26}
 
 \begin{document}
 \maketitle
@@ -178,7 +178,7 @@
 \section*{Abstract}\label{abstract}
 \addcontentsline{toc}{section}{Abstract}
 
-This study aimed to develop a german, self-rated data literacy questionnaire tailored for non-specialized populations. Drawing on theoretical frameworks and previous operationalizations, the construct of data literacy was defined to include five facets: Comprehension, Evaluation, Integration, Communication, and Statistics. An initial pool of 71 items was refined through cognitive interviews and further narrowed to a final set of 20 items using an algorithm-based selection approach. Data were collected via a cross-sectional online survey (\emph{N} = 616), and the measurement model was assessed using confirmatory factor analysis (CFA). Model fit indices indicated acceptable fit (CFI = .96, SRMR = .08, RMSEA = .05) of the initial model. A multi-group CFA indicated deterioration of fit (CFI = .92, SRMR = .087, RMSEA = .038), but confirmed scalar invariance across subsamples (random sample split), indicating some stability of the measurement model. The scale exhibited acceptable internal consistency (McDonald's \(\omega\) = .92) and suggested criterion validity in most aspects, with moderate to strong correlations observed with constructs such as information literacy and need for cognition. In addition to the measurement properties, limitations were noted in factor independence due to multicollinearity among some facets, as well as due to correlated residuals of the scales items. The questionnaire provides the first step towards a novel tool for assessing data literacy in laypeople and warrants further research into the construct's structure, applications and relevance.
+This study aimed to develop a german, self-rated data literacy questionnaire tailored for non-specialized populations. Drawing on theoretical frameworks and previous operationalizations, the construct of data literacy was defined to include five facets: Comprehension, Evaluation, Integration, Communication, and Statistics. An initial pool of 71 items was refined through cognitive interviews and further narrowed to a final set of 20 items using an algorithm-based selection approach. Data were collected via a cross-sectional online survey (\emph{N} = 616), and the measurement model was assessed using confirmatory factor analysis (CFA). Model fit indices indicated acceptable fit (CFI = .96, SRMR = .07, RMSEA = .03) of the initial model. A multi-group CFA indicated deterioration of fit (CFI = .92, SRMR = .087, RMSEA = .038), but confirmed scalar invariance across subsamples (random sample split), indicating some stability of the measurement model. The scale exhibited acceptable internal consistency (McDonald's \(\omega\) = .92) and suggested criterion validity in most aspects, with moderate to strong correlations observed with constructs such as information literacy and need for cognition. In addition to the measurement properties, limitations were noted in factor independence due to multicollinearity among some facets, as well as due to correlated residuals of the scales items. The questionnaire provides the first step towards a novel tool for assessing data literacy in laypeople and warrants further research into the construct's structure, applications and relevance.
 
 \emph{Keywords: Data Literacy, Questionnaire Development, Algorithm-Based Item Selection, Genetic Algorithm}
 
@@ -523,7 +523,8 @@ Criterion validity was examined through correlation analyses, using Kendall's ra
 
 \subsection{Exploratory Analyses}\label{exploratory-analyses}
 
-Because of the complexity of the model, as well as the several objectives of the initially planned objective function, the genetic algorithm had problems converging into a stable solution, let alone a solution with sufficient model fit. Therefore, some objectives were dropped (the composite reliability and the varying item intercepts per factor), in favor of model fit. Different solutions were systematically explored, dependent on the estimator (Maximum likelihood with robust standard errors (MLR) or robust Weighted Least Squares (WLSMV) and the respective data structure (data treated as metric or ordinal data), as well as on the objective function, to lead to the best solution (cf.~code in the supplementary Material (``Analysis.Rmd''; starting at line 2340)). Furthermore, the data was checked for multicollinearity because of convergence issues.
+Because of the complexity of the model, as well as the several objectives of the initially planned objective function, the genetic algorithm had problems converging into a stable solution, let alone a solution with sufficient model fit. Therefore, some objectives were dropped (the composite reliability and the varying item intercepts per factor), in favor of model fit. Different solutions were systematically explored, dependent on the estimator (Maximum likelihood with robust standard errors (MLR) or robust Weighted Least Squares (WLSMV) and the respective data structure (data treated as metric or ordinal data), as well as on the objective function, to lead to the best solution (cf.~code in the supplementary Material (``Analysis.Rmd''; starting at line 2340)). As some results regarding the model fit seemed spurious and to good, the fit indices were analyzed with Maximum likelihood (MLR) as estimator.
+Furthermore, the data was checked for multicollinearity because of convergence issues.
 
 \subsubsection{Analysis of Confounding Variables}\label{analysis-of-confounding-variables}
 
@@ -574,7 +575,7 @@ The tag refers to the name the item had in the programming. The First part of th
 \subsection{Model Fit and Measurement Invariance}\label{model-fit-and-measurement-invariance}
 
 Of all explored conditions and respective models, the following model is to be highlighted, as it showed the best overall fit.
-With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit (according to Hu \& Bentler (\citeproc{ref-hu1999}{1999})) with data treated as metric and MLR as estimator: Satorra-Bentler-\(X^{2}\) (\emph{df} = 414) = 582.582, \(p\) \textless{} 0.001, CFI = .96, SRMR = .08, RMSEA = .05, 90\%-CIRMSEA {[}.036; .054{]}. This supports the first hypothesis (H1).
+With an objective function only optimizing for model fit criteria (RMSEA, SRMR, CFI), the algorithm selected 20 of the 71 original items representing the five factors Comprehension, Evaluation, Integration, Communication and Statistics with four items each (Figure 3). The solution exhibits good model fit (according to Hu \& Bentler (\citeproc{ref-hu1999}{1999})) with data treated as metric and ML as estimator: Satorra-Bentler-\(X^{2}\) (\emph{df} = 160) = 212.022, \(p\) = 0.004, CFI = .96, SRMR = .07, RMSEA = .03, 90\%-CIRMSEA {[}.017; .040{]}. This supports the first hypothesis (H1).
 
 \vspace{0.3cm}
 \begin{figure}
@@ -603,7 +604,7 @@ For the configural model of the training sample in the MGCFA, standardized loadi
 \vspace{0.3cm}
 
 For the configural model of the test sample in the MGCFA, standardized loadings of the factor Comprehension ranged from .63 to .73. For the factor Evaluation loadings ranged from .29 to .89. For the factor Integration loadings ranged from .32 to .77. For the factor Communication loadings ranged from .56 to .77. For the factor Statistics loadings ranged from .70 to .81. The complete model is also displayed in Figure 4.
-Cross-validation of the MGCFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(\emph{df} = 389) = 659.746, \(p\) \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) \textless{} .00 , \(\Delta\text{SRMR}\) \textless{} .00, \(\Delta\text{RMSEA}\) = .001 (cf.~Table 2). This indicates support for the second hypothesis (H2).
+Cross-validation of the MGCFA with the test-data indicated that the assumption of scalar invariance holds across the two subsamples: \(X^{2}\)(\emph{df} = 320) = 483.429, \(p\) \textless{} 0.001, CFI = .92, SRMR = .087, RMSEA = .038; \(\Delta\text{CFI}\) \textless{} .00 , \(\Delta\text{SRMR}\) \textless{} .00, \(\Delta\text{RMSEA}\) = .001 (cf.~Table 2). This indicates support for the second hypothesis (H2).
 
 \begin{table}[htpb]
 \caption{Fit Indices for Model and Results of MGCFA testing}
@@ -731,11 +732,11 @@ Finally, for `Age 22', a statistically significant negative effect was found on 
 
 This study meant to examine whether 20 items out of the initial item pool, would reflect the suggested measurement model within the current sample. Furthermore, the aim was to find a solution utilizing the genetic algorithm as well as a 3-fold crossvalidation in `stuart', that yields good model fit as well as reliability, and that shows measurement invariance with a random split-sample. Additionally, correlations with other scales and constructs were to be examined to locate the construct within the nomological net.
 The model demonstrating the best overall fit was selected, based on a set of 20 items representing five factors: Comprehension, Evaluation, Integration, Communication, and Statistics, each with four items and respective measurement errors. The model also included inter-factor correlations between all latent factors.
-Construct validity was evaluated through CFA, using MLR as estimator, as well as correlation analyses with related constructs.
+Construct validity was evaluated through CFA, using ML as estimator, as well as correlation analyses with related constructs.
 
 \subsection{Model fit Initial Item Selection}\label{model-fit-initial-item-selection}
 
-Although the RMSEA was a bit low, the initial model exhibited an acceptable to good fit, with indices suggesting good model fit (RMSEA = 0.05, SRMR = 0.08, CFI = 0.96), according to Hu \& Bentler (\citeproc{ref-hu1999}{1999}).
+Although the RMSEA was a bit low, the initial model exhibited an acceptable to good fit, with indices suggesting acceptable model fit (CFI = .96, SRMR = .07, RMSEA = .03), according to Hu \& Bentler (\citeproc{ref-hu1999}{1999}).
 However, recent advancements in scientific methods, such as the ``ezCutoffs'' package (\citeproc{ref-schmalbach2019}{Schmalbach et al., 2019}), propose simulated cutoffs that adapt to specific model characteristics, potentially offering a more rigorous and context-sensitive approach to assessing model fit.
 According to this, the following cutoffs are suggested: scaled CFI: .986; scaled RMSEA: .022 and SRMR: .041.
 Respectively, the model exhibits non-acceptable fit.
@@ -844,7 +845,7 @@ The models yielded rather bad fit measures, when using the initially planned obj
 Therefore, it was changed in favor of model fit criteria exclusively.
 Thus, the final objective function that was used, did not incorporate terms to optimize for reliability McDonald's \(\omega\) nor variability in the difficulty of items.\\
 Furthermore WLSMV could not be used, although being the appropriate estimator for rating scales, because of the ceiling effects in the items and the scarcely used lower answer categories.
-I tried to account for that by collapsing the respective answer categories, but this seemingly resulted in an introduction of better fit to the model. Because of that, I decided to use MLR as estimator and were therefore able to use FIML as imputation method, implemented in `lavaan'.
+I tried to account for that by collapsing the respective answer categories, but this seemingly resulted in an introduction of better fit to the model. Because of that, I decided to use ML as estimator and were therefore able to use FIML as imputation method, implemented in `lavaan'.
 Ideally future studies, with a sample without ceiling effects, would use WLSMV as estimator, since modified weighted least square estimators for ordered-categorical indicators (MWLS\textsubscript{C}) provide accurate estimates of the model parameters given a stable weight matrix (\citeproc{ref-wirth2007}{Wirth \& Edwards, 2007}) and furthermore, WLSMV is a robust estimator which does not assume normally distributed variables and provides the best option for modelling categorical or ordered data (\citeproc{ref-brown2006}{T. A. Brown, 2006}).
 
 \subsection{Future directions}\label{future-directions}
