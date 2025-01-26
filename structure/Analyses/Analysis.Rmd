@@ -2358,18 +2358,13 @@ print(residuals_corr_matrix_selected)
 
 ```
 
-```{r}
-
-
-```
-
 ####################################################################
 STUFF THAT I TRIED THAT DIDNT WORK OR I DIDNT USE IN THE END
 ####################################################################
 
 ## using mice to impute the missing data
 ```{r, echo=FALSE}
-set.seed(2025)
+set.seed(2025) # now properly seed command
 imputed_training_data <- mice(df_train, m=5, method='pmm', maxit=50)
 imputed_training_data_c <- complete(imputed_training_data, 1)
 
@@ -2415,8 +2410,6 @@ imputed_training_data_merged <- imputed_training_data_merged %>%
   select(-c(F2F17, F2F4))
 
 #print(imputed_training_data_merged)
-
-
 ```
 
 ```{r}
@@ -2424,7 +2417,6 @@ value_counts_merged <- imputed_training_data_merged %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
   count(Variable, Value) %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
 
 #print(value_counts_merged)
 ```
@@ -2438,7 +2430,6 @@ imputed_training_data_merged1 <- imputed_training_data_merged %>%
   mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
 
 #print(imputed_training_data_merged1)
-
 ```
 
 ```{r}
@@ -2450,7 +2441,6 @@ imputed_training_data_merged2 <- imputed_training_data_merged1 %>%
   mutate(across(all_of(selected_items), ~ ifelse(. %in% c(1, 2), 2, .)))
 
 #print(imputed_training_data_merged2)
-
 ```
 
 ```{r}
@@ -2458,7 +2448,6 @@ value_counts_merged2 <- imputed_training_data_merged2 %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
   count(Variable, Value) %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
 
 #print(value_counts_merged2)
 ```
@@ -2479,7 +2468,6 @@ value_counts_merged3 <- imputed_training_data_merged3 %>%
   pivot_longer(everything(), names_to = "Variable", values_to = "Value") %>%
   count(Variable, Value) %>%
   pivot_wider(names_from = Value, values_from = n, values_fill = list(n = 0))
-
 
 #print(value_counts_merged3)
 ```
@@ -2594,7 +2582,6 @@ value_counts_merged_test <- imputed_test_data_c %>%
 ```
 
 ```{r}
-
 # Define the selected items
 selected_items10 <- c("F1F12", "F2F10", "F3F1", "F3F4", "F4F8", "F5F1", "F5F16", "F5F9", "F5F5", "F5F13", "F4F6")
 
@@ -2603,7 +2590,6 @@ imputed_test_data_merged1 <- imputed_test_data_merged %>%
   mutate(across(all_of(selected_items10), ~ ifelse(. %in% c(0, 1), 1, .)))
 
 #print(imputed_training_data_merged1)
-
 ```
 
 ```{r}
@@ -2615,7 +2601,6 @@ imputed_test_data_merged2 <- imputed_test_data_merged1 %>%
   mutate(across(all_of(selected_items12t), ~ ifelse(. %in% c(1, 2), 2, .)))
 
 #print(imputed_test_data_merged2)
-
 ```
 
 ```{r}
@@ -2653,7 +2638,6 @@ imputed_test_data_c <- imputed_test_data_c %>%
 # Join the two data frames
 joined_mgcfa_data <- bind_rows(imputed_training_data_c, imputed_test_data_c)
 
-# Print the resulting data frame
 print(joined_mgcfa_data)
 
 ```
@@ -2664,12 +2648,10 @@ ords <- imputed_training_data_merged3[, names(imputed_training_data_merged3)%in%
 ords <- lapply(ords, as.ordered)
 ords <- do.call(data.frame, ords)
 
-# Print the resulting data frame
 print(ords)
 ```
 
 ```{r}
-# Load necessary libraries
 library(dplyr)
 library(tidyr)
 
@@ -3047,7 +3029,7 @@ print(corr_matrix2_group2)
 
 ```
 
-##########################################################################
+
 ### Objective Function with NU (Metric and MLR)
 ```{r}
 obj_default_nu <- function(chisq, df, pvalue, cfi.robust, rmsea.robust, srmr, crel, nu) {
@@ -3155,7 +3137,7 @@ inspect(results_list_nu[[1]]$final, 'fit')
 inspect(results_list_nu[[1]]$final, 'est')
 
 lavaan::standardizedSolution(results_list_nu[[i]]$final)
-#########################################################
+
 ```
 
 ### MG-CFA with NU and Metric data 
@@ -3201,6 +3183,7 @@ comp_fit_metric1 <- compareFit(fit_cfa_model_m1, fit_cfa_model_metric1)
 summary(comp_fit_metric1)
 
 ```
+
 #### metric to scalar
 ```{r}
 fit_cfa_model_scalar1 <- cfa(cfa_model_m1, joined_mgcfa_data, estimator = "MLR", group = "split",
@@ -3220,7 +3203,8 @@ comp_fit_strict1 <- compareFit(fit_cfa_model_scalar1, fit_cfa_model_strict1)
 summary(comp_fit_strict1)
 
 ```
-##########
+
+
 ```{r}
 library(lavaan)
 # Extract the tau matrix from the fitted model
@@ -3265,8 +3249,6 @@ colnames(taus_matrix) <- "Avg_SD"
 # Print the resulting matrix
 print(taus_matrix)
 ```
-
-################################################
 
 ## K-fold Crossvalidation with Ordinal data Structure (WLSMV)
 ```{r, eval=FALSE}
@@ -3506,6 +3488,7 @@ comp_fit_ord <- compareFit(fit_cfa_model_ords, fit_cfa_model_ords_m)
 summary(comp_fit_ord)
 inspect(fit_cfa_model_ords_m ,'fit')
 ```
+
 #### configural to metric
 Cfi scaled: 
 rmsea scaled: 
@@ -3593,8 +3576,6 @@ inspect(fit_model_ord_manu_scalar,'fit')
 ```{r, eval=FALSE}
 library(stuart)
 # objective
-# Define the objective function
-#
 objective.normal2 <- function(rmsea.scaled, srmr, cfi.scaled, tau) {
 
   if (!is.numeric(tau)) {
@@ -3654,7 +3635,6 @@ tau_values3b <- lavaan::inspect(kfold_sel3$final, 'est')$B$tau
 print(tau_values3a)
 print(tau_values3b)
 
-#########################################################
 ```
 
 ### Summary and Results of K-fold Crossvalidation with Ordinal data Structure (WLSMV) and Tau
